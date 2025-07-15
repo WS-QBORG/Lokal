@@ -47,7 +47,33 @@ markerCluster = L.markerClusterGroup({
 
 function loadGeoJSONWithFilter(filterFn) {
   if (markerCluster) map.removeLayer(markerCluster);
-  markerCluster = L.markerClusterGroup();
+
+  markerCluster = L.markerClusterGroup({
+    iconCreateFunction: function (cluster) {
+      const count = cluster.getChildCount();
+
+      let color = '#3b82f6'; // granatowy
+      if (count >= 100) color = '#000000'; // czarny
+      else if (count >= 10) color = '#9ca3af'; // szary
+
+      return new L.DivIcon({
+        html: `<div style="
+          background-color: ${color};
+          color: white;
+          width: 40px;
+          height: 40px;
+          line-height: 38px;
+          border-radius: 50%;
+          border: 2px solid white;
+          text-align: center;
+          font-weight: bold;
+          font-size: 14px;
+        ">${count}</div>`,
+        className: 'marker-cluster',
+        iconSize: [40, 40]
+      });
+    }
+  });
 
   fetch(geojsonFile)
     .then(res => res.json())
@@ -78,6 +104,7 @@ function loadGeoJSONWithFilter(filterFn) {
       map.addLayer(markerCluster);
     });
 }
+
 
 function filterMap(rok) {
   loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);

@@ -121,19 +121,32 @@ function applyProjektantFilter() {
   hideSidebar();
 }
 
-function sortAZ() {
-  projektanciGlobal.sort((a, b) => a.projektant.localeCompare(b.projektant));
-  renderProjektanciList(projektanciGlobal);
-}
+function applySortFilter() {
+  const value = document.getElementById("sortFilterSelect").value;
+  let list = [...projektanciGlobal];
 
-function sortZA() {
-  projektanciGlobal.sort((a, b) => b.projektant.localeCompare(a.projektant));
-  renderProjektanciList(projektanciGlobal);
-}
+  switch (value) {
+    case "az":
+      list.sort((a, b) => a.projektant.localeCompare(b.projektant));
+      break;
+    case "za":
+      list.sort((a, b) => b.projektant.localeCompare(a.projektant));
+      break;
+    case "has-handlowiec":
+      list = list.filter(p => projektanciAssigned[p.projektant]);
+      break;
+    case "no-handlowiec":
+      list = list.filter(p => !projektanciAssigned[p.projektant]);
+      break;
+    case "proj-asc":
+      list.sort((a, b) => a.liczba_projektow - b.liczba_projektow);
+      break;
+    case "proj-desc":
+      list.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
+      break;
+  }
 
-function filterAssigned(assigned) {
-  const filtered = projektanciGlobal.filter(p => assigned ? projektanciAssigned[p.projektant] : !projektanciAssigned[p.projektant]);
-  renderProjektanciList(filtered);
+  renderProjektanciList(list);
 }
 
 function assignHandlowiec(projektant, handlowiec) {

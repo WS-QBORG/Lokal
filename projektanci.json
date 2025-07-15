@@ -1,0 +1,6957 @@
+[
+  {
+    "projektant": " ",
+    "liczba_projektow": 2,
+    "slug": "_"
+  },
+  {
+    "projektant": " Anna  Karnicka",
+    "liczba_projektow": 2,
+    "slug": "_ANNA__KARNICKA"
+  },
+  {
+    "projektant": " Kinga  Konopka",
+    "liczba_projektow": 1,
+    "slug": "_KINGA__KONOPKA"
+  },
+  {
+    "projektant": " Kubicka Angelika",
+    "liczba_projektow": 1,
+    "slug": "_KUBICKA_ANGELIKA"
+  },
+  {
+    "projektant": " Marcin  Czyżewski",
+    "liczba_projektow": 1,
+    "slug": "_MARCIN__CZYŻEWSKI"
+  },
+  {
+    "projektant": "20/ZPOIA/2003 Zgorzelska ",
+    "liczba_projektow": 1,
+    "slug": "20/ZPOIA/2003_ZGORZELSKA_"
+  },
+  {
+    "projektant": "AGATA PRABUCKA",
+    "liczba_projektow": 1,
+    "slug": "AGATA_PRABUCKA"
+  },
+  {
+    "projektant": "AGNIESZKA SZARKOWSKA",
+    "liczba_projektow": 3,
+    "slug": "AGNIESZKA_SZARKOWSKA"
+  },
+  {
+    "projektant": "ANDRZEJ RYCHLICKI",
+    "liczba_projektow": 1,
+    "slug": "ANDRZEJ_RYCHLICKI"
+  },
+  {
+    "projektant": "ANITA FERT",
+    "liczba_projektow": 1,
+    "slug": "ANITA_FERT"
+  },
+  {
+    "projektant": "ANITA FERT ",
+    "liczba_projektow": 1,
+    "slug": "ANITA_FERT_"
+  },
+  {
+    "projektant": "ANNA FLICIŃSKA",
+    "liczba_projektow": 2,
+    "slug": "ANNA_FLICIŃSKA"
+  },
+  {
+    "projektant": "ANNA PŁATEK",
+    "liczba_projektow": 2,
+    "slug": "ANNA_PŁATEK"
+  },
+  {
+    "projektant": "Adam Bodnar",
+    "liczba_projektow": 3,
+    "slug": "ADAM_BODNAR"
+  },
+  {
+    "projektant": "Adam Borecki",
+    "liczba_projektow": 1,
+    "slug": "ADAM_BORECKI"
+  },
+  {
+    "projektant": "Adam Gierach",
+    "liczba_projektow": 2,
+    "slug": "ADAM_GIERACH"
+  },
+  {
+    "projektant": "Adam Lewandowski",
+    "liczba_projektow": 4,
+    "slug": "ADAM_LEWANDOWSKI"
+  },
+  {
+    "projektant": "Adam Niedośpiał",
+    "liczba_projektow": 4,
+    "slug": "ADAM_NIEDOŚPIAŁ"
+  },
+  {
+    "projektant": "Adam Piotrowicz",
+    "liczba_projektow": 4,
+    "slug": "ADAM_PIOTROWICZ"
+  },
+  {
+    "projektant": "Adam Rojek",
+    "liczba_projektow": 1,
+    "slug": "ADAM_ROJEK"
+  },
+  {
+    "projektant": "Adam Spychalski",
+    "liczba_projektow": 5,
+    "slug": "ADAM_SPYCHALSKI"
+  },
+  {
+    "projektant": "Adam Supiński",
+    "liczba_projektow": 13,
+    "slug": "ADAM_SUPIŃSKI"
+  },
+  {
+    "projektant": "Adam Supiński  ",
+    "liczba_projektow": 1,
+    "slug": "ADAM_SUPIŃSKI__"
+  },
+  {
+    "projektant": "Adam Wierzbowski",
+    "liczba_projektow": 3,
+    "slug": "ADAM_WIERZBOWSKI"
+  },
+  {
+    "projektant": "Adam Wróbel",
+    "liczba_projektow": 4,
+    "slug": "ADAM_WRÓBEL"
+  },
+  {
+    "projektant": "Adam   Sterczak    ",
+    "liczba_projektow": 1,
+    "slug": "ADAM___STERCZAK____"
+  },
+  {
+    "projektant": "Adam  Białczewski ",
+    "liczba_projektow": 1,
+    "slug": "ADAM__BIAŁCZEWSKI_"
+  },
+  {
+    "projektant": "Adam  Czernikiewicz ",
+    "liczba_projektow": 2,
+    "slug": "ADAM__CZERNIKIEWICZ_"
+  },
+  {
+    "projektant": "Adam  Gierach ",
+    "liczba_projektow": 2,
+    "slug": "ADAM__GIERACH_"
+  },
+  {
+    "projektant": "Adam  Rojek ",
+    "liczba_projektow": 6,
+    "slug": "ADAM__ROJEK_"
+  },
+  {
+    "projektant": "Adam  Siwczuk",
+    "liczba_projektow": 1,
+    "slug": "ADAM__SIWCZUK"
+  },
+  {
+    "projektant": "Adam  Siwczuk ",
+    "liczba_projektow": 6,
+    "slug": "ADAM__SIWCZUK_"
+  },
+  {
+    "projektant": "Adam  Sterczak ",
+    "liczba_projektow": 35,
+    "slug": "ADAM__STERCZAK_"
+  },
+  {
+    "projektant": "Adam  Supiński",
+    "liczba_projektow": 3,
+    "slug": "ADAM__SUPIŃSKI"
+  },
+  {
+    "projektant": "Adam  Supiński ",
+    "liczba_projektow": 1,
+    "slug": "ADAM__SUPIŃSKI_"
+  },
+  {
+    "projektant": "Adam  Wróbel",
+    "liczba_projektow": 13,
+    "slug": "ADAM__WRÓBEL"
+  },
+  {
+    "projektant": "Adrian Ciepłowski",
+    "liczba_projektow": 4,
+    "slug": "ADRIAN_CIEPŁOWSKI"
+  },
+  {
+    "projektant": "Adrian Drzewucki",
+    "liczba_projektow": 8,
+    "slug": "ADRIAN_DRZEWUCKI"
+  },
+  {
+    "projektant": "Adrian Skwarek",
+    "liczba_projektow": 1,
+    "slug": "ADRIAN_SKWAREK"
+  },
+  {
+    "projektant": "Adrian WICZK",
+    "liczba_projektow": 2,
+    "slug": "ADRIAN_WICZK"
+  },
+  {
+    "projektant": "Adrian Wiczk",
+    "liczba_projektow": 16,
+    "slug": "ADRIAN_WICZK"
+  },
+  {
+    "projektant": "Adrian Wiczk ",
+    "liczba_projektow": 3,
+    "slug": "ADRIAN_WICZK_"
+  },
+  {
+    "projektant": "Adrian  Górecki ",
+    "liczba_projektow": 1,
+    "slug": "ADRIAN__GÓRECKI_"
+  },
+  {
+    "projektant": "Adriana Szubryt",
+    "liczba_projektow": 1,
+    "slug": "ADRIANA_SZUBRYT"
+  },
+  {
+    "projektant": "Agata Prabucka",
+    "liczba_projektow": 4,
+    "slug": "AGATA_PRABUCKA"
+  },
+  {
+    "projektant": "Agata Ukleja",
+    "liczba_projektow": 9,
+    "slug": "AGATA_UKLEJA"
+  },
+  {
+    "projektant": "Agata Zielińska",
+    "liczba_projektow": 1,
+    "slug": "AGATA_ZIELIŃSKA"
+  },
+  {
+    "projektant": "Agata  Kupracz-Pryputniewicz",
+    "liczba_projektow": 2,
+    "slug": "AGATA__KUPRACZ-PRYPUTNIEWICZ"
+  },
+  {
+    "projektant": "Agata  Pietkiewicz ",
+    "liczba_projektow": 3,
+    "slug": "AGATA__PIETKIEWICZ_"
+  },
+  {
+    "projektant": "Agata  Prabucka ",
+    "liczba_projektow": 1,
+    "slug": "AGATA__PRABUCKA_"
+  },
+  {
+    "projektant": "Agata  Ukleja",
+    "liczba_projektow": 1,
+    "slug": "AGATA__UKLEJA"
+  },
+  {
+    "projektant": "Agnieszka Bokiewicz-Marchewka ",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_BOKIEWICZ-MARCHEWKA_"
+  },
+  {
+    "projektant": "Agnieszka Cajgner-Olędzka",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_CAJGNER-OLĘDZKA"
+  },
+  {
+    "projektant": "Agnieszka Chromińska",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_CHROMIŃSKA"
+  },
+  {
+    "projektant": "Agnieszka Cofta-Maćkowiak ",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_COFTA-MAĆKOWIAK_"
+  },
+  {
+    "projektant": "Agnieszka Daraszkiewicz",
+    "liczba_projektow": 2,
+    "slug": "AGNIESZKA_DARASZKIEWICZ"
+  },
+  {
+    "projektant": "Agnieszka Górna",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_GÓRNA"
+  },
+  {
+    "projektant": "Agnieszka Jakubczak",
+    "liczba_projektow": 2,
+    "slug": "AGNIESZKA_JAKUBCZAK"
+  },
+  {
+    "projektant": "Agnieszka Kuźma  ",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_KUŹMA__"
+  },
+  {
+    "projektant": "Agnieszka Macinik",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_MACINIK"
+  },
+  {
+    "projektant": "Agnieszka Marcinik",
+    "liczba_projektow": 38,
+    "slug": "AGNIESZKA_MARCINIK"
+  },
+  {
+    "projektant": "Agnieszka Małagocka",
+    "liczba_projektow": 8,
+    "slug": "AGNIESZKA_MAŁAGOCKA"
+  },
+  {
+    "projektant": "Agnieszka Małagoscka ",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_MAŁAGOSCKA_"
+  },
+  {
+    "projektant": "Agnieszka Małogocka",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_MAŁOGOCKA"
+  },
+  {
+    "projektant": "Agnieszka Przezwicka-Litwin ",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_PRZEZWICKA-LITWIN_"
+  },
+  {
+    "projektant": "Agnieszka Ptak - Krawczyk",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_PTAK_-_KRAWCZYK"
+  },
+  {
+    "projektant": "Agnieszka Ptak-Krawczyk",
+    "liczba_projektow": 9,
+    "slug": "AGNIESZKA_PTAK-KRAWCZYK"
+  },
+  {
+    "projektant": "Agnieszka Puchyr",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_PUCHYR"
+  },
+  {
+    "projektant": "Agnieszka Syldatk",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_SYLDATK"
+  },
+  {
+    "projektant": "Agnieszka Szarkowska",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_SZARKOWSKA"
+  },
+  {
+    "projektant": "Agnieszka Szarkowska ",
+    "liczba_projektow": 2,
+    "slug": "AGNIESZKA_SZARKOWSKA_"
+  },
+  {
+    "projektant": "Agnieszka Westwalewicz",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA_WESTWALEWICZ"
+  },
+  {
+    "projektant": "Agnieszka Zakrzewska",
+    "liczba_projektow": 4,
+    "slug": "AGNIESZKA_ZAKRZEWSKA"
+  },
+  {
+    "projektant": "Agnieszka   Burak     ",
+    "liczba_projektow": 5,
+    "slug": "AGNIESZKA___BURAK_____"
+  },
+  {
+    "projektant": "Agnieszka  Cofta-Maćkowiak ",
+    "liczba_projektow": 2,
+    "slug": "AGNIESZKA__COFTA-MAĆKOWIAK_"
+  },
+  {
+    "projektant": "Agnieszka  Kuźma",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA__KUŹMA"
+  },
+  {
+    "projektant": "Agnieszka  Przezwicka-Litwin",
+    "liczba_projektow": 5,
+    "slug": "AGNIESZKA__PRZEZWICKA-LITWIN"
+  },
+  {
+    "projektant": "Agnieszka  Szustkiewicz ",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA__SZUSTKIEWICZ_"
+  },
+  {
+    "projektant": "Agnieszka   Cofta-Maćkowiak",
+    "liczba_projektow": 1,
+    "slug": "AGNIESZKA___COFTA-MAĆKOWIAK"
+  },
+  {
+    "projektant": "Aleksander Hak",
+    "liczba_projektow": 2,
+    "slug": "ALEKSANDER_HAK"
+  },
+  {
+    "projektant": "Aleksander Żuk",
+    "liczba_projektow": 1,
+    "slug": "ALEKSANDER_ŻUK"
+  },
+  {
+    "projektant": "Aleksander  Michalski",
+    "liczba_projektow": 1,
+    "slug": "ALEKSANDER__MICHALSKI"
+  },
+  {
+    "projektant": "Aleksandra Ejsmont",
+    "liczba_projektow": 7,
+    "slug": "ALEKSANDRA_EJSMONT"
+  },
+  {
+    "projektant": "Aleksandra Grabowska",
+    "liczba_projektow": 2,
+    "slug": "ALEKSANDRA_GRABOWSKA"
+  },
+  {
+    "projektant": "Aleksandra Koczuk",
+    "liczba_projektow": 1,
+    "slug": "ALEKSANDRA_KOCZUK"
+  },
+  {
+    "projektant": "Aleksandra Kozakiewicz",
+    "liczba_projektow": 16,
+    "slug": "ALEKSANDRA_KOZAKIEWICZ"
+  },
+  {
+    "projektant": "Aleksandra Nowik",
+    "liczba_projektow": 1,
+    "slug": "ALEKSANDRA_NOWIK"
+  },
+  {
+    "projektant": "Aleksandra Zasimowicz - Zielińska",
+    "liczba_projektow": 1,
+    "slug": "ALEKSANDRA_ZASIMOWICZ_-_ZIELIŃSKA"
+  },
+  {
+    "projektant": "Aleksandra  Kulbas-Leśniak ",
+    "liczba_projektow": 1,
+    "slug": "ALEKSANDRA__KULBAS-LEŚNIAK_"
+  },
+  {
+    "projektant": "Alicja Gajdis-Matenko",
+    "liczba_projektow": 1,
+    "slug": "ALICJA_GAJDIS-MATENKO"
+  },
+  {
+    "projektant": "Alicja Gajdis-Mateńko",
+    "liczba_projektow": 4,
+    "slug": "ALICJA_GAJDIS-MATEŃKO"
+  },
+  {
+    "projektant": "Alicja Kicińska - Woźnica",
+    "liczba_projektow": 1,
+    "slug": "ALICJA_KICIŃSKA_-_WOŹNICA"
+  },
+  {
+    "projektant": "Alicja Potiechin",
+    "liczba_projektow": 1,
+    "slug": "ALICJA_POTIECHIN"
+  },
+  {
+    "projektant": "Alicja Woźnica - Kicińska",
+    "liczba_projektow": 1,
+    "slug": "ALICJA_WOŹNICA_-_KICIŃSKA"
+  },
+  {
+    "projektant": "Alicja Wróbel",
+    "liczba_projektow": 5,
+    "slug": "ALICJA_WRÓBEL"
+  },
+  {
+    "projektant": "Alicja  Gajdis - Mateńko ",
+    "liczba_projektow": 1,
+    "slug": "ALICJA__GAJDIS_-_MATEŃKO_"
+  },
+  {
+    "projektant": "Anatol Prokopczyk",
+    "liczba_projektow": 2,
+    "slug": "ANATOL_PROKOPCZYK"
+  },
+  {
+    "projektant": "Andrzej Bożek",
+    "liczba_projektow": 1,
+    "slug": "ANDRZEJ_BOŻEK"
+  },
+  {
+    "projektant": "Andrzej Dymek",
+    "liczba_projektow": 1,
+    "slug": "ANDRZEJ_DYMEK"
+  },
+  {
+    "projektant": "Andrzej Girlikowski ",
+    "liczba_projektow": 2,
+    "slug": "ANDRZEJ_GIRLIKOWSKI_"
+  },
+  {
+    "projektant": "Andrzej Matejek",
+    "liczba_projektow": 1,
+    "slug": "ANDRZEJ_MATEJEK"
+  },
+  {
+    "projektant": "Andrzej Małolepszy",
+    "liczba_projektow": 6,
+    "slug": "ANDRZEJ_MAŁOLEPSZY"
+  },
+  {
+    "projektant": "Andrzej Nogaj",
+    "liczba_projektow": 1,
+    "slug": "ANDRZEJ_NOGAJ"
+  },
+  {
+    "projektant": "Andrzej Pierścionek",
+    "liczba_projektow": 6,
+    "slug": "ANDRZEJ_PIERŚCIONEK"
+  },
+  {
+    "projektant": "Andrzej Pióro",
+    "liczba_projektow": 3,
+    "slug": "ANDRZEJ_PIÓRO"
+  },
+  {
+    "projektant": "Andrzej Rychlicki",
+    "liczba_projektow": 2,
+    "slug": "ANDRZEJ_RYCHLICKI"
+  },
+  {
+    "projektant": "Andrzej Tyszecki",
+    "liczba_projektow": 7,
+    "slug": "ANDRZEJ_TYSZECKI"
+  },
+  {
+    "projektant": "Andrzej   Lorek ",
+    "liczba_projektow": 1,
+    "slug": "ANDRZEJ___LOREK_"
+  },
+  {
+    "projektant": "Andrzej  Czerniecki ",
+    "liczba_projektow": 1,
+    "slug": "ANDRZEJ__CZERNIECKI_"
+  },
+  {
+    "projektant": "Andrzej  Małolepszy ",
+    "liczba_projektow": 10,
+    "slug": "ANDRZEJ__MAŁOLEPSZY_"
+  },
+  {
+    "projektant": "Andrzej  Oelke",
+    "liczba_projektow": 3,
+    "slug": "ANDRZEJ__OELKE"
+  },
+  {
+    "projektant": "Andrzej  Pióro",
+    "liczba_projektow": 2,
+    "slug": "ANDRZEJ__PIÓRO"
+  },
+  {
+    "projektant": "Andrzej  Pióro ",
+    "liczba_projektow": 45,
+    "slug": "ANDRZEJ__PIÓRO_"
+  },
+  {
+    "projektant": "Andrzej  Poźniak",
+    "liczba_projektow": 4,
+    "slug": "ANDRZEJ__POŹNIAK"
+  },
+  {
+    "projektant": "Andrzej  Rychlicki ",
+    "liczba_projektow": 8,
+    "slug": "ANDRZEJ__RYCHLICKI_"
+  },
+  {
+    "projektant": "Andrzej  Szymkowiak",
+    "liczba_projektow": 1,
+    "slug": "ANDRZEJ__SZYMKOWIAK"
+  },
+  {
+    "projektant": "Aneta Sochalska ",
+    "liczba_projektow": 12,
+    "slug": "ANETA_SOCHALSKA_"
+  },
+  {
+    "projektant": "Aneta Sochalska  ",
+    "liczba_projektow": 3,
+    "slug": "ANETA_SOCHALSKA__"
+  },
+  {
+    "projektant": "Angelika Kubicka",
+    "liczba_projektow": 18,
+    "slug": "ANGELIKA_KUBICKA"
+  },
+  {
+    "projektant": "Angelika Kubicka ",
+    "liczba_projektow": 1,
+    "slug": "ANGELIKA_KUBICKA_"
+  },
+  {
+    "projektant": "Angelika  Kubicka",
+    "liczba_projektow": 2,
+    "slug": "ANGELIKA__KUBICKA"
+  },
+  {
+    "projektant": "Angelika  Kubicka ",
+    "liczba_projektow": 1,
+    "slug": "ANGELIKA__KUBICKA_"
+  },
+  {
+    "projektant": "Anita Fert",
+    "liczba_projektow": 3,
+    "slug": "ANITA_FERT"
+  },
+  {
+    "projektant": "Anita  Fert ",
+    "liczba_projektow": 1,
+    "slug": "ANITA__FERT_"
+  },
+  {
+    "projektant": "Anna Banasik",
+    "liczba_projektow": 8,
+    "slug": "ANNA_BANASIK"
+  },
+  {
+    "projektant": "Anna Borkowska-Koniewicz",
+    "liczba_projektow": 2,
+    "slug": "ANNA_BORKOWSKA-KONIEWICZ"
+  },
+  {
+    "projektant": "Anna Cofta",
+    "liczba_projektow": 2,
+    "slug": "ANNA_COFTA"
+  },
+  {
+    "projektant": "Anna Dabrowska",
+    "liczba_projektow": 2,
+    "slug": "ANNA_DABROWSKA"
+  },
+  {
+    "projektant": "Anna Dąbrowska",
+    "liczba_projektow": 13,
+    "slug": "ANNA_DĄBROWSKA"
+  },
+  {
+    "projektant": "Anna Dąbrowska ",
+    "liczba_projektow": 1,
+    "slug": "ANNA_DĄBROWSKA_"
+  },
+  {
+    "projektant": "Anna Galinowicz",
+    "liczba_projektow": 5,
+    "slug": "ANNA_GALINOWICZ"
+  },
+  {
+    "projektant": "Anna Jonasik",
+    "liczba_projektow": 2,
+    "slug": "ANNA_JONASIK"
+  },
+  {
+    "projektant": "Anna Jonasik ",
+    "liczba_projektow": 4,
+    "slug": "ANNA_JONASIK_"
+  },
+  {
+    "projektant": "Anna Kazimierska",
+    "liczba_projektow": 4,
+    "slug": "ANNA_KAZIMIERSKA"
+  },
+  {
+    "projektant": "Anna Kulawińska",
+    "liczba_projektow": 1,
+    "slug": "ANNA_KULAWIŃSKA"
+  },
+  {
+    "projektant": "Anna Kurusiewicz",
+    "liczba_projektow": 1,
+    "slug": "ANNA_KURUSIEWICZ"
+  },
+  {
+    "projektant": "Anna Milżyńska",
+    "liczba_projektow": 1,
+    "slug": "ANNA_MILŻYŃSKA"
+  },
+  {
+    "projektant": "Anna Milżyńska ",
+    "liczba_projektow": 1,
+    "slug": "ANNA_MILŻYŃSKA_"
+  },
+  {
+    "projektant": "Anna Nagórna ",
+    "liczba_projektow": 1,
+    "slug": "ANNA_NAGÓRNA_"
+  },
+  {
+    "projektant": "Anna Popiołek",
+    "liczba_projektow": 4,
+    "slug": "ANNA_POPIOŁEK"
+  },
+  {
+    "projektant": "Anna Płatek",
+    "liczba_projektow": 1,
+    "slug": "ANNA_PŁATEK"
+  },
+  {
+    "projektant": "Anna Sokołowska",
+    "liczba_projektow": 1,
+    "slug": "ANNA_SOKOŁOWSKA"
+  },
+  {
+    "projektant": "Anna Szadkowska",
+    "liczba_projektow": 1,
+    "slug": "ANNA_SZADKOWSKA"
+  },
+  {
+    "projektant": "Anna Szulc",
+    "liczba_projektow": 1,
+    "slug": "ANNA_SZULC"
+  },
+  {
+    "projektant": "Anna Zawiła",
+    "liczba_projektow": 1,
+    "slug": "ANNA_ZAWIŁA"
+  },
+  {
+    "projektant": "Anna   Drygalska ",
+    "liczba_projektow": 2,
+    "slug": "ANNA___DRYGALSKA_"
+  },
+  {
+    "projektant": "Anna  Burysz ",
+    "liczba_projektow": 1,
+    "slug": "ANNA__BURYSZ_"
+  },
+  {
+    "projektant": "Anna  Drygalska",
+    "liczba_projektow": 1,
+    "slug": "ANNA__DRYGALSKA"
+  },
+  {
+    "projektant": "Anna  Dubicka      ",
+    "liczba_projektow": 1,
+    "slug": "ANNA__DUBICKA______"
+  },
+  {
+    "projektant": "Anna  Dąbrowska ",
+    "liczba_projektow": 1,
+    "slug": "ANNA__DĄBROWSKA_"
+  },
+  {
+    "projektant": "Anna  Milżyńska ",
+    "liczba_projektow": 1,
+    "slug": "ANNA__MILŻYŃSKA_"
+  },
+  {
+    "projektant": "Anna  Siwek Spychalska ",
+    "liczba_projektow": 6,
+    "slug": "ANNA__SIWEK_SPYCHALSKA_"
+  },
+  {
+    "projektant": "Anna  Szymborska ",
+    "liczba_projektow": 2,
+    "slug": "ANNA__SZYMBORSKA_"
+  },
+  {
+    "projektant": "Anna  Tomczyk",
+    "liczba_projektow": 1,
+    "slug": "ANNA__TOMCZYK"
+  },
+  {
+    "projektant": "Anna   Kazimierska",
+    "liczba_projektow": 1,
+    "slug": "ANNA___KAZIMIERSKA"
+  },
+  {
+    "projektant": "Anna   Przybysz",
+    "liczba_projektow": 1,
+    "slug": "ANNA___PRZYBYSZ"
+  },
+  {
+    "projektant": "Antoni  Bukowski",
+    "liczba_projektow": 2,
+    "slug": "ANTONI__BUKOWSKI"
+  },
+  {
+    "projektant": "Antoni  Kulesza ",
+    "liczba_projektow": 1,
+    "slug": "ANTONI__KULESZA_"
+  },
+  {
+    "projektant": "Arkadiusz Budnicki",
+    "liczba_projektow": 7,
+    "slug": "ARKADIUSZ_BUDNICKI"
+  },
+  {
+    "projektant": "Arkadiusz Czarkowski",
+    "liczba_projektow": 1,
+    "slug": "ARKADIUSZ_CZARKOWSKI"
+  },
+  {
+    "projektant": "Arkadiusz Fiącek",
+    "liczba_projektow": 5,
+    "slug": "ARKADIUSZ_FIĄCEK"
+  },
+  {
+    "projektant": "Arkadiusz Fiącek ",
+    "liczba_projektow": 1,
+    "slug": "ARKADIUSZ_FIĄCEK_"
+  },
+  {
+    "projektant": "Arkadiusz Rucki ",
+    "liczba_projektow": 1,
+    "slug": "ARKADIUSZ_RUCKI_"
+  },
+  {
+    "projektant": "Arkadiusz  Czarkowski ",
+    "liczba_projektow": 2,
+    "slug": "ARKADIUSZ__CZARKOWSKI_"
+  },
+  {
+    "projektant": "Arnold Kraska",
+    "liczba_projektow": 4,
+    "slug": "ARNOLD_KRASKA"
+  },
+  {
+    "projektant": "Artur Kaczmarek",
+    "liczba_projektow": 1,
+    "slug": "ARTUR_KACZMAREK"
+  },
+  {
+    "projektant": "Artur Litwin",
+    "liczba_projektow": 1,
+    "slug": "ARTUR_LITWIN"
+  },
+  {
+    "projektant": "Artur Musiał",
+    "liczba_projektow": 5,
+    "slug": "ARTUR_MUSIAŁ"
+  },
+  {
+    "projektant": "Artur Paluch",
+    "liczba_projektow": 8,
+    "slug": "ARTUR_PALUCH"
+  },
+  {
+    "projektant": "Artur Paluch ",
+    "liczba_projektow": 6,
+    "slug": "ARTUR_PALUCH_"
+  },
+  {
+    "projektant": "Artur Tępiński  ",
+    "liczba_projektow": 1,
+    "slug": "ARTUR_TĘPIŃSKI__"
+  },
+  {
+    "projektant": "Artur  Bieńkowski ",
+    "liczba_projektow": 1,
+    "slug": "ARTUR__BIEŃKOWSKI_"
+  },
+  {
+    "projektant": "Artur  Paluch ",
+    "liczba_projektow": 2,
+    "slug": "ARTUR__PALUCH_"
+  },
+  {
+    "projektant": "Barbara Mikołajczyk",
+    "liczba_projektow": 1,
+    "slug": "BARBARA_MIKOŁAJCZYK"
+  },
+  {
+    "projektant": "Barbara Molęda",
+    "liczba_projektow": 6,
+    "slug": "BARBARA_MOLĘDA"
+  },
+  {
+    "projektant": "Barbara  Garncarz ",
+    "liczba_projektow": 1,
+    "slug": "BARBARA__GARNCARZ_"
+  },
+  {
+    "projektant": "Barbara  Molęda ",
+    "liczba_projektow": 1,
+    "slug": "BARBARA__MOLĘDA_"
+  },
+  {
+    "projektant": "Bartosz Adamiczka",
+    "liczba_projektow": 1,
+    "slug": "BARTOSZ_ADAMICZKA"
+  },
+  {
+    "projektant": "Bartosz Balejko",
+    "liczba_projektow": 4,
+    "slug": "BARTOSZ_BALEJKO"
+  },
+  {
+    "projektant": "Bartosz Fąfara",
+    "liczba_projektow": 1,
+    "slug": "BARTOSZ_FĄFARA"
+  },
+  {
+    "projektant": "Bartosz Giza",
+    "liczba_projektow": 3,
+    "slug": "BARTOSZ_GIZA"
+  },
+  {
+    "projektant": "Bartosz Krawiec",
+    "liczba_projektow": 2,
+    "slug": "BARTOSZ_KRAWIEC"
+  },
+  {
+    "projektant": "Bartosz Madajewski",
+    "liczba_projektow": 1,
+    "slug": "BARTOSZ_MADAJEWSKI"
+  },
+  {
+    "projektant": "Bartosz Malinowski",
+    "liczba_projektow": 1,
+    "slug": "BARTOSZ_MALINOWSKI"
+  },
+  {
+    "projektant": "Bartosz Muszyński",
+    "liczba_projektow": 1,
+    "slug": "BARTOSZ_MUSZYŃSKI"
+  },
+  {
+    "projektant": "Bartosz Warzecha",
+    "liczba_projektow": 3,
+    "slug": "BARTOSZ_WARZECHA"
+  },
+  {
+    "projektant": "Bartosz Żyszkowski",
+    "liczba_projektow": 2,
+    "slug": "BARTOSZ_ŻYSZKOWSKI"
+  },
+  {
+    "projektant": "Bartosz  Giza    ",
+    "liczba_projektow": 1,
+    "slug": "BARTOSZ__GIZA____"
+  },
+  {
+    "projektant": "Bartosz  Kretkowski ",
+    "liczba_projektow": 1,
+    "slug": "BARTOSZ__KRETKOWSKI_"
+  },
+  {
+    "projektant": "Bartosz  Malinowski ",
+    "liczba_projektow": 1,
+    "slug": "BARTOSZ__MALINOWSKI_"
+  },
+  {
+    "projektant": "Bartosz  Muszyński",
+    "liczba_projektow": 4,
+    "slug": "BARTOSZ__MUSZYŃSKI"
+  },
+  {
+    "projektant": "Bartłomiej Jaskowski",
+    "liczba_projektow": 8,
+    "slug": "BARTŁOMIEJ_JASKOWSKI"
+  },
+  {
+    "projektant": "Bartłomiej Komar ",
+    "liczba_projektow": 1,
+    "slug": "BARTŁOMIEJ_KOMAR_"
+  },
+  {
+    "projektant": "Bartłomiej Lewański",
+    "liczba_projektow": 1,
+    "slug": "BARTŁOMIEJ_LEWAŃSKI"
+  },
+  {
+    "projektant": "Bartłomiej Nowak",
+    "liczba_projektow": 14,
+    "slug": "BARTŁOMIEJ_NOWAK"
+  },
+  {
+    "projektant": "Bartłomiej Nowak ",
+    "liczba_projektow": 4,
+    "slug": "BARTŁOMIEJ_NOWAK_"
+  },
+  {
+    "projektant": "Bartłomiej Stąpór",
+    "liczba_projektow": 1,
+    "slug": "BARTŁOMIEJ_STĄPÓR"
+  },
+  {
+    "projektant": "Bartłomiej  Jaskowski",
+    "liczba_projektow": 1,
+    "slug": "BARTŁOMIEJ__JASKOWSKI"
+  },
+  {
+    "projektant": "Bartłomiej  Turski",
+    "liczba_projektow": 1,
+    "slug": "BARTŁOMIEJ__TURSKI"
+  },
+  {
+    "projektant": "Bartłomiej  Żaczek",
+    "liczba_projektow": 7,
+    "slug": "BARTŁOMIEJ__ŻACZEK"
+  },
+  {
+    "projektant": "Beata Januszewska",
+    "liczba_projektow": 9,
+    "slug": "BEATA_JANUSZEWSKA"
+  },
+  {
+    "projektant": "Beata Talaśka",
+    "liczba_projektow": 1,
+    "slug": "BEATA_TALAŚKA"
+  },
+  {
+    "projektant": "Beata  Nizio-Bobecka ",
+    "liczba_projektow": 1,
+    "slug": "BEATA__NIZIO-BOBECKA_"
+  },
+  {
+    "projektant": "Beata  Talaśka",
+    "liczba_projektow": 16,
+    "slug": "BEATA__TALAŚKA"
+  },
+  {
+    "projektant": "Beata   Nizio-Bobecka",
+    "liczba_projektow": 1,
+    "slug": "BEATA___NIZIO-BOBECKA"
+  },
+  {
+    "projektant": "Bernadeta Jastrzębska",
+    "liczba_projektow": 3,
+    "slug": "BERNADETA_JASTRZĘBSKA"
+  },
+  {
+    "projektant": "Bernadeta  Jastrzębska ",
+    "liczba_projektow": 1,
+    "slug": "BERNADETA__JASTRZĘBSKA_"
+  },
+  {
+    "projektant": "Bernard Bartosik",
+    "liczba_projektow": 16,
+    "slug": "BERNARD_BARTOSIK"
+  },
+  {
+    "projektant": "Bernard Bartosik ",
+    "liczba_projektow": 1,
+    "slug": "BERNARD_BARTOSIK_"
+  },
+  {
+    "projektant": "Bieszk Elżbieta",
+    "liczba_projektow": 1,
+    "slug": "BIESZK_ELŻBIETA"
+  },
+  {
+    "projektant": "Bogdan Adamczyk",
+    "liczba_projektow": 1,
+    "slug": "BOGDAN_ADAMCZYK"
+  },
+  {
+    "projektant": "Bogdan Bloch ",
+    "liczba_projektow": 2,
+    "slug": "BOGDAN_BLOCH_"
+  },
+  {
+    "projektant": "Bogdan Jankowski",
+    "liczba_projektow": 1,
+    "slug": "BOGDAN_JANKOWSKI"
+  },
+  {
+    "projektant": "Bogdan  Mrozowski ",
+    "liczba_projektow": 1,
+    "slug": "BOGDAN__MROZOWSKI_"
+  },
+  {
+    "projektant": "Bogna Tomaszewska",
+    "liczba_projektow": 1,
+    "slug": "BOGNA_TOMASZEWSKA"
+  },
+  {
+    "projektant": "Bogna Tomaszewska  ",
+    "liczba_projektow": 6,
+    "slug": "BOGNA_TOMASZEWSKA__"
+  },
+  {
+    "projektant": "Bogna  Tomaszewska ",
+    "liczba_projektow": 2,
+    "slug": "BOGNA__TOMASZEWSKA_"
+  },
+  {
+    "projektant": "Bogusław Blum",
+    "liczba_projektow": 1,
+    "slug": "BOGUSŁAW_BLUM"
+  },
+  {
+    "projektant": "Bogusław Drożdż",
+    "liczba_projektow": 1,
+    "slug": "BOGUSŁAW_DROŻDŻ"
+  },
+  {
+    "projektant": "Bogusław Dąbrowny",
+    "liczba_projektow": 1,
+    "slug": "BOGUSŁAW_DĄBROWNY"
+  },
+  {
+    "projektant": "Bogusław Markowski",
+    "liczba_projektow": 2,
+    "slug": "BOGUSŁAW_MARKOWSKI"
+  },
+  {
+    "projektant": "Bogusław  Markowski ",
+    "liczba_projektow": 5,
+    "slug": "BOGUSŁAW__MARKOWSKI_"
+  },
+  {
+    "projektant": "Bogusława Lipik-Wojciech",
+    "liczba_projektow": 5,
+    "slug": "BOGUSŁAWA_LIPIK-WOJCIECH"
+  },
+  {
+    "projektant": "Bohdan Bay",
+    "liczba_projektow": 1,
+    "slug": "BOHDAN_BAY"
+  },
+  {
+    "projektant": "Bolesław Gasiorowski",
+    "liczba_projektow": 1,
+    "slug": "BOLESŁAW_GASIOROWSKI"
+  },
+  {
+    "projektant": "Bolesław Gąsiorowski",
+    "liczba_projektow": 10,
+    "slug": "BOLESŁAW_GĄSIOROWSKI"
+  },
+  {
+    "projektant": "Bolesław  Gąsiorowski",
+    "liczba_projektow": 2,
+    "slug": "BOLESŁAW__GĄSIOROWSKI"
+  },
+  {
+    "projektant": "Bonifacy Rawdanowicz",
+    "liczba_projektow": 1,
+    "slug": "BONIFACY_RAWDANOWICZ"
+  },
+  {
+    "projektant": "Bożena Gniewosz",
+    "liczba_projektow": 1,
+    "slug": "BOŻENA_GNIEWOSZ"
+  },
+  {
+    "projektant": "Bożena Radacz ",
+    "liczba_projektow": 1,
+    "slug": "BOŻENA_RADACZ_"
+  },
+  {
+    "projektant": "Bożena Tołłoczko",
+    "liczba_projektow": 23,
+    "slug": "BOŻENA_TOŁŁOCZKO"
+  },
+  {
+    "projektant": "Błahut Kazimierz ",
+    "liczba_projektow": 3,
+    "slug": "BŁAHUT_KAZIMIERZ_"
+  },
+  {
+    "projektant": "Błażej Pachołek",
+    "liczba_projektow": 10,
+    "slug": "BŁAŻEJ_PACHOŁEK"
+  },
+  {
+    "projektant": "Błażej Rolbiecki",
+    "liczba_projektow": 1,
+    "slug": "BŁAŻEJ_ROLBIECKI"
+  },
+  {
+    "projektant": "Czesław Nowakowski",
+    "liczba_projektow": 6,
+    "slug": "CZESŁAW_NOWAKOWSKI"
+  },
+  {
+    "projektant": "Czesław Nowakowski ",
+    "liczba_projektow": 1,
+    "slug": "CZESŁAW_NOWAKOWSKI_"
+  },
+  {
+    "projektant": "Czesław Złotnik",
+    "liczba_projektow": 14,
+    "slug": "CZESŁAW_ZŁOTNIK"
+  },
+  {
+    "projektant": "Czesław złotnik",
+    "liczba_projektow": 1,
+    "slug": "CZESŁAW_ZŁOTNIK"
+  },
+  {
+    "projektant": "Czesław  Nowakowski ",
+    "liczba_projektow": 7,
+    "slug": "CZESŁAW__NOWAKOWSKI_"
+  },
+  {
+    "projektant": "DAGMAR WOLAK",
+    "liczba_projektow": 3,
+    "slug": "DAGMAR_WOLAK"
+  },
+  {
+    "projektant": "DARIUSZ SKUZA ",
+    "liczba_projektow": 2,
+    "slug": "DARIUSZ_SKUZA_"
+  },
+  {
+    "projektant": "DOMINIKA KRUPOWICZ",
+    "liczba_projektow": 2,
+    "slug": "DOMINIKA_KRUPOWICZ"
+  },
+  {
+    "projektant": "DONATA BUDZYŃSKA",
+    "liczba_projektow": 11,
+    "slug": "DONATA_BUDZYŃSKA"
+  },
+  {
+    "projektant": "Dagmar Wolak",
+    "liczba_projektow": 15,
+    "slug": "DAGMAR_WOLAK"
+  },
+  {
+    "projektant": "Dagmar Wolak ",
+    "liczba_projektow": 1,
+    "slug": "DAGMAR_WOLAK_"
+  },
+  {
+    "projektant": "Dagmar   Wolak ",
+    "liczba_projektow": 1,
+    "slug": "DAGMAR___WOLAK_"
+  },
+  {
+    "projektant": "Dagmara Wolak",
+    "liczba_projektow": 1,
+    "slug": "DAGMARA_WOLAK"
+  },
+  {
+    "projektant": "Dagmara  Adamy-Kołodziejska ",
+    "liczba_projektow": 1,
+    "slug": "DAGMARA__ADAMY-KOŁODZIEJSKA_"
+  },
+  {
+    "projektant": "Damian Dudek",
+    "liczba_projektow": 1,
+    "slug": "DAMIAN_DUDEK"
+  },
+  {
+    "projektant": "Damian Ołdziejewski",
+    "liczba_projektow": 51,
+    "slug": "DAMIAN_OŁDZIEJEWSKI"
+  },
+  {
+    "projektant": "Damian Wolant",
+    "liczba_projektow": 6,
+    "slug": "DAMIAN_WOLANT"
+  },
+  {
+    "projektant": "Daniel Capar",
+    "liczba_projektow": 2,
+    "slug": "DANIEL_CAPAR"
+  },
+  {
+    "projektant": "Daniel Gubert",
+    "liczba_projektow": 2,
+    "slug": "DANIEL_GUBERT"
+  },
+  {
+    "projektant": "Daniel Hubert",
+    "liczba_projektow": 64,
+    "slug": "DANIEL_HUBERT"
+  },
+  {
+    "projektant": "Daniel Mroziński",
+    "liczba_projektow": 1,
+    "slug": "DANIEL_MROZIŃSKI"
+  },
+  {
+    "projektant": "Daniel Stożek",
+    "liczba_projektow": 2,
+    "slug": "DANIEL_STOŻEK"
+  },
+  {
+    "projektant": "Daniel Strzeszewski",
+    "liczba_projektow": 8,
+    "slug": "DANIEL_STRZESZEWSKI"
+  },
+  {
+    "projektant": "Daniel Szuster",
+    "liczba_projektow": 1,
+    "slug": "DANIEL_SZUSTER"
+  },
+  {
+    "projektant": "Daniel  Gierszal ",
+    "liczba_projektow": 9,
+    "slug": "DANIEL__GIERSZAL_"
+  },
+  {
+    "projektant": "Daniel  HUBERT",
+    "liczba_projektow": 3,
+    "slug": "DANIEL__HUBERT"
+  },
+  {
+    "projektant": "Daniel  Hubert ",
+    "liczba_projektow": 1,
+    "slug": "DANIEL__HUBERT_"
+  },
+  {
+    "projektant": "Danuta Bartoszewicz",
+    "liczba_projektow": 2,
+    "slug": "DANUTA_BARTOSZEWICZ"
+  },
+  {
+    "projektant": "Danuta Dębska",
+    "liczba_projektow": 7,
+    "slug": "DANUTA_DĘBSKA"
+  },
+  {
+    "projektant": "Danuta Dębska ",
+    "liczba_projektow": 3,
+    "slug": "DANUTA_DĘBSKA_"
+  },
+  {
+    "projektant": "Danuta Ziobrowska",
+    "liczba_projektow": 5,
+    "slug": "DANUTA_ZIOBROWSKA"
+  },
+  {
+    "projektant": "Danuta Ziorbowska",
+    "liczba_projektow": 1,
+    "slug": "DANUTA_ZIORBOWSKA"
+  },
+  {
+    "projektant": "Danuta  Dębska",
+    "liczba_projektow": 1,
+    "slug": "DANUTA__DĘBSKA"
+  },
+  {
+    "projektant": "Danuta  Ziobrowska",
+    "liczba_projektow": 1,
+    "slug": "DANUTA__ZIOBROWSKA"
+  },
+  {
+    "projektant": "Dariusz Dygutowicz",
+    "liczba_projektow": 2,
+    "slug": "DARIUSZ_DYGUTOWICZ"
+  },
+  {
+    "projektant": "Dariusz Fornal",
+    "liczba_projektow": 1,
+    "slug": "DARIUSZ_FORNAL"
+  },
+  {
+    "projektant": "Dariusz Jabłoński",
+    "liczba_projektow": 3,
+    "slug": "DARIUSZ_JABŁOŃSKI"
+  },
+  {
+    "projektant": "Dariusz Kędzierski",
+    "liczba_projektow": 17,
+    "slug": "DARIUSZ_KĘDZIERSKI"
+  },
+  {
+    "projektant": "Dariusz Kędzierski ",
+    "liczba_projektow": 3,
+    "slug": "DARIUSZ_KĘDZIERSKI_"
+  },
+  {
+    "projektant": "Dariusz Mayer",
+    "liczba_projektow": 8,
+    "slug": "DARIUSZ_MAYER"
+  },
+  {
+    "projektant": "Dariusz Meyer",
+    "liczba_projektow": 12,
+    "slug": "DARIUSZ_MEYER"
+  },
+  {
+    "projektant": "Dariusz Scheffs",
+    "liczba_projektow": 3,
+    "slug": "DARIUSZ_SCHEFFS"
+  },
+  {
+    "projektant": "Dariusz Skuza",
+    "liczba_projektow": 59,
+    "slug": "DARIUSZ_SKUZA"
+  },
+  {
+    "projektant": "Dariusz Skuza ",
+    "liczba_projektow": 5,
+    "slug": "DARIUSZ_SKUZA_"
+  },
+  {
+    "projektant": "Dariusz Zawadzki",
+    "liczba_projektow": 1,
+    "slug": "DARIUSZ_ZAWADZKI"
+  },
+  {
+    "projektant": "Dariusz Zawadzki ",
+    "liczba_projektow": 2,
+    "slug": "DARIUSZ_ZAWADZKI_"
+  },
+  {
+    "projektant": "Dariusz Ćwilich",
+    "liczba_projektow": 1,
+    "slug": "DARIUSZ_ĆWILICH"
+  },
+  {
+    "projektant": "Dariusz Łącki",
+    "liczba_projektow": 2,
+    "slug": "DARIUSZ_ŁĄCKI"
+  },
+  {
+    "projektant": "Dariusz   Kędzierski",
+    "liczba_projektow": 1,
+    "slug": "DARIUSZ___KĘDZIERSKI"
+  },
+  {
+    "projektant": "Dariusz   Skuza    ",
+    "liczba_projektow": 11,
+    "slug": "DARIUSZ___SKUZA____"
+  },
+  {
+    "projektant": "Dariusz  Fornal",
+    "liczba_projektow": 1,
+    "slug": "DARIUSZ__FORNAL"
+  },
+  {
+    "projektant": "Dariusz  Kędzierski",
+    "liczba_projektow": 1,
+    "slug": "DARIUSZ__KĘDZIERSKI"
+  },
+  {
+    "projektant": "Dariusz  Kędzierski ",
+    "liczba_projektow": 3,
+    "slug": "DARIUSZ__KĘDZIERSKI_"
+  },
+  {
+    "projektant": "Dariusz  Skuza",
+    "liczba_projektow": 1,
+    "slug": "DARIUSZ__SKUZA"
+  },
+  {
+    "projektant": "Dariusz  Skuza ",
+    "liczba_projektow": 39,
+    "slug": "DARIUSZ__SKUZA_"
+  },
+  {
+    "projektant": "Dariusz  Skuza    ",
+    "liczba_projektow": 1,
+    "slug": "DARIUSZ__SKUZA____"
+  },
+  {
+    "projektant": "Dariusz  Skuza     ",
+    "liczba_projektow": 7,
+    "slug": "DARIUSZ__SKUZA_____"
+  },
+  {
+    "projektant": "Dariusz  Łącki ",
+    "liczba_projektow": 3,
+    "slug": "DARIUSZ__ŁĄCKI_"
+  },
+  {
+    "projektant": "Dawid Sobestjański",
+    "liczba_projektow": 11,
+    "slug": "DAWID_SOBESTJAŃSKI"
+  },
+  {
+    "projektant": "Dawid Wachowiec",
+    "liczba_projektow": 1,
+    "slug": "DAWID_WACHOWIEC"
+  },
+  {
+    "projektant": "Dawid Witamborski",
+    "liczba_projektow": 1,
+    "slug": "DAWID_WITAMBORSKI"
+  },
+  {
+    "projektant": "Dawid Żmudziejewski",
+    "liczba_projektow": 3,
+    "slug": "DAWID_ŻMUDZIEJEWSKI"
+  },
+  {
+    "projektant": "Dawid  Bogacz ",
+    "liczba_projektow": 4,
+    "slug": "DAWID__BOGACZ_"
+  },
+  {
+    "projektant": "Dawid  Karwowski ",
+    "liczba_projektow": 1,
+    "slug": "DAWID__KARWOWSKI_"
+  },
+  {
+    "projektant": "Dobrosława Matela - Łapczuk",
+    "liczba_projektow": 1,
+    "slug": "DOBROSŁAWA_MATELA_-_ŁAPCZUK"
+  },
+  {
+    "projektant": "Dobrosława  Matela Łapczuk",
+    "liczba_projektow": 1,
+    "slug": "DOBROSŁAWA__MATELA_ŁAPCZUK"
+  },
+  {
+    "projektant": "Dominik Piesik",
+    "liczba_projektow": 22,
+    "slug": "DOMINIK_PIESIK"
+  },
+  {
+    "projektant": "Dominik  Mikiprowicz",
+    "liczba_projektow": 1,
+    "slug": "DOMINIK__MIKIPROWICZ"
+  },
+  {
+    "projektant": "Dominika Krupowicz",
+    "liczba_projektow": 2,
+    "slug": "DOMINIKA_KRUPOWICZ"
+  },
+  {
+    "projektant": "Dominika  Skrobiszewska",
+    "liczba_projektow": 1,
+    "slug": "DOMINIKA__SKROBISZEWSKA"
+  },
+  {
+    "projektant": "Donata Budzyńska",
+    "liczba_projektow": 4,
+    "slug": "DONATA_BUDZYŃSKA"
+  },
+  {
+    "projektant": "Donata   Budzyńska",
+    "liczba_projektow": 7,
+    "slug": "DONATA___BUDZYŃSKA"
+  },
+  {
+    "projektant": "Dorora Dominowska",
+    "liczba_projektow": 9,
+    "slug": "DORORA_DOMINOWSKA"
+  },
+  {
+    "projektant": "Dorota  Dominowska    ",
+    "liczba_projektow": 2,
+    "slug": "DOROTA__DOMINOWSKA____"
+  },
+  {
+    "projektant": "Dorota Dominowska",
+    "liczba_projektow": 13,
+    "slug": "DOROTA_DOMINOWSKA"
+  },
+  {
+    "projektant": "Dorota Dominowska ",
+    "liczba_projektow": 31,
+    "slug": "DOROTA_DOMINOWSKA_"
+  },
+  {
+    "projektant": "Dorota Krych",
+    "liczba_projektow": 1,
+    "slug": "DOROTA_KRYCH"
+  },
+  {
+    "projektant": "Dorota Sukiennik",
+    "liczba_projektow": 1,
+    "slug": "DOROTA_SUKIENNIK"
+  },
+  {
+    "projektant": "Dorota Tkaczyk - Jałowiecka",
+    "liczba_projektow": 1,
+    "slug": "DOROTA_TKACZYK_-_JAŁOWIECKA"
+  },
+  {
+    "projektant": "Dorota Tkaczyk-Jałowiecka",
+    "liczba_projektow": 2,
+    "slug": "DOROTA_TKACZYK-JAŁOWIECKA"
+  },
+  {
+    "projektant": "Dorota   Dominowska   ",
+    "liczba_projektow": 2,
+    "slug": "DOROTA___DOMINOWSKA___"
+  },
+  {
+    "projektant": "Dorota  Dominowska    ",
+    "liczba_projektow": 3,
+    "slug": "DOROTA__DOMINOWSKA____"
+  },
+  {
+    "projektant": "Dymitr Szwajlik ",
+    "liczba_projektow": 6,
+    "slug": "DYMITR_SZWAJLIK_"
+  },
+  {
+    "projektant": "ELŻBIETA KULAJ-JAKUBAS",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA_KULAJ-JAKUBAS"
+  },
+  {
+    "projektant": "Edward Koźma",
+    "liczba_projektow": 1,
+    "slug": "EDWARD_KOŹMA"
+  },
+  {
+    "projektant": "Edward  Kozina",
+    "liczba_projektow": 1,
+    "slug": "EDWARD__KOZINA"
+  },
+  {
+    "projektant": "Edwin Nowak ",
+    "liczba_projektow": 6,
+    "slug": "EDWIN_NOWAK_"
+  },
+  {
+    "projektant": "Edyta Garczyńska",
+    "liczba_projektow": 4,
+    "slug": "EDYTA_GARCZYŃSKA"
+  },
+  {
+    "projektant": "Edyta Pospychała",
+    "liczba_projektow": 6,
+    "slug": "EDYTA_POSPYCHAŁA"
+  },
+  {
+    "projektant": "Edyta Pospychała ",
+    "liczba_projektow": 1,
+    "slug": "EDYTA_POSPYCHAŁA_"
+  },
+  {
+    "projektant": "Edyta Waszak",
+    "liczba_projektow": 7,
+    "slug": "EDYTA_WASZAK"
+  },
+  {
+    "projektant": "Edyta  Pospychała ",
+    "liczba_projektow": 1,
+    "slug": "EDYTA__POSPYCHAŁA_"
+  },
+  {
+    "projektant": "Elzbieta Mestl",
+    "liczba_projektow": 2,
+    "slug": "ELZBIETA_MESTL"
+  },
+  {
+    "projektant": "Elzbieta Nowak-Krzywańska",
+    "liczba_projektow": 1,
+    "slug": "ELZBIETA_NOWAK-KRZYWAŃSKA"
+  },
+  {
+    "projektant": "Elzbieta  Mestl ",
+    "liczba_projektow": 2,
+    "slug": "ELZBIETA__MESTL_"
+  },
+  {
+    "projektant": "Elzbieta  Serwatka-Bunio",
+    "liczba_projektow": 4,
+    "slug": "ELZBIETA__SERWATKA-BUNIO"
+  },
+  {
+    "projektant": "Elżbeita Mestl ",
+    "liczba_projektow": 1,
+    "slug": "ELŻBEITA_MESTL_"
+  },
+  {
+    "projektant": "Elżbeita  Mestl ",
+    "liczba_projektow": 1,
+    "slug": "ELŻBEITA__MESTL_"
+  },
+  {
+    "projektant": "Elżbieta Bieszk",
+    "liczba_projektow": 5,
+    "slug": "ELŻBIETA_BIESZK"
+  },
+  {
+    "projektant": "Elżbieta Hellstein",
+    "liczba_projektow": 2,
+    "slug": "ELŻBIETA_HELLSTEIN"
+  },
+  {
+    "projektant": "Elżbieta Klimek",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA_KLIMEK"
+  },
+  {
+    "projektant": "Elżbieta Kojałowicz - Bethke ",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA_KOJAŁOWICZ_-_BETHKE_"
+  },
+  {
+    "projektant": "Elżbieta Kojałowicz- Bethke ",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA_KOJAŁOWICZ-_BETHKE_"
+  },
+  {
+    "projektant": "Elżbieta Konarska",
+    "liczba_projektow": 3,
+    "slug": "ELŻBIETA_KONARSKA"
+  },
+  {
+    "projektant": "Elżbieta Kulaj-Jakubas",
+    "liczba_projektow": 20,
+    "slug": "ELŻBIETA_KULAJ-JAKUBAS"
+  },
+  {
+    "projektant": "Elżbieta Kulaj-Jakubas ",
+    "liczba_projektow": 2,
+    "slug": "ELŻBIETA_KULAJ-JAKUBAS_"
+  },
+  {
+    "projektant": "Elżbieta Mestl",
+    "liczba_projektow": 27,
+    "slug": "ELŻBIETA_MESTL"
+  },
+  {
+    "projektant": "Elżbieta Mestl ",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA_MESTL_"
+  },
+  {
+    "projektant": "Elżbieta Mstl",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA_MSTL"
+  },
+  {
+    "projektant": "Elżbieta Nowak - Krzywańska",
+    "liczba_projektow": 2,
+    "slug": "ELŻBIETA_NOWAK_-_KRZYWAŃSKA"
+  },
+  {
+    "projektant": "Elżbieta Nowak- Krzywańska",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA_NOWAK-_KRZYWAŃSKA"
+  },
+  {
+    "projektant": "Elżbieta Nowak-Krzywanska",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA_NOWAK-KRZYWANSKA"
+  },
+  {
+    "projektant": "Elżbieta Nowak-Krzywańska",
+    "liczba_projektow": 11,
+    "slug": "ELŻBIETA_NOWAK-KRZYWAŃSKA"
+  },
+  {
+    "projektant": "Elżbieta Serwatka-Bunio",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA_SERWATKA-BUNIO"
+  },
+  {
+    "projektant": "Elżbieta  Kojałowicz- Bethke ",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA__KOJAŁOWICZ-_BETHKE_"
+  },
+  {
+    "projektant": "Elżbieta  Konarska",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA__KONARSKA"
+  },
+  {
+    "projektant": "Elżbieta  Mestl",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA__MESTL"
+  },
+  {
+    "projektant": "Elżbieta  Mestl ",
+    "liczba_projektow": 2,
+    "slug": "ELŻBIETA__MESTL_"
+  },
+  {
+    "projektant": "Elżbieta  Nowak - Krzywańska",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA__NOWAK_-_KRZYWAŃSKA"
+  },
+  {
+    "projektant": "Elżbieta  Sudoł-Czubaj",
+    "liczba_projektow": 1,
+    "slug": "ELŻBIETA__SUDOŁ-CZUBAJ"
+  },
+  {
+    "projektant": "Elżbieta   Nowak-Krzywańska  ",
+    "liczba_projektow": 3,
+    "slug": "ELŻBIETA___NOWAK-KRZYWAŃSKA__"
+  },
+  {
+    "projektant": "Elżebieta Mestl",
+    "liczba_projektow": 1,
+    "slug": "ELŻEBIETA_MESTL"
+  },
+  {
+    "projektant": "Elżebieta Mestl ",
+    "liczba_projektow": 2,
+    "slug": "ELŻEBIETA_MESTL_"
+  },
+  {
+    "projektant": "Elżebita Kulaj-Jakubas",
+    "liczba_projektow": 1,
+    "slug": "ELŻEBITA_KULAJ-JAKUBAS"
+  },
+  {
+    "projektant": "Emanuel  Czernik ",
+    "liczba_projektow": 2,
+    "slug": "EMANUEL__CZERNIK_"
+  },
+  {
+    "projektant": "Emil Rojewski",
+    "liczba_projektow": 4,
+    "slug": "EMIL_ROJEWSKI"
+  },
+  {
+    "projektant": "Emilia Kierstan",
+    "liczba_projektow": 1,
+    "slug": "EMILIA_KIERSTAN"
+  },
+  {
+    "projektant": "Emilia Kuhn-Ciupak",
+    "liczba_projektow": 1,
+    "slug": "EMILIA_KUHN-CIUPAK"
+  },
+  {
+    "projektant": "Emilia Pietrzak-Kurzyńska",
+    "liczba_projektow": 1,
+    "slug": "EMILIA_PIETRZAK-KURZYŃSKA"
+  },
+  {
+    "projektant": "Ernest Ignatowicz ",
+    "liczba_projektow": 2,
+    "slug": "ERNEST_IGNATOWICZ_"
+  },
+  {
+    "projektant": "Ernest  Ignatowicz ",
+    "liczba_projektow": 2,
+    "slug": "ERNEST__IGNATOWICZ_"
+  },
+  {
+    "projektant": "Eugeniusz Kasprzak",
+    "liczba_projektow": 8,
+    "slug": "EUGENIUSZ_KASPRZAK"
+  },
+  {
+    "projektant": "Eugeniusz Redlarski",
+    "liczba_projektow": 2,
+    "slug": "EUGENIUSZ_REDLARSKI"
+  },
+  {
+    "projektant": "Ewa Kochanowska-Śron",
+    "liczba_projektow": 1,
+    "slug": "EWA_KOCHANOWSKA-ŚRON"
+  },
+  {
+    "projektant": "Ewa Kuberska",
+    "liczba_projektow": 2,
+    "slug": "EWA_KUBERSKA"
+  },
+  {
+    "projektant": "Ewa Ostrowska",
+    "liczba_projektow": 2,
+    "slug": "EWA_OSTROWSKA"
+  },
+  {
+    "projektant": "Ewa Rogowska",
+    "liczba_projektow": 1,
+    "slug": "EWA_ROGOWSKA"
+  },
+  {
+    "projektant": "Ewa Rybak",
+    "liczba_projektow": 21,
+    "slug": "EWA_RYBAK"
+  },
+  {
+    "projektant": "Ewa Rybak ",
+    "liczba_projektow": 4,
+    "slug": "EWA_RYBAK_"
+  },
+  {
+    "projektant": "Ewa Słynarska",
+    "liczba_projektow": 3,
+    "slug": "EWA_SŁYNARSKA"
+  },
+  {
+    "projektant": "Ewa Zemła",
+    "liczba_projektow": 5,
+    "slug": "EWA_ZEMŁA"
+  },
+  {
+    "projektant": "Ewa Zemła ",
+    "liczba_projektow": 1,
+    "slug": "EWA_ZEMŁA_"
+  },
+  {
+    "projektant": "Ewa Ziętek",
+    "liczba_projektow": 4,
+    "slug": "EWA_ZIĘTEK"
+  },
+  {
+    "projektant": "Ewa   Rybak  ",
+    "liczba_projektow": 3,
+    "slug": "EWA___RYBAK__"
+  },
+  {
+    "projektant": "Ewa  Dobiecka ",
+    "liczba_projektow": 3,
+    "slug": "EWA__DOBIECKA_"
+  },
+  {
+    "projektant": "Ewa  Rybak ",
+    "liczba_projektow": 8,
+    "slug": "EWA__RYBAK_"
+  },
+  {
+    "projektant": "Ewa  Słynarska ",
+    "liczba_projektow": 1,
+    "slug": "EWA__SŁYNARSKA_"
+  },
+  {
+    "projektant": "Ewelina Bożacka",
+    "liczba_projektow": 4,
+    "slug": "EWELINA_BOŻACKA"
+  },
+  {
+    "projektant": "Gaweł Biedunkiewicz",
+    "liczba_projektow": 1,
+    "slug": "GAWEŁ_BIEDUNKIEWICZ"
+  },
+  {
+    "projektant": "Gaweł  Biedunkiewicz ",
+    "liczba_projektow": 1,
+    "slug": "GAWEŁ__BIEDUNKIEWICZ_"
+  },
+  {
+    "projektant": "Grażyna Hamrol",
+    "liczba_projektow": 4,
+    "slug": "GRAŻYNA_HAMROL"
+  },
+  {
+    "projektant": "Grażyna Musiałkowska Markowska",
+    "liczba_projektow": 2,
+    "slug": "GRAŻYNA_MUSIAŁKOWSKA_MARKOWSKA"
+  },
+  {
+    "projektant": "Grażyna Szadzewicz",
+    "liczba_projektow": 3,
+    "slug": "GRAŻYNA_SZADZEWICZ"
+  },
+  {
+    "projektant": "Grażyna Szadzewicz ",
+    "liczba_projektow": 1,
+    "slug": "GRAŻYNA_SZADZEWICZ_"
+  },
+  {
+    "projektant": "Grażyna Łopacińska",
+    "liczba_projektow": 1,
+    "slug": "GRAŻYNA_ŁOPACIŃSKA"
+  },
+  {
+    "projektant": "Grażyna  Musiałkowska-Markowska",
+    "liczba_projektow": 1,
+    "slug": "GRAŻYNA__MUSIAŁKOWSKA-MARKOWSKA"
+  },
+  {
+    "projektant": "Grzegorz Bogucki",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_BOGUCKI"
+  },
+  {
+    "projektant": "Grzegorz Daraszkiewicz",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_DARASZKIEWICZ"
+  },
+  {
+    "projektant": "Grzegorz Dybicz",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_DYBICZ"
+  },
+  {
+    "projektant": "Grzegorz Głębowski",
+    "liczba_projektow": 3,
+    "slug": "GRZEGORZ_GŁĘBOWSKI"
+  },
+  {
+    "projektant": "Grzegorz Kamiński",
+    "liczba_projektow": 3,
+    "slug": "GRZEGORZ_KAMIŃSKI"
+  },
+  {
+    "projektant": "Grzegorz Kilian",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_KILIAN"
+  },
+  {
+    "projektant": "Grzegorz Lesner",
+    "liczba_projektow": 8,
+    "slug": "GRZEGORZ_LESNER"
+  },
+  {
+    "projektant": "Grzegorz Lesner ",
+    "liczba_projektow": 2,
+    "slug": "GRZEGORZ_LESNER_"
+  },
+  {
+    "projektant": "Grzegorz Majewski ",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_MAJEWSKI_"
+  },
+  {
+    "projektant": "Grzegorz Marciniszyn",
+    "liczba_projektow": 2,
+    "slug": "GRZEGORZ_MARCINISZYN"
+  },
+  {
+    "projektant": "Grzegorz Morąg ",
+    "liczba_projektow": 4,
+    "slug": "GRZEGORZ_MORĄG_"
+  },
+  {
+    "projektant": "Grzegorz Mstowski",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_MSTOWSKI"
+  },
+  {
+    "projektant": "Grzegorz Naszydłowski",
+    "liczba_projektow": 3,
+    "slug": "GRZEGORZ_NASZYDŁOWSKI"
+  },
+  {
+    "projektant": "Grzegorz Studziński",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_STUDZIŃSKI"
+  },
+  {
+    "projektant": "Grzegorz Szczepaniak",
+    "liczba_projektow": 5,
+    "slug": "GRZEGORZ_SZCZEPANIAK"
+  },
+  {
+    "projektant": "Grzegorz Wiśniewski",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_WIŚNIEWSKI"
+  },
+  {
+    "projektant": "Grzegorz Wojewódka ",
+    "liczba_projektow": 6,
+    "slug": "GRZEGORZ_WOJEWÓDKA_"
+  },
+  {
+    "projektant": "Grzegorz Zieliński",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_ZIELIŃSKI"
+  },
+  {
+    "projektant": "Grzegorz Łaniucha",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_ŁANIUCHA"
+  },
+  {
+    "projektant": "Grzegorz Żandarski",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ_ŻANDARSKI"
+  },
+  {
+    "projektant": "Grzegorz  Morąg ",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ__MORĄG_"
+  },
+  {
+    "projektant": "Grzegorz  Łajeczko",
+    "liczba_projektow": 2,
+    "slug": "GRZEGORZ__ŁAJECZKO"
+  },
+  {
+    "projektant": "Grzegorz  Żandarski",
+    "liczba_projektow": 5,
+    "slug": "GRZEGORZ__ŻANDARSKI"
+  },
+  {
+    "projektant": "Grzegorz   Kochanowski",
+    "liczba_projektow": 1,
+    "slug": "GRZEGORZ___KOCHANOWSKI"
+  },
+  {
+    "projektant": "HANNA WRÓBLEWSKA",
+    "liczba_projektow": 1,
+    "slug": "HANNA_WRÓBLEWSKA"
+  },
+  {
+    "projektant": "Hanna Szymczak",
+    "liczba_projektow": 1,
+    "slug": "HANNA_SZYMCZAK"
+  },
+  {
+    "projektant": "Hanna Wróblewska",
+    "liczba_projektow": 1,
+    "slug": "HANNA_WRÓBLEWSKA"
+  },
+  {
+    "projektant": "Hanna  Safanów ",
+    "liczba_projektow": 1,
+    "slug": "HANNA__SAFANÓW_"
+  },
+  {
+    "projektant": "Hanna  Stępień ",
+    "liczba_projektow": 1,
+    "slug": "HANNA__STĘPIEŃ_"
+  },
+  {
+    "projektant": "Henryk Demkowicz",
+    "liczba_projektow": 1,
+    "slug": "HENRYK_DEMKOWICZ"
+  },
+  {
+    "projektant": "Henryk Domaradzki",
+    "liczba_projektow": 6,
+    "slug": "HENRYK_DOMARADZKI"
+  },
+  {
+    "projektant": "Henryk Domaradzki ",
+    "liczba_projektow": 2,
+    "slug": "HENRYK_DOMARADZKI_"
+  },
+  {
+    "projektant": "Henryk Gawroński",
+    "liczba_projektow": 3,
+    "slug": "HENRYK_GAWROŃSKI"
+  },
+  {
+    "projektant": "Henryk Gawroński ",
+    "liczba_projektow": 1,
+    "slug": "HENRYK_GAWROŃSKI_"
+  },
+  {
+    "projektant": "Henryk Markowski",
+    "liczba_projektow": 1,
+    "slug": "HENRYK_MARKOWSKI"
+  },
+  {
+    "projektant": "Henryk  Demkowicz ",
+    "liczba_projektow": 1,
+    "slug": "HENRYK__DEMKOWICZ_"
+  },
+  {
+    "projektant": "Henryk  Markowski",
+    "liczba_projektow": 2,
+    "slug": "HENRYK__MARKOWSKI"
+  },
+  {
+    "projektant": "Hubert Majchrowski",
+    "liczba_projektow": 6,
+    "slug": "HUBERT_MAJCHROWSKI"
+  },
+  {
+    "projektant": "Hubert Stenzel",
+    "liczba_projektow": 3,
+    "slug": "HUBERT_STENZEL"
+  },
+  {
+    "projektant": "Hubert Stenzel ",
+    "liczba_projektow": 2,
+    "slug": "HUBERT_STENZEL_"
+  },
+  {
+    "projektant": "IGA GONTARZ",
+    "liczba_projektow": 3,
+    "slug": "IGA_GONTARZ"
+  },
+  {
+    "projektant": "Iga Gontarz",
+    "liczba_projektow": 14,
+    "slug": "IGA_GONTARZ"
+  },
+  {
+    "projektant": "Irena Kuznowicz - Bil",
+    "liczba_projektow": 3,
+    "slug": "IRENA_KUZNOWICZ_-_BIL"
+  },
+  {
+    "projektant": "Irena Kuznowicz-Bil",
+    "liczba_projektow": 1,
+    "slug": "IRENA_KUZNOWICZ-BIL"
+  },
+  {
+    "projektant": "Ireneusz Staciełowicz",
+    "liczba_projektow": 1,
+    "slug": "IRENEUSZ_STACIEŁOWICZ"
+  },
+  {
+    "projektant": "Ireneusz Stasiełowicz",
+    "liczba_projektow": 6,
+    "slug": "IRENEUSZ_STASIEŁOWICZ"
+  },
+  {
+    "projektant": "Ireneusz  Lech ",
+    "liczba_projektow": 1,
+    "slug": "IRENEUSZ__LECH_"
+  },
+  {
+    "projektant": "Iwona Całus ",
+    "liczba_projektow": 1,
+    "slug": "IWONA_CAŁUS_"
+  },
+  {
+    "projektant": "Iwona Kaczyńska",
+    "liczba_projektow": 1,
+    "slug": "IWONA_KACZYŃSKA"
+  },
+  {
+    "projektant": "Iwona Kubacka",
+    "liczba_projektow": 1,
+    "slug": "IWONA_KUBACKA"
+  },
+  {
+    "projektant": "Iwona Piskorz-Wilczak ",
+    "liczba_projektow": 3,
+    "slug": "IWONA_PISKORZ-WILCZAK_"
+  },
+  {
+    "projektant": "Iwona  Całus ",
+    "liczba_projektow": 19,
+    "slug": "IWONA__CAŁUS_"
+  },
+  {
+    "projektant": "Iwona  Kosmala-Dumin ",
+    "liczba_projektow": 2,
+    "slug": "IWONA__KOSMALA-DUMIN_"
+  },
+  {
+    "projektant": "Iwona  Ratajczyk ",
+    "liczba_projektow": 1,
+    "slug": "IWONA__RATAJCZYK_"
+  },
+  {
+    "projektant": "Izabela Kowerczuk-Borecka",
+    "liczba_projektow": 1,
+    "slug": "IZABELA_KOWERCZUK-BORECKA"
+  },
+  {
+    "projektant": "Izabela Mazepa",
+    "liczba_projektow": 2,
+    "slug": "IZABELA_MAZEPA"
+  },
+  {
+    "projektant": "Izabela Pietrzak",
+    "liczba_projektow": 4,
+    "slug": "IZABELA_PIETRZAK"
+  },
+  {
+    "projektant": "JUSTYNA BERNAT-ŁAGODA",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA_BERNAT-ŁAGODA"
+  },
+  {
+    "projektant": "Jacek Czaplicki",
+    "liczba_projektow": 2,
+    "slug": "JACEK_CZAPLICKI"
+  },
+  {
+    "projektant": "Jacek Kramer",
+    "liczba_projektow": 1,
+    "slug": "JACEK_KRAMER"
+  },
+  {
+    "projektant": "Jacek Machowina",
+    "liczba_projektow": 11,
+    "slug": "JACEK_MACHOWINA"
+  },
+  {
+    "projektant": "Jacek Nesterowicz",
+    "liczba_projektow": 3,
+    "slug": "JACEK_NESTEROWICZ"
+  },
+  {
+    "projektant": "Jacek Pawlaczyk",
+    "liczba_projektow": 1,
+    "slug": "JACEK_PAWLACZYK"
+  },
+  {
+    "projektant": "Jacek Rossa",
+    "liczba_projektow": 2,
+    "slug": "JACEK_ROSSA"
+  },
+  {
+    "projektant": "Jacek Roszczyc",
+    "liczba_projektow": 1,
+    "slug": "JACEK_ROSZCZYC"
+  },
+  {
+    "projektant": "Jacek Stróżewski",
+    "liczba_projektow": 3,
+    "slug": "JACEK_STRÓŻEWSKI"
+  },
+  {
+    "projektant": "Jacek Sudak",
+    "liczba_projektow": 1,
+    "slug": "JACEK_SUDAK"
+  },
+  {
+    "projektant": "Jacek Tybińkowski",
+    "liczba_projektow": 10,
+    "slug": "JACEK_TYBIŃKOWSKI"
+  },
+  {
+    "projektant": "Jacek Więckowski",
+    "liczba_projektow": 5,
+    "slug": "JACEK_WIĘCKOWSKI"
+  },
+  {
+    "projektant": "Jacek Węcławowicz  ",
+    "liczba_projektow": 3,
+    "slug": "JACEK_WĘCŁAWOWICZ__"
+  },
+  {
+    "projektant": "Jacek  Antonow ",
+    "liczba_projektow": 1,
+    "slug": "JACEK__ANTONOW_"
+  },
+  {
+    "projektant": "Jacek  Pągowski ",
+    "liczba_projektow": 4,
+    "slug": "JACEK__PĄGOWSKI_"
+  },
+  {
+    "projektant": "Jacek  Surudo ",
+    "liczba_projektow": 1,
+    "slug": "JACEK__SURUDO_"
+  },
+  {
+    "projektant": "Jadwiga  Maciejewska ",
+    "liczba_projektow": 1,
+    "slug": "JADWIGA__MACIEJEWSKA_"
+  },
+  {
+    "projektant": "Jakub Fidor",
+    "liczba_projektow": 7,
+    "slug": "JAKUB_FIDOR"
+  },
+  {
+    "projektant": "Jakub Joachim",
+    "liczba_projektow": 2,
+    "slug": "JAKUB_JOACHIM"
+  },
+  {
+    "projektant": "Jakub Kamiński",
+    "liczba_projektow": 12,
+    "slug": "JAKUB_KAMIŃSKI"
+  },
+  {
+    "projektant": "Jakub Podstawski",
+    "liczba_projektow": 19,
+    "slug": "JAKUB_PODSTAWSKI"
+  },
+  {
+    "projektant": "Jakub Podstawski ",
+    "liczba_projektow": 1,
+    "slug": "JAKUB_PODSTAWSKI_"
+  },
+  {
+    "projektant": "Jakub Prajwowski",
+    "liczba_projektow": 2,
+    "slug": "JAKUB_PRAJWOWSKI"
+  },
+  {
+    "projektant": "Jakub Tomczak ",
+    "liczba_projektow": 1,
+    "slug": "JAKUB_TOMCZAK_"
+  },
+  {
+    "projektant": "Jakub  Fidor ",
+    "liczba_projektow": 3,
+    "slug": "JAKUB__FIDOR_"
+  },
+  {
+    "projektant": "Jakub  Kamiński ",
+    "liczba_projektow": 2,
+    "slug": "JAKUB__KAMIŃSKI_"
+  },
+  {
+    "projektant": "Jakub Joachim Podstawski",
+    "liczba_projektow": 2,
+    "slug": "JAKUB_JOACHIM_PODSTAWSKI"
+  },
+  {
+    "projektant": "Jan  Bagiński ",
+    "liczba_projektow": 1,
+    "slug": "JAN__BAGIŃSKI_"
+  },
+  {
+    "projektant": "Jan Bohatyrewicz",
+    "liczba_projektow": 2,
+    "slug": "JAN_BOHATYREWICZ"
+  },
+  {
+    "projektant": "Jan Drożdż",
+    "liczba_projektow": 32,
+    "slug": "JAN_DROŻDŻ"
+  },
+  {
+    "projektant": "Jan Drzazga",
+    "liczba_projektow": 2,
+    "slug": "JAN_DRZAZGA"
+  },
+  {
+    "projektant": "Jan Drzazga ",
+    "liczba_projektow": 2,
+    "slug": "JAN_DRZAZGA_"
+  },
+  {
+    "projektant": "Jan Gołebiowski",
+    "liczba_projektow": 1,
+    "slug": "JAN_GOŁEBIOWSKI"
+  },
+  {
+    "projektant": "Jan Jurecki",
+    "liczba_projektow": 1,
+    "slug": "JAN_JURECKI"
+  },
+  {
+    "projektant": "Jan Kaczmarek",
+    "liczba_projektow": 2,
+    "slug": "JAN_KACZMAREK"
+  },
+  {
+    "projektant": "Jan Kogut",
+    "liczba_projektow": 1,
+    "slug": "JAN_KOGUT"
+  },
+  {
+    "projektant": "Jan Konwiński",
+    "liczba_projektow": 6,
+    "slug": "JAN_KONWIŃSKI"
+  },
+  {
+    "projektant": "Jan Kuzański",
+    "liczba_projektow": 4,
+    "slug": "JAN_KUZAŃSKI"
+  },
+  {
+    "projektant": "Jan Kuzański ",
+    "liczba_projektow": 5,
+    "slug": "JAN_KUZAŃSKI_"
+  },
+  {
+    "projektant": "Jan Marchewka",
+    "liczba_projektow": 1,
+    "slug": "JAN_MARCHEWKA"
+  },
+  {
+    "projektant": "Jan Pięciński",
+    "liczba_projektow": 1,
+    "slug": "JAN_PIĘCIŃSKI"
+  },
+  {
+    "projektant": "Jan Pruński",
+    "liczba_projektow": 1,
+    "slug": "JAN_PRUŃSKI"
+  },
+  {
+    "projektant": "Jan Pędziwiatr",
+    "liczba_projektow": 12,
+    "slug": "JAN_PĘDZIWIATR"
+  },
+  {
+    "projektant": "Jan Pędziwiatr ",
+    "liczba_projektow": 2,
+    "slug": "JAN_PĘDZIWIATR_"
+  },
+  {
+    "projektant": "Jan Szewczyk",
+    "liczba_projektow": 1,
+    "slug": "JAN_SZEWCZYK"
+  },
+  {
+    "projektant": "Jan Tołłoczko",
+    "liczba_projektow": 1,
+    "slug": "JAN_TOŁŁOCZKO"
+  },
+  {
+    "projektant": "Jan Traczyk",
+    "liczba_projektow": 1,
+    "slug": "JAN_TRACZYK"
+  },
+  {
+    "projektant": "Jan Ubycha",
+    "liczba_projektow": 1,
+    "slug": "JAN_UBYCHA"
+  },
+  {
+    "projektant": "Jan pędziwiatr",
+    "liczba_projektow": 1,
+    "slug": "JAN_PĘDZIWIATR"
+  },
+  {
+    "projektant": "Jan Śron",
+    "liczba_projektow": 1,
+    "slug": "JAN_ŚRON"
+  },
+  {
+    "projektant": "Jan   Droż ",
+    "liczba_projektow": 1,
+    "slug": "JAN___DROŻ_"
+  },
+  {
+    "projektant": "Jan  Bagiński",
+    "liczba_projektow": 3,
+    "slug": "JAN__BAGIŃSKI"
+  },
+  {
+    "projektant": "Jan  Bagiński ",
+    "liczba_projektow": 8,
+    "slug": "JAN__BAGIŃSKI_"
+  },
+  {
+    "projektant": "Jan  Drożdż ",
+    "liczba_projektow": 2,
+    "slug": "JAN__DROŻDŻ_"
+  },
+  {
+    "projektant": "Jan  Drzazga ",
+    "liczba_projektow": 1,
+    "slug": "JAN__DRZAZGA_"
+  },
+  {
+    "projektant": "Jan  Kogut ",
+    "liczba_projektow": 1,
+    "slug": "JAN__KOGUT_"
+  },
+  {
+    "projektant": "Jan  Pędziwiatr",
+    "liczba_projektow": 6,
+    "slug": "JAN__PĘDZIWIATR"
+  },
+  {
+    "projektant": "Jan  Pędziwiatr ",
+    "liczba_projektow": 30,
+    "slug": "JAN__PĘDZIWIATR_"
+  },
+  {
+    "projektant": "Jan  Tołłoczko",
+    "liczba_projektow": 1,
+    "slug": "JAN__TOŁŁOCZKO"
+  },
+  {
+    "projektant": "Janusz Bieleń",
+    "liczba_projektow": 2,
+    "slug": "JANUSZ_BIELEŃ"
+  },
+  {
+    "projektant": "Janusz Bieńkowski",
+    "liczba_projektow": 1,
+    "slug": "JANUSZ_BIEŃKOWSKI"
+  },
+  {
+    "projektant": "Janusz Cora",
+    "liczba_projektow": 1,
+    "slug": "JANUSZ_CORA"
+  },
+  {
+    "projektant": "Janusz Nierzwicki ",
+    "liczba_projektow": 1,
+    "slug": "JANUSZ_NIERZWICKI_"
+  },
+  {
+    "projektant": "Janusz Piotrowicz",
+    "liczba_projektow": 1,
+    "slug": "JANUSZ_PIOTROWICZ"
+  },
+  {
+    "projektant": "Janusz Podlewski",
+    "liczba_projektow": 2,
+    "slug": "JANUSZ_PODLEWSKI"
+  },
+  {
+    "projektant": "Janusz Podstawski",
+    "liczba_projektow": 1,
+    "slug": "JANUSZ_PODSTAWSKI"
+  },
+  {
+    "projektant": "Janusz Rączka",
+    "liczba_projektow": 1,
+    "slug": "JANUSZ_RĄCZKA"
+  },
+  {
+    "projektant": "Janusz Witanowski",
+    "liczba_projektow": 3,
+    "slug": "JANUSZ_WITANOWSKI"
+  },
+  {
+    "projektant": "Janusz  Tomaszewski",
+    "liczba_projektow": 1,
+    "slug": "JANUSZ__TOMASZEWSKI"
+  },
+  {
+    "projektant": "Jarosław Kowalczyk",
+    "liczba_projektow": 3,
+    "slug": "JAROSŁAW_KOWALCZYK"
+  },
+  {
+    "projektant": "Jarosław Kwiatkowski",
+    "liczba_projektow": 1,
+    "slug": "JAROSŁAW_KWIATKOWSKI"
+  },
+  {
+    "projektant": "Jarosław Michałowski",
+    "liczba_projektow": 1,
+    "slug": "JAROSŁAW_MICHAŁOWSKI"
+  },
+  {
+    "projektant": "Jarosław Nowicki",
+    "liczba_projektow": 1,
+    "slug": "JAROSŁAW_NOWICKI"
+  },
+  {
+    "projektant": "Jarosław Piesik",
+    "liczba_projektow": 2,
+    "slug": "JAROSŁAW_PIESIK"
+  },
+  {
+    "projektant": "Jarosław Połczyński",
+    "liczba_projektow": 8,
+    "slug": "JAROSŁAW_POŁCZYŃSKI"
+  },
+  {
+    "projektant": "Jarosław Sajewski",
+    "liczba_projektow": 1,
+    "slug": "JAROSŁAW_SAJEWSKI"
+  },
+  {
+    "projektant": "Jarosław Sawicki",
+    "liczba_projektow": 1,
+    "slug": "JAROSŁAW_SAWICKI"
+  },
+  {
+    "projektant": "Jarosław Woźnica ",
+    "liczba_projektow": 5,
+    "slug": "JAROSŁAW_WOŹNICA_"
+  },
+  {
+    "projektant": "Jerzy Fornal",
+    "liczba_projektow": 1,
+    "slug": "JERZY_FORNAL"
+  },
+  {
+    "projektant": "Jerzy Maciejewski",
+    "liczba_projektow": 3,
+    "slug": "JERZY_MACIEJEWSKI"
+  },
+  {
+    "projektant": "Jerzy Prokopowicz",
+    "liczba_projektow": 1,
+    "slug": "JERZY_PROKOPOWICZ"
+  },
+  {
+    "projektant": "Jerzy Sosnowski",
+    "liczba_projektow": 9,
+    "slug": "JERZY_SOSNOWSKI"
+  },
+  {
+    "projektant": "Jerzy   Srtępczyk",
+    "liczba_projektow": 4,
+    "slug": "JERZY___SRTĘPCZYK"
+  },
+  {
+    "projektant": "Joanna Balsewicz",
+    "liczba_projektow": 1,
+    "slug": "JOANNA_BALSEWICZ"
+  },
+  {
+    "projektant": "Joanna Haracz",
+    "liczba_projektow": 14,
+    "slug": "JOANNA_HARACZ"
+  },
+  {
+    "projektant": "Joanna Leszkowska",
+    "liczba_projektow": 3,
+    "slug": "JOANNA_LESZKOWSKA"
+  },
+  {
+    "projektant": "Joanna Marcinkowska",
+    "liczba_projektow": 3,
+    "slug": "JOANNA_MARCINKOWSKA"
+  },
+  {
+    "projektant": "Joanna Mazepa",
+    "liczba_projektow": 4,
+    "slug": "JOANNA_MAZEPA"
+  },
+  {
+    "projektant": "Joanna Wachowicz",
+    "liczba_projektow": 2,
+    "slug": "JOANNA_WACHOWICZ"
+  },
+  {
+    "projektant": "Joanna Zielińska",
+    "liczba_projektow": 1,
+    "slug": "JOANNA_ZIELIŃSKA"
+  },
+  {
+    "projektant": "Joanna  Grzybowska  ",
+    "liczba_projektow": 15,
+    "slug": "JOANNA__GRZYBOWSKA__"
+  },
+  {
+    "projektant": "Joanna  Kaluba-Kobryńska ",
+    "liczba_projektow": 2,
+    "slug": "JOANNA__KALUBA-KOBRYŃSKA_"
+  },
+  {
+    "projektant": "Joanna  Marcinkowska ",
+    "liczba_projektow": 1,
+    "slug": "JOANNA__MARCINKOWSKA_"
+  },
+  {
+    "projektant": "Joanna  Szafarz",
+    "liczba_projektow": 1,
+    "slug": "JOANNA__SZAFARZ"
+  },
+  {
+    "projektant": "Joanna   Haracz  ",
+    "liczba_projektow": 1,
+    "slug": "JOANNA___HARACZ__"
+  },
+  {
+    "projektant": "Jolanta Bartoszewska",
+    "liczba_projektow": 1,
+    "slug": "JOLANTA_BARTOSZEWSKA"
+  },
+  {
+    "projektant": "Jolanta Czopur ",
+    "liczba_projektow": 1,
+    "slug": "JOLANTA_CZOPUR_"
+  },
+  {
+    "projektant": "Jolanta Duziak",
+    "liczba_projektow": 2,
+    "slug": "JOLANTA_DUZIAK"
+  },
+  {
+    "projektant": "Jolanta Kupień",
+    "liczba_projektow": 1,
+    "slug": "JOLANTA_KUPIEŃ"
+  },
+  {
+    "projektant": "Jolanta Pawłowska",
+    "liczba_projektow": 1,
+    "slug": "JOLANTA_PAWŁOWSKA"
+  },
+  {
+    "projektant": "Jolanta Skowron",
+    "liczba_projektow": 15,
+    "slug": "JOLANTA_SKOWRON"
+  },
+  {
+    "projektant": "Jolanta Szymańska",
+    "liczba_projektow": 1,
+    "slug": "JOLANTA_SZYMAŃSKA"
+  },
+  {
+    "projektant": "Jolanta   Skowron    ",
+    "liczba_projektow": 2,
+    "slug": "JOLANTA___SKOWRON____"
+  },
+  {
+    "projektant": "Jolanta  Zakrzewska",
+    "liczba_projektow": 1,
+    "slug": "JOLANTA__ZAKRZEWSKA"
+  },
+  {
+    "projektant": "Jowita Pietraszkiewicz",
+    "liczba_projektow": 1,
+    "slug": "JOWITA_PIETRASZKIEWICZ"
+  },
+  {
+    "projektant": "Julian  Iwicki ",
+    "liczba_projektow": 1,
+    "slug": "JULIAN__IWICKI_"
+  },
+  {
+    "projektant": "Justyna  Just ",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA__JUST_"
+  },
+  {
+    "projektant": "Justyna Bernat-Ładoga",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA_BERNAT-ŁADOGA"
+  },
+  {
+    "projektant": "Justyna Bernat-Łagoda",
+    "liczba_projektow": 4,
+    "slug": "JUSTYNA_BERNAT-ŁAGODA"
+  },
+  {
+    "projektant": "Justyna Bernat-Łagoda ",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA_BERNAT-ŁAGODA_"
+  },
+  {
+    "projektant": "Justyna Gidel-Miaskauzy",
+    "liczba_projektow": 13,
+    "slug": "JUSTYNA_GIDEL-MIASKAUZY"
+  },
+  {
+    "projektant": "Justyna Jurczak - Groth",
+    "liczba_projektow": 2,
+    "slug": "JUSTYNA_JURCZAK_-_GROTH"
+  },
+  {
+    "projektant": "Justyna Jurczak-Groth",
+    "liczba_projektow": 3,
+    "slug": "JUSTYNA_JURCZAK-GROTH"
+  },
+  {
+    "projektant": "Justyna Jurczuk-Groth",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA_JURCZUK-GROTH"
+  },
+  {
+    "projektant": "Justyna Karwowska",
+    "liczba_projektow": 7,
+    "slug": "JUSTYNA_KARWOWSKA"
+  },
+  {
+    "projektant": "Justyna   Just     ",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA___JUST_____"
+  },
+  {
+    "projektant": "Justyna   Markowicz  ",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA___MARKOWICZ__"
+  },
+  {
+    "projektant": "Justyna  Bernat-Łagoda ",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA__BERNAT-ŁAGODA_"
+  },
+  {
+    "projektant": "Justyna  Ewa Jurczak - Groth ",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA__EWA_JURCZAK_-_GROTH_"
+  },
+  {
+    "projektant": "Justyna  Jurczak-Groth ",
+    "liczba_projektow": 3,
+    "slug": "JUSTYNA__JURCZAK-GROTH_"
+  },
+  {
+    "projektant": "Justyna  Jurczak-Groth 3",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA__JURCZAK-GROTH_3"
+  },
+  {
+    "projektant": "Justyna  Karwowska",
+    "liczba_projektow": 1,
+    "slug": "JUSTYNA__KARWOWSKA"
+  },
+  {
+    "projektant": "Justyna  Karwowska ",
+    "liczba_projektow": 11,
+    "slug": "JUSTYNA__KARWOWSKA_"
+  },
+  {
+    "projektant": "JÓZEF TOMASZEWICZ ",
+    "liczba_projektow": 2,
+    "slug": "JÓZEF_TOMASZEWICZ_"
+  },
+  {
+    "projektant": "Józef Barwiński",
+    "liczba_projektow": 1,
+    "slug": "JÓZEF_BARWIŃSKI"
+  },
+  {
+    "projektant": "Józef Tomaszewicz",
+    "liczba_projektow": 7,
+    "slug": "JÓZEF_TOMASZEWICZ"
+  },
+  {
+    "projektant": "Józef Urbaniak",
+    "liczba_projektow": 1,
+    "slug": "JÓZEF_URBANIAK"
+  },
+  {
+    "projektant": "Józef Warowy",
+    "liczba_projektow": 2,
+    "slug": "JÓZEF_WAROWY"
+  },
+  {
+    "projektant": "Józefa Benłużańska",
+    "liczba_projektow": 4,
+    "slug": "JÓZEFA_BENŁUŻAŃSKA"
+  },
+  {
+    "projektant": "Józefa  Benłużańska",
+    "liczba_projektow": 4,
+    "slug": "JÓZEFA__BENŁUŻAŃSKA"
+  },
+  {
+    "projektant": "Józefa  Benłużańska ",
+    "liczba_projektow": 10,
+    "slug": "JÓZEFA__BENŁUŻAŃSKA_"
+  },
+  {
+    "projektant": "KAROLINA NARÓG",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_NARÓG"
+  },
+  {
+    "projektant": "KATARZYNA KUŹMICZ",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA_KUŹMICZ"
+  },
+  {
+    "projektant": "Kacper Szczepaniak ",
+    "liczba_projektow": 3,
+    "slug": "KACPER_SZCZEPANIAK_"
+  },
+  {
+    "projektant": "Kacper  Szczepaniak ",
+    "liczba_projektow": 4,
+    "slug": "KACPER__SZCZEPANIAK_"
+  },
+  {
+    "projektant": "Kamil Bocian",
+    "liczba_projektow": 2,
+    "slug": "KAMIL_BOCIAN"
+  },
+  {
+    "projektant": "Kamil Bocian ",
+    "liczba_projektow": 1,
+    "slug": "KAMIL_BOCIAN_"
+  },
+  {
+    "projektant": "Kamil Karwowski",
+    "liczba_projektow": 2,
+    "slug": "KAMIL_KARWOWSKI"
+  },
+  {
+    "projektant": "Kamil Kuciński",
+    "liczba_projektow": 35,
+    "slug": "KAMIL_KUCIŃSKI"
+  },
+  {
+    "projektant": "Kamil Kuciński ",
+    "liczba_projektow": 1,
+    "slug": "KAMIL_KUCIŃSKI_"
+  },
+  {
+    "projektant": "Kamil Kusiński",
+    "liczba_projektow": 1,
+    "slug": "KAMIL_KUSIŃSKI"
+  },
+  {
+    "projektant": "Kamil  Bocian",
+    "liczba_projektow": 4,
+    "slug": "KAMIL__BOCIAN"
+  },
+  {
+    "projektant": "Kamil  Karwowski",
+    "liczba_projektow": 1,
+    "slug": "KAMIL__KARWOWSKI"
+  },
+  {
+    "projektant": "Kamil  Karwowski ",
+    "liczba_projektow": 6,
+    "slug": "KAMIL__KARWOWSKI_"
+  },
+  {
+    "projektant": "Kamil  Karwowski   ",
+    "liczba_projektow": 3,
+    "slug": "KAMIL__KARWOWSKI___"
+  },
+  {
+    "projektant": "Kamil  Kostrzewa",
+    "liczba_projektow": 4,
+    "slug": "KAMIL__KOSTRZEWA"
+  },
+  {
+    "projektant": "Kamil  Kuciński",
+    "liczba_projektow": 4,
+    "slug": "KAMIL__KUCIŃSKI"
+  },
+  {
+    "projektant": "Kamil Zielazek  Kamil Zielazek ",
+    "liczba_projektow": 1,
+    "slug": "KAMIL_ZIELAZEK__KAMIL_ZIELAZEK_"
+  },
+  {
+    "projektant": "Kamila Majewska",
+    "liczba_projektow": 4,
+    "slug": "KAMILA_MAJEWSKA"
+  },
+  {
+    "projektant": "Kamila Majewska ",
+    "liczba_projektow": 1,
+    "slug": "KAMILA_MAJEWSKA_"
+  },
+  {
+    "projektant": "Kamila  Majewska ",
+    "liczba_projektow": 2,
+    "slug": "KAMILA__MAJEWSKA_"
+  },
+  {
+    "projektant": "Karina Sterzeniewska-Pestka",
+    "liczba_projektow": 2,
+    "slug": "KARINA_STERZENIEWSKA-PESTKA"
+  },
+  {
+    "projektant": "Karina Szerzeniewsk-Pestka",
+    "liczba_projektow": 1,
+    "slug": "KARINA_SZERZENIEWSK-PESTKA"
+  },
+  {
+    "projektant": "Karina Szerzeniewska - Pestka",
+    "liczba_projektow": 1,
+    "slug": "KARINA_SZERZENIEWSKA_-_PESTKA"
+  },
+  {
+    "projektant": "Karina Szerzeniewska-Pestka",
+    "liczba_projektow": 15,
+    "slug": "KARINA_SZERZENIEWSKA-PESTKA"
+  },
+  {
+    "projektant": "Karina Szerzeniewska-Pestka ",
+    "liczba_projektow": 3,
+    "slug": "KARINA_SZERZENIEWSKA-PESTKA_"
+  },
+  {
+    "projektant": "Karoj Nieradka",
+    "liczba_projektow": 1,
+    "slug": "KAROJ_NIERADKA"
+  },
+  {
+    "projektant": "Karol  Nieradka    ",
+    "liczba_projektow": 1,
+    "slug": "KAROL__NIERADKA____"
+  },
+  {
+    "projektant": "Karol Bukowski",
+    "liczba_projektow": 7,
+    "slug": "KAROL_BUKOWSKI"
+  },
+  {
+    "projektant": "Karol Jurga",
+    "liczba_projektow": 6,
+    "slug": "KAROL_JURGA"
+  },
+  {
+    "projektant": "Karol Krzątała",
+    "liczba_projektow": 2,
+    "slug": "KAROL_KRZĄTAŁA"
+  },
+  {
+    "projektant": "Karol Krzątała ",
+    "liczba_projektow": 1,
+    "slug": "KAROL_KRZĄTAŁA_"
+  },
+  {
+    "projektant": "Karol Nieradka",
+    "liczba_projektow": 2,
+    "slug": "KAROL_NIERADKA"
+  },
+  {
+    "projektant": "Karol Sekuterski",
+    "liczba_projektow": 16,
+    "slug": "KAROL_SEKUTERSKI"
+  },
+  {
+    "projektant": "Karol   Sekuterski ",
+    "liczba_projektow": 1,
+    "slug": "KAROL___SEKUTERSKI_"
+  },
+  {
+    "projektant": "Karol  Jurga",
+    "liczba_projektow": 5,
+    "slug": "KAROL__JURGA"
+  },
+  {
+    "projektant": "Karol  Jurga ",
+    "liczba_projektow": 11,
+    "slug": "KAROL__JURGA_"
+  },
+  {
+    "projektant": "Karol  Sekuterski",
+    "liczba_projektow": 7,
+    "slug": "KAROL__SEKUTERSKI"
+  },
+  {
+    "projektant": "Karol  Sekuterski ",
+    "liczba_projektow": 26,
+    "slug": "KAROL__SEKUTERSKI_"
+  },
+  {
+    "projektant": "Karolina Bernacka",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_BERNACKA"
+  },
+  {
+    "projektant": "Karolina Maj-Wasilewska",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_MAJ-WASILEWSKA"
+  },
+  {
+    "projektant": "Karolina Naróg",
+    "liczba_projektow": 9,
+    "slug": "KAROLINA_NARÓG"
+  },
+  {
+    "projektant": "Karolina Nowaczyk",
+    "liczba_projektow": 2,
+    "slug": "KAROLINA_NOWACZYK"
+  },
+  {
+    "projektant": "Karolina Nowaczyk ",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_NOWACZYK_"
+  },
+  {
+    "projektant": "Karolina Okoń",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_OKOŃ"
+  },
+  {
+    "projektant": "Karolina Prałat- Orłowska",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_PRAŁAT-_ORŁOWSKA"
+  },
+  {
+    "projektant": "Karolina Prałat-Orłowska",
+    "liczba_projektow": 6,
+    "slug": "KAROLINA_PRAŁAT-ORŁOWSKA"
+  },
+  {
+    "projektant": "Karolina Pykało-Krzywdzińska",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_PYKAŁO-KRZYWDZIŃSKA"
+  },
+  {
+    "projektant": "Karolina Siwek",
+    "liczba_projektow": 8,
+    "slug": "KAROLINA_SIWEK"
+  },
+  {
+    "projektant": "Karolina Timoszyk",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_TIMOSZYK"
+  },
+  {
+    "projektant": "Karolina Łakis",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_ŁAKIS"
+  },
+  {
+    "projektant": "Karolina  Borkowska",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA__BORKOWSKA"
+  },
+  {
+    "projektant": "Karolina  Kołodziej ",
+    "liczba_projektow": 15,
+    "slug": "KAROLINA__KOŁODZIEJ_"
+  },
+  {
+    "projektant": "Karolina  Naróg ",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA__NARÓG_"
+  },
+  {
+    "projektant": "Karolina  Nowaczyk ",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA__NOWACZYK_"
+  },
+  {
+    "projektant": "Karolina  Siwek",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA__SIWEK"
+  },
+  {
+    "projektant": "Karolina   Naróg",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA___NARÓG"
+  },
+  {
+    "projektant": "Karolina   Prałat-Orłowska",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA___PRAŁAT-ORŁOWSKA"
+  },
+  {
+    "projektant": "Katarzyna Ciupak",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA_CIUPAK"
+  },
+  {
+    "projektant": "Katarzyna DEKERT",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA_DEKERT"
+  },
+  {
+    "projektant": "Katarzyna Dekert",
+    "liczba_projektow": 4,
+    "slug": "KATARZYNA_DEKERT"
+  },
+  {
+    "projektant": "Katarzyna Frankiewicz",
+    "liczba_projektow": 5,
+    "slug": "KATARZYNA_FRANKIEWICZ"
+  },
+  {
+    "projektant": "Katarzyna Gauden",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA_GAUDEN"
+  },
+  {
+    "projektant": "Katarzyna Koczergo",
+    "liczba_projektow": 2,
+    "slug": "KATARZYNA_KOCZERGO"
+  },
+  {
+    "projektant": "Katarzyna Krawiecka - Kołaczek",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA_KRAWIECKA_-_KOŁACZEK"
+  },
+  {
+    "projektant": "Katarzyna Krawiecka-Kołaczek",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA_KRAWIECKA-KOŁACZEK"
+  },
+  {
+    "projektant": "Katarzyna Parzymies",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA_PARZYMIES"
+  },
+  {
+    "projektant": "Katarzyna Przybysz",
+    "liczba_projektow": 21,
+    "slug": "KATARZYNA_PRZYBYSZ"
+  },
+  {
+    "projektant": "Katarzyna Sucholas",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA_SUCHOLAS"
+  },
+  {
+    "projektant": "Katarzyna   Przybysz ",
+    "liczba_projektow": 5,
+    "slug": "KATARZYNA___PRZYBYSZ_"
+  },
+  {
+    "projektant": "Katarzyna  Chmielewska ",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA__CHMIELEWSKA_"
+  },
+  {
+    "projektant": "Katarzyna  Frankiewicz",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA__FRANKIEWICZ"
+  },
+  {
+    "projektant": "Katarzyna  Stawiniak",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA__STAWINIAK"
+  },
+  {
+    "projektant": "Katarzyna  Stręg-Kukuła ",
+    "liczba_projektow": 2,
+    "slug": "KATARZYNA__STRĘG-KUKUŁA_"
+  },
+  {
+    "projektant": "Katarzyna  Słonina",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA__SŁONINA"
+  },
+  {
+    "projektant": "Katarzyna  Słonina ",
+    "liczba_projektow": 9,
+    "slug": "KATARZYNA__SŁONINA_"
+  },
+  {
+    "projektant": "Katarzyna  Tytuła ",
+    "liczba_projektow": 1,
+    "slug": "KATARZYNA__TYTUŁA_"
+  },
+  {
+    "projektant": "Kazimierz Błahut",
+    "liczba_projektow": 16,
+    "slug": "KAZIMIERZ_BŁAHUT"
+  },
+  {
+    "projektant": "Kazimierz Halicki",
+    "liczba_projektow": 2,
+    "slug": "KAZIMIERZ_HALICKI"
+  },
+  {
+    "projektant": "Kazimierz Krakowiak",
+    "liczba_projektow": 2,
+    "slug": "KAZIMIERZ_KRAKOWIAK"
+  },
+  {
+    "projektant": "Kazimierz Krakowiak ",
+    "liczba_projektow": 1,
+    "slug": "KAZIMIERZ_KRAKOWIAK_"
+  },
+  {
+    "projektant": "Kazimierz  Błahut",
+    "liczba_projektow": 94,
+    "slug": "KAZIMIERZ__BŁAHUT"
+  },
+  {
+    "projektant": "Kazimierz  Błahut ",
+    "liczba_projektow": 13,
+    "slug": "KAZIMIERZ__BŁAHUT_"
+  },
+  {
+    "projektant": "Kazimierz   Błahut",
+    "liczba_projektow": 3,
+    "slug": "KAZIMIERZ___BŁAHUT"
+  },
+  {
+    "projektant": "Kinga Szymczak",
+    "liczba_projektow": 1,
+    "slug": "KINGA_SZYMCZAK"
+  },
+  {
+    "projektant": "Konrad Filus",
+    "liczba_projektow": 2,
+    "slug": "KONRAD_FILUS"
+  },
+  {
+    "projektant": "Konrad Matuszewski",
+    "liczba_projektow": 1,
+    "slug": "KONRAD_MATUSZEWSKI"
+  },
+  {
+    "projektant": "Konrad Roszak",
+    "liczba_projektow": 1,
+    "slug": "KONRAD_ROSZAK"
+  },
+  {
+    "projektant": "Konrad Troszczyński",
+    "liczba_projektow": 3,
+    "slug": "KONRAD_TROSZCZYŃSKI"
+  },
+  {
+    "projektant": "Konrad Wesolowski",
+    "liczba_projektow": 1,
+    "slug": "KONRAD_WESOLOWSKI"
+  },
+  {
+    "projektant": "Konrad Wesołowski",
+    "liczba_projektow": 16,
+    "slug": "KONRAD_WESOŁOWSKI"
+  },
+  {
+    "projektant": "Kornel Suski",
+    "liczba_projektow": 4,
+    "slug": "KORNEL_SUSKI"
+  },
+  {
+    "projektant": "Kostas Hrisulidis",
+    "liczba_projektow": 2,
+    "slug": "KOSTAS_HRISULIDIS"
+  },
+  {
+    "projektant": "Krystian Haraszczuk",
+    "liczba_projektow": 6,
+    "slug": "KRYSTIAN_HARASZCZUK"
+  },
+  {
+    "projektant": "Krystian Andrzej  Kubiak",
+    "liczba_projektow": 1,
+    "slug": "KRYSTIAN_ANDRZEJ__KUBIAK"
+  },
+  {
+    "projektant": "Krystyna Hańczuk",
+    "liczba_projektow": 8,
+    "slug": "KRYSTYNA_HAŃCZUK"
+  },
+  {
+    "projektant": "Krystyna Nowosielecka",
+    "liczba_projektow": 12,
+    "slug": "KRYSTYNA_NOWOSIELECKA"
+  },
+  {
+    "projektant": "Krystyna Nowosielecka ",
+    "liczba_projektow": 1,
+    "slug": "KRYSTYNA_NOWOSIELECKA_"
+  },
+  {
+    "projektant": "Krystyna   Klich Kierczuk   ",
+    "liczba_projektow": 1,
+    "slug": "KRYSTYNA___KLICH_KIERCZUK___"
+  },
+  {
+    "projektant": "Krysztof Gogulski",
+    "liczba_projektow": 1,
+    "slug": "KRYSZTOF_GOGULSKI"
+  },
+  {
+    "projektant": "Krzysztof  Gojżewski ",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF__GOJŻEWSKI_"
+  },
+  {
+    "projektant": "Krzysztof Arszeluk",
+    "liczba_projektow": 2,
+    "slug": "KRZYSZTOF_ARSZELUK"
+  },
+  {
+    "projektant": "Krzysztof Bil",
+    "liczba_projektow": 7,
+    "slug": "KRZYSZTOF_BIL"
+  },
+  {
+    "projektant": "Krzysztof Bizio",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF_BIZIO"
+  },
+  {
+    "projektant": "Krzysztof Chromiec ",
+    "liczba_projektow": 4,
+    "slug": "KRZYSZTOF_CHROMIEC_"
+  },
+  {
+    "projektant": "Krzysztof Ciepłowski",
+    "liczba_projektow": 8,
+    "slug": "KRZYSZTOF_CIEPŁOWSKI"
+  },
+  {
+    "projektant": "Krzysztof Gogulski",
+    "liczba_projektow": 6,
+    "slug": "KRZYSZTOF_GOGULSKI"
+  },
+  {
+    "projektant": "Krzysztof Gojżewski",
+    "liczba_projektow": 19,
+    "slug": "KRZYSZTOF_GOJŻEWSKI"
+  },
+  {
+    "projektant": "Krzysztof Grabawski",
+    "liczba_projektow": 3,
+    "slug": "KRZYSZTOF_GRABAWSKI"
+  },
+  {
+    "projektant": "Krzysztof Grabowski",
+    "liczba_projektow": 3,
+    "slug": "KRZYSZTOF_GRABOWSKI"
+  },
+  {
+    "projektant": "Krzysztof Hodun",
+    "liczba_projektow": 15,
+    "slug": "KRZYSZTOF_HODUN"
+  },
+  {
+    "projektant": "Krzysztof Imbra",
+    "liczba_projektow": 13,
+    "slug": "KRZYSZTOF_IMBRA"
+  },
+  {
+    "projektant": "Krzysztof Kaczmarek",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF_KACZMAREK"
+  },
+  {
+    "projektant": "Krzysztof Kryzar",
+    "liczba_projektow": 2,
+    "slug": "KRZYSZTOF_KRYZAR"
+  },
+  {
+    "projektant": "Krzysztof Machowski",
+    "liczba_projektow": 5,
+    "slug": "KRZYSZTOF_MACHOWSKI"
+  },
+  {
+    "projektant": "Krzysztof Małecki",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF_MAŁECKI"
+  },
+  {
+    "projektant": "Krzysztof Motylak",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF_MOTYLAK"
+  },
+  {
+    "projektant": "Krzysztof Parys",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF_PARYS"
+  },
+  {
+    "projektant": "Krzysztof Piątkowski",
+    "liczba_projektow": 9,
+    "slug": "KRZYSZTOF_PIĄTKOWSKI"
+  },
+  {
+    "projektant": "Krzysztof Piątkowski ",
+    "liczba_projektow": 9,
+    "slug": "KRZYSZTOF_PIĄTKOWSKI_"
+  },
+  {
+    "projektant": "Krzysztof Romańczuk",
+    "liczba_projektow": 10,
+    "slug": "KRZYSZTOF_ROMAŃCZUK"
+  },
+  {
+    "projektant": "Krzysztof Wierzbicki",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF_WIERZBICKI"
+  },
+  {
+    "projektant": "Krzysztof Wudziński",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF_WUDZIŃSKI"
+  },
+  {
+    "projektant": "Krzysztof Wysocki",
+    "liczba_projektow": 14,
+    "slug": "KRZYSZTOF_WYSOCKI"
+  },
+  {
+    "projektant": "Krzysztof Zalewski",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF_ZALEWSKI"
+  },
+  {
+    "projektant": "Krzysztof Łojewski",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF_ŁOJEWSKI"
+  },
+  {
+    "projektant": "Krzysztof Śniadek",
+    "liczba_projektow": 2,
+    "slug": "KRZYSZTOF_ŚNIADEK"
+  },
+  {
+    "projektant": "Krzysztof  Ciepłowski",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF__CIEPŁOWSKI"
+  },
+  {
+    "projektant": "Krzysztof  Gojżewski ",
+    "liczba_projektow": 30,
+    "slug": "KRZYSZTOF__GOJŻEWSKI_"
+  },
+  {
+    "projektant": "Krzysztof  Grabowski",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF__GRABOWSKI"
+  },
+  {
+    "projektant": "Krzysztof  Grabowski ",
+    "liczba_projektow": 8,
+    "slug": "KRZYSZTOF__GRABOWSKI_"
+  },
+  {
+    "projektant": "Krzysztof  Michniewicz",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF__MICHNIEWICZ"
+  },
+  {
+    "projektant": "Krzysztof  Miziński ",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF__MIZIŃSKI_"
+  },
+  {
+    "projektant": "Krzysztof  Niechciał  ",
+    "liczba_projektow": 2,
+    "slug": "KRZYSZTOF__NIECHCIAŁ__"
+  },
+  {
+    "projektant": "Krzysztof  Tetera",
+    "liczba_projektow": 6,
+    "slug": "KRZYSZTOF__TETERA"
+  },
+  {
+    "projektant": "Krzysztof  Trochimowicz ",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF__TROCHIMOWICZ_"
+  },
+  {
+    "projektant": "Krzysztof  Wysocki ",
+    "liczba_projektow": 9,
+    "slug": "KRZYSZTOF__WYSOCKI_"
+  },
+  {
+    "projektant": "Krzysztof   Grabowski",
+    "liczba_projektow": 1,
+    "slug": "KRZYSZTOF___GRABOWSKI"
+  },
+  {
+    "projektant": "Krzysztof   Grabowski  ",
+    "liczba_projektow": 4,
+    "slug": "KRZYSZTOF___GRABOWSKI__"
+  },
+  {
+    "projektant": "LESZEK BOBROWSKI ",
+    "liczba_projektow": 5,
+    "slug": "LESZEK_BOBROWSKI_"
+  },
+  {
+    "projektant": "Lech Kuroczycki",
+    "liczba_projektow": 4,
+    "slug": "LECH_KUROCZYCKI"
+  },
+  {
+    "projektant": "Lech Wojtasik",
+    "liczba_projektow": 5,
+    "slug": "LECH_WOJTASIK"
+  },
+  {
+    "projektant": "Leon Altmark",
+    "liczba_projektow": 3,
+    "slug": "LEON_ALTMARK"
+  },
+  {
+    "projektant": "Leon Piszczyk",
+    "liczba_projektow": 3,
+    "slug": "LEON_PISZCZYK"
+  },
+  {
+    "projektant": "Leon Zuń ",
+    "liczba_projektow": 6,
+    "slug": "LEON_ZUŃ_"
+  },
+  {
+    "projektant": "Leon  Zuń ",
+    "liczba_projektow": 1,
+    "slug": "LEON__ZUŃ_"
+  },
+  {
+    "projektant": "Leszek Kaszak",
+    "liczba_projektow": 20,
+    "slug": "LESZEK_KASZAK"
+  },
+  {
+    "projektant": "Leszek Kaszak ",
+    "liczba_projektow": 3,
+    "slug": "LESZEK_KASZAK_"
+  },
+  {
+    "projektant": "Leszek Marszałek",
+    "liczba_projektow": 3,
+    "slug": "LESZEK_MARSZAŁEK"
+  },
+  {
+    "projektant": "Leszek Piątek",
+    "liczba_projektow": 5,
+    "slug": "LESZEK_PIĄTEK"
+  },
+  {
+    "projektant": "Leszek Rajfur",
+    "liczba_projektow": 20,
+    "slug": "LESZEK_RAJFUR"
+  },
+  {
+    "projektant": "Leszek Rajfur ",
+    "liczba_projektow": 6,
+    "slug": "LESZEK_RAJFUR_"
+  },
+  {
+    "projektant": "Leszek Rostecki",
+    "liczba_projektow": 1,
+    "slug": "LESZEK_ROSTECKI"
+  },
+  {
+    "projektant": "Leszek Rostocki",
+    "liczba_projektow": 1,
+    "slug": "LESZEK_ROSTOCKI"
+  },
+  {
+    "projektant": "Leszek Skrzypczak ",
+    "liczba_projektow": 1,
+    "slug": "LESZEK_SKRZYPCZAK_"
+  },
+  {
+    "projektant": "Leszek Tustanowski",
+    "liczba_projektow": 8,
+    "slug": "LESZEK_TUSTANOWSKI"
+  },
+  {
+    "projektant": "Leszek Świątek",
+    "liczba_projektow": 2,
+    "slug": "LESZEK_ŚWIĄTEK"
+  },
+  {
+    "projektant": "Leszek  Piątek ",
+    "liczba_projektow": 1,
+    "slug": "LESZEK__PIĄTEK_"
+  },
+  {
+    "projektant": "Leszek  Rajfur ",
+    "liczba_projektow": 1,
+    "slug": "LESZEK__RAJFUR_"
+  },
+  {
+    "projektant": "Leszek  Tustanowski ",
+    "liczba_projektow": 1,
+    "slug": "LESZEK__TUSTANOWSKI_"
+  },
+  {
+    "projektant": "Lesław Herman ",
+    "liczba_projektow": 2,
+    "slug": "LESŁAW_HERMAN_"
+  },
+  {
+    "projektant": "Lidia  Micza ",
+    "liczba_projektow": 1,
+    "slug": "LIDIA__MICZA_"
+  },
+  {
+    "projektant": "Lilia Znamirowska",
+    "liczba_projektow": 8,
+    "slug": "LILIA_ZNAMIROWSKA"
+  },
+  {
+    "projektant": "Liliana Puzo",
+    "liczba_projektow": 5,
+    "slug": "LILIANA_PUZO"
+  },
+  {
+    "projektant": "Liliana  Puzo ",
+    "liczba_projektow": 1,
+    "slug": "LILIANA__PUZO_"
+  },
+  {
+    "projektant": "Lilianna Puzo",
+    "liczba_projektow": 2,
+    "slug": "LILIANNA_PUZO"
+  },
+  {
+    "projektant": "Lucyna Till-Modelewska",
+    "liczba_projektow": 1,
+    "slug": "LUCYNA_TILL-MODELEWSKA"
+  },
+  {
+    "projektant": "Ludmiła Styczyńska",
+    "liczba_projektow": 1,
+    "slug": "LUDMIŁA_STYCZYŃSKA"
+  },
+  {
+    "projektant": "Ludwik Grodek",
+    "liczba_projektow": 3,
+    "slug": "LUDWIK_GRODEK"
+  },
+  {
+    "projektant": "MARCIN KRYSZCZYŃSKI",
+    "liczba_projektow": 10,
+    "slug": "MARCIN_KRYSZCZYŃSKI"
+  },
+  {
+    "projektant": "MArek Kozieł",
+    "liczba_projektow": 1,
+    "slug": "MAREK_KOZIEŁ"
+  },
+  {
+    "projektant": "MICHAŁ SZCZEPANEK ",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ_SZCZEPANEK_"
+  },
+  {
+    "projektant": "MICHŁ POTYRAŁA ",
+    "liczba_projektow": 4,
+    "slug": "MICHŁ_POTYRAŁA_"
+  },
+  {
+    "projektant": "MIKOŁAJ HEIGEL",
+    "liczba_projektow": 1,
+    "slug": "MIKOŁAJ_HEIGEL"
+  },
+  {
+    "projektant": "MIROSŁAW  KOŃCZAK",
+    "liczba_projektow": 1,
+    "slug": "MIROSŁAW__KOŃCZAK"
+  },
+  {
+    "projektant": "MIchał Skup",
+    "liczba_projektow": 2,
+    "slug": "MICHAŁ_SKUP"
+  },
+  {
+    "projektant": "MONIKA LIS",
+    "liczba_projektow": 1,
+    "slug": "MONIKA_LIS"
+  },
+  {
+    "projektant": "Maciej  Matyjaszczyk ",
+    "liczba_projektow": 1,
+    "slug": "MACIEJ__MATYJASZCZYK_"
+  },
+  {
+    "projektant": "Maciej Dumin",
+    "liczba_projektow": 4,
+    "slug": "MACIEJ_DUMIN"
+  },
+  {
+    "projektant": "Maciej Dumin ",
+    "liczba_projektow": 1,
+    "slug": "MACIEJ_DUMIN_"
+  },
+  {
+    "projektant": "Maciej Kałuszewski",
+    "liczba_projektow": 1,
+    "slug": "MACIEJ_KAŁUSZEWSKI"
+  },
+  {
+    "projektant": "Maciej Krasowski",
+    "liczba_projektow": 2,
+    "slug": "MACIEJ_KRASOWSKI"
+  },
+  {
+    "projektant": "Maciej Kubiak",
+    "liczba_projektow": 22,
+    "slug": "MACIEJ_KUBIAK"
+  },
+  {
+    "projektant": "Maciej Matyjaszczyk",
+    "liczba_projektow": 1,
+    "slug": "MACIEJ_MATYJASZCZYK"
+  },
+  {
+    "projektant": "Maciej Nowak",
+    "liczba_projektow": 2,
+    "slug": "MACIEJ_NOWAK"
+  },
+  {
+    "projektant": "Maciej Polak",
+    "liczba_projektow": 11,
+    "slug": "MACIEJ_POLAK"
+  },
+  {
+    "projektant": "Maciej Szwed",
+    "liczba_projektow": 5,
+    "slug": "MACIEJ_SZWED"
+  },
+  {
+    "projektant": "Maciej Wańkowski",
+    "liczba_projektow": 2,
+    "slug": "MACIEJ_WAŃKOWSKI"
+  },
+  {
+    "projektant": "Maciej Zasada",
+    "liczba_projektow": 1,
+    "slug": "MACIEJ_ZASADA"
+  },
+  {
+    "projektant": "Maciej Zasada ",
+    "liczba_projektow": 1,
+    "slug": "MACIEJ_ZASADA_"
+  },
+  {
+    "projektant": "Maciej Zombirt",
+    "liczba_projektow": 6,
+    "slug": "MACIEJ_ZOMBIRT"
+  },
+  {
+    "projektant": "Maciej Zubek",
+    "liczba_projektow": 1,
+    "slug": "MACIEJ_ZUBEK"
+  },
+  {
+    "projektant": "Maciej  Dumin ",
+    "liczba_projektow": 1,
+    "slug": "MACIEJ__DUMIN_"
+  },
+  {
+    "projektant": "Maciej  Knuth",
+    "liczba_projektow": 1,
+    "slug": "MACIEJ__KNUTH"
+  },
+  {
+    "projektant": "Maciej  Krasowski",
+    "liczba_projektow": 2,
+    "slug": "MACIEJ__KRASOWSKI"
+  },
+  {
+    "projektant": "Maciej  Matyjaszczyk ",
+    "liczba_projektow": 4,
+    "slug": "MACIEJ__MATYJASZCZYK_"
+  },
+  {
+    "projektant": "Maciej  Nowak ",
+    "liczba_projektow": 2,
+    "slug": "MACIEJ__NOWAK_"
+  },
+  {
+    "projektant": "Maciej  Panek ",
+    "liczba_projektow": 2,
+    "slug": "MACIEJ__PANEK_"
+  },
+  {
+    "projektant": "Maciej  Szwed ",
+    "liczba_projektow": 8,
+    "slug": "MACIEJ__SZWED_"
+  },
+  {
+    "projektant": "Magdalena  Zgorzelska ",
+    "liczba_projektow": 2,
+    "slug": "MAGDALENA__ZGORZELSKA_"
+  },
+  {
+    "projektant": "Magdalena Dornik - Morawiec",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_DORNIK_-_MORAWIEC"
+  },
+  {
+    "projektant": "Magdalena Kumor",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_KUMOR"
+  },
+  {
+    "projektant": "Magdalena Milewska",
+    "liczba_projektow": 11,
+    "slug": "MAGDALENA_MILEWSKA"
+  },
+  {
+    "projektant": "Magdalena Milewska ",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_MILEWSKA_"
+  },
+  {
+    "projektant": "Magdalena Nowak",
+    "liczba_projektow": 9,
+    "slug": "MAGDALENA_NOWAK"
+  },
+  {
+    "projektant": "Magdalena Pachocka",
+    "liczba_projektow": 2,
+    "slug": "MAGDALENA_PACHOCKA"
+  },
+  {
+    "projektant": "Magdalena Sikorska",
+    "liczba_projektow": 2,
+    "slug": "MAGDALENA_SIKORSKA"
+  },
+  {
+    "projektant": "Magdalena Sobolewska",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_SOBOLEWSKA"
+  },
+  {
+    "projektant": "Magdalena Sukiennik",
+    "liczba_projektow": 12,
+    "slug": "MAGDALENA_SUKIENNIK"
+  },
+  {
+    "projektant": "Magdalena Syryca ",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_SYRYCA_"
+  },
+  {
+    "projektant": "Magdalena Słoka - Opłotny",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_SŁOKA_-_OPŁOTNY"
+  },
+  {
+    "projektant": "Magdalena Słoka-Opłotny",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_SŁOKA-OPŁOTNY"
+  },
+  {
+    "projektant": "Magdalena Wojciechowska",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_WOJCIECHOWSKA"
+  },
+  {
+    "projektant": "Magdalena Zgorelska",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_ZGORELSKA"
+  },
+  {
+    "projektant": "Magdalena Zgorzelska",
+    "liczba_projektow": 78,
+    "slug": "MAGDALENA_ZGORZELSKA"
+  },
+  {
+    "projektant": "Magdalena Zgorzelska ",
+    "liczba_projektow": 5,
+    "slug": "MAGDALENA_ZGORZELSKA_"
+  },
+  {
+    "projektant": "Magdalena Zgorzleska",
+    "liczba_projektow": 1,
+    "slug": "MAGDALENA_ZGORZLESKA"
+  },
+  {
+    "projektant": "Magdalena Żebrowska",
+    "liczba_projektow": 2,
+    "slug": "MAGDALENA_ŻEBROWSKA"
+  },
+  {
+    "projektant": "Magdalena  Górska ",
+    "liczba_projektow": 2,
+    "slug": "MAGDALENA__GÓRSKA_"
+  },
+  {
+    "projektant": "Magdalena  Milewska ",
+    "liczba_projektow": 3,
+    "slug": "MAGDALENA__MILEWSKA_"
+  },
+  {
+    "projektant": "Magdalena  Zgorzelska",
+    "liczba_projektow": 5,
+    "slug": "MAGDALENA__ZGORZELSKA"
+  },
+  {
+    "projektant": "Magdalena  Zgorzelska ",
+    "liczba_projektow": 41,
+    "slug": "MAGDALENA__ZGORZELSKA_"
+  },
+  {
+    "projektant": "Malgorzata Straszewska",
+    "liczba_projektow": 1,
+    "slug": "MALGORZATA_STRASZEWSKA"
+  },
+  {
+    "projektant": "Marcelina  Szubert-Więckowski ",
+    "liczba_projektow": 1,
+    "slug": "MARCELINA__SZUBERT-WIĘCKOWSKI_"
+  },
+  {
+    "projektant": "Marcin  Ciechanoicz ",
+    "liczba_projektow": 1,
+    "slug": "MARCIN__CIECHANOICZ_"
+  },
+  {
+    "projektant": "Marcin Araźny",
+    "liczba_projektow": 5,
+    "slug": "MARCIN_ARAŹNY"
+  },
+  {
+    "projektant": "Marcin Bonikowski",
+    "liczba_projektow": 2,
+    "slug": "MARCIN_BONIKOWSKI"
+  },
+  {
+    "projektant": "Marcin Czyżewski",
+    "liczba_projektow": 3,
+    "slug": "MARCIN_CZYŻEWSKI"
+  },
+  {
+    "projektant": "Marcin Górski",
+    "liczba_projektow": 1,
+    "slug": "MARCIN_GÓRSKI"
+  },
+  {
+    "projektant": "Marcin Hamerski",
+    "liczba_projektow": 10,
+    "slug": "MARCIN_HAMERSKI"
+  },
+  {
+    "projektant": "Marcin Kmita",
+    "liczba_projektow": 12,
+    "slug": "MARCIN_KMITA"
+  },
+  {
+    "projektant": "Marcin Kmita ",
+    "liczba_projektow": 1,
+    "slug": "MARCIN_KMITA_"
+  },
+  {
+    "projektant": "Marcin Kryszczyński",
+    "liczba_projektow": 3,
+    "slug": "MARCIN_KRYSZCZYŃSKI"
+  },
+  {
+    "projektant": "Marcin Olek",
+    "liczba_projektow": 14,
+    "slug": "MARCIN_OLEK"
+  },
+  {
+    "projektant": "Marcin Ostrowski",
+    "liczba_projektow": 2,
+    "slug": "MARCIN_OSTROWSKI"
+  },
+  {
+    "projektant": "Marcin Ostrowski ",
+    "liczba_projektow": 1,
+    "slug": "MARCIN_OSTROWSKI_"
+  },
+  {
+    "projektant": "Marcin Ołówka",
+    "liczba_projektow": 1,
+    "slug": "MARCIN_OŁÓWKA"
+  },
+  {
+    "projektant": "Marcin Pawłuszewicz",
+    "liczba_projektow": 1,
+    "slug": "MARCIN_PAWŁUSZEWICZ"
+  },
+  {
+    "projektant": "Marcin Stepków",
+    "liczba_projektow": 2,
+    "slug": "MARCIN_STEPKÓW"
+  },
+  {
+    "projektant": "Marcin Szymański",
+    "liczba_projektow": 1,
+    "slug": "MARCIN_SZYMAŃSKI"
+  },
+  {
+    "projektant": "Marcin  Ciechanoicz ",
+    "liczba_projektow": 1,
+    "slug": "MARCIN__CIECHANOICZ_"
+  },
+  {
+    "projektant": "Marcin  Czyżewski",
+    "liczba_projektow": 2,
+    "slug": "MARCIN__CZYŻEWSKI"
+  },
+  {
+    "projektant": "Marcin  Granitowski ",
+    "liczba_projektow": 1,
+    "slug": "MARCIN__GRANITOWSKI_"
+  },
+  {
+    "projektant": "Marcin  Jackowiak ",
+    "liczba_projektow": 3,
+    "slug": "MARCIN__JACKOWIAK_"
+  },
+  {
+    "projektant": "Marcin  Jóźwiak ",
+    "liczba_projektow": 14,
+    "slug": "MARCIN__JÓŹWIAK_"
+  },
+  {
+    "projektant": "Marcin  Ostrowski",
+    "liczba_projektow": 1,
+    "slug": "MARCIN__OSTROWSKI"
+  },
+  {
+    "projektant": "Marek  Konarzewski ",
+    "liczba_projektow": 1,
+    "slug": "MAREK__KONARZEWSKI_"
+  },
+  {
+    "projektant": "Marek Antczak",
+    "liczba_projektow": 6,
+    "slug": "MAREK_ANTCZAK"
+  },
+  {
+    "projektant": "Marek Antoszczyszyn",
+    "liczba_projektow": 2,
+    "slug": "MAREK_ANTOSZCZYSZYN"
+  },
+  {
+    "projektant": "Marek Grabowski",
+    "liczba_projektow": 4,
+    "slug": "MAREK_GRABOWSKI"
+  },
+  {
+    "projektant": "Marek Jankowski",
+    "liczba_projektow": 5,
+    "slug": "MAREK_JANKOWSKI"
+  },
+  {
+    "projektant": "Marek Komar",
+    "liczba_projektow": 5,
+    "slug": "MAREK_KOMAR"
+  },
+  {
+    "projektant": "Marek Konarzewski",
+    "liczba_projektow": 27,
+    "slug": "MAREK_KONARZEWSKI"
+  },
+  {
+    "projektant": "Marek Kopański",
+    "liczba_projektow": 1,
+    "slug": "MAREK_KOPAŃSKI"
+  },
+  {
+    "projektant": "Marek Kublicki",
+    "liczba_projektow": 17,
+    "slug": "MAREK_KUBLICKI"
+  },
+  {
+    "projektant": "Marek Kuciński",
+    "liczba_projektow": 3,
+    "slug": "MAREK_KUCIŃSKI"
+  },
+  {
+    "projektant": "Marek Madejski",
+    "liczba_projektow": 2,
+    "slug": "MAREK_MADEJSKI"
+  },
+  {
+    "projektant": "Marek Nowakowski ",
+    "liczba_projektow": 1,
+    "slug": "MAREK_NOWAKOWSKI_"
+  },
+  {
+    "projektant": "Marek Odor",
+    "liczba_projektow": 1,
+    "slug": "MAREK_ODOR"
+  },
+  {
+    "projektant": "Marek Skwara",
+    "liczba_projektow": 1,
+    "slug": "MAREK_SKWARA"
+  },
+  {
+    "projektant": "Marek Szurlej",
+    "liczba_projektow": 1,
+    "slug": "MAREK_SZURLEJ"
+  },
+  {
+    "projektant": "Marek Szymański",
+    "liczba_projektow": 1,
+    "slug": "MAREK_SZYMAŃSKI"
+  },
+  {
+    "projektant": "Marek Twardowski",
+    "liczba_projektow": 1,
+    "slug": "MAREK_TWARDOWSKI"
+  },
+  {
+    "projektant": "Marek Warchoł",
+    "liczba_projektow": 2,
+    "slug": "MAREK_WARCHOŁ"
+  },
+  {
+    "projektant": "Marek Wikierski",
+    "liczba_projektow": 4,
+    "slug": "MAREK_WIKIERSKI"
+  },
+  {
+    "projektant": "Marek Zdanowski",
+    "liczba_projektow": 8,
+    "slug": "MAREK_ZDANOWSKI"
+  },
+  {
+    "projektant": "Marek  Antczak ",
+    "liczba_projektow": 3,
+    "slug": "MAREK__ANTCZAK_"
+  },
+  {
+    "projektant": "Marek  Caban ",
+    "liczba_projektow": 1,
+    "slug": "MAREK__CABAN_"
+  },
+  {
+    "projektant": "Marek  Grabowski",
+    "liczba_projektow": 1,
+    "slug": "MAREK__GRABOWSKI"
+  },
+  {
+    "projektant": "Marek  Komar ",
+    "liczba_projektow": 2,
+    "slug": "MAREK__KOMAR_"
+  },
+  {
+    "projektant": "Marek  Konarzewski ",
+    "liczba_projektow": 16,
+    "slug": "MAREK__KONARZEWSKI_"
+  },
+  {
+    "projektant": "Marek  Niewiarowski",
+    "liczba_projektow": 3,
+    "slug": "MAREK__NIEWIAROWSKI"
+  },
+  {
+    "projektant": "Marek  Orzechowski ",
+    "liczba_projektow": 3,
+    "slug": "MAREK__ORZECHOWSKI_"
+  },
+  {
+    "projektant": "Marek  Piasecki ",
+    "liczba_projektow": 3,
+    "slug": "MAREK__PIASECKI_"
+  },
+  {
+    "projektant": "Marek  Rutkowski",
+    "liczba_projektow": 2,
+    "slug": "MAREK__RUTKOWSKI"
+  },
+  {
+    "projektant": "Marek  Warchoł ",
+    "liczba_projektow": 4,
+    "slug": "MAREK__WARCHOŁ_"
+  },
+  {
+    "projektant": "Marek  Wikierski",
+    "liczba_projektow": 6,
+    "slug": "MAREK__WIKIERSKI"
+  },
+  {
+    "projektant": "Marek  Wikierski ",
+    "liczba_projektow": 1,
+    "slug": "MAREK__WIKIERSKI_"
+  },
+  {
+    "projektant": "Maria Berlińska - Wytyk",
+    "liczba_projektow": 4,
+    "slug": "MARIA_BERLIŃSKA_-_WYTYK"
+  },
+  {
+    "projektant": "Maria Berlińska - Wytyk  ",
+    "liczba_projektow": 1,
+    "slug": "MARIA_BERLIŃSKA_-_WYTYK__"
+  },
+  {
+    "projektant": "Maria Berlińska Wytyk",
+    "liczba_projektow": 2,
+    "slug": "MARIA_BERLIŃSKA_WYTYK"
+  },
+  {
+    "projektant": "Maria Berlińska-Wytyk",
+    "liczba_projektow": 11,
+    "slug": "MARIA_BERLIŃSKA-WYTYK"
+  },
+  {
+    "projektant": "Maria Berlińska-Wytyk ",
+    "liczba_projektow": 6,
+    "slug": "MARIA_BERLIŃSKA-WYTYK_"
+  },
+  {
+    "projektant": "Maria  Berlińska-Wytyk",
+    "liczba_projektow": 5,
+    "slug": "MARIA__BERLIŃSKA-WYTYK"
+  },
+  {
+    "projektant": "Maria  Sobańska",
+    "liczba_projektow": 3,
+    "slug": "MARIA__SOBAŃSKA"
+  },
+  {
+    "projektant": "Marian Glapiak",
+    "liczba_projektow": 1,
+    "slug": "MARIAN_GLAPIAK"
+  },
+  {
+    "projektant": "Marian Rozwarski",
+    "liczba_projektow": 14,
+    "slug": "MARIAN_ROZWARSKI"
+  },
+  {
+    "projektant": "Marian Rozwarski ",
+    "liczba_projektow": 1,
+    "slug": "MARIAN_ROZWARSKI_"
+  },
+  {
+    "projektant": "Marian Suława",
+    "liczba_projektow": 4,
+    "slug": "MARIAN_SUŁAWA"
+  },
+  {
+    "projektant": "Marian Szpilkowski",
+    "liczba_projektow": 75,
+    "slug": "MARIAN_SZPILKOWSKI"
+  },
+  {
+    "projektant": "Marian Szpilkowski ",
+    "liczba_projektow": 5,
+    "slug": "MARIAN_SZPILKOWSKI_"
+  },
+  {
+    "projektant": "Marian  Rozwarski",
+    "liczba_projektow": 2,
+    "slug": "MARIAN__ROZWARSKI"
+  },
+  {
+    "projektant": "Marian  Szpilkowski",
+    "liczba_projektow": 1,
+    "slug": "MARIAN__SZPILKOWSKI"
+  },
+  {
+    "projektant": "Marian  Szpilkowski ",
+    "liczba_projektow": 41,
+    "slug": "MARIAN__SZPILKOWSKI_"
+  },
+  {
+    "projektant": "Marian  Sztoldo",
+    "liczba_projektow": 1,
+    "slug": "MARIAN__SZTOLDO"
+  },
+  {
+    "projektant": "Marian  Sztoldo ",
+    "liczba_projektow": 2,
+    "slug": "MARIAN__SZTOLDO_"
+  },
+  {
+    "projektant": "Marian   Szpilkowski",
+    "liczba_projektow": 1,
+    "slug": "MARIAN___SZPILKOWSKI"
+  },
+  {
+    "projektant": "Mariusz Bodnar",
+    "liczba_projektow": 3,
+    "slug": "MARIUSZ_BODNAR"
+  },
+  {
+    "projektant": "Mariusz Carło ",
+    "liczba_projektow": 4,
+    "slug": "MARIUSZ_CARŁO_"
+  },
+  {
+    "projektant": "Mariusz Dymecki ",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ_DYMECKI_"
+  },
+  {
+    "projektant": "Mariusz Janczak",
+    "liczba_projektow": 7,
+    "slug": "MARIUSZ_JANCZAK"
+  },
+  {
+    "projektant": "Mariusz Januszewski",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ_JANUSZEWSKI"
+  },
+  {
+    "projektant": "Mariusz Jażdżewski",
+    "liczba_projektow": 11,
+    "slug": "MARIUSZ_JAŻDŻEWSKI"
+  },
+  {
+    "projektant": "Mariusz Kaniewski",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ_KANIEWSKI"
+  },
+  {
+    "projektant": "Mariusz Michalak",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ_MICHALAK"
+  },
+  {
+    "projektant": "Mariusz Niedzielski",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ_NIEDZIELSKI"
+  },
+  {
+    "projektant": "Mariusz Ostrowski",
+    "liczba_projektow": 3,
+    "slug": "MARIUSZ_OSTROWSKI"
+  },
+  {
+    "projektant": "Mariusz Pawelczak",
+    "liczba_projektow": 35,
+    "slug": "MARIUSZ_PAWELCZAK"
+  },
+  {
+    "projektant": "Mariusz Szczepocki",
+    "liczba_projektow": 3,
+    "slug": "MARIUSZ_SZCZEPOCKI"
+  },
+  {
+    "projektant": "Mariusz Szefner",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ_SZEFNER"
+  },
+  {
+    "projektant": "Mariusz Wojciechowski",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ_WOJCIECHOWSKI"
+  },
+  {
+    "projektant": "Mariusz Świątek",
+    "liczba_projektow": 4,
+    "slug": "MARIUSZ_ŚWIĄTEK"
+  },
+  {
+    "projektant": "Mariusz Żamoić",
+    "liczba_projektow": 2,
+    "slug": "MARIUSZ_ŻAMOIĆ"
+  },
+  {
+    "projektant": "Mariusz  Bodnar",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ__BODNAR"
+  },
+  {
+    "projektant": "Mariusz  Carło ",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ__CARŁO_"
+  },
+  {
+    "projektant": "Mariusz  Januszewski",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ__JANUSZEWSKI"
+  },
+  {
+    "projektant": "Mariusz  Pawelczak ",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ__PAWELCZAK_"
+  },
+  {
+    "projektant": "Mariusz  Pawelczak  ",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ__PAWELCZAK__"
+  },
+  {
+    "projektant": "Mariusz  Popiołek ",
+    "liczba_projektow": 2,
+    "slug": "MARIUSZ__POPIOŁEK_"
+  },
+  {
+    "projektant": "Mariusz   Stróżyk  ",
+    "liczba_projektow": 1,
+    "slug": "MARIUSZ___STRÓŻYK__"
+  },
+  {
+    "projektant": "Marlena Chmielewska",
+    "liczba_projektow": 3,
+    "slug": "MARLENA_CHMIELEWSKA"
+  },
+  {
+    "projektant": "Marlena Chmielewska ",
+    "liczba_projektow": 1,
+    "slug": "MARLENA_CHMIELEWSKA_"
+  },
+  {
+    "projektant": "Marta Augustyniak",
+    "liczba_projektow": 6,
+    "slug": "MARTA_AUGUSTYNIAK"
+  },
+  {
+    "projektant": "Marta Cieślak ",
+    "liczba_projektow": 1,
+    "slug": "MARTA_CIEŚLAK_"
+  },
+  {
+    "projektant": "Marta Heigel-Kleka",
+    "liczba_projektow": 2,
+    "slug": "MARTA_HEIGEL-KLEKA"
+  },
+  {
+    "projektant": "Marta Kulej-Kaźmierczak",
+    "liczba_projektow": 43,
+    "slug": "MARTA_KULEJ-KAŹMIERCZAK"
+  },
+  {
+    "projektant": "Marta Miller ",
+    "liczba_projektow": 1,
+    "slug": "MARTA_MILLER_"
+  },
+  {
+    "projektant": "Marta Nowak",
+    "liczba_projektow": 1,
+    "slug": "MARTA_NOWAK"
+  },
+  {
+    "projektant": "Marta Rymar",
+    "liczba_projektow": 1,
+    "slug": "MARTA_RYMAR"
+  },
+  {
+    "projektant": "Marta Sajewicz",
+    "liczba_projektow": 7,
+    "slug": "MARTA_SAJEWICZ"
+  },
+  {
+    "projektant": "Marta Starzyńska",
+    "liczba_projektow": 1,
+    "slug": "MARTA_STARZYŃSKA"
+  },
+  {
+    "projektant": "Marta  Rosada Mataczyńska",
+    "liczba_projektow": 1,
+    "slug": "MARTA__ROSADA_MATACZYŃSKA"
+  },
+  {
+    "projektant": "Marta  Rymar",
+    "liczba_projektow": 1,
+    "slug": "MARTA__RYMAR"
+  },
+  {
+    "projektant": "Marta  Sajewicz",
+    "liczba_projektow": 2,
+    "slug": "MARTA__SAJEWICZ"
+  },
+  {
+    "projektant": "Marta  Sajewicz ",
+    "liczba_projektow": 1,
+    "slug": "MARTA__SAJEWICZ_"
+  },
+  {
+    "projektant": "Marta  Wasilewska ",
+    "liczba_projektow": 40,
+    "slug": "MARTA__WASILEWSKA_"
+  },
+  {
+    "projektant": "Marzena Jaroszek",
+    "liczba_projektow": 1,
+    "slug": "MARZENA_JAROSZEK"
+  },
+  {
+    "projektant": "Marzena Newerla",
+    "liczba_projektow": 4,
+    "slug": "MARZENA_NEWERLA"
+  },
+  {
+    "projektant": "Mateusz  Maciejewski ",
+    "liczba_projektow": 1,
+    "slug": "MATEUSZ__MACIEJEWSKI_"
+  },
+  {
+    "projektant": "Mateusz Dołżonek",
+    "liczba_projektow": 15,
+    "slug": "MATEUSZ_DOŁŻONEK"
+  },
+  {
+    "projektant": "Mateusz Maciejewski",
+    "liczba_projektow": 6,
+    "slug": "MATEUSZ_MACIEJEWSKI"
+  },
+  {
+    "projektant": "Mateusz Maciejewski ",
+    "liczba_projektow": 1,
+    "slug": "MATEUSZ_MACIEJEWSKI_"
+  },
+  {
+    "projektant": "Mateusz Mocek",
+    "liczba_projektow": 2,
+    "slug": "MATEUSZ_MOCEK"
+  },
+  {
+    "projektant": "Mateusz  Diakowicz ",
+    "liczba_projektow": 1,
+    "slug": "MATEUSZ__DIAKOWICZ_"
+  },
+  {
+    "projektant": "Mateusz  Maciejewski",
+    "liczba_projektow": 3,
+    "slug": "MATEUSZ__MACIEJEWSKI"
+  },
+  {
+    "projektant": "Mateusz  Maciejewski ",
+    "liczba_projektow": 2,
+    "slug": "MATEUSZ__MACIEJEWSKI_"
+  },
+  {
+    "projektant": "Małgorzata Fertała ",
+    "liczba_projektow": 17,
+    "slug": "MAŁGORZATA_FERTAŁA_"
+  },
+  {
+    "projektant": "Małgorzata Furtała ",
+    "liczba_projektow": 21,
+    "slug": "MAŁGORZATA_FURTAŁA_"
+  },
+  {
+    "projektant": "Małgorzata Konarska-Stroynowska",
+    "liczba_projektow": 3,
+    "slug": "MAŁGORZATA_KONARSKA-STROYNOWSKA"
+  },
+  {
+    "projektant": "Małgorzata Lasak",
+    "liczba_projektow": 1,
+    "slug": "MAŁGORZATA_LASAK"
+  },
+  {
+    "projektant": "Małgorzata Olszyńska",
+    "liczba_projektow": 6,
+    "slug": "MAŁGORZATA_OLSZYŃSKA"
+  },
+  {
+    "projektant": "Małgorzata Olszyńska ",
+    "liczba_projektow": 1,
+    "slug": "MAŁGORZATA_OLSZYŃSKA_"
+  },
+  {
+    "projektant": "Małgorzata Pruchnicka",
+    "liczba_projektow": 11,
+    "slug": "MAŁGORZATA_PRUCHNICKA"
+  },
+  {
+    "projektant": "Małgorzata Rucka",
+    "liczba_projektow": 1,
+    "slug": "MAŁGORZATA_RUCKA"
+  },
+  {
+    "projektant": "Małgorzata Sazon",
+    "liczba_projektow": 2,
+    "slug": "MAŁGORZATA_SAZON"
+  },
+  {
+    "projektant": "Małgorzata Spychalska",
+    "liczba_projektow": 8,
+    "slug": "MAŁGORZATA_SPYCHALSKA"
+  },
+  {
+    "projektant": "Małgorzata Spychalska  ",
+    "liczba_projektow": 3,
+    "slug": "MAŁGORZATA_SPYCHALSKA__"
+  },
+  {
+    "projektant": "Małgorzata Staszewska",
+    "liczba_projektow": 1,
+    "slug": "MAŁGORZATA_STASZEWSKA"
+  },
+  {
+    "projektant": "Małgorzata Szalewicz",
+    "liczba_projektow": 2,
+    "slug": "MAŁGORZATA_SZALEWICZ"
+  },
+  {
+    "projektant": "Małgorzata Wajs",
+    "liczba_projektow": 1,
+    "slug": "MAŁGORZATA_WAJS"
+  },
+  {
+    "projektant": "Małgorzata Śliwka",
+    "liczba_projektow": 3,
+    "slug": "MAŁGORZATA_ŚLIWKA"
+  },
+  {
+    "projektant": "Małgorzata  Sazon",
+    "liczba_projektow": 1,
+    "slug": "MAŁGORZATA__SAZON"
+  },
+  {
+    "projektant": "Małgorzata  Spychalska ",
+    "liczba_projektow": 1,
+    "slug": "MAŁGORZATA__SPYCHALSKA_"
+  },
+  {
+    "projektant": "Małgorzata  Straszewska ",
+    "liczba_projektow": 1,
+    "slug": "MAŁGORZATA__STRASZEWSKA_"
+  },
+  {
+    "projektant": "Mgdalena Zgorzelska",
+    "liczba_projektow": 2,
+    "slug": "MGDALENA_ZGORZELSKA"
+  },
+  {
+    "projektant": "Michał Bay",
+    "liczba_projektow": 12,
+    "slug": "MICHAŁ_BAY"
+  },
+  {
+    "projektant": "Michał Dąbrowski",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ_DĄBROWSKI"
+  },
+  {
+    "projektant": "Michał Grzybkowski",
+    "liczba_projektow": 6,
+    "slug": "MICHAŁ_GRZYBKOWSKI"
+  },
+  {
+    "projektant": "Michał Grzybowski",
+    "liczba_projektow": 17,
+    "slug": "MICHAŁ_GRZYBOWSKI"
+  },
+  {
+    "projektant": "Michał Górczyński ",
+    "liczba_projektow": 2,
+    "slug": "MICHAŁ_GÓRCZYŃSKI_"
+  },
+  {
+    "projektant": "Michał Koman ",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ_KOMAN_"
+  },
+  {
+    "projektant": "Michał Kołodziejczyk",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ_KOŁODZIEJCZYK"
+  },
+  {
+    "projektant": "Michał Krajewski",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ_KRAJEWSKI"
+  },
+  {
+    "projektant": "Michał Mibrandt",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ_MIBRANDT"
+  },
+  {
+    "projektant": "Michał Podleśny",
+    "liczba_projektow": 7,
+    "slug": "MICHAŁ_PODLEŚNY"
+  },
+  {
+    "projektant": "Michał Potyrała",
+    "liczba_projektow": 4,
+    "slug": "MICHAŁ_POTYRAŁA"
+  },
+  {
+    "projektant": "Michał Rakiej",
+    "liczba_projektow": 3,
+    "slug": "MICHAŁ_RAKIEJ"
+  },
+  {
+    "projektant": "Michał Skup",
+    "liczba_projektow": 11,
+    "slug": "MICHAŁ_SKUP"
+  },
+  {
+    "projektant": "Michał Szczepanek",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ_SZCZEPANEK"
+  },
+  {
+    "projektant": "Michał Słobodzian",
+    "liczba_projektow": 4,
+    "slug": "MICHAŁ_SŁOBODZIAN"
+  },
+  {
+    "projektant": "Michał Słup",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ_SŁUP"
+  },
+  {
+    "projektant": "Michał Wawrowicz",
+    "liczba_projektow": 5,
+    "slug": "MICHAŁ_WAWROWICZ"
+  },
+  {
+    "projektant": "Michał Zaryczański",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ_ZARYCZAŃSKI"
+  },
+  {
+    "projektant": "Michał  Koman",
+    "liczba_projektow": 6,
+    "slug": "MICHAŁ__KOMAN"
+  },
+  {
+    "projektant": "Michał  Mielnicki ",
+    "liczba_projektow": 2,
+    "slug": "MICHAŁ__MIELNICKI_"
+  },
+  {
+    "projektant": "Michał  Olejnik ",
+    "liczba_projektow": 6,
+    "slug": "MICHAŁ__OLEJNIK_"
+  },
+  {
+    "projektant": "Michał  Słobodzian ",
+    "liczba_projektow": 1,
+    "slug": "MICHAŁ__SŁOBODZIAN_"
+  },
+  {
+    "projektant": "Mieczysław Lipik",
+    "liczba_projektow": 7,
+    "slug": "MIECZYSŁAW_LIPIK"
+  },
+  {
+    "projektant": "Mikolaj Krajewski",
+    "liczba_projektow": 1,
+    "slug": "MIKOLAJ_KRAJEWSKI"
+  },
+  {
+    "projektant": "Mikołaj Heigel",
+    "liczba_projektow": 2,
+    "slug": "MIKOŁAJ_HEIGEL"
+  },
+  {
+    "projektant": "Mikołaj Krajewski",
+    "liczba_projektow": 51,
+    "slug": "MIKOŁAJ_KRAJEWSKI"
+  },
+  {
+    "projektant": "Mikołaj Krajewski ",
+    "liczba_projektow": 2,
+    "slug": "MIKOŁAJ_KRAJEWSKI_"
+  },
+  {
+    "projektant": "Mikołaj Krajweski",
+    "liczba_projektow": 1,
+    "slug": "MIKOŁAJ_KRAJWESKI"
+  },
+  {
+    "projektant": "Mikołaj Kurzak",
+    "liczba_projektow": 4,
+    "slug": "MIKOŁAJ_KURZAK"
+  },
+  {
+    "projektant": "Mikołaj  Krajewski",
+    "liczba_projektow": 1,
+    "slug": "MIKOŁAJ__KRAJEWSKI"
+  },
+  {
+    "projektant": "Milita Gruszecka",
+    "liczba_projektow": 2,
+    "slug": "MILITA_GRUSZECKA"
+  },
+  {
+    "projektant": "Mirosław Gołębiowski",
+    "liczba_projektow": 1,
+    "slug": "MIROSŁAW_GOŁĘBIOWSKI"
+  },
+  {
+    "projektant": "Mirosław Górski",
+    "liczba_projektow": 12,
+    "slug": "MIROSŁAW_GÓRSKI"
+  },
+  {
+    "projektant": "Mirosław Górski ",
+    "liczba_projektow": 1,
+    "slug": "MIROSŁAW_GÓRSKI_"
+  },
+  {
+    "projektant": "Mirosław Hussakowski",
+    "liczba_projektow": 1,
+    "slug": "MIROSŁAW_HUSSAKOWSKI"
+  },
+  {
+    "projektant": "Mirosław Kaup",
+    "liczba_projektow": 2,
+    "slug": "MIROSŁAW_KAUP"
+  },
+  {
+    "projektant": "Mirosław Kończak ",
+    "liczba_projektow": 1,
+    "slug": "MIROSŁAW_KOŃCZAK_"
+  },
+  {
+    "projektant": "Mirosław Musiał",
+    "liczba_projektow": 1,
+    "slug": "MIROSŁAW_MUSIAŁ"
+  },
+  {
+    "projektant": "Mirosław Smok",
+    "liczba_projektow": 1,
+    "slug": "MIROSŁAW_SMOK"
+  },
+  {
+    "projektant": "Mirosław  Błoniarz ",
+    "liczba_projektow": 1,
+    "slug": "MIROSŁAW__BŁONIARZ_"
+  },
+  {
+    "projektant": "Mirosław  Hussakowski ",
+    "liczba_projektow": 2,
+    "slug": "MIROSŁAW__HUSSAKOWSKI_"
+  },
+  {
+    "projektant": "Mirosław  Osiecki ",
+    "liczba_projektow": 2,
+    "slug": "MIROSŁAW__OSIECKI_"
+  },
+  {
+    "projektant": "Mirosława Markowska",
+    "liczba_projektow": 3,
+    "slug": "MIROSŁAWA_MARKOWSKA"
+  },
+  {
+    "projektant": "Miłosz Kondraciuk",
+    "liczba_projektow": 12,
+    "slug": "MIŁOSZ_KONDRACIUK"
+  },
+  {
+    "projektant": "Miłosz Stachera",
+    "liczba_projektow": 13,
+    "slug": "MIŁOSZ_STACHERA"
+  },
+  {
+    "projektant": "Miłosz  Kondraciuk ",
+    "liczba_projektow": 3,
+    "slug": "MIŁOSZ__KONDRACIUK_"
+  },
+  {
+    "projektant": "Monika Daciow-Grabicka ",
+    "liczba_projektow": 1,
+    "slug": "MONIKA_DACIOW-GRABICKA_"
+  },
+  {
+    "projektant": "Monika Daciów - Grabicka",
+    "liczba_projektow": 2,
+    "slug": "MONIKA_DACIÓW_-_GRABICKA"
+  },
+  {
+    "projektant": "Monika Daciów- Grabicka",
+    "liczba_projektow": 2,
+    "slug": "MONIKA_DACIÓW-_GRABICKA"
+  },
+  {
+    "projektant": "Monika Daciów-Grabicka",
+    "liczba_projektow": 10,
+    "slug": "MONIKA_DACIÓW-GRABICKA"
+  },
+  {
+    "projektant": "Monika Grieger",
+    "liczba_projektow": 65,
+    "slug": "MONIKA_GRIEGER"
+  },
+  {
+    "projektant": "Monika Jasińska",
+    "liczba_projektow": 1,
+    "slug": "MONIKA_JASIŃSKA"
+  },
+  {
+    "projektant": "Monika Lichota-Tuszyńśka",
+    "liczba_projektow": 1,
+    "slug": "MONIKA_LICHOTA-TUSZYŃŚKA"
+  },
+  {
+    "projektant": "Monika Lis",
+    "liczba_projektow": 14,
+    "slug": "MONIKA_LIS"
+  },
+  {
+    "projektant": "Monika Lis ",
+    "liczba_projektow": 3,
+    "slug": "MONIKA_LIS_"
+  },
+  {
+    "projektant": "Monika Machniewska",
+    "liczba_projektow": 20,
+    "slug": "MONIKA_MACHNIEWSKA"
+  },
+  {
+    "projektant": "Monika Machniewska ",
+    "liczba_projektow": 4,
+    "slug": "MONIKA_MACHNIEWSKA_"
+  },
+  {
+    "projektant": "Monika Majek",
+    "liczba_projektow": 1,
+    "slug": "MONIKA_MAJEK"
+  },
+  {
+    "projektant": "Monika Mejka",
+    "liczba_projektow": 2,
+    "slug": "MONIKA_MEJKA"
+  },
+  {
+    "projektant": "Monika Potomska",
+    "liczba_projektow": 12,
+    "slug": "MONIKA_POTOMSKA"
+  },
+  {
+    "projektant": "Monika Rudnicka ",
+    "liczba_projektow": 2,
+    "slug": "MONIKA_RUDNICKA_"
+  },
+  {
+    "projektant": "Monika Sobczyk",
+    "liczba_projektow": 1,
+    "slug": "MONIKA_SOBCZYK"
+  },
+  {
+    "projektant": "Monika  Jasińska ",
+    "liczba_projektow": 2,
+    "slug": "MONIKA__JASIŃSKA_"
+  },
+  {
+    "projektant": "NELA KARPIŃSKA",
+    "liczba_projektow": 3,
+    "slug": "NELA_KARPIŃSKA"
+  },
+  {
+    "projektant": "Narcyz Gągało",
+    "liczba_projektow": 1,
+    "slug": "NARCYZ_GĄGAŁO"
+  },
+  {
+    "projektant": "Narcyz  Gągąło ",
+    "liczba_projektow": 1,
+    "slug": "NARCYZ__GĄGĄŁO_"
+  },
+  {
+    "projektant": "Narian Szpilkowski",
+    "liczba_projektow": 1,
+    "slug": "NARIAN_SZPILKOWSKI"
+  },
+  {
+    "projektant": "Natasza Kulesza",
+    "liczba_projektow": 3,
+    "slug": "NATASZA_KULESZA"
+  },
+  {
+    "projektant": "Norbert Adamkiewicz",
+    "liczba_projektow": 62,
+    "slug": "NORBERT_ADAMKIEWICZ"
+  },
+  {
+    "projektant": "Norbert Wszytko",
+    "liczba_projektow": 2,
+    "slug": "NORBERT_WSZYTKO"
+  },
+  {
+    "projektant": "Norbert   Adamkiewicz   ",
+    "liczba_projektow": 5,
+    "slug": "NORBERT___ADAMKIEWICZ___"
+  },
+  {
+    "projektant": "Nowaczyk 61/WPOKK/UpB/2011",
+    "liczba_projektow": 1,
+    "slug": "NOWACZYK_61/WPOKK/UPB/2011"
+  },
+  {
+    "projektant": "Oktawian Fior",
+    "liczba_projektow": 2,
+    "slug": "OKTAWIAN_FIOR"
+  },
+  {
+    "projektant": "Olgierd  Żwirełło",
+    "liczba_projektow": 2,
+    "slug": "OLGIERD__ŻWIREŁŁO"
+  },
+  {
+    "projektant": "Otton Wyszomirski",
+    "liczba_projektow": 22,
+    "slug": "OTTON_WYSZOMIRSKI"
+  },
+  {
+    "projektant": "PAULINA PRZYGODZKA",
+    "liczba_projektow": 1,
+    "slug": "PAULINA_PRZYGODZKA"
+  },
+  {
+    "projektant": "PAWEŁ SAWICKI",
+    "liczba_projektow": 3,
+    "slug": "PAWEŁ_SAWICKI"
+  },
+  {
+    "projektant": "PAWEŁ SZMYT ",
+    "liczba_projektow": 4,
+    "slug": "PAWEŁ_SZMYT_"
+  },
+  {
+    "projektant": "Partyk Sadkowski",
+    "liczba_projektow": 1,
+    "slug": "PARTYK_SADKOWSKI"
+  },
+  {
+    "projektant": "Patrycjusz Szewczyk",
+    "liczba_projektow": 1,
+    "slug": "PATRYCJUSZ_SZEWCZYK"
+  },
+  {
+    "projektant": "Patryk Dominiak",
+    "liczba_projektow": 15,
+    "slug": "PATRYK_DOMINIAK"
+  },
+  {
+    "projektant": "Patryk Sadkowski",
+    "liczba_projektow": 14,
+    "slug": "PATRYK_SADKOWSKI"
+  },
+  {
+    "projektant": "Patryk   Sadowski    ",
+    "liczba_projektow": 4,
+    "slug": "PATRYK___SADOWSKI____"
+  },
+  {
+    "projektant": "Patryk  Krupcała   ",
+    "liczba_projektow": 1,
+    "slug": "PATRYK__KRUPCAŁA___"
+  },
+  {
+    "projektant": "Patryk  Pniewski ",
+    "liczba_projektow": 1,
+    "slug": "PATRYK__PNIEWSKI_"
+  },
+  {
+    "projektant": "Patryk  Sadkowski",
+    "liczba_projektow": 1,
+    "slug": "PATRYK__SADKOWSKI"
+  },
+  {
+    "projektant": "Patryk  Tarnowski",
+    "liczba_projektow": 1,
+    "slug": "PATRYK__TARNOWSKI"
+  },
+  {
+    "projektant": "Paulina Przygodzka",
+    "liczba_projektow": 1,
+    "slug": "PAULINA_PRZYGODZKA"
+  },
+  {
+    "projektant": "Paulina Puzowska",
+    "liczba_projektow": 1,
+    "slug": "PAULINA_PUZOWSKA"
+  },
+  {
+    "projektant": "Paulina Puzowska ",
+    "liczba_projektow": 1,
+    "slug": "PAULINA_PUZOWSKA_"
+  },
+  {
+    "projektant": "Paulina Żukowska -Ptak",
+    "liczba_projektow": 1,
+    "slug": "PAULINA_ŻUKOWSKA_-PTAK"
+  },
+  {
+    "projektant": "Paulina Żukowska-Ptak",
+    "liczba_projektow": 1,
+    "slug": "PAULINA_ŻUKOWSKA-PTAK"
+  },
+  {
+    "projektant": "Paulina  Puzowska ",
+    "liczba_projektow": 1,
+    "slug": "PAULINA__PUZOWSKA_"
+  },
+  {
+    "projektant": "Paweł Gajdowski ",
+    "liczba_projektow": 6,
+    "slug": "PAWEŁ_GAJDOWSKI_"
+  },
+  {
+    "projektant": "Paweł Kaliczyński",
+    "liczba_projektow": 14,
+    "slug": "PAWEŁ_KALICZYŃSKI"
+  },
+  {
+    "projektant": "Paweł Kuwik",
+    "liczba_projektow": 4,
+    "slug": "PAWEŁ_KUWIK"
+  },
+  {
+    "projektant": "Paweł Kwapis",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_KWAPIS"
+  },
+  {
+    "projektant": "Paweł Mokrosiński ",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_MOKROSIŃSKI_"
+  },
+  {
+    "projektant": "Paweł Nejranowski",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_NEJRANOWSKI"
+  },
+  {
+    "projektant": "Paweł Paterkowski",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_PATERKOWSKI"
+  },
+  {
+    "projektant": "Paweł Plutowski ",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_PLUTOWSKI_"
+  },
+  {
+    "projektant": "Paweł Przydanek",
+    "liczba_projektow": 61,
+    "slug": "PAWEŁ_PRZYDANEK"
+  },
+  {
+    "projektant": "Paweł Przydanek ",
+    "liczba_projektow": 2,
+    "slug": "PAWEŁ_PRZYDANEK_"
+  },
+  {
+    "projektant": "Paweł Rogalski",
+    "liczba_projektow": 12,
+    "slug": "PAWEŁ_ROGALSKI"
+  },
+  {
+    "projektant": "Paweł Rytlewski",
+    "liczba_projektow": 3,
+    "slug": "PAWEŁ_RYTLEWSKI"
+  },
+  {
+    "projektant": "Paweł Rytlewski ",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_RYTLEWSKI_"
+  },
+  {
+    "projektant": "Paweł Sawicki       ",
+    "liczba_projektow": 2,
+    "slug": "PAWEŁ_SAWICKI_______"
+  },
+  {
+    "projektant": "Paweł Szlingiert",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_SZLINGIERT"
+  },
+  {
+    "projektant": "Paweł Sąsiadek",
+    "liczba_projektow": 2,
+    "slug": "PAWEŁ_SĄSIADEK"
+  },
+  {
+    "projektant": "Paweł Wachnicki ",
+    "liczba_projektow": 3,
+    "slug": "PAWEŁ_WACHNICKI_"
+  },
+  {
+    "projektant": "Paweł Winiecki",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_WINIECKI"
+  },
+  {
+    "projektant": "Paweł Zaryczański",
+    "liczba_projektow": 21,
+    "slug": "PAWEŁ_ZARYCZAŃSKI"
+  },
+  {
+    "projektant": "Paweł Zimnicki",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_ZIMNICKI"
+  },
+  {
+    "projektant": "Paweł Żuk",
+    "liczba_projektow": 10,
+    "slug": "PAWEŁ_ŻUK"
+  },
+  {
+    "projektant": "Paweł   Choma ",
+    "liczba_projektow": 7,
+    "slug": "PAWEŁ___CHOMA_"
+  },
+  {
+    "projektant": "Paweł  Boduch ",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ__BODUCH_"
+  },
+  {
+    "projektant": "Paweł  Choma ",
+    "liczba_projektow": 5,
+    "slug": "PAWEŁ__CHOMA_"
+  },
+  {
+    "projektant": "Paweł  Dutkiewicz ",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ__DUTKIEWICZ_"
+  },
+  {
+    "projektant": "Paweł  Frankiewicz ",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ__FRANKIEWICZ_"
+  },
+  {
+    "projektant": "Paweł  Garbacki",
+    "liczba_projektow": 3,
+    "slug": "PAWEŁ__GARBACKI"
+  },
+  {
+    "projektant": "Paweł  Kaliczyński",
+    "liczba_projektow": 2,
+    "slug": "PAWEŁ__KALICZYŃSKI"
+  },
+  {
+    "projektant": "Paweł  Kaliczyński ",
+    "liczba_projektow": 16,
+    "slug": "PAWEŁ__KALICZYŃSKI_"
+  },
+  {
+    "projektant": "Paweł  Nejranowski ",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ__NEJRANOWSKI_"
+  },
+  {
+    "projektant": "Paweł  Plutowski ",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ__PLUTOWSKI_"
+  },
+  {
+    "projektant": "Paweł  Przydanek",
+    "liczba_projektow": 8,
+    "slug": "PAWEŁ__PRZYDANEK"
+  },
+  {
+    "projektant": "Paweł  Przydanek    ",
+    "liczba_projektow": 2,
+    "slug": "PAWEŁ__PRZYDANEK____"
+  },
+  {
+    "projektant": "Paweł  Rogalski ",
+    "liczba_projektow": 18,
+    "slug": "PAWEŁ__ROGALSKI_"
+  },
+  {
+    "projektant": "Paweł   Rogalski",
+    "liczba_projektow": 4,
+    "slug": "PAWEŁ___ROGALSKI"
+  },
+  {
+    "projektant": "Paweł   Zimnicki",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ___ZIMNICKI"
+  },
+  {
+    "projektant": "Piotr  Mojsiewicz  ",
+    "liczba_projektow": 4,
+    "slug": "PIOTR__MOJSIEWICZ__"
+  },
+  {
+    "projektant": "Piotr Antończak",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_ANTOŃCZAK"
+  },
+  {
+    "projektant": "Piotr Ciechanowski",
+    "liczba_projektow": 7,
+    "slug": "PIOTR_CIECHANOWSKI"
+  },
+  {
+    "projektant": "Piotr Fiuk",
+    "liczba_projektow": 2,
+    "slug": "PIOTR_FIUK"
+  },
+  {
+    "projektant": "Piotr Furmanek",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_FURMANEK"
+  },
+  {
+    "projektant": "Piotr Kaczorkiewicz",
+    "liczba_projektow": 6,
+    "slug": "PIOTR_KACZORKIEWICZ"
+  },
+  {
+    "projektant": "Piotr Kondraciuk",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_KONDRACIUK"
+  },
+  {
+    "projektant": "Piotr Korzeniowski",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_KORZENIOWSKI"
+  },
+  {
+    "projektant": "Piotr Końciak",
+    "liczba_projektow": 3,
+    "slug": "PIOTR_KOŃCIAK"
+  },
+  {
+    "projektant": "Piotr Końciak ",
+    "liczba_projektow": 2,
+    "slug": "PIOTR_KOŃCIAK_"
+  },
+  {
+    "projektant": "Piotr Kucharski ",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_KUCHARSKI_"
+  },
+  {
+    "projektant": "Piotr Kwiatkowski",
+    "liczba_projektow": 3,
+    "slug": "PIOTR_KWIATKOWSKI"
+  },
+  {
+    "projektant": "Piotr Majchrzak",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_MAJCHRZAK"
+  },
+  {
+    "projektant": "Piotr Miłejszo",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_MIŁEJSZO"
+  },
+  {
+    "projektant": "Piotr Mojsiewicz",
+    "liczba_projektow": 14,
+    "slug": "PIOTR_MOJSIEWICZ"
+  },
+  {
+    "projektant": "Piotr Mojsiewicz  ",
+    "liczba_projektow": 2,
+    "slug": "PIOTR_MOJSIEWICZ__"
+  },
+  {
+    "projektant": "Piotr Mróz",
+    "liczba_projektow": 2,
+    "slug": "PIOTR_MRÓZ"
+  },
+  {
+    "projektant": "Piotr Nowak",
+    "liczba_projektow": 14,
+    "slug": "PIOTR_NOWAK"
+  },
+  {
+    "projektant": "Piotr Płaskowicki",
+    "liczba_projektow": 5,
+    "slug": "PIOTR_PŁASKOWICKI"
+  },
+  {
+    "projektant": "Piotr Schuz",
+    "liczba_projektow": 2,
+    "slug": "PIOTR_SCHUZ"
+  },
+  {
+    "projektant": "Piotr Sobecki",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_SOBECKI"
+  },
+  {
+    "projektant": "Piotr Sobiecki",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_SOBIECKI"
+  },
+  {
+    "projektant": "Piotr Sołtys",
+    "liczba_projektow": 18,
+    "slug": "PIOTR_SOŁTYS"
+  },
+  {
+    "projektant": "Piotr Synowiec",
+    "liczba_projektow": 7,
+    "slug": "PIOTR_SYNOWIEC"
+  },
+  {
+    "projektant": "Piotr Żolik",
+    "liczba_projektow": 1,
+    "slug": "PIOTR_ŻOLIK"
+  },
+  {
+    "projektant": "Piotr  Bezubik",
+    "liczba_projektow": 5,
+    "slug": "PIOTR__BEZUBIK"
+  },
+  {
+    "projektant": "Piotr  Buczak ",
+    "liczba_projektow": 1,
+    "slug": "PIOTR__BUCZAK_"
+  },
+  {
+    "projektant": "Piotr  Błażejewski ",
+    "liczba_projektow": 1,
+    "slug": "PIOTR__BŁAŻEJEWSKI_"
+  },
+  {
+    "projektant": "Piotr  Majchrzak ",
+    "liczba_projektow": 1,
+    "slug": "PIOTR__MAJCHRZAK_"
+  },
+  {
+    "projektant": "Piotr  Mojsiewicz ",
+    "liczba_projektow": 11,
+    "slug": "PIOTR__MOJSIEWICZ_"
+  },
+  {
+    "projektant": "Piotr  Mojsiewicz  ",
+    "liczba_projektow": 43,
+    "slug": "PIOTR__MOJSIEWICZ__"
+  },
+  {
+    "projektant": "Piotr  Sobiecki",
+    "liczba_projektow": 3,
+    "slug": "PIOTR__SOBIECKI"
+  },
+  {
+    "projektant": "Piotr  Sobiecki ",
+    "liczba_projektow": 2,
+    "slug": "PIOTR__SOBIECKI_"
+  },
+  {
+    "projektant": "Piotr  Sobiecki  ",
+    "liczba_projektow": 1,
+    "slug": "PIOTR__SOBIECKI__"
+  },
+  {
+    "projektant": "Przemysław Dworkiewicz",
+    "liczba_projektow": 1,
+    "slug": "PRZEMYSŁAW_DWORKIEWICZ"
+  },
+  {
+    "projektant": "Przemysław Jędrzejczak",
+    "liczba_projektow": 3,
+    "slug": "PRZEMYSŁAW_JĘDRZEJCZAK"
+  },
+  {
+    "projektant": "Przemysław Lak",
+    "liczba_projektow": 1,
+    "slug": "PRZEMYSŁAW_LAK"
+  },
+  {
+    "projektant": "Przemysław Murawski",
+    "liczba_projektow": 8,
+    "slug": "PRZEMYSŁAW_MURAWSKI"
+  },
+  {
+    "projektant": "Przemysław Murawski ",
+    "liczba_projektow": 3,
+    "slug": "PRZEMYSŁAW_MURAWSKI_"
+  },
+  {
+    "projektant": "Przemysław Nowak",
+    "liczba_projektow": 3,
+    "slug": "PRZEMYSŁAW_NOWAK"
+  },
+  {
+    "projektant": "Przemysław Petrus",
+    "liczba_projektow": 4,
+    "slug": "PRZEMYSŁAW_PETRUS"
+  },
+  {
+    "projektant": "Przemysław Rybacki",
+    "liczba_projektow": 1,
+    "slug": "PRZEMYSŁAW_RYBACKI"
+  },
+  {
+    "projektant": "Przemysław Włosek",
+    "liczba_projektow": 4,
+    "slug": "PRZEMYSŁAW_WŁOSEK"
+  },
+  {
+    "projektant": "Przemysław   Lak",
+    "liczba_projektow": 1,
+    "slug": "PRZEMYSŁAW___LAK"
+  },
+  {
+    "projektant": "Przemysław   Lisiecki ",
+    "liczba_projektow": 1,
+    "slug": "PRZEMYSŁAW___LISIECKI_"
+  },
+  {
+    "projektant": "Przemysław  Lisiecki    ",
+    "liczba_projektow": 1,
+    "slug": "PRZEMYSŁAW__LISIECKI____"
+  },
+  {
+    "projektant": "Przemysław  Olekszy ",
+    "liczba_projektow": 1,
+    "slug": "PRZEMYSŁAW__OLEKSZY_"
+  },
+  {
+    "projektant": "Przemysław  Opowicz ",
+    "liczba_projektow": 10,
+    "slug": "PRZEMYSŁAW__OPOWICZ_"
+  },
+  {
+    "projektant": "Przemysław  Petrus ",
+    "liczba_projektow": 1,
+    "slug": "PRZEMYSŁAW__PETRUS_"
+  },
+  {
+    "projektant": "Radosław Dziubczyński ",
+    "liczba_projektow": 1,
+    "slug": "RADOSŁAW_DZIUBCZYŃSKI_"
+  },
+  {
+    "projektant": "Radosław Goliat",
+    "liczba_projektow": 2,
+    "slug": "RADOSŁAW_GOLIAT"
+  },
+  {
+    "projektant": "Radosław  Zaborowski",
+    "liczba_projektow": 4,
+    "slug": "RADOSŁAW__ZABOROWSKI"
+  },
+  {
+    "projektant": "Rafał  Schmidt       ",
+    "liczba_projektow": 1,
+    "slug": "RAFAŁ__SCHMIDT_______"
+  },
+  {
+    "projektant": "Rafał Antonowicz",
+    "liczba_projektow": 4,
+    "slug": "RAFAŁ_ANTONOWICZ"
+  },
+  {
+    "projektant": "Rafał Depowski",
+    "liczba_projektow": 1,
+    "slug": "RAFAŁ_DEPOWSKI"
+  },
+  {
+    "projektant": "Rafał Lazarek  ",
+    "liczba_projektow": 1,
+    "slug": "RAFAŁ_LAZAREK__"
+  },
+  {
+    "projektant": "Rafał Młynarczyk",
+    "liczba_projektow": 1,
+    "slug": "RAFAŁ_MŁYNARCZYK"
+  },
+  {
+    "projektant": "Rafał Pieńkowski",
+    "liczba_projektow": 3,
+    "slug": "RAFAŁ_PIEŃKOWSKI"
+  },
+  {
+    "projektant": "Rafał Rogalski",
+    "liczba_projektow": 6,
+    "slug": "RAFAŁ_ROGALSKI"
+  },
+  {
+    "projektant": "Rafał Sawicki",
+    "liczba_projektow": 1,
+    "slug": "RAFAŁ_SAWICKI"
+  },
+  {
+    "projektant": "Rafał Sitko",
+    "liczba_projektow": 7,
+    "slug": "RAFAŁ_SITKO"
+  },
+  {
+    "projektant": "Rafał  Sawicki ",
+    "liczba_projektow": 1,
+    "slug": "RAFAŁ__SAWICKI_"
+  },
+  {
+    "projektant": "Rafał  Schmidt",
+    "liczba_projektow": 3,
+    "slug": "RAFAŁ__SCHMIDT"
+  },
+  {
+    "projektant": "Rafał  Swalski ",
+    "liczba_projektow": 14,
+    "slug": "RAFAŁ__SWALSKI_"
+  },
+  {
+    "projektant": "Remigiusz Smolik",
+    "liczba_projektow": 6,
+    "slug": "REMIGIUSZ_SMOLIK"
+  },
+  {
+    "projektant": "Renata Sarnot",
+    "liczba_projektow": 4,
+    "slug": "RENATA_SARNOT"
+  },
+  {
+    "projektant": "Renata Strzeszewska",
+    "liczba_projektow": 3,
+    "slug": "RENATA_STRZESZEWSKA"
+  },
+  {
+    "projektant": "Renata Słowik",
+    "liczba_projektow": 1,
+    "slug": "RENATA_SŁOWIK"
+  },
+  {
+    "projektant": "Renata  Pszczółkowska ",
+    "liczba_projektow": 10,
+    "slug": "RENATA__PSZCZÓŁKOWSKA_"
+  },
+  {
+    "projektant": "Renata  Sarnot ",
+    "liczba_projektow": 2,
+    "slug": "RENATA__SARNOT_"
+  },
+  {
+    "projektant": "Robert Blicharski",
+    "liczba_projektow": 1,
+    "slug": "ROBERT_BLICHARSKI"
+  },
+  {
+    "projektant": "Robert Chwyć",
+    "liczba_projektow": 2,
+    "slug": "ROBERT_CHWYĆ"
+  },
+  {
+    "projektant": "Robert Rybacki",
+    "liczba_projektow": 11,
+    "slug": "ROBERT_RYBACKI"
+  },
+  {
+    "projektant": "Robert Taratuta",
+    "liczba_projektow": 4,
+    "slug": "ROBERT_TARATUTA"
+  },
+  {
+    "projektant": "Robert Wowk",
+    "liczba_projektow": 2,
+    "slug": "ROBERT_WOWK"
+  },
+  {
+    "projektant": "Robert  Grzywnowicz ",
+    "liczba_projektow": 1,
+    "slug": "ROBERT__GRZYWNOWICZ_"
+  },
+  {
+    "projektant": "Robert  Kowalski",
+    "liczba_projektow": 1,
+    "slug": "ROBERT__KOWALSKI"
+  },
+  {
+    "projektant": "Roksana  Kiełbasa",
+    "liczba_projektow": 1,
+    "slug": "ROKSANA__KIEŁBASA"
+  },
+  {
+    "projektant": "Roma Barczak - Suszczewicz",
+    "liczba_projektow": 2,
+    "slug": "ROMA_BARCZAK_-_SUSZCZEWICZ"
+  },
+  {
+    "projektant": "Roma Barczak-Suszczewicz",
+    "liczba_projektow": 1,
+    "slug": "ROMA_BARCZAK-SUSZCZEWICZ"
+  },
+  {
+    "projektant": "Roma  Barczak-Suszczkiewicz",
+    "liczba_projektow": 1,
+    "slug": "ROMA__BARCZAK-SUSZCZKIEWICZ"
+  },
+  {
+    "projektant": "Roman Góral",
+    "liczba_projektow": 2,
+    "slug": "ROMAN_GÓRAL"
+  },
+  {
+    "projektant": "Roman Góral ",
+    "liczba_projektow": 6,
+    "slug": "ROMAN_GÓRAL_"
+  },
+  {
+    "projektant": "Roman Kałahurski",
+    "liczba_projektow": 1,
+    "slug": "ROMAN_KAŁAHURSKI"
+  },
+  {
+    "projektant": "Roman Kałahurski ",
+    "liczba_projektow": 1,
+    "slug": "ROMAN_KAŁAHURSKI_"
+  },
+  {
+    "projektant": "Roman Szumny",
+    "liczba_projektow": 4,
+    "slug": "ROMAN_SZUMNY"
+  },
+  {
+    "projektant": "Romuald Hałas",
+    "liczba_projektow": 1,
+    "slug": "ROMUALD_HAŁAS"
+  },
+  {
+    "projektant": "Romuald Pawelski",
+    "liczba_projektow": 3,
+    "slug": "ROMUALD_PAWELSKI"
+  },
+  {
+    "projektant": "Romuald  Hałas ",
+    "liczba_projektow": 1,
+    "slug": "ROMUALD__HAŁAS_"
+  },
+  {
+    "projektant": "Ryszard Długopolski",
+    "liczba_projektow": 3,
+    "slug": "RYSZARD_DŁUGOPOLSKI"
+  },
+  {
+    "projektant": "Ryszard Długopolski ",
+    "liczba_projektow": 3,
+    "slug": "RYSZARD_DŁUGOPOLSKI_"
+  },
+  {
+    "projektant": "Ryszard Gmyrek",
+    "liczba_projektow": 4,
+    "slug": "RYSZARD_GMYREK"
+  },
+  {
+    "projektant": "Ryszard Gąsior",
+    "liczba_projektow": 1,
+    "slug": "RYSZARD_GĄSIOR"
+  },
+  {
+    "projektant": "Ryszard Kowalski",
+    "liczba_projektow": 3,
+    "slug": "RYSZARD_KOWALSKI"
+  },
+  {
+    "projektant": "Ryszard Moraczewski",
+    "liczba_projektow": 2,
+    "slug": "RYSZARD_MORACZEWSKI"
+  },
+  {
+    "projektant": "Ryszard   Madejski ",
+    "liczba_projektow": 1,
+    "slug": "RYSZARD___MADEJSKI_"
+  },
+  {
+    "projektant": "Ryszard  Długopolski ",
+    "liczba_projektow": 3,
+    "slug": "RYSZARD__DŁUGOPOLSKI_"
+  },
+  {
+    "projektant": "Ryszard  Gmyrek",
+    "liczba_projektow": 1,
+    "slug": "RYSZARD__GMYREK"
+  },
+  {
+    "projektant": "SZYMON BIELENIS ",
+    "liczba_projektow": 8,
+    "slug": "SZYMON_BIELENIS_"
+  },
+  {
+    "projektant": "SZYMON GUZA",
+    "liczba_projektow": 1,
+    "slug": "SZYMON_GUZA"
+  },
+  {
+    "projektant": "Sara Pietrzyk",
+    "liczba_projektow": 3,
+    "slug": "SARA_PIETRZYK"
+  },
+  {
+    "projektant": "Schulz Piotr",
+    "liczba_projektow": 1,
+    "slug": "SCHULZ_PIOTR"
+  },
+  {
+    "projektant": "Sebastian Jóźwiak",
+    "liczba_projektow": 1,
+    "slug": "SEBASTIAN_JÓŹWIAK"
+  },
+  {
+    "projektant": "Sebastian Nowakowski  ",
+    "liczba_projektow": 1,
+    "slug": "SEBASTIAN_NOWAKOWSKI__"
+  },
+  {
+    "projektant": "Sebastian Przeszak",
+    "liczba_projektow": 6,
+    "slug": "SEBASTIAN_PRZESZAK"
+  },
+  {
+    "projektant": "Sebastian Szyszłowski",
+    "liczba_projektow": 2,
+    "slug": "SEBASTIAN_SZYSZŁOWSKI"
+  },
+  {
+    "projektant": "Sebastian  Przeszak ",
+    "liczba_projektow": 2,
+    "slug": "SEBASTIAN__PRZESZAK_"
+  },
+  {
+    "projektant": "Seweryn Duszewski",
+    "liczba_projektow": 3,
+    "slug": "SEWERYN_DUSZEWSKI"
+  },
+  {
+    "projektant": "Stanisław Broź",
+    "liczba_projektow": 2,
+    "slug": "STANISŁAW_BROŹ"
+  },
+  {
+    "projektant": "Stanisław Budnicki",
+    "liczba_projektow": 9,
+    "slug": "STANISŁAW_BUDNICKI"
+  },
+  {
+    "projektant": "Stanisław Duda",
+    "liczba_projektow": 6,
+    "slug": "STANISŁAW_DUDA"
+  },
+  {
+    "projektant": "Stanisław Duda ",
+    "liczba_projektow": 4,
+    "slug": "STANISŁAW_DUDA_"
+  },
+  {
+    "projektant": "Stanisław Gaczyński",
+    "liczba_projektow": 1,
+    "slug": "STANISŁAW_GACZYŃSKI"
+  },
+  {
+    "projektant": "Stanisław Jakubowski",
+    "liczba_projektow": 1,
+    "slug": "STANISŁAW_JAKUBOWSKI"
+  },
+  {
+    "projektant": "Stanisław Machura",
+    "liczba_projektow": 10,
+    "slug": "STANISŁAW_MACHURA"
+  },
+  {
+    "projektant": "Stanisław Osiński",
+    "liczba_projektow": 5,
+    "slug": "STANISŁAW_OSIŃSKI"
+  },
+  {
+    "projektant": "Stanisław Padiasek",
+    "liczba_projektow": 24,
+    "slug": "STANISŁAW_PADIASEK"
+  },
+  {
+    "projektant": "Stanisław Sobański",
+    "liczba_projektow": 1,
+    "slug": "STANISŁAW_SOBAŃSKI"
+  },
+  {
+    "projektant": "Stanisław   Padiasek",
+    "liczba_projektow": 2,
+    "slug": "STANISŁAW___PADIASEK"
+  },
+  {
+    "projektant": "Stanisław  Duda ",
+    "liczba_projektow": 3,
+    "slug": "STANISŁAW__DUDA_"
+  },
+  {
+    "projektant": "Stanisław  Lenard ",
+    "liczba_projektow": 1,
+    "slug": "STANISŁAW__LENARD_"
+  },
+  {
+    "projektant": "Stanisław  Padiasek   ",
+    "liczba_projektow": 7,
+    "slug": "STANISŁAW__PADIASEK___"
+  },
+  {
+    "projektant": "Stanisław  Sobański ",
+    "liczba_projektow": 2,
+    "slug": "STANISŁAW__SOBAŃSKI_"
+  },
+  {
+    "projektant": "Stefan Bara",
+    "liczba_projektow": 1,
+    "slug": "STEFAN_BARA"
+  },
+  {
+    "projektant": "Stefan Bigda",
+    "liczba_projektow": 2,
+    "slug": "STEFAN_BIGDA"
+  },
+  {
+    "projektant": "Stefan Słoniecki",
+    "liczba_projektow": 1,
+    "slug": "STEFAN_SŁONIECKI"
+  },
+  {
+    "projektant": "Stefan  Wyszomirski ",
+    "liczba_projektow": 1,
+    "slug": "STEFAN__WYSZOMIRSKI_"
+  },
+  {
+    "projektant": "Syldatk  Agnieszka ",
+    "liczba_projektow": 3,
+    "slug": "SYLDATK__AGNIESZKA_"
+  },
+  {
+    "projektant": "Sylwester Chudy",
+    "liczba_projektow": 1,
+    "slug": "SYLWESTER_CHUDY"
+  },
+  {
+    "projektant": "Sylwia Białoszycka-Gątarek",
+    "liczba_projektow": 3,
+    "slug": "SYLWIA_BIAŁOSZYCKA-GĄTAREK"
+  },
+  {
+    "projektant": "Sylwia Dzibkowska",
+    "liczba_projektow": 1,
+    "slug": "SYLWIA_DZIBKOWSKA"
+  },
+  {
+    "projektant": "Sylwia Dziobkowska",
+    "liczba_projektow": 3,
+    "slug": "SYLWIA_DZIOBKOWSKA"
+  },
+  {
+    "projektant": "Sylwia Dziobkowska ",
+    "liczba_projektow": 1,
+    "slug": "SYLWIA_DZIOBKOWSKA_"
+  },
+  {
+    "projektant": "Sylwia Kozanecka",
+    "liczba_projektow": 6,
+    "slug": "SYLWIA_KOZANECKA"
+  },
+  {
+    "projektant": "Sylwia Kozanecka ",
+    "liczba_projektow": 2,
+    "slug": "SYLWIA_KOZANECKA_"
+  },
+  {
+    "projektant": "Sylwia Kołowiecka",
+    "liczba_projektow": 2,
+    "slug": "SYLWIA_KOŁOWIECKA"
+  },
+  {
+    "projektant": "Sylwia Smoleń",
+    "liczba_projektow": 1,
+    "slug": "SYLWIA_SMOLEŃ"
+  },
+  {
+    "projektant": "Szymon Guza",
+    "liczba_projektow": 3,
+    "slug": "SZYMON_GUZA"
+  },
+  {
+    "projektant": "Szymon Napierała",
+    "liczba_projektow": 32,
+    "slug": "SZYMON_NAPIERAŁA"
+  },
+  {
+    "projektant": "Szymon Tymoń",
+    "liczba_projektow": 3,
+    "slug": "SZYMON_TYMOŃ"
+  },
+  {
+    "projektant": "Szymon Zmaczyński",
+    "liczba_projektow": 1,
+    "slug": "SZYMON_ZMACZYŃSKI"
+  },
+  {
+    "projektant": "Szymon  Napierała",
+    "liczba_projektow": 8,
+    "slug": "SZYMON__NAPIERAŁA"
+  },
+  {
+    "projektant": "Szymon  Napierała ",
+    "liczba_projektow": 1,
+    "slug": "SZYMON__NAPIERAŁA_"
+  },
+  {
+    "projektant": "Sławomir Cackowski",
+    "liczba_projektow": 8,
+    "slug": "SŁAWOMIR_CACKOWSKI"
+  },
+  {
+    "projektant": "Sławomir Kiersnowski",
+    "liczba_projektow": 7,
+    "slug": "SŁAWOMIR_KIERSNOWSKI"
+  },
+  {
+    "projektant": "Sławomir Kolanus",
+    "liczba_projektow": 2,
+    "slug": "SŁAWOMIR_KOLANUS"
+  },
+  {
+    "projektant": "Sławomir Kosowicz",
+    "liczba_projektow": 1,
+    "slug": "SŁAWOMIR_KOSOWICZ"
+  },
+  {
+    "projektant": "Sławomir Spławski",
+    "liczba_projektow": 2,
+    "slug": "SŁAWOMIR_SPŁAWSKI"
+  },
+  {
+    "projektant": "Sławomir Sytnik",
+    "liczba_projektow": 37,
+    "slug": "SŁAWOMIR_SYTNIK"
+  },
+  {
+    "projektant": "Sławomir Sytnik ",
+    "liczba_projektow": 1,
+    "slug": "SŁAWOMIR_SYTNIK_"
+  },
+  {
+    "projektant": "Sławomir Zientarski",
+    "liczba_projektow": 1,
+    "slug": "SŁAWOMIR_ZIENTARSKI"
+  },
+  {
+    "projektant": "Sławomir Zwiefka",
+    "liczba_projektow": 1,
+    "slug": "SŁAWOMIR_ZWIEFKA"
+  },
+  {
+    "projektant": "Sławomir  Spławski ",
+    "liczba_projektow": 1,
+    "slug": "SŁAWOMIR__SPŁAWSKI_"
+  },
+  {
+    "projektant": "Sławomir  Sytnik",
+    "liczba_projektow": 1,
+    "slug": "SŁAWOMIR__SYTNIK"
+  },
+  {
+    "projektant": "TADEUSZ MIELEWCZYK",
+    "liczba_projektow": 1,
+    "slug": "TADEUSZ_MIELEWCZYK"
+  },
+  {
+    "projektant": "TOMASZ CISEK",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_CISEK"
+  },
+  {
+    "projektant": "TOMASZ WOLANIN ",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_WOLANIN_"
+  },
+  {
+    "projektant": "Tadeusz Orczyński",
+    "liczba_projektow": 1,
+    "slug": "TADEUSZ_ORCZYŃSKI"
+  },
+  {
+    "projektant": "Tadeusz Siwiec ",
+    "liczba_projektow": 2,
+    "slug": "TADEUSZ_SIWIEC_"
+  },
+  {
+    "projektant": "Tadeusz Tylka",
+    "liczba_projektow": 5,
+    "slug": "TADEUSZ_TYLKA"
+  },
+  {
+    "projektant": "Tadeusz  Milewczyk",
+    "liczba_projektow": 1,
+    "slug": "TADEUSZ__MILEWCZYK"
+  },
+  {
+    "projektant": "Tadeusz  Połoczański",
+    "liczba_projektow": 5,
+    "slug": "TADEUSZ__POŁOCZAŃSKI"
+  },
+  {
+    "projektant": "Taduesz Tylka",
+    "liczba_projektow": 1,
+    "slug": "TADUESZ_TYLKA"
+  },
+  {
+    "projektant": "Tomasz Antolak",
+    "liczba_projektow": 6,
+    "slug": "TOMASZ_ANTOLAK"
+  },
+  {
+    "projektant": "Tomasz Bernacki",
+    "liczba_projektow": 4,
+    "slug": "TOMASZ_BERNACKI"
+  },
+  {
+    "projektant": "Tomasz Brejdak",
+    "liczba_projektow": 2,
+    "slug": "TOMASZ_BREJDAK"
+  },
+  {
+    "projektant": "Tomasz Bukartyk",
+    "liczba_projektow": 2,
+    "slug": "TOMASZ_BUKARTYK"
+  },
+  {
+    "projektant": "Tomasz Chmiel",
+    "liczba_projektow": 3,
+    "slug": "TOMASZ_CHMIEL"
+  },
+  {
+    "projektant": "Tomasz Cisek",
+    "liczba_projektow": 3,
+    "slug": "TOMASZ_CISEK"
+  },
+  {
+    "projektant": "Tomasz Cisek ",
+    "liczba_projektow": 3,
+    "slug": "TOMASZ_CISEK_"
+  },
+  {
+    "projektant": "Tomasz Jurek",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_JUREK"
+  },
+  {
+    "projektant": "Tomasz Kondarewicz",
+    "liczba_projektow": 11,
+    "slug": "TOMASZ_KONDAREWICZ"
+  },
+  {
+    "projektant": "Tomasz Konopski",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_KONOPSKI"
+  },
+  {
+    "projektant": "Tomasz Kopeć",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_KOPEĆ"
+  },
+  {
+    "projektant": "Tomasz Korzeniowski",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_KORZENIOWSKI"
+  },
+  {
+    "projektant": "Tomasz Kubicki",
+    "liczba_projektow": 2,
+    "slug": "TOMASZ_KUBICKI"
+  },
+  {
+    "projektant": "Tomasz Kuciak",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_KUCIAK"
+  },
+  {
+    "projektant": "Tomasz Kusznierów",
+    "liczba_projektow": 4,
+    "slug": "TOMASZ_KUSZNIERÓW"
+  },
+  {
+    "projektant": "Tomasz Kuszznierów",
+    "liczba_projektow": 2,
+    "slug": "TOMASZ_KUSZZNIERÓW"
+  },
+  {
+    "projektant": "Tomasz Lassota",
+    "liczba_projektow": 2,
+    "slug": "TOMASZ_LASSOTA"
+  },
+  {
+    "projektant": "Tomasz Maksymiuk",
+    "liczba_projektow": 5,
+    "slug": "TOMASZ_MAKSYMIUK"
+  },
+  {
+    "projektant": "Tomasz Małachowicz",
+    "liczba_projektow": 5,
+    "slug": "TOMASZ_MAŁACHOWICZ"
+  },
+  {
+    "projektant": "Tomasz Nagórski",
+    "liczba_projektow": 5,
+    "slug": "TOMASZ_NAGÓRSKI"
+  },
+  {
+    "projektant": "Tomasz Nowak",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_NOWAK"
+  },
+  {
+    "projektant": "Tomasz Paszczak",
+    "liczba_projektow": 47,
+    "slug": "TOMASZ_PASZCZAK"
+  },
+  {
+    "projektant": "Tomasz Pieńkowski",
+    "liczba_projektow": 3,
+    "slug": "TOMASZ_PIEŃKOWSKI"
+  },
+  {
+    "projektant": "Tomasz Pigulski",
+    "liczba_projektow": 3,
+    "slug": "TOMASZ_PIGULSKI"
+  },
+  {
+    "projektant": "Tomasz Rostecki",
+    "liczba_projektow": 27,
+    "slug": "TOMASZ_ROSTECKI"
+  },
+  {
+    "projektant": "Tomasz Samborski ",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_SAMBORSKI_"
+  },
+  {
+    "projektant": "Tomasz Serafin",
+    "liczba_projektow": 3,
+    "slug": "TOMASZ_SERAFIN"
+  },
+  {
+    "projektant": "Tomasz Sobiecki",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_SOBIECKI"
+  },
+  {
+    "projektant": "Tomasz Strzyżewski ",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_STRZYŻEWSKI_"
+  },
+  {
+    "projektant": "Tomasz Tomaniak",
+    "liczba_projektow": 3,
+    "slug": "TOMASZ_TOMANIAK"
+  },
+  {
+    "projektant": "Tomasz Wawrzyniak",
+    "liczba_projektow": 22,
+    "slug": "TOMASZ_WAWRZYNIAK"
+  },
+  {
+    "projektant": "Tomasz Wolanin",
+    "liczba_projektow": 2,
+    "slug": "TOMASZ_WOLANIN"
+  },
+  {
+    "projektant": "Tomasz Zaleski",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ_ZALESKI"
+  },
+  {
+    "projektant": "Tomasz   Paszczak ",
+    "liczba_projektow": 4,
+    "slug": "TOMASZ___PASZCZAK_"
+  },
+  {
+    "projektant": "Tomasz  Chmiel ",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ__CHMIEL_"
+  },
+  {
+    "projektant": "Tomasz  Jacyniewicz ",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ__JACYNIEWICZ_"
+  },
+  {
+    "projektant": "Tomasz  Kulczycki ",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ__KULCZYCKI_"
+  },
+  {
+    "projektant": "Tomasz  Mikołajczyk",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ__MIKOŁAJCZYK"
+  },
+  {
+    "projektant": "Tomasz  Sobkowiak",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ__SOBKOWIAK"
+  },
+  {
+    "projektant": "Tomasz  Wolanin",
+    "liczba_projektow": 2,
+    "slug": "TOMASZ__WOLANIN"
+  },
+  {
+    "projektant": "Tomasz  Włodarczyk ",
+    "liczba_projektow": 7,
+    "slug": "TOMASZ__WŁODARCZYK_"
+  },
+  {
+    "projektant": "Tomasz  Zakrzewski",
+    "liczba_projektow": 1,
+    "slug": "TOMASZ__ZAKRZEWSKI"
+  },
+  {
+    "projektant": "Urszula Koźlakowska-Kupczyk",
+    "liczba_projektow": 2,
+    "slug": "URSZULA_KOŹLAKOWSKA-KUPCZYK"
+  },
+  {
+    "projektant": "Urszula Trepaszko ",
+    "liczba_projektow": 1,
+    "slug": "URSZULA_TREPASZKO_"
+  },
+  {
+    "projektant": "Urszula  Koźlakowska - kupczyk ",
+    "liczba_projektow": 1,
+    "slug": "URSZULA__KOŹLAKOWSKA_-_KUPCZYK_"
+  },
+  {
+    "projektant": "Violetta  Małowiejska",
+    "liczba_projektow": 6,
+    "slug": "VIOLETTA__MAŁOWIEJSKA"
+  },
+  {
+    "projektant": "WIESŁAW  REDZIMSKI",
+    "liczba_projektow": 2,
+    "slug": "WIESŁAW__REDZIMSKI"
+  },
+  {
+    "projektant": "WIESŁAW  WIESŁAW REDZIMSKI ",
+    "liczba_projektow": 2,
+    "slug": "WIESŁAW__WIESŁAW_REDZIMSKI_"
+  },
+  {
+    "projektant": "Wacław Łazarczyk ",
+    "liczba_projektow": 1,
+    "slug": "WACŁAW_ŁAZARCZYK_"
+  },
+  {
+    "projektant": "Wacław  Grynkiewicz ",
+    "liczba_projektow": 1,
+    "slug": "WACŁAW__GRYNKIEWICZ_"
+  },
+  {
+    "projektant": "Wacław Andrzej Szczuchniak",
+    "liczba_projektow": 1,
+    "slug": "WACŁAW_ANDRZEJ_SZCZUCHNIAK"
+  },
+  {
+    "projektant": "Waldemar Dziedziech",
+    "liczba_projektow": 2,
+    "slug": "WALDEMAR_DZIEDZIECH"
+  },
+  {
+    "projektant": "Wanda Sterczyńska",
+    "liczba_projektow": 8,
+    "slug": "WANDA_STERCZYŃSKA"
+  },
+  {
+    "projektant": "Wanda   Kierebińska-Tokarz",
+    "liczba_projektow": 1,
+    "slug": "WANDA___KIEREBIŃSKA-TOKARZ"
+  },
+  {
+    "projektant": "Wiesław Gołacki",
+    "liczba_projektow": 2,
+    "slug": "WIESŁAW_GOŁACKI"
+  },
+  {
+    "projektant": "Wiesław Heropolitański",
+    "liczba_projektow": 1,
+    "slug": "WIESŁAW_HEROPOLITAŃSKI"
+  },
+  {
+    "projektant": "Wiesław Jędryszek",
+    "liczba_projektow": 1,
+    "slug": "WIESŁAW_JĘDRYSZEK"
+  },
+  {
+    "projektant": "Wiesław Litwin",
+    "liczba_projektow": 1,
+    "slug": "WIESŁAW_LITWIN"
+  },
+  {
+    "projektant": "Wiesław Marciniak",
+    "liczba_projektow": 2,
+    "slug": "WIESŁAW_MARCINIAK"
+  },
+  {
+    "projektant": "Wiktor Gabryliszyn",
+    "liczba_projektow": 4,
+    "slug": "WIKTOR_GABRYLISZYN"
+  },
+  {
+    "projektant": "Wiktor  Gabryliszyn ",
+    "liczba_projektow": 1,
+    "slug": "WIKTOR__GABRYLISZYN_"
+  },
+  {
+    "projektant": "Wilhelm   Heleniak ",
+    "liczba_projektow": 1,
+    "slug": "WILHELM___HELENIAK_"
+  },
+  {
+    "projektant": "Wilhelm  Heleniak ",
+    "liczba_projektow": 3,
+    "slug": "WILHELM__HELENIAK_"
+  },
+  {
+    "projektant": "Wioletta Kmita",
+    "liczba_projektow": 2,
+    "slug": "WIOLETTA_KMITA"
+  },
+  {
+    "projektant": "Wioletta Kmita ",
+    "liczba_projektow": 1,
+    "slug": "WIOLETTA_KMITA_"
+  },
+  {
+    "projektant": "Wioletta  Kmita ",
+    "liczba_projektow": 1,
+    "slug": "WIOLETTA__KMITA_"
+  },
+  {
+    "projektant": "Wiolettta Kmita",
+    "liczba_projektow": 1,
+    "slug": "WIOLETTTA_KMITA"
+  },
+  {
+    "projektant": "Witold Jurga",
+    "liczba_projektow": 2,
+    "slug": "WITOLD_JURGA"
+  },
+  {
+    "projektant": "Witold Krzyżanowski",
+    "liczba_projektow": 1,
+    "slug": "WITOLD_KRZYŻANOWSKI"
+  },
+  {
+    "projektant": "Witold Malmon",
+    "liczba_projektow": 1,
+    "slug": "WITOLD_MALMON"
+  },
+  {
+    "projektant": "Witold Pańczak",
+    "liczba_projektow": 1,
+    "slug": "WITOLD_PAŃCZAK"
+  },
+  {
+    "projektant": "Witold Próchnicki",
+    "liczba_projektow": 3,
+    "slug": "WITOLD_PRÓCHNICKI"
+  },
+  {
+    "projektant": "Wojciech Błazucki",
+    "liczba_projektow": 8,
+    "slug": "WOJCIECH_BŁAZUCKI"
+  },
+  {
+    "projektant": "Wojciech Czerwonka",
+    "liczba_projektow": 1,
+    "slug": "WOJCIECH_CZERWONKA"
+  },
+  {
+    "projektant": "Wojciech Dunaj",
+    "liczba_projektow": 2,
+    "slug": "WOJCIECH_DUNAJ"
+  },
+  {
+    "projektant": "Wojciech Grzewka",
+    "liczba_projektow": 1,
+    "slug": "WOJCIECH_GRZEWKA"
+  },
+  {
+    "projektant": "Wojciech Kolesiński",
+    "liczba_projektow": 3,
+    "slug": "WOJCIECH_KOLESIŃSKI"
+  },
+  {
+    "projektant": "Wojciech Pestka",
+    "liczba_projektow": 1,
+    "slug": "WOJCIECH_PESTKA"
+  },
+  {
+    "projektant": "Wojciech Pestka  ",
+    "liczba_projektow": 1,
+    "slug": "WOJCIECH_PESTKA__"
+  },
+  {
+    "projektant": "Wojciech Piasecki",
+    "liczba_projektow": 2,
+    "slug": "WOJCIECH_PIASECKI"
+  },
+  {
+    "projektant": "Wojciech Słupczyński",
+    "liczba_projektow": 2,
+    "slug": "WOJCIECH_SŁUPCZYŃSKI"
+  },
+  {
+    "projektant": "Wojciech Wierzbowski",
+    "liczba_projektow": 1,
+    "slug": "WOJCIECH_WIERZBOWSKI"
+  },
+  {
+    "projektant": "Wojciech Woźniak ",
+    "liczba_projektow": 2,
+    "slug": "WOJCIECH_WOŹNIAK_"
+  },
+  {
+    "projektant": "Wojciech Włodarczyk",
+    "liczba_projektow": 1,
+    "slug": "WOJCIECH_WŁODARCZYK"
+  },
+  {
+    "projektant": "Wojciech Zawisza",
+    "liczba_projektow": 4,
+    "slug": "WOJCIECH_ZAWISZA"
+  },
+  {
+    "projektant": "Wojciech  Kamiński ",
+    "liczba_projektow": 1,
+    "slug": "WOJCIECH__KAMIŃSKI_"
+  },
+  {
+    "projektant": "Wojciech  Podruczny",
+    "liczba_projektow": 5,
+    "slug": "WOJCIECH__PODRUCZNY"
+  },
+  {
+    "projektant": "Wopjciech Strzeszewski",
+    "liczba_projektow": 1,
+    "slug": "WOPJCIECH_STRZESZEWSKI"
+  },
+  {
+    "projektant": "Włodzimierz Krajczynski",
+    "liczba_projektow": 1,
+    "slug": "WŁODZIMIERZ_KRAJCZYNSKI"
+  },
+  {
+    "projektant": "Włodzimierz Krajczyński",
+    "liczba_projektow": 14,
+    "slug": "WŁODZIMIERZ_KRAJCZYŃSKI"
+  },
+  {
+    "projektant": "Włodzimierz Krajczyński ",
+    "liczba_projektow": 1,
+    "slug": "WŁODZIMIERZ_KRAJCZYŃSKI_"
+  },
+  {
+    "projektant": "Włodzimierz Makowski",
+    "liczba_projektow": 1,
+    "slug": "WŁODZIMIERZ_MAKOWSKI"
+  },
+  {
+    "projektant": "Włodzimierz Pilarz",
+    "liczba_projektow": 1,
+    "slug": "WŁODZIMIERZ_PILARZ"
+  },
+  {
+    "projektant": "Zbigniew  Kaczanowicz",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW__KACZANOWICZ"
+  },
+  {
+    "projektant": "Zbigniew  Kaczanowicz ",
+    "liczba_projektow": 6,
+    "slug": "ZBIGNIEW__KACZANOWICZ_"
+  },
+  {
+    "projektant": "Zbigniew Czerwiński",
+    "liczba_projektow": 2,
+    "slug": "ZBIGNIEW_CZERWIŃSKI"
+  },
+  {
+    "projektant": "Zbigniew Drapa",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW_DRAPA"
+  },
+  {
+    "projektant": "Zbigniew Kaczanowicz",
+    "liczba_projektow": 10,
+    "slug": "ZBIGNIEW_KACZANOWICZ"
+  },
+  {
+    "projektant": "Zbigniew Kaczanowicz ",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW_KACZANOWICZ_"
+  },
+  {
+    "projektant": "Zbigniew Maruszczak",
+    "liczba_projektow": 18,
+    "slug": "ZBIGNIEW_MARUSZCZAK"
+  },
+  {
+    "projektant": "Zbigniew Maruszczak ",
+    "liczba_projektow": 2,
+    "slug": "ZBIGNIEW_MARUSZCZAK_"
+  },
+  {
+    "projektant": "Zbigniew Mike",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW_MIKE"
+  },
+  {
+    "projektant": "Zbigniew Moździerz",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW_MOŹDZIERZ"
+  },
+  {
+    "projektant": "Zbigniew Moździerz ",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW_MOŹDZIERZ_"
+  },
+  {
+    "projektant": "Zbigniew Woźniak",
+    "liczba_projektow": 38,
+    "slug": "ZBIGNIEW_WOŹNIAK"
+  },
+  {
+    "projektant": "Zbigniew   Woźniak  ",
+    "liczba_projektow": 5,
+    "slug": "ZBIGNIEW___WOŹNIAK__"
+  },
+  {
+    "projektant": "Zbigniew  Augustyniak ",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW__AUGUSTYNIAK_"
+  },
+  {
+    "projektant": "Zbigniew  Bednarczyk ",
+    "liczba_projektow": 2,
+    "slug": "ZBIGNIEW__BEDNARCZYK_"
+  },
+  {
+    "projektant": "Zbigniew  Kaczanowicz",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW__KACZANOWICZ"
+  },
+  {
+    "projektant": "Zbigniew  Kaczanowicz ",
+    "liczba_projektow": 29,
+    "slug": "ZBIGNIEW__KACZANOWICZ_"
+  },
+  {
+    "projektant": "Zbigniew  MAruszczak ",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW__MARUSZCZAK_"
+  },
+  {
+    "projektant": "Zbigniew  Wysocki ",
+    "liczba_projektow": 2,
+    "slug": "ZBIGNIEW__WYSOCKI_"
+  },
+  {
+    "projektant": "Zbigniew  Ławrynowicz",
+    "liczba_projektow": 1,
+    "slug": "ZBIGNIEW__ŁAWRYNOWICZ"
+  },
+  {
+    "projektant": "Zdzisław Baranowski",
+    "liczba_projektow": 2,
+    "slug": "ZDZISŁAW_BARANOWSKI"
+  },
+  {
+    "projektant": "Zdzisław Ciesek ",
+    "liczba_projektow": 1,
+    "slug": "ZDZISŁAW_CIESEK_"
+  },
+  {
+    "projektant": "Zdzisław Czaplicki",
+    "liczba_projektow": 1,
+    "slug": "ZDZISŁAW_CZAPLICKI"
+  },
+  {
+    "projektant": "Zdzisław Konecki",
+    "liczba_projektow": 1,
+    "slug": "ZDZISŁAW_KONECKI"
+  },
+  {
+    "projektant": "Zofia Lempert van Heerden",
+    "liczba_projektow": 6,
+    "slug": "ZOFIA_LEMPERT_VAN_HEERDEN"
+  },
+  {
+    "projektant": "Zofia Lempert-van Heerden",
+    "liczba_projektow": 2,
+    "slug": "ZOFIA_LEMPERT-VAN_HEERDEN"
+  },
+  {
+    "projektant": "karolina timoszyk",
+    "liczba_projektow": 1,
+    "slug": "KAROLINA_TIMOSZYK"
+  },
+  {
+    "projektant": "leszek Kaszak",
+    "liczba_projektow": 1,
+    "slug": "LESZEK_KASZAK"
+  },
+  {
+    "projektant": "leszek kaszak",
+    "liczba_projektow": 3,
+    "slug": "LESZEK_KASZAK"
+  },
+  {
+    "projektant": "magdalena zgorzelska",
+    "liczba_projektow": 2,
+    "slug": "MAGDALENA_ZGORZELSKA"
+  },
+  {
+    "projektant": "marek antczak",
+    "liczba_projektow": 2,
+    "slug": "MAREK_ANTCZAK"
+  },
+  {
+    "projektant": "marian szpilkowski",
+    "liczba_projektow": 7,
+    "slug": "MARIAN_SZPILKOWSKI"
+  },
+  {
+    "projektant": "mariusz pawelczak",
+    "liczba_projektow": 2,
+    "slug": "MARIUSZ_PAWELCZAK"
+  },
+  {
+    "projektant": "pAWEŁ Kuwik",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_KUWIK"
+  },
+  {
+    "projektant": "paweł kaliczyński",
+    "liczba_projektow": 1,
+    "slug": "PAWEŁ_KALICZYŃSKI"
+  },
+  {
+    "projektant": "ryszard Gmyrek",
+    "liczba_projektow": 1,
+    "slug": "RYSZARD_GMYREK"
+  },
+  {
+    "projektant": "ŁUKASZ MĘŻYDŁO",
+    "liczba_projektow": 2,
+    "slug": "ŁUKASZ_MĘŻYDŁO"
+  },
+  {
+    "projektant": "ŁUKASZ RESZKA",
+    "liczba_projektow": 4,
+    "slug": "ŁUKASZ_RESZKA"
+  },
+  {
+    "projektant": "Łopacińska  Grażyna ",
+    "liczba_projektow": 1,
+    "slug": "ŁOPACIŃSKA__GRAŻYNA_"
+  },
+  {
+    "projektant": "Łukasz Chruszczewski ",
+    "liczba_projektow": 1,
+    "slug": "ŁUKASZ_CHRUSZCZEWSKI_"
+  },
+  {
+    "projektant": "Łukasz Ilkiewicz",
+    "liczba_projektow": 7,
+    "slug": "ŁUKASZ_ILKIEWICZ"
+  },
+  {
+    "projektant": "Łukasz Kołbyk",
+    "liczba_projektow": 4,
+    "slug": "ŁUKASZ_KOŁBYK"
+  },
+  {
+    "projektant": "Łukasz Matławski",
+    "liczba_projektow": 1,
+    "slug": "ŁUKASZ_MATŁAWSKI"
+  },
+  {
+    "projektant": "Łukasz Mężydło",
+    "liczba_projektow": 2,
+    "slug": "ŁUKASZ_MĘŻYDŁO"
+  },
+  {
+    "projektant": "Łukasz Staszałek",
+    "liczba_projektow": 1,
+    "slug": "ŁUKASZ_STASZAŁEK"
+  },
+  {
+    "projektant": "Łukasz Traczyk",
+    "liczba_projektow": 1,
+    "slug": "ŁUKASZ_TRACZYK"
+  },
+  {
+    "projektant": "Łukasz Włodarczak",
+    "liczba_projektow": 4,
+    "slug": "ŁUKASZ_WŁODARCZAK"
+  },
+  {
+    "projektant": "Łukasz Łukin",
+    "liczba_projektow": 14,
+    "slug": "ŁUKASZ_ŁUKIN"
+  },
+  {
+    "projektant": "Łukasz  Grzeszczak ",
+    "liczba_projektow": 1,
+    "slug": "ŁUKASZ__GRZESZCZAK_"
+  },
+  {
+    "projektant": "Łukasz  Kotulski",
+    "liczba_projektow": 5,
+    "slug": "ŁUKASZ__KOTULSKI"
+  },
+  {
+    "projektant": "Łukasz  Kotulski ",
+    "liczba_projektow": 7,
+    "slug": "ŁUKASZ__KOTULSKI_"
+  },
+  {
+    "projektant": "Łukasz  Kołbyk ",
+    "liczba_projektow": 1,
+    "slug": "ŁUKASZ__KOŁBYK_"
+  },
+  {
+    "projektant": "Łukasz  Lenczewski",
+    "liczba_projektow": 1,
+    "slug": "ŁUKASZ__LENCZEWSKI"
+  },
+  {
+    "projektant": "Łukasz  Lenczewski ",
+    "liczba_projektow": 2,
+    "slug": "ŁUKASZ__LENCZEWSKI_"
+  },
+  {
+    "projektant": "Łukasz  Sztandera ",
+    "liczba_projektow": 1,
+    "slug": "ŁUKASZ__SZTANDERA_"
+  },
+  {
+    "projektant": "Łukasz  Słaby ",
+    "liczba_projektow": 4,
+    "slug": "ŁUKASZ__SŁABY_"
+  },
+  {
+    "projektant": "Łukasz  Traczyk ",
+    "liczba_projektow": 1,
+    "slug": "ŁUKASZ__TRACZYK_"
+  },
+  {
+    "projektant": "Łukasz  Włódarczak ",
+    "liczba_projektow": 4,
+    "slug": "ŁUKASZ__WŁÓDARCZAK_"
+  },
+  {
+    "projektant": "Łącki Dariusz ",
+    "liczba_projektow": 1,
+    "slug": "ŁĄCKI_DARIUSZ_"
+  },
+  {
+    "projektant": "Żaneta  Maślak   ",
+    "liczba_projektow": 1,
+    "slug": "ŻANETA__MAŚLAK___"
+  },
+  {
+    "projektant": "Żaneta Maślak",
+    "liczba_projektow": 33,
+    "slug": "ŻANETA_MAŚLAK"
+  },
+  {
+    "projektant": "Żaneta Maślak ",
+    "liczba_projektow": 2,
+    "slug": "ŻANETA_MAŚLAK_"
+  },
+  {
+    "projektant": "Żaneta  Maślak",
+    "liczba_projektow": 4,
+    "slug": "ŻANETA__MAŚLAK"
+  },
+  {
+    "projektant": "Żaneta  Maślak ",
+    "liczba_projektow": 1,
+    "slug": "ŻANETA__MAŚLAK_"
+  }
+]

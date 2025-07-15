@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mapa inwestycji HVAC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0f0f11;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    header {
+      background-color: #111827;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    header button {
+      background-color: #1f2937;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    header button:hover {
+      background-color: #374151;
+    }
+    #map {
+      height: calc(100vh - 60px);
+      width: 100%;
+    }
+    .leaflet-popup-content {
+      font-size: 14px;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="filterMap('all')">Wszystko</button>
+    <button onclick="filterMap('2023')">2023</button>
+    <button onclick="filterMap('2024')">2024</button>
+    <button onclick="filterMap('2025')">2025</button>
+    <button onclick="showProjektanci()">Projektanci</button>
+  </header>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    let map = L.map('map').setView([53.4285, 14.5528], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19
+    }).addTo(map);
+
+    let geojsonFile = 'dzialki_HVAC_2023_2025_real.geojson';
+    let allLayers = [];
+
+    fetch(geojsonFile)
+      .then(res => res.json())
+      .then(data => {
+        allLayers = L.geoJSON(data, {
+          onEachFeature: (feature, layer) => {
+            layer.bindPopup(feature.properties.popup);
+            layer.featureRok = feature.properties.rok;
+            layer.featureProjektant = feature.properties.projektant;
+          }
+        }).addTo(map);
+      });
+
+    function filterMap(rok) {
+      map.eachLayer(layer => {
+        if (layer instanceof L.GeoJSON) map.removeLayer(layer);
+      });
+
+      fetch(geojsonFile)
+        .then(res => res.json())
+        .then(data => {
+          const filtered = rok === 'all' ? data.features :
+            data.features.filter(f => f.properties.rok == rok);
+
+          L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+            onEachFeature: (feature, layer) => {
+              layer.bindPopup(feature.properties.popup);
+            }
+          }).addTo(map);
+        });
+    }
+
+    function showProjektanci() {
+      fetch('projektanci.json')
+        .then(res => res.json())
+        .then(projektanci => {
+          let html = "<h3 style='color:white;padding:1rem;'>Projektanci</h3>";
+          projektanci.forEach(p => {
+            html += `<div style='margin:0.5rem 1rem;'>
+              <b>${p.projektant}</b> – ${p.liczba_projektow} projektów
+              <button onclick="filterProjektant('${p.projektant}')" style='margin-left:1rem;'>🔍</button>
+              <a href="?assign=${p.slug}" style='color:#3b82f6;margin-left:0.5rem;'>➕ ADD</a>
+            </div>`;
+          });
+          const w = window.open("", "_blank", "width=400,height=600");
+          w.document.write(`<body style='background:#0f0f11;color:white;font-family:sans-serif;'>${html}</body>`);
+        });
+    }
+
+    function filterProjektant(name) {
+      map.eachLayer(layer => {
+        if (layer instanceof L.GeoJSON) map.removeLayer(layer);
+      });
+
+      fetch(geojsonFile)
+        .then(res => res.json())
+        .then(data => {
+          const filtered = data.features.filter(f => f.properties.projektant === name);
+          L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+            onEachFeature: (feature, layer) => {
+              layer.bindPopup(feature.properties.popup);
+            }
+          }).addTo(map);
+        });
+    }
+  </script>
+</body>
+</html>

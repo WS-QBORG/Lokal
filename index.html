@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
   <style>
@@ -57,7 +58,6 @@
   </header>
   <div id="map"></div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
     let map = L.map('map').setView([53.4285, 14.5528], 8);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -65,69 +65,61 @@
     }).addTo(map);
 
     let geojsonFile = 'dzialki.geojson';
-    let allLayers = [];
+    let markerCluster;
 
-    fetch(geojsonFile)
-      .then(res => {
-        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-        return res.json();
-      })
-      .then(data => {
-        console.log(`✅ Załadowano ${data.features.length} obiektów z pliku GeoJSON.`);
-        allLayers = L.geoJSON(data, {
-          onEachFeature: (feature, layer) => {
-            const popup = feature.properties?.popup || 'Brak opisu';
-            const rok = feature.properties?.rok || 'brak roku';
-            const proj = feature.properties?.projektant || 'brak projektanta';
-            layer.bindPopup(`<b>${proj}</b><br/>Rok: ${rok}<br/>${popup}`);
-            layer.featureRok = rok;
-            layer.featureProjektant = proj;
-          }
-        }).addTo(map);
-      })
-      .catch(error => {
-        console.error("❌ Błąd ładowania GeoJSON:", error);
-        alert("Nie udało się załadować pliku GeoJSON. Sprawdź konsolę (F12 → Console).");
-
-        // Dodaj punkt testowy – czy Leaflet działa w ogóle
-        L.marker([53.4285, 14.5528]).addTo(map)
-          .bindPopup("🔴 Testowy punkt – brak danych GeoJSON");
-      });
-
-    function filterMap(rok) {
-      map.eachLayer(layer => {
-        if (layer instanceof L.GeoJSON) map.removeLayer(layer);
-      });
+    function loadGeoJSONWithFilter(filterFn) {
+      if (markerCluster) map.removeLayer(markerCluster);
+      markerCluster = L.markerClusterGroup();
 
       fetch(geojsonFile)
         .then(res => res.json())
         .then(data => {
-          const filtered = rok === 'all' ? data.features :
-            data.features.filter(f => f.properties.rok == rok);
-          console.log(`🧪 Filtrowanie: ${filtered.length} obiektów dla roku ${rok}`);
+          const filtered = filterFn ? data.features.filter(filterFn) : data.features;
 
-          L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+          const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
             onEachFeature: (feature, layer) => {
               const popup = feature.properties?.popup || 'Brak opisu';
+              const rok = feature.properties?.rok || 'brak roku';
               const proj = feature.properties?.projektant || 'brak projektanta';
-              layer.bindPopup(`<b>${proj}</b><br/>${popup}`);
+              layer.bindPopup(`<b>${proj}</b><br/>Rok: ${rok}<br/>${popup}`);
             }
-          }).addTo(map);
+          });
+
+          markerCluster.addLayer(layer);
+          map.addLayer(markerCluster);
+
+          console.log(`✅ Załadowano ${filtered.length} obiektów.`);
+        })
+        .catch(error => {
+          console.error("❌ Błąd ładowania GeoJSON:", error);
+          alert("Nie udało się załadować pliku GeoJSON. Sprawdź konsolę (F12 → Console).");
+
+          L.marker([53.4285, 14.5528]).addTo(map)
+            .bindPopup("🔴 Testowy punkt – brak danych GeoJSON");
         });
+    }
+
+    function filterMap(rok) {
+      if (rok === 'all') {
+        loadGeoJSONWithFilter(null);
+      } else {
+        loadGeoJSONWithFilter(f => f.properties.rok == rok);
+      }
+    }
+
+    function filterProjektant(name) {
+      loadGeoJSONWithFilter(f => f.properties.projektant === name);
     }
 
     function showProjektanci() {
       fetch('projektanci.json')
-        .then(res => {
-          if (!res.ok) throw new Error(`Błąd JSON: ${res.status}`);
-          return res.json();
-        })
+        .then(res => res.json())
         .then(projektanci => {
           let html = "<h3 style='color:white;padding:1rem;'>Projektanci</h3>";
           projektanci.forEach(p => {
             html += `<div style='margin:0.5rem 1rem;'>
               <b>${p.projektant}</b> – ${p.liczba_projektow} projektów
-              <button onclick="filterProjektant('${p.projektant}')" style='margin-left:1rem;'>🔍</button>
+              <button onclick="window.opener.filterProjektant('${p.projektant}');window.close();" style='margin-left:1rem;'>🔍</button>
               <a href="?assign=${p.slug}" style='color:#3b82f6;margin-left:0.5rem;'>➕ ADD</a>
             </div>`;
           });
@@ -139,24 +131,8 @@
         });
     }
 
-    function filterProjektant(name) {
-      map.eachLayer(layer => {
-        if (layer instanceof L.GeoJSON) map.removeLayer(layer);
-      });
-
-      fetch(geojsonFile)
-        .then(res => res.json())
-        .then(data => {
-          const filtered = data.features.filter(f => f.properties.projektant === name);
-          console.log(`🧪 Projekty projektanta ${name}: ${filtered.length}`);
-          L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-            onEachFeature: (feature, layer) => {
-              const popup = feature.properties?.popup || 'Brak opisu';
-              layer.bindPopup(`<b>${name}</b><br/>${popup}`);
-            }
-          }).addTo(map);
-        });
-    }
+    // Początkowe załadowanie mapy z całością
+    loadGeoJSONWithFilter(null);
   </script>
 </body>
 </html>

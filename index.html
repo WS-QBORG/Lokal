@@ -87,29 +87,51 @@
       background-size: 16px;
       color: black;
     }
+    #sortFilterSelect {
+      width: 100%;
+      padding: 0.4rem;
+      background-color: #111827;
+      color: white;
+      border: 1px solid #374151;
+      border-radius: 6px;
+      font-size: 14px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0.6rem center;
+      background-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    #sortFilterSelect:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+      background-color: #1f2937;
+    }
     .projektant-entry select {
-  width: 100%;
-  padding: 0.4rem;
-  background-color: #111827;
-  color: white;
-  border: 1px solid #374151;
-  border-radius: 6px;
-  font-size: 14px;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 0.6rem center;
-  background-size: 1rem;
-}
-
-.projektant-entry select:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-  background-color: #1f2937;
-}
+      width: 100%;
+      padding: 0.4rem;
+      background-color: #111827;
+      color: white;
+      border: 1px solid #374151;
+      border-radius: 6px;
+      font-size: 14px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0.6rem center;
+      background-size: 1rem;
+    }
+    .projektant-entry select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+      background-color: #1f2937;
+    }
     .projektant-entry .name {
       font-weight: bold;
       color: #3b82f6;
@@ -143,11 +165,6 @@
       margin-top: 0.5rem;
       resize: vertical;
     }
-    .filter-options {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
   </style>
 </head>
 <body>
@@ -158,17 +175,21 @@
     <button onclick="filterMap('2025')">2025</button>
     <button onclick="showProjektanci()">Projektanci</button>
   </header>
+
   <div id="map"></div>
 
   <div id="sidebar">
     <span id="sidebarClose" onclick="hideSidebar()">✖</span>
     <input type="text" id="searchInput" placeholder="Szukaj projektanta..." oninput="filterProjektanciList()" />
-    <div class="filter-options">
-      <button onclick="sortAZ()">🔼  A–Z</button>
-      <button onclick="sortZA()">🔽 Z–A</button>
-      <button onclick="filterAssigned(true)">✅</button>
-      <button onclick="filterAssigned(false)">❌</button>
-    </div>
+    <select id="sortFilterSelect" onchange="applySortFilter()">
+      <option disabled selected>— Sortuj / Filtruj —</option>
+      <option value="az">A–Z</option>
+      <option value="za">Z–A</option>
+      <option value="has-handlowiec">Tylko z handlowcem</option>
+      <option value="no-handlowiec">Tylko bez handlowca</option>
+      <option value="proj-asc">Liczba projektów ↑</option>
+      <option value="proj-desc">Liczba projektów ↓</option>
+    </select>
     <button id="applyFilterBtn" onclick="applyProjektantFilter()">Pokaż wybranych</button>
     <div id="sidebarContent"></div>
   </div>

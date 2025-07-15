@@ -87,10 +87,38 @@ function filterProjektanciList() {
 
 function applyProjektantFilter() {
   const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
-  const names = Array.from(checkboxes).map(cb => cb.value);
+  const selectedNames = Array.from(checkboxes).map(cb => cb.value.trim());
+
+  if (markerCluster) map.removeLayer(markerCluster);
+  markerCluster = L.markerClusterGroup();
+
+  const filtered = geojsonFeatures.filter(f =>
+    selectedNames.includes(f.properties?.projektant?.trim())
+  );
+
+  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+    onEachFeature: (feature, layer) => {
+      const coords = feature.geometry?.coordinates;
+      const lat = coords ? coords[1] : null;
+      const lon = coords ? coords[0] : null;
+
+      let popup = feature.properties?.popup || 'Brak opisu';
+      const rok = feature.properties?.rok || 'brak roku';
+      const proj = feature.properties?.projektant || 'brak projektanta';
+
+      if (lat && lon) {
+        popup += `<br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">📍 Pokaż w Google Maps</a>`;
+      }
+
+      layer.bindPopup(`<b>${proj}</b><br/>Rok: ${rok}<br/>${popup}`);
+    }
+  });
+
+  markerCluster.addLayer(layer);
+  map.addLayer(markerCluster);
   hideSidebar();
-  loadGeoJSONWithFilter(f => names.includes(f.properties.projektant));
 }
+
 
 function sortAZ() {
   projektanciGlobal.sort((a, b) => a.projektant.localeCompare(b.projektant));

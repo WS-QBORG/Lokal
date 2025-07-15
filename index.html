@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <title>Mapa inwestycji HVAC</title>
+  <title>Mapa inwestycji HVAC – DEBUG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <style>
@@ -65,15 +64,30 @@
     let allLayers = [];
 
     fetch(geojsonFile)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+        return res.json();
+      })
       .then(data => {
+        console.log(`✅ Załadowano ${data.features.length} obiektów z pliku GeoJSON.`);
         allLayers = L.geoJSON(data, {
           onEachFeature: (feature, layer) => {
-            layer.bindPopup(feature.properties.popup);
-            layer.featureRok = feature.properties.rok;
-            layer.featureProjektant = feature.properties.projektant;
+            const popup = feature.properties?.popup || 'Brak opisu';
+            const rok = feature.properties?.rok || 'brak roku';
+            const proj = feature.properties?.projektant || 'brak projektanta';
+            layer.bindPopup(`<b>${proj}</b><br/>Rok: ${rok}<br/>${popup}`);
+            layer.featureRok = rok;
+            layer.featureProjektant = proj;
           }
         }).addTo(map);
+      })
+      .catch(error => {
+        console.error("❌ Błąd ładowania GeoJSON:", error);
+        alert("Nie udało się załadować pliku GeoJSON. Sprawdź konsolę (F12 → Console).");
+
+        // Dodaj punkt testowy – czy Leaflet działa w ogóle
+        L.marker([53.4285, 14.5528]).addTo(map)
+          .bindPopup("🔴 Testowy punkt – brak danych GeoJSON");
       });
 
     function filterMap(rok) {
@@ -86,10 +100,13 @@
         .then(data => {
           const filtered = rok === 'all' ? data.features :
             data.features.filter(f => f.properties.rok == rok);
+          console.log(`🧪 Filtrowanie: ${filtered.length} obiektów dla roku ${rok}`);
 
           L.geoJSON({ type: "FeatureCollection", features: filtered }, {
             onEachFeature: (feature, layer) => {
-              layer.bindPopup(feature.properties.popup);
+              const popup = feature.properties?.popup || 'Brak opisu';
+              const proj = feature.properties?.projektant || 'brak projektanta';
+              layer.bindPopup(`<b>${proj}</b><br/>${popup}`);
             }
           }).addTo(map);
         });
@@ -97,7 +114,10 @@
 
     function showProjektanci() {
       fetch('projektanci.json')
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error(`Błąd JSON: ${res.status}`);
+          return res.json();
+        })
         .then(projektanci => {
           let html = "<h3 style='color:white;padding:1rem;'>Projektanci</h3>";
           projektanci.forEach(p => {
@@ -109,6 +129,9 @@
           });
           const w = window.open("", "_blank", "width=400,height=600");
           w.document.write(`<body style='background:#0f0f11;color:white;font-family:sans-serif;'>${html}</body>`);
+        })
+        .catch(err => {
+          console.error("❌ Błąd ładowania projektanci.json:", err);
         });
     }
 
@@ -121,9 +144,11 @@
         .then(res => res.json())
         .then(data => {
           const filtered = data.features.filter(f => f.properties.projektant === name);
+          console.log(`🧪 Projekty projektanta ${name}: ${filtered.length}`);
           L.geoJSON({ type: "FeatureCollection", features: filtered }, {
             onEachFeature: (feature, layer) => {
-              layer.bindPopup(feature.properties.popup);
+              const popup = feature.properties?.popup || 'Brak opisu';
+              layer.bindPopup(`<b>${name}</b><br/>${popup}`);
             }
           }).addTo(map);
         });

@@ -54,12 +54,18 @@ function loadGeoJSONWithFilter(filterFn) {
           const lat = coords ? coords[1] : null;
           const lon = coords ? coords[0] : null;
 
+          const proj = feature.properties?.projektant || 'brak projektanta';
           let popup = feature.properties?.popup || 'Brak opisu';
           const rok = feature.properties?.rok || 'brak roku';
-          const proj = feature.properties?.projektant || 'brak projektanta';
 
           if (lat && lon) {
-            popup += `<br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">\ud83d\udccd Poka\u017c w Google Maps</a>`;
+            popup += `
+              <br><label for="select-${proj}" style="font-size: 13px;">➕ Przypisz handlowca:</label>
+              <br><select id="select-${proj}" onchange="assignPopupProjektant('${proj}', this.value)" style="padding: 3px 6px; font-size: 13px; border-radius: 5px; border: 1px solid #ccc;">
+                <option value="">(brak)</option>
+                ${handlowcy.map(h => `<option value="${h}" ${projektanciAssigned[proj] === h ? 'selected' : ''}>${h}</option>`).join('')}
+              </select>
+              <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">📍 Pokaż w Google Maps</a>`;
           }
 
           layer.bindPopup(`<b>${proj}</b><br/>Rok: ${rok}<br/>${popup}`);
@@ -129,12 +135,18 @@ function applyProjektantFilter() {
       const lat = coords ? coords[1] : null;
       const lon = coords ? coords[0] : null;
 
+      const proj = feature.properties?.projektant || 'brak projektanta';
       let popup = feature.properties?.popup || 'Brak opisu';
       const rok = feature.properties?.rok || 'brak roku';
-      const proj = feature.properties?.projektant || 'brak projektanta';
 
       if (lat && lon) {
-        popup += `<br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">\ud83d\udccd Poka\u017c w Google Maps</a>`;
+        popup += `
+          <br><label for="select-${proj}" style="font-size: 13px;">➕ Przypisz handlowca:</label>
+          <br><select id="select-${proj}" onchange="assignPopupProjektant('${proj}', this.value)" style="padding: 3px 6px; font-size: 13px; border-radius: 5px; border: 1px solid #ccc;">
+            <option value="">(brak)</option>
+            ${handlowcy.map(h => `<option value="${h}" ${projektanciAssigned[proj] === h ? 'selected' : ''}>${h}</option>`).join('')}
+          </select>
+          <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">📍 Pokaż w Google Maps</a>`;
       }
 
       layer.bindPopup(`<b>${proj}</b><br/>Rok: ${rok}<br/>${popup}`);
@@ -177,6 +189,15 @@ function applySortFilter() {
 function assignHandlowiec(projektant, handlowiec) {
   if (handlowiec) projektanciAssigned[projektant] = handlowiec;
   else delete projektanciAssigned[projektant];
+}
+
+function assignPopupProjektant(name, value) {
+  if (value) {
+    projektanciAssigned[name] = value;
+  } else {
+    delete projektanciAssigned[name];
+  }
+  renderProjektanciList(projektanciGlobal);
 }
 
 function showProfile(name) {

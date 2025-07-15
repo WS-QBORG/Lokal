@@ -61,7 +61,7 @@
       maxZoom: 19
     }).addTo(map);
 
-    let geojsonFile = 'dzialki_HVAC_2023_2025_real.geojson';
+    let geojsonFile = 'Lokal/dzialki_HVAC_2023_2025_real.geojson';
     let allLayers = [];
 
     fetch(geojsonFile)
@@ -96,7 +96,7 @@
     }
 
     function showProjektanci() {
-      fetch('projektanci.json')
+      fetch('Lokal/projektanci.json')
         .then(res => res.json())
         .then(projektanci => {
           let html = "<h3 style='color:white;padding:1rem;'>Projektanci</h3>";

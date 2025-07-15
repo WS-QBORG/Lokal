@@ -65,14 +65,6 @@
     #sidebar h3 {
       margin-top: 0;
     }
-    #searchInput {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.4rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 14px;
-    }
     .projektant-entry {
       margin-bottom: 0.5rem;
       border-bottom: 1px solid #374151;
@@ -123,7 +115,6 @@
   <div id="map"></div>
   <div id="sidebar">
     <span id="sidebarClose" onclick="hideSidebar()">✖</span>
-    <input type="text" id="searchInput" placeholder="Szukaj projektanta..." oninput="filterProjektanciList()" />
     <div id="sidebarContent"></div>
     <button id="applyFilterBtn" onclick="applyProjektantFilter()">Pokaż wybranych</button>
   </div>
@@ -180,26 +171,16 @@
         .then(res => res.json())
         .then(projektanci => {
           projektanciGlobal = projektanci.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
-          renderProjektanciList(projektanciGlobal);
+          let html = "<h3>Projektanci</h3>";
+          projektanciGlobal.forEach((p, idx) => {
+            html += `<div class='projektant-entry'>
+              <label><input type='checkbox' value='${p.projektant}' />${p.projektant} – ${p.liczba_projektow} projektów</label>
+              <a href='?assign=${p.slug}'>➕ ADD</a>
+            </div>`;
+          });
+          document.getElementById("sidebarContent").innerHTML = html;
           document.getElementById("sidebar").classList.add("show");
         });
-    }
-
-    function renderProjektanciList(list) {
-      let html = "<h3>Projektanci</h3>";
-      list.forEach(p => {
-        html += `<div class='projektant-entry'>
-          <label><input type='checkbox' value='${p.projektant}' />${p.projektant} – ${p.liczba_projektow} projektów</label>
-          <a href='?assign=${p.slug}'>➕ ADD</a>
-        </div>`;
-      });
-      document.getElementById("sidebarContent").innerHTML = html;
-    }
-
-    function filterProjektanciList() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const filtered = projektanciGlobal.filter(p => p.projektant.toLowerCase().includes(input));
-      renderProjektanciList(filtered);
     }
 
     function applyProjektantFilter() {

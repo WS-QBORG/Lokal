@@ -121,10 +121,10 @@ function showProfile(name) {
   const projekty = geojsonFeatures
     .filter(f => f.properties?.projektant === name)
     .map(f => {
-      const desc = f.properties?.popup || "Brak opisu";
+      const desc = f.properties?.popup?.replace(/`/g, "") || "Brak opisu";
       const rok = f.properties?.rok || "?";
-      return `• ${desc} (${rok})`;
-    });
+      return `<li>${desc} (${rok})</li>`;
+    }).join("");
 
   content.innerHTML = `
     <h3>${name}</h3>
@@ -132,11 +132,12 @@ function showProfile(name) {
     <label>📝 Notatki:</label>
     <textarea onchange="projektanciNotes['${name}'] = this.value">${notes}</textarea>
     <hr>
-    <b>📋 Projekty (${projekty.length}):</b><br><pre>${projekty.join("\n")}</pre>
+    <b>📋 Projekty:</b><ul>${projekty || "<li>Brak projektów</li>"}</ul>
   `;
 
   profile.classList.add("show");
 }
+
 
 function hideSidebar() {
   document.getElementById("sidebar").classList.remove("show");

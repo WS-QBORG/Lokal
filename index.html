@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -8,8 +9,6 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="style.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 </head>
 <body>
   <header>
@@ -39,26 +38,9 @@
     <span id="profileClose" onclick="hideProfile()">✖</span>
     <div id="profileContent"></div>
   </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
   <script src="app.js"></script>
-  <script>
-    // Zamiana domyślnych popupów na ciemne z białym tekstem
-    L.Popup.prototype.options.className = 'custom-dark-popup';
-
-    // MarkerCluster z elegancką kolorystyką
-    const clusterOptions = {
-      iconCreateFunction: function (cluster) {
-        const count = cluster.getChildCount();
-        let size = 'small';
-        if (count >= 100) size = 'large';
-        else if (count >= 10) size = 'medium';
-
-        return new L.DivIcon({
-          html: `<div><span>${count}</span></div>`,
-          className: 'marker-cluster marker-cluster-' + size,
-          iconSize: new L.Point(40, 40)
-        });
-      }
-    };
-  </script>
+  <script src="map-enhancements.js"></script>
 </body>
 </html>

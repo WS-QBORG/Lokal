@@ -20,7 +20,7 @@ function loadGeoJSONWithFilter(filterFn) {
   fetch(geojsonFile)
     .then(res => res.json())
     .then(data => {
-      geojsonFeatures = data.features; // <--- zapisz do globalnej zmiennej
+      geojsonFeatures = data.features; // zapisz do globalnej zmiennej
 
       const filtered = filterFn ? data.features.filter(filterFn) : data.features;
 
@@ -44,8 +44,9 @@ function loadGeoJSONWithFilter(filterFn) {
 
       markerCluster.addLayer(layer);
       map.addLayer(markerCluster);
-    });
-}
+    }); // <--- brakujący nawias zamykający .then
+} // <--- ten nawias był brakujący!
+
 
 function filterMap(rok) {
   loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);

@@ -46,7 +46,6 @@ function loadGeoJSONWithFilter(filterFn) {
       map.addLayer(markerCluster);
     }); // <--- brakujący nawias zamykający .then
 } // <--- ten nawias był brakujący!
-}
 
 function filterMap(rok) {
   loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);

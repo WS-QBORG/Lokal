@@ -149,6 +149,7 @@
   <div id="sidebar">
     <span id="sidebarClose" onclick="hideSidebar()">✖</span>
     <input type="text" id="searchInput" placeholder="Szukaj projektanta..." oninput="filterProjektanciList()" />
+    <button id="applyFilterBtn" onclick="applyProjektantFilter()">Pokaż wybranych</button>
     <div class="filter-options">
       <button onclick="sortAZ()">🎼 A–Z</button>
       <button onclick="sortZA()">🔽 Z–A</button>
@@ -156,7 +157,7 @@
       <button onclick="filterAssigned(false)">❌</button>
     </div>
     <div id="sidebarContent"></div>
-    <button id="applyFilterBtn" onclick="applyProjektantFilter()">Pokaż wybranych</button>
+    
   </div>
 
   <div id="profilePanel">

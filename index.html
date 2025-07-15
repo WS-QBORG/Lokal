@@ -65,6 +65,17 @@
     #sidebar h3 {
       margin-top: 0;
     }
+    #searchInput {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.4rem 0.4rem 0.4rem 2rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 14px;
+      background: white url('data:image/svg+xml;utf8,<svg fill=\"%23999\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M21 21l-4.35-4.35m2.28-5.43a7 7 0 11-14 0 7 7 0 0114 0z\" stroke=\"%23999\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>') no-repeat 6px center;
+      background-size: 16px;
+      color: black;
+    }
     .projektant-entry {
       margin-bottom: 0.5rem;
       border-bottom: 1px solid #374151;
@@ -115,6 +126,7 @@
   <div id="map"></div>
   <div id="sidebar">
     <span id="sidebarClose" onclick="hideSidebar()">✖</span>
+    <input type="text" id="searchInput" placeholder="Szukaj projektanta..." oninput="filterProjektanciList()" />
     <div id="sidebarContent"></div>
     <button id="applyFilterBtn" onclick="applyProjektantFilter()">Pokaż wybranych</button>
   </div>
@@ -171,16 +183,26 @@
         .then(res => res.json())
         .then(projektanci => {
           projektanciGlobal = projektanci.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
-          let html = "<h3>Projektanci</h3>";
-          projektanciGlobal.forEach((p, idx) => {
-            html += `<div class='projektant-entry'>
-              <label><input type='checkbox' value='${p.projektant}' />${p.projektant} – ${p.liczba_projektow} projektów</label>
-              <a href='?assign=${p.slug}'>➕ ADD</a>
-            </div>`;
-          });
-          document.getElementById("sidebarContent").innerHTML = html;
+          renderProjektanciList(projektanciGlobal);
           document.getElementById("sidebar").classList.add("show");
         });
+    }
+
+    function renderProjektanciList(list) {
+      let html = "<h3>Projektanci</h3>";
+      list.forEach(p => {
+        html += `<div class='projektant-entry'>
+          <label><input type='checkbox' value='${p.projektant}' />${p.projektant} – ${p.liczba_projektow} projektów</label>
+          <a href='?assign=${p.slug}'>➕ ADD</a>
+        </div>`;
+      });
+      document.getElementById("sidebarContent").innerHTML = html;
+    }
+
+    function filterProjektanciList() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const filtered = projektanciGlobal.filter(p => p.projektant.toLowerCase().includes(input));
+      renderProjektanciList(filtered);
     }
 
     function applyProjektantFilter() {
@@ -194,7 +216,6 @@
       document.getElementById("sidebar").classList.remove("show");
     }
 
-    // Początkowe załadowanie mapy
     loadGeoJSONWithFilter(null);
   </script>
 </body>

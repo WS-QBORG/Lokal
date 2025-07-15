@@ -49,7 +49,7 @@
       position: fixed;
       top: 60px;
       right: 0;
-      width: 300px;
+      width: 320px;
       max-width: 90vw;
       height: calc(100vh - 60px);
       background-color: #1f2937;
@@ -66,20 +66,23 @@
       margin-top: 0;
     }
     .projektant-entry {
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       border-bottom: 1px solid #374151;
       padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .projektant-entry b {
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    .projektant-entry button, .projektant-entry a {
-      margin-right: 0.5rem;
-      color: #3b82f6;
-      background: none;
-      border: none;
+    .projektant-entry label {
+      flex: 1;
       cursor: pointer;
+    }
+    .projektant-entry input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    .projektant-entry a {
+      color: #3b82f6;
+      margin-left: 0.5rem;
     }
     #sidebarClose {
       position: absolute;
@@ -88,6 +91,16 @@
       color: white;
       cursor: pointer;
       font-size: 18px;
+    }
+    #applyFilterBtn {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.5rem;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -103,6 +116,7 @@
   <div id="sidebar">
     <span id="sidebarClose" onclick="hideSidebar()">✖</span>
     <div id="sidebarContent"></div>
+    <button id="applyFilterBtn" onclick="applyProjektantFilter()">Pokaż wybranych</button>
   </div>
 
   <script>
@@ -113,6 +127,7 @@
 
     let geojsonFile = 'dzialki.geojson';
     let markerCluster;
+    let projektanciGlobal = [];
 
     function loadGeoJSONWithFilter(filterFn) {
       if (markerCluster) map.removeLayer(markerCluster);
@@ -147,27 +162,19 @@
     }
 
     function filterMap(rok) {
-      if (rok === 'all') {
-        loadGeoJSONWithFilter(null);
-      } else {
-        loadGeoJSONWithFilter(f => f.properties.rok == rok);
-      }
-    }
-
-    function filterProjektant(name) {
-      hideSidebar();
-      loadGeoJSONWithFilter(f => f.properties.projektant === name);
+      if (markerCluster) map.removeLayer(markerCluster);
+      loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
     }
 
     function showProjektanci() {
       fetch('projektanci.json')
         .then(res => res.json())
         .then(projektanci => {
+          projektanciGlobal = projektanci.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
           let html = "<h3>Projektanci</h3>";
-          projektanci.forEach(p => {
+          projektanciGlobal.forEach((p, idx) => {
             html += `<div class='projektant-entry'>
-              <b>${p.projektant}</b> – ${p.liczba_projektow} projektów<br/>
-              <button onclick=\"filterProjektant('${p.projektant}')\">🔍</button>
+              <label><input type='checkbox' value='${p.projektant}' />${p.projektant} – ${p.liczba_projektow} projektów</label>
               <a href='?assign=${p.slug}'>➕ ADD</a>
             </div>`;
           });
@@ -176,11 +183,18 @@
         });
     }
 
+    function applyProjektantFilter() {
+      const checked = Array.from(document.querySelectorAll('#sidebar input[type="checkbox"]:checked'));
+      const names = checked.map(cb => cb.value);
+      hideSidebar();
+      loadGeoJSONWithFilter(f => names.includes(f.properties.projektant));
+    }
+
     function hideSidebar() {
       document.getElementById("sidebar").classList.remove("show");
     }
 
-    // Załaduj wszystkie dane na start
+    // Początkowe załadowanie mapy
     loadGeoJSONWithFilter(null);
   </script>
 </body>

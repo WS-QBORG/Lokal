@@ -1,4 +1,3 @@
-// Lista handlowców
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski"];
 
 let map = L.map('map').setView([53.4285, 14.5528], 8);
@@ -9,9 +8,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let geojsonFile = 'dzialki.geojson';
 let markerCluster;
 let projektanciGlobal = [];
-let projektanciAssigned = {}; // { "nazwisko": "handlowiec" }
-let projektanciNotes = {};    // { "nazwisko": "uwagi..." }
-let geojsonFeatures = [];     // Zbiór wszystkich działek, zapisany globalnie
+let projektanciAssigned = {};
+let projektanciNotes = {};
+let geojsonFeatures = [];
 
 function loadGeoJSONWithFilter(filterFn) {
   if (markerCluster) map.removeLayer(markerCluster);
@@ -20,7 +19,7 @@ function loadGeoJSONWithFilter(filterFn) {
   fetch(geojsonFile)
     .then(res => res.json())
     .then(data => {
-      geojsonFeatures = data.features; // zapisz do globalnej zmiennej
+      geojsonFeatures = data.features;
 
       const filtered = filterFn ? data.features.filter(filterFn) : data.features;
 
@@ -44,8 +43,8 @@ function loadGeoJSONWithFilter(filterFn) {
 
       markerCluster.addLayer(layer);
       map.addLayer(markerCluster);
-    }); // <--- brakujący nawias zamykający .then
-} // <--- ten nawias był brakujący!
+    });
+}
 
 function filterMap(rok) {
   loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
@@ -63,13 +62,16 @@ function showProjektanci() {
 
 function renderProjektanciList(list) {
   const container = document.getElementById("sidebarContent");
-  container.innerHTML = "<h3>Projektanci</h3>";
+  container.innerHTML = "";
   list.forEach(p => {
     const assigned = projektanciAssigned[p.projektant] || "";
     const div = document.createElement("div");
     div.className = "projektant-entry";
     div.innerHTML = `
-      <div class="name" onclick="showProfile('${p.projektant}')">${p.projektant} – ${p.liczba_projektow} projektów</div>
+      <label style="display: flex; align-items: center; gap: 0.5rem;">
+        <input type="checkbox" value="${p.projektant}" />
+        <span class="name" onclick="showProfile('${p.projektant}')">${p.projektant} – ${p.liczba_projektow} projektów</span>
+      </label>
       <select onchange="assignHandlowiec('${p.projektant}', this.value)">
         <option value="">(brak)</option>
         ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
@@ -119,7 +121,6 @@ function applyProjektantFilter() {
   hideSidebar();
 }
 
-
 function sortAZ() {
   projektanciGlobal.sort((a, b) => a.projektant.localeCompare(b.projektant));
   renderProjektanciList(projektanciGlobal);
@@ -166,7 +167,6 @@ function showProfile(name) {
   profile.classList.add("show");
 }
 
-
 function hideSidebar() {
   document.getElementById("sidebar").classList.remove("show");
 }
@@ -175,5 +175,4 @@ function hideProfile() {
   document.getElementById("profilePanel").classList.remove("show");
 }
 
-// Początkowy załadunek
 loadGeoJSONWithFilter(null);

@@ -7,179 +7,9 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-  <style>
-    body {
-      margin: 0;
-      background-color: #0f0f11;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: row;
-    }
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background-color: #111827;
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      z-index: 999;
-    }
-    header button {
-      background-color: #1f2937;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    header button:hover {
-      background-color: #374151;
-    }
-    #map {
-      height: 100vh;
-      flex: 1;
-    }
-    .leaflet-popup-content {
-      font-size: 14px;
-      color: black;
-    }
-    #sidebar, #profilePanel {
-      position: fixed;
-      top: 60px;
-      width: 320px;
-      max-width: 90vw;
-      height: calc(100vh - 60px);
-      background-color: #1f2937;
-      overflow-y: auto;
-      transition: transform 0.3s ease;
-      z-index: 998;
-      padding: 1rem;
-    }
-    #sidebar {
-      right: 0;
-      transform: translateX(100%);
-    }
-    #sidebar.show {
-      transform: translateX(0);
-    }
-    #profilePanel {
-      left: 0;
-      transform: translateX(-100%);
-    }
-    #profilePanel.show {
-      transform: translateX(0);
-    }
-    #searchInput {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.4rem 0.4rem 0.4rem 2rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 14px;
-      background: white url('data:image/svg+xml;utf8,<svg fill="%23999" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-4.35-4.35m2.28-5.43a7 7 0 11-14 0 7 7 0 0114 0z" stroke="%23999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat 6px center;
-      background-size: 16px;
-      color: black;
-    }
-    #sortFilterSelect {
-      width: 100%;
-      padding: 0.4rem;
-      background-color: #111827;
-      color: white;
-      border: 1px solid #374151;
-      border-radius: 6px;
-      font-size: 14px;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-      background-repeat: no-repeat;
-      background-position: right 0.6rem center;
-      background-size: 1rem;
-      margin-bottom: 1rem;
-    }
-    #sortFilterSelect:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-      background-color: #1f2937;
-    }
-    .projektant-entry select,
-    .projektant-entry input[type="checkbox"] {
-      width: 100%;
-      padding: 0.4rem;
-      background-color: #111827;
-      color: white;
-      border: 1px solid #374151;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-    .projektant-entry input[type="checkbox"] {
-      appearance: none;
-      width: 1rem;
-      height: 1rem;
-      border: 2px solid #3b82f6;
-      background-color: transparent;
-      cursor: pointer;
-      position: relative;
-    }
-    .projektant-entry input[type="checkbox"]:checked {
-      background-color: #3b82f6;
-    }
-    .projektant-entry input[type="checkbox"]::after {
-      content: "";
-      position: absolute;
-      top: 0.1rem;
-      left: 0.25rem;
-      width: 0.25rem;
-      height: 0.5rem;
-      border: solid white;
-      border-width: 0 0.15rem 0.15rem 0;
-      transform: rotate(45deg);
-      display: none;
-    }
-    .projektant-entry input[type="checkbox"]:checked::after {
-      display: block;
-    }
-    .projektant-entry .name {
-      font-weight: bold;
-      color: #3b82f6;
-      cursor: pointer;
-    }
-    #sidebarClose, #profileClose {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: white;
-      cursor: pointer;
-      font-size: 18px;
-    }
-    #profileClose {
-      right: auto;
-      left: 10px;
-    }
-    #applyFilterBtn {
-      width: 100%;
-      padding: 0.5rem;
-      background-color: #2563eb;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-bottom: 1rem;
-    }
-    textarea {
-      width: 100%;
-      height: 60px;
-      margin-top: 0.5rem;
-      resize: vertical;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -210,5 +40,25 @@
     <div id="profileContent"></div>
   </div>
   <script src="app.js"></script>
+  <script>
+    // Zamiana domyślnych popupów na ciemne z białym tekstem
+    L.Popup.prototype.options.className = 'custom-dark-popup';
+
+    // MarkerCluster z elegancką kolorystyką
+    const clusterOptions = {
+      iconCreateFunction: function (cluster) {
+        const count = cluster.getChildCount();
+        let size = 'small';
+        if (count >= 100) size = 'large';
+        else if (count >= 10) size = 'medium';
+
+        return new L.DivIcon({
+          html: `<div><span>${count}</span></div>`,
+          className: 'marker-cluster marker-cluster-' + size,
+          iconSize: new L.Point(40, 40)
+        });
+      }
+    };
+  </script>
 </body>
 </html>

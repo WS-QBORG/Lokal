@@ -6,11 +6,44 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 let geojsonFile = 'dzialki.geojson';
-let markerCluster;
 let projektanciGlobal = [];
 let projektanciAssigned = {};
 let projektanciNotes = {};
 let geojsonFeatures = [];
+
+markerCluster = L.markerClusterGroup({
+  iconCreateFunction: function (cluster) {
+    const count = cluster.getChildCount();
+    let size = 'small';
+    if (count >= 100) {
+      size = 'large';
+    } else if (count >= 10) {
+      size = 'medium';
+    }
+
+    let color = '#3b82f6'; // granat
+    if (size === 'medium') color = '#9ca3af'; // szarość
+    if (size === 'large') color = '#000000';  // czarny
+
+    return new L.DivIcon({
+      html: `<div style="
+        background-color: ${color};
+        color: white;
+        width: 40px;
+        height: 40px;
+        line-height: 38px;
+        border-radius: 50%;
+        border: 2px solid white;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+      ">${count}</div>`,
+      className: 'marker-cluster',
+      iconSize: [40, 40]
+    });
+  }
+});
+
 
 function loadGeoJSONWithFilter(filterFn) {
   if (markerCluster) map.removeLayer(markerCluster);

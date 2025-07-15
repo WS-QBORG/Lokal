@@ -87,15 +87,29 @@
       background-size: 16px;
       color: black;
     }
-    .projektant-entry {
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid #374151;
-      padding-bottom: 0.5rem;
-    }
     .projektant-entry select {
-      width: 100%;
-      margin-top: 0.3rem;
-    }
+  width: 100%;
+  padding: 0.4rem;
+  background-color: #111827;
+  color: white;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  font-size: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 1rem;
+}
+
+.projektant-entry select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  background-color: #1f2937;
+}
     .projektant-entry .name {
       font-weight: bold;
       color: #3b82f6;

@@ -1,0 +1,209 @@
+❌ Brak współrzędnych: dzialka=321401_1/11.0/110, adres=Bolesława Chrobrego 6ABCD Stargard
+❌ Brak współrzędnych: dzialka=321703_5/31.0/47/2, adres=  
+❌ Brak współrzędnych: dzialka=321410_2/11.0/254, adres=Płatnerzy 5A,B,C Stargard
+❌ Brak współrzędnych: dzialka=326201_1/1025.0/20/32, adres=Piłsudskiego 15 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=320403_4/3.0/377/7, adres=  
+❌ Brak współrzędnych: dzialka=326201_1/1034.0/14/3, adres=Dworcowa 20, 20a, 20b, 20c Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/3015.0/13, adres=Dubois 24 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=321401_1/11.0/251, adres=Mieszka I 5A,B,C Stargard
+❌ Brak współrzędnych: dzialka=326201_1/4196.0/510, adres=Uczniowska 5,5a Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/4196.0/660, adres=Uczniowska 5,5a Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/4196.0/208/16, adres=Uczniowska 5,5a Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1034.0/8/34, adres=Ściegiennego 3 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1033.0/21/51, adres=Piłsudskiego 24a oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1042.0/3/16, adres=Jadwigi 11 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1033.0/13/8, adres=Piastów 4 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2012.0/46/14, adres=Miodowa 84c, 84d Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2157.0/2/22, adres=Ściegiennego 9 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/3011.0/336, adres=Kolonistów 44 i 46 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/3011.0/337, adres=Kolonistów 44 i 46 Szczecin
+❌ Brak współrzędnych: dzialka=321506_2/101.0/461/2, adres=  
+❌ Brak współrzędnych: dzialka=326201_1/1035.0/13/11, adres=Wojciecha 15 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=321410_2/31.0/49/70, adres= Witkwo Stargard
+❌ Brak współrzędnych: dzialka=321410_2/31.0/49/71, adres= Witkwo Stargard
+❌ Brak współrzędnych: dzialka=321401_1/4.0/475, adres=Osiedle Mikołaja Kopernika 3A,B,C,D,E,F, Stargard
+❌ Brak współrzędnych: dzialka=326201_1/1025.0/2/28, adres=Mazurska 22 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=320604_5/3.0/124/1, adres=Długa  Żabnica
+❌ Brak współrzędnych: dzialka=326201_1/2008.0/45/3, adres=Szafera 16, 18 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1034.0/4/25, adres=Jadwigi 4 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1033.0/21/16, adres=Wojska Polskiego 53 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1028.0/2/44, adres=Swarożyca 11 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2008.0/49/4, adres=Szafera 70, 72 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2043.0/16/1, adres=Kaperska 14, 14A Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2043.0/16/2, adres=Kaperska 14, 14A Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2043.0/27, adres=Kaperska 14, 14A Szczecin
+❌ Brak współrzędnych: dzialka=320507_2/1.0/1028, adres=Grunwaldzka 70D,C Pobierowo
+❌ Brak współrzędnych: dzialka=320507_2/1.0/288/4, adres=Grunwaldzka 70D,C Pobierowo
+❌ Brak współrzędnych: dzialka=321101_2/3.0/1529/89, adres=  
+❌ Brak współrzędnych: dzialka=326201_1/1034.0/8/34, adres=Ściegiennego 3 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=321801_4/1.0/376/2, adres=Boh. Westerplatte  Dobra
+❌ Brak współrzędnych: dzialka=326201_1/1032.0/13/24, adres=Rayskiego 25 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2008.0/243/2, adres=Romera 17, 19 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1041.0/17/16, adres=Władysława Łokietka 31 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1041.0/17/41, adres=Władysława Łokietka 31 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/3025.0/40/4, adres=  Szczecin
+❌ Brak współrzędnych: dzialka=320901_2/1.0/35/5, adres=  Kładno
+❌ Brak współrzędnych: dzialka=320902_2/45.0/210/8, adres=  Witolubie
+❌ Brak współrzędnych: dzialka=320905_5/6.0/146/15, adres=  Gąski
+❌ Brak współrzędnych: dzialka=320706_5/30.0/99/15, adres=  Troszyn
+❌ Brak współrzędnych: dzialka=326101_1/7.0/26, adres=  Koszalin
+❌ Brak współrzędnych: dzialka=321204_2/21.0/183, adres=  Jesionowo
+❌ Brak współrzędnych: dzialka=326201_1/1035.0/34/18, adres=Śląska 49 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1035.0/113, adres=Śląska 49 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/3044.0/19/5, adres=Łomżyńska  Szczecin
+❌ Brak współrzędnych: dzialka=320508_4/5.0/210, adres=Lipowa 10 Trzebiatów
+❌ Brak współrzędnych: dzialka=320508_4/5.0/210, adres=Lipowa 10 Trzebiatów
+❌ Brak współrzędnych: dzialka=321102_2/2.0/7/5, adres=  Będargowo
+❌ Brak współrzędnych: dzialka=321102_2/2.0/7/1, adres=  Będargowo
+❌ Brak współrzędnych: dzialka=320804_2/6.0/390/4, adres=  Zieleniewo
+❌ Brak współrzędnych: dzialka=320802_2/31.0/71, adres=  Skoczów
+❌ Brak współrzędnych: dzialka=321101_2/13.0/13/125, adres=  Skarbimierzyce
+❌ Brak współrzędnych: dzialka=321705_2/54.0/14/6, adres=  Strączno
+❌ Brak współrzędnych: dzialka=321306_2/19.0/1422/36, adres=  Warszkowo
+❌ Brak współrzędnych: dzialka=320101_1/6.0/589/2, adres=  Białogard
+❌ Brak współrzędnych: dzialka=320301_5/55.0/408/17, adres=  Czarne Wielkie
+❌ Brak współrzędnych: dzialka=321104_4/2.0/872/6, adres=  Police
+❌ Brak współrzędnych: dzialka=321104_4/2.0/3016/16, adres=  Police
+❌ Brak współrzędnych: dzialka=321406_2/8.0/172/7, adres=  Niedźwiedź
+❌ Brak współrzędnych: dzialka=326201_1/1025.0/17/27, adres=Jana Pawła II 17 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1025.0/66, adres=Jana Pawła II 17 Szczecin
+❌ Brak współrzędnych: dzialka=320604_5/16.0/251, adres=  Sobieradz
+❌ Brak współrzędnych: dzialka=321205_4/4.0/172/1, adres=  Pyrzyce
+❌ Brak współrzędnych: dzialka=320905_5/13.0/239/12, adres=  Mielenko
+❌ Brak współrzędnych: dzialka=321803_2/3.0/142/4, adres=  Mołdawin
+❌ Brak współrzędnych: dzialka=326201_1/4024.0/1, adres=Portowa  Szczecin
+❌ Brak współrzędnych: dzialka=320901_2/16.0/111/1, adres=  Popowo
+❌ Brak współrzędnych: dzialka=321104_4/18.0/76, adres=  Police
+❌ Brak współrzędnych: dzialka=321703_4/1.0/228, adres=Wolności 10 Mirosławiec
+❌ Brak współrzędnych: dzialka=321410_2/32.0/31/48, adres=  Stargard
+❌ Brak współrzędnych: dzialka=320807_2/29.0/1246, adres=  Ustronie Morskie
+❌ Brak współrzędnych: dzialka=321305_2/23.0/147/2, adres=  Postomino
+❌ Brak współrzędnych: dzialka=321410_2/32.0/103/23, adres=  Żarowo
+❌ Brak współrzędnych: dzialka=320703_5/22.0/301/14, adres=  Jarszewo
+❌ Brak współrzędnych: dzialka=320103_5/3.0/123, adres=  Ubysławice
+❌ Brak współrzędnych: dzialka=320103_5/3.0/153, adres=  Ubysławice
+❌ Brak współrzędnych: dzialka=320103_5/3.0/165, adres=  Ubysławice
+❌ Brak współrzędnych: dzialka=320103_5/3.0/173/5, adres=  Ubysławice
+❌ Brak współrzędnych: dzialka=326201_1/4129.0/58/7, adres=Sąsiedzka  Szczecin
+❌ Brak współrzędnych: dzialka=320202_5/12.0/76/3, adres=  Oraczewice
+❌ Brak współrzędnych: dzialka=321401_1/5.0/8, adres=Nasienna 6 Stargard
+❌ Brak współrzędnych: dzialka=321104_4/15.0/1937/145, adres=  Police
+❌ Brak współrzędnych: dzialka=320403_4/3.0/580/10, adres=  Maszewo
+❌ Brak współrzędnych: dzialka=321701_1/1.0/181/1, adres=  Wałcz
+❌ Brak współrzędnych: dzialka=321701_1/1.0/190/3, adres=  Wałcz
+❌ Brak współrzędnych: dzialka=321701_1/1.0/190/4, adres=  Wałcz
+❌ Brak współrzędnych: dzialka=321701_1/1.0/5661/115, adres=  Wałcz
+❌ Brak współrzędnych: dzialka=320507_2/5.0/607, adres=Przy Lesie 1 Śliwin
+❌ Brak współrzędnych: dzialka=320508_5/1.0/413/59, adres=Piratów  Mrzeżyno
+❌ Brak współrzędnych: dzialka=320703_5/1.0/550/48, adres= 27 Wrzosowo
+❌ Brak współrzędnych: dzialka=326201_1/1033.0/111, adres=Wielkopolska 23 Szczecin
+❌ Brak współrzędnych: dzialka=321606_2/59.0/39/3, adres=  Sława
+❌ Brak współrzędnych: dzialka=321501_1/20.0/650/27, adres=  Szczecinek
+❌ Brak współrzędnych: dzialka=326201_1/3092.0/6/13, adres=  Szczecin
+❌ Brak współrzędnych: dzialka=321410_2/31.0/31/17, adres=  Witkowo Pierwsze
+❌ Brak współrzędnych: dzialka=321405_5/1.0/735/8, adres=  Ciemnik
+❌ Brak współrzędnych: dzialka=320706_4/3.0/342, adres=  Wolin
+❌ Brak współrzędnych: dzialka=321410_2/8.0/881/64, adres=  Niedźwiedź
+❌ Brak współrzędnych: dzialka=321201_2/3.0/167/1, adres=  Chabowo
+❌ Brak współrzędnych: dzialka=321201_2/3.0/144/3, adres=  Chabowo
+❌ Brak współrzędnych: dzialka=321205_4/4.0/60/10, adres=  Pyrzyce
+❌ Brak współrzędnych: dzialka=321205_4/4.0/60/22, adres=  Pyrzyce
+❌ Brak współrzędnych: dzialka=321205_4/4.0/60/23, adres=  Pyrzyce
+❌ Brak współrzędnych: dzialka=321205_4/4.0/60/27, adres=  Pyrzyce
+❌ Brak współrzędnych: dzialka=320901_2/19.0/293/35, adres=  Strzeżenice
+❌ Brak współrzędnych: dzialka=320402_9/9.0/127, adres=  Goleniów
+❌ Brak współrzędnych: dzialka=320403_4/3.0/154/2, adres=  Maszewo
+❌ Brak współrzędnych: dzialka=321406_2/12.0/217/39, adres=  Zieleniewo
+❌ Brak współrzędnych: dzialka=320502_4/7.0/98/15, adres=  Gryfice
+❌ Brak współrzędnych: dzialka=320202_4/1.0/191/6, adres=  Choszczno
+❌ Brak współrzędnych: dzialka=321604_2/38.0/121/4, adres=  Nielep
+❌ Brak współrzędnych: dzialka=321501_1/4.0/8/7, adres=  Szczecinek
+❌ Brak współrzędnych: dzialka=320706_5/121.0/190/3, adres=  Kołczewo
+❌ Brak współrzędnych: dzialka=320508_5/16.0/181/65, adres=  Mirosławice
+❌ Brak współrzędnych: dzialka=321410_2/4.0/35/24, adres=  Grzędzice
+❌ Brak współrzędnych: dzialka=321401_1/19.0/63/22, adres=  Stargard
+❌ Brak współrzędnych: dzialka=321401_1/19.0/452, adres=  Stargard
+❌ Brak współrzędnych: dzialka=321101_2/4.0/169/7, adres=  Dołuje
+❌ Brak współrzędnych: dzialka=320703_5/32.0/198, adres=  Górki
+❌ Brak współrzędnych: dzialka=321410_2/21.0/126/2, adres=  Sowno
+❌ Brak współrzędnych: dzialka=321703_5/34.0/290/2, adres= 1 Polne
+❌ Brak współrzędnych: dzialka=320202_4/3.0/824/1, adres=  Radlice
+❌ Brak współrzędnych: dzialka=321306_2/2.0/290/4, adres=  Bobrowiczki
+❌ Brak współrzędnych: dzialka=320601_2/12.0/386/6, adres=  Baniewice
+❌ Brak współrzędnych: dzialka=321410_2/23.0/142/32, adres=  Strachocin
+❌ Brak współrzędnych: dzialka=321410_2/23.0/142/31, adres=  Strachocin
+❌ Brak współrzędnych: dzialka=321701_1/1.0/1383/1, adres=  Wałcz
+❌ Brak współrzędnych: dzialka=320507_2/6.0/172/4, adres=  Niechorze
+❌ Brak współrzędnych: dzialka=321701_1/1.0/5406, adres=Wronia 58A Wałcz
+❌ Brak współrzędnych: dzialka=321701_1/1.0/5407, adres=Wronia 58A Wałcz
+❌ Brak współrzędnych: dzialka=321104_5/2.0/279/19, adres=  Drogoradz
+❌ Brak współrzędnych: dzialka=321104_5/2.0/283, adres=  Drogoradz
+❌ Brak współrzędnych: dzialka=321104_5/2.0/279/6, adres=  Drogoradz
+❌ Brak współrzędnych: dzialka=321104_5/2.0/279/17, adres=  Drogoradz
+❌ Brak współrzędnych: dzialka=321104_5/2.0/279/7, adres=  Drogoradz
+❌ Brak współrzędnych: dzialka=321104_5/2.0/279/20, adres=  Drogoradz
+❌ Brak współrzędnych: dzialka=320104_4/1.0/361/2, adres=  Podborsko
+❌ Brak współrzędnych: dzialka=320407_4/1.0/479/4, adres=  Stepnica
+❌ Brak współrzędnych: dzialka=321501_1/19.0/73/8, adres=  Szczecinek
+❌ Brak współrzędnych: dzialka=321501_1/19.0/76/2, adres=  Szczecinek
+❌ Brak współrzędnych: dzialka=321501_1/19.0/76/3, adres=  Szczecinek
+❌ Brak współrzędnych: dzialka=326201_1/1101.0/1, adres=Wyspiarzy  Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1101.0/2, adres=Wyspiarzy  Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1101.0/34, adres=Wyspiarzy  Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1101.0/10/24, adres=Wyspiarzy  Szczecin
+❌ Brak współrzędnych: dzialka=320205_5/6.0/255/3, adres=  Jagów
+❌ Brak współrzędnych: dzialka=320205_5/6.0/131/2, adres=  Jagów
+❌ Brak współrzędnych: dzialka=320902_2/43.0/57/11, adres=  Witolubie
+❌ Brak współrzędnych: dzialka=326201_1/4092.0/77/2, adres=Magnoliowa  Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2098.0/76, adres=Źródlana 12 Szczecin
+❌ Brak współrzędnych: dzialka=320502_4/1.0/9/5, adres=  Gryfice
+❌ Brak współrzędnych: dzialka=320902_2/44.0/32/13, adres=  Witolubie
+❌ Brak współrzędnych: dzialka=320902_2/44.0/32/52, adres=  Witolubie
+❌ Brak współrzędnych: dzialka=326201_1/4068.0/1/1, adres=  Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/4068.0/4/4, adres=  Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/4068.0/6, adres=  Szczecin
+❌ Brak współrzędnych: dzialka=321406_2/8.0/229, adres=  Niedźwiedź
+❌ Brak współrzędnych: dzialka=320702_4/7.0/462/2, adres=  Golczewo
+❌ Brak współrzędnych: dzialka=321102_2/17.0/102/3, adres=  Smolęcin
+❌ Brak współrzędnych: dzialka=321102_2/17.0/102/4, adres=  Smolęcin
+❌ Brak współrzędnych: dzialka=321102_2/17.0/102/5, adres=  Smolęcin
+❌ Brak współrzędnych: dzialka=320703_5/1.0/550/86, adres=  Wrzosowo
+❌ Brak współrzędnych: dzialka=320502_5/28.0/125/33, adres= 1 Borzyszewo
+❌ Brak współrzędnych: dzialka=321306_2/7.0/195/68, adres=  Kwasowo
+❌ Brak współrzędnych: dzialka=321410_2/5.0/2/42, adres=  Grabowo
+❌ Brak współrzędnych: dzialka=321501_1/13.0/580/4, adres=  Szczecinek
+❌ Brak współrzędnych: dzialka=321701_1/1.0/5411, adres=Wronia  Wałcz
+❌ Brak współrzędnych: dzialka=320402_5/20.0/192/31, adres=  Lubczyna
+❌ Brak współrzędnych: dzialka=320402_5/20.0/192/30, adres=  Lubczyna
+❌ Brak współrzędnych: dzialka=321102_2/13.0/3/14, adres=  Ostoja
+❌ Brak współrzędnych: dzialka=320201_2/11.0/456, adres=  Breń
+❌ Brak współrzędnych: dzialka=320908_2/46.0/247/14, adres=  Niekłonice
+❌ Brak współrzędnych: dzialka=321604_2/51.0/116/3, adres=  Świerznica
+❌ Brak współrzędnych: dzialka=321406_2/4.0/904/32, adres=  Kobylanka
+❌ Brak współrzędnych: dzialka=321101_2/9.0/14/5, adres=  Mierzyn
+❌ Brak współrzędnych: dzialka=320508_4/6.0/466/17, adres=Platynowa 466/17 Trzebiatów
+❌ Brak współrzędnych: dzialka=320706_5/23.0/119/7, adres=  Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1034.0/4/25, adres=Jadwigi 4 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1033.0/21/11, adres=Wojska Polskiego 59 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1034.0/8/22, adres=Ściegiennego 6 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1034.0/8/21, adres=Ściegiennego 6 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=321506_2/101.0/461/2, adres=  
+❌ Brak współrzędnych: dzialka=320503_2/8.0/21/90, adres=  
+❌ Brak współrzędnych: dzialka=326201_1/1052.0/9/14, adres=Koksowa 1,3 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1052.0/9/15, adres=Koksowa 1,3 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2008.0/49/5, adres=Szafera 74, 76 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1024.0/45/5, adres=Pocztowa 40 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/2008.0/243/1, adres=Romera 13, 15 Szczecin
+❌ Brak współrzędnych: dzialka=320302_4/20.0/5/27, adres=Połczyńska 4A, 4B Drawsko Pomorskie
+❌ Brak współrzędnych: dzialka=320302_4/20.0/5/26, adres=Połczyńska 4A, 4B Drawsko Pomorskie
+❌ Brak współrzędnych: dzialka=326201_1/1042.0/21/22, adres=Władysława Jagiełły 18 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1036.0/7/4, adres=Jana Pawła II 3,4 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1036.0/7/5, adres=Jana Pawła II 3,4 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1036.0/7/10, adres=Jana Pawła II 3,4 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1036.0/5/2, adres=Jana Pawła II 3,4 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1036.0/11/2, adres=Jana Pawła II 3,4 Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1033.0/2/55, adres=Piłsudskiego 20B (oficyna) Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/1033.0/21/16, adres=Wojska Polskiego 53 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=321504_5/94.0/199/1, adres=Jeziorna 321504_5 Borne Sulinowo
+❌ Brak współrzędnych: dzialka=326201_1/2254.0/6/15, adres=Bolesława Śmiałego 28 oficyna Szczecin
+❌ Brak współrzędnych: dzialka=326201_1/4019.0/51/1, adres=Wspólna 41, 43 Szczecin

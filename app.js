@@ -1,3 +1,4 @@
+// app.js
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski"];
 
 let map = L.map('map').setView([53.4285, 14.5528], 8);
@@ -6,44 +7,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 let geojsonFile = 'dzialki.geojson';
+let markerCluster;
 let projektanciGlobal = [];
 let projektanciAssigned = {};
 let projektanciNotes = {};
 let geojsonFeatures = [];
-
-markerCluster = L.markerClusterGroup({
-  iconCreateFunction: function (cluster) {
-    const count = cluster.getChildCount();
-    let size = 'small';
-    if (count >= 100) {
-      size = 'large';
-    } else if (count >= 10) {
-      size = 'medium';
-    }
-
-    let color = '#3b82f6'; // granat
-    if (size === 'medium') color = '#9ca3af'; // szarość
-    if (size === 'large') color = '#000000';  // czarny
-
-    return new L.DivIcon({
-      html: `<div style="
-        background-color: ${color};
-        color: white;
-        width: 40px;
-        height: 40px;
-        line-height: 38px;
-        border-radius: 50%;
-        border: 2px solid white;
-        text-align: center;
-        font-weight: bold;
-        font-size: 14px;
-      ">${count}</div>`,
-      className: 'marker-cluster',
-      iconSize: [40, 40]
-    });
-  }
-});
-
 
 function loadGeoJSONWithFilter(filterFn) {
   if (markerCluster) map.removeLayer(markerCluster);
@@ -51,25 +19,24 @@ function loadGeoJSONWithFilter(filterFn) {
   markerCluster = L.markerClusterGroup({
     iconCreateFunction: function (cluster) {
       const count = cluster.getChildCount();
-
       let color = '#3b82f6'; // granatowy
       if (count >= 100) color = '#000000'; // czarny
       else if (count >= 10) color = '#9ca3af'; // szary
 
       return new L.DivIcon({
-        html: `<div style="
-          background-color: ${color};
+        html: <div style="
+          background: ${color};
           color: white;
           width: 40px;
           height: 40px;
-          line-height: 38px;
           border-radius: 50%;
           border: 2px solid white;
           text-align: center;
-          font-weight: bold;
+          line-height: 38px;
           font-size: 14px;
-        ">${count}</div>`,
-        className: 'marker-cluster',
+          font-weight: bold;
+        ">${count}</div>,
+        className: 'custom-cluster',
         iconSize: [40, 40]
       });
     }
@@ -79,7 +46,6 @@ function loadGeoJSONWithFilter(filterFn) {
     .then(res => res.json())
     .then(data => {
       geojsonFeatures = data.features;
-
       const filtered = filterFn ? data.features.filter(filterFn) : data.features;
 
       const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
@@ -88,15 +54,28 @@ function loadGeoJSONWithFilter(filterFn) {
           const lat = coords ? coords[1] : null;
           const lon = coords ? coords[0] : null;
 
-          let popup = feature.properties?.popup || 'Brak opisu';
           const rok = feature.properties?.rok || 'brak roku';
           const proj = feature.properties?.projektant || 'brak projektanta';
+          const inwestycja = feature.properties?.popup || 'Brak opisu';
+          const adres = feature.properties?.adres || 'Brak adresu';
+          const dzialka = feature.properties?.dzialka || 'Brak działki';
+          const assigned = projektanciAssigned[proj] || "";
 
-          if (lat && lon) {
-            popup += `<br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">📍 Pokaż w Google Maps</a>`;
-          }
+          let popup = 
+            <b>${proj}</b><br/>
+            Rok: ${rok}<br/>
+            <b>Inwestycja:</b> ${inwestycja}<br/>
+            <b>Adres:</b> ${adres}<br/>
+            <b>Działka:</b> ${dzialka}<br/>
+            <label>Przypisz handlowca:</label>
+            <select onchange="assignHandlowiecFromPopup('${proj}', this.value)">
+              <option value="">(brak)</option>
+              ${handlowcy.map(h => <option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>).join('')}
+            </select>
+            <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
+          ;
 
-          layer.bindPopup(`<b>${proj}</b><br/>Rok: ${rok}<br/>${popup}`);
+          layer.bindPopup(popup);
         }
       });
 
@@ -104,7 +83,6 @@ function loadGeoJSONWithFilter(filterFn) {
       map.addLayer(markerCluster);
     });
 }
-
 
 function filterMap(rok) {
   loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
@@ -127,16 +105,16 @@ function renderProjektanciList(list) {
     const assigned = projektanciAssigned[p.projektant] || "";
     const div = document.createElement("div");
     div.className = "projektant-entry";
-    div.innerHTML = `
+    div.innerHTML = 
       <label style="display: flex; align-items: center; gap: 0.5rem;">
         <input type="checkbox" value="${p.projektant}" />
         <span class="name" onclick="showProfile('${p.projektant}')">${p.projektant} – ${p.liczba_projektow} projektów</span>
       </label>
       <select onchange="assignHandlowiec('${p.projektant}', this.value)">
         <option value="">(brak)</option>
-        ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+        ${handlowcy.map(h => <option ${h === assigned ? 'selected' : ''}>${h}</option>).join('')}
       </select>
-    `;
+    ;
     container.appendChild(div);
   });
 }
@@ -164,15 +142,28 @@ function applyProjektantFilter() {
       const lat = coords ? coords[1] : null;
       const lon = coords ? coords[0] : null;
 
-      let popup = feature.properties?.popup || 'Brak opisu';
       const rok = feature.properties?.rok || 'brak roku';
       const proj = feature.properties?.projektant || 'brak projektanta';
+      const inwestycja = feature.properties?.popup || 'Brak opisu';
+      const adres = feature.properties?.adres || 'Brak adresu';
+      const dzialka = feature.properties?.dzialka || 'Brak działki';
+      const assigned = projektanciAssigned[proj] || "";
 
-      if (lat && lon) {
-        popup += `<br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">📍 Pokaż w Google Maps</a>`;
-      }
+      let popup = 
+        <b>${proj}</b><br/>
+        Rok: ${rok}<br/>
+        <b>Inwestycja:</b> ${inwestycja}<br/>
+        <b>Adres:</b> ${adres}<br/>
+        <b>Działka:</b> ${dzialka}<br/>
+        <label>Przypisz handlowca:</label>
+        <select onchange="assignHandlowiecFromPopup('${proj}', this.value)">
+          <option value="">(brak)</option>
+          ${handlowcy.map(h => <option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>).join('')}
+        </select>
+        <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
+      ;
 
-      layer.bindPopup(`<b>${proj}</b><br/>Rok: ${rok}<br/>${popup}`);
+      layer.bindPopup(popup);
     }
   });
 
@@ -214,6 +205,11 @@ function assignHandlowiec(projektant, handlowiec) {
   else delete projektanciAssigned[projektant];
 }
 
+function assignHandlowiecFromPopup(projektant, handlowiec) {
+  assignHandlowiec(projektant, handlowiec);
+  renderProjektanciList(projektanciGlobal);
+}
+
 function showProfile(name) {
   const profile = document.getElementById("profilePanel");
   const content = document.getElementById("profileContent");
@@ -223,19 +219,19 @@ function showProfile(name) {
   const projekty = geojsonFeatures
     .filter(f => f.properties?.projektant === name)
     .map(f => {
-      const desc = f.properties?.popup?.replace(/`/g, "") || "Brak opisu";
+      const desc = f.properties?.popup?.replace(//g, "") || "Brak opisu";
       const rok = f.properties?.rok || "?";
-      return `<li>${desc} (${rok})</li>`;
+      return <li>${desc} (${rok})</li>;
     }).join("");
 
-  content.innerHTML = `
+  content.innerHTML = 
     <h3>${name}</h3>
     <p><b>Handlowiec:</b> ${handlowiec}</p>
     <label>📝 Notatki:</label>
     <textarea onchange="projektanciNotes['${name}'] = this.value">${notes}</textarea>
     <hr>
     <b>📋 Projekty:</b><ul>${projekty || "<li>Brak projektów</li>"}</ul>
-  `;
+  ;
 
   profile.classList.add("show");
 }

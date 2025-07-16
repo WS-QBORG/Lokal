@@ -19,12 +19,12 @@ function loadGeoJSONWithFilter(filterFn) {
   markerCluster = L.markerClusterGroup({
     iconCreateFunction: function (cluster) {
       const count = cluster.getChildCount();
-      let color = '#3b82f6'; // granatowy
-      if (count >= 100) color = '#000000'; // czarny
-      else if (count >= 10) color = '#9ca3af'; // szary
+      let color = '#3b82f6';
+      if (count >= 100) color = '#000000';
+      else if (count >= 10) color = '#9ca3af';
 
       return new L.DivIcon({
-        html: <div style="
+        html: `<div style="
           background: ${color};
           color: white;
           width: 40px;
@@ -35,7 +35,7 @@ function loadGeoJSONWithFilter(filterFn) {
           line-height: 38px;
           font-size: 14px;
           font-weight: bold;
-        ">${count}</div>,
+        ">${count}</div>`,
         className: 'custom-cluster',
         iconSize: [40, 40]
       });
@@ -61,7 +61,7 @@ function loadGeoJSONWithFilter(filterFn) {
           const dzialka = feature.properties?.dzialka || 'Brak działki';
           const assigned = projektanciAssigned[proj] || "";
 
-          let popup = 
+          let popup = `
             <b>${proj}</b><br/>
             Rok: ${rok}<br/>
             <b>Inwestycja:</b> ${inwestycja}<br/>
@@ -70,10 +70,10 @@ function loadGeoJSONWithFilter(filterFn) {
             <label>Przypisz handlowca:</label>
             <select onchange="assignHandlowiecFromPopup('${proj}', this.value)">
               <option value="">(brak)</option>
-              ${handlowcy.map(h => <option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>).join('')}
+              ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
             </select>
             <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
-          ;
+          `;
 
           layer.bindPopup(popup);
         }
@@ -105,16 +105,16 @@ function renderProjektanciList(list) {
     const assigned = projektanciAssigned[p.projektant] || "";
     const div = document.createElement("div");
     div.className = "projektant-entry";
-    div.innerHTML = 
+    div.innerHTML = `
       <label style="display: flex; align-items: center; gap: 0.5rem;">
         <input type="checkbox" value="${p.projektant}" />
         <span class="name" onclick="showProfile('${p.projektant}')">${p.projektant} – ${p.liczba_projektow} projektów</span>
       </label>
       <select onchange="assignHandlowiec('${p.projektant}', this.value)">
         <option value="">(brak)</option>
-        ${handlowcy.map(h => <option ${h === assigned ? 'selected' : ''}>${h}</option>).join('')}
+        ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
       </select>
-    ;
+    `;
     container.appendChild(div);
   });
 }
@@ -149,7 +149,7 @@ function applyProjektantFilter() {
       const dzialka = feature.properties?.dzialka || 'Brak działki';
       const assigned = projektanciAssigned[proj] || "";
 
-      let popup = 
+      let popup = `
         <b>${proj}</b><br/>
         Rok: ${rok}<br/>
         <b>Inwestycja:</b> ${inwestycja}<br/>
@@ -158,10 +158,10 @@ function applyProjektantFilter() {
         <label>Przypisz handlowca:</label>
         <select onchange="assignHandlowiecFromPopup('${proj}', this.value)">
           <option value="">(brak)</option>
-          ${handlowcy.map(h => <option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>).join('')}
+          ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
         </select>
         <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
-      ;
+      `;
 
       layer.bindPopup(popup);
     }
@@ -219,19 +219,19 @@ function showProfile(name) {
   const projekty = geojsonFeatures
     .filter(f => f.properties?.projektant === name)
     .map(f => {
-      const desc = f.properties?.popup?.replace(//g, "") || "Brak opisu";
+      const desc = f.properties?.popup?.replace(/</g, "&lt;").replace(/>/g, "&gt;") || "Brak opisu";
       const rok = f.properties?.rok || "?";
-      return <li>${desc} (${rok})</li>;
+      return `<li>${desc} (${rok})</li>`;
     }).join("");
 
-  content.innerHTML = 
+  content.innerHTML = `
     <h3>${name}</h3>
     <p><b>Handlowiec:</b> ${handlowiec}</p>
     <label>📝 Notatki:</label>
     <textarea onchange="projektanciNotes['${name}'] = this.value">${notes}</textarea>
     <hr>
     <b>📋 Projekty:</b><ul>${projekty || "<li>Brak projektów</li>"}</ul>
-  ;
+  `;
 
   profile.classList.add("show");
 }

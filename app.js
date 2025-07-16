@@ -1,3 +1,57 @@
+
+// GitHub API – przypisania handlowców
+const GITHUB_TOKEN = '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';
+const REPO_OWNER = 'WS-QBORG';
+const REPO_NAME = 'Lokal';
+const FILE_NAME = 'handlowcy.json';
+const BRANCH = 'main';
+const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_NAME}`;
+
+let projektanciAssigned = {};
+let fileSha = null;
+
+function cleanName(name) {
+  return name.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+async function loadAssignments() {
+  try {
+    const res = await fetch(API_URL, {
+      headers: { Authorization: `token ${GITHUB_TOKEN}` }
+    });
+    const data = await res.json();
+    fileSha = data.sha;
+    projektanciAssigned = JSON.parse(atob(data.content));
+  } catch (err) {
+    console.error("Nie udało się wczytać przypisań:", err);
+    projektanciAssigned = {};
+  }
+}
+
+async function saveAssignments() {
+  try {
+    const content = btoa(JSON.stringify(projektanciAssigned, null, 2));
+    const res = await fetch(API_URL, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Aktualizacja przypisanych handlowców',
+        content,
+        sha: fileSha,
+        branch: BRANCH
+      })
+    });
+    const data = await res.json();
+    fileSha = data.content.sha;
+  } catch (err) {
+    console.error("Błąd zapisu do GitHuba:", err);
+  }
+}
+
+
 // app.js
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski"];
 

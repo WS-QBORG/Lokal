@@ -200,13 +200,14 @@ function showProfile(name) {
 
   const projekty = geojsonFeatures
     .filter(f => f.properties?.projektant === name)
-    .map((f, index) => {
-      const desc = f.properties?.popup?.replace(/</g, "&lt;").replace(/>/g, "&gt;") || "Brak opisu";
+    .map((f) => {
+      const rodzaj = f.properties?.popup || "Brak opisu";
+      const dzialka = f.properties?.dzialka || "?";
       const rok = f.properties?.rok || "?";
       const coords = f.geometry?.coordinates;
       const lat = coords ? coords[1] : null;
       const lon = coords ? coords[0] : null;
-      return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;">${desc} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
+      return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;"><b>${dzialka}</b> – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
     }).join("");
 
   const liczba = geojsonFeatures.filter(f => f.properties?.projektant === name).length;

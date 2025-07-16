@@ -200,20 +200,26 @@ function showProfile(name) {
 
   const projekty = geojsonFeatures
     .filter(f => f.properties?.projektant === name)
-    .map(f => {
+    .map((f, index) => {
       const desc = f.properties?.popup?.replace(/</g, "&lt;").replace(/>/g, "&gt;") || "Brak opisu";
       const rok = f.properties?.rok || "?";
-      return `<li>${desc} (${rok})</li>`;
+      const coords = f.geometry?.coordinates;
+      const lat = coords ? coords[1] : null;
+      const lon = coords ? coords[0] : null;
+      return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;">${desc} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
     }).join("");
+
+  const liczba = geojsonFeatures.filter(f => f.properties?.projektant === name).length;
 
   content.innerHTML = `
     <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
     <h3>${name}</h3>
     <p><b>Handlowiec:</b> ${handlowiec}</p>
+    <p><b>Liczba projektów:</b> ${liczba}</p>
     <label>📝 Notatki:</label>
     <textarea onchange="projektanciNotes['${name}'] = this.value">${notes}</textarea>
     <hr>
-    <b>📋 Projekty:</b><ul>${projekty || "<li>Brak projektów</li>"}</ul>
+    <b>📋 Projekty:</b><ul style="padding-left: 1.2rem;">${projekty || "<li>Brak projektów</li>"}</ul>
   `;
 
   profile.classList.add("show");

@@ -207,6 +207,7 @@ function showProfile(name) {
     }).join("");
 
   content.innerHTML = `
+    <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
     <h3>${name}</h3>
     <p><b>Handlowiec:</b> ${handlowiec}</p>
     <label>📝 Notatki:</label>

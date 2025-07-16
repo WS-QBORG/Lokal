@@ -1,0 +1,9558 @@
+[
+  {
+    "projektant":"Mikołaj Krajewski",
+    "liczba_projektow":225
+  },
+  {
+    "projektant":"Paweł Przydanek",
+    "liczba_projektow":210
+  },
+  {
+    "projektant":"Karolina Naróg",
+    "liczba_projektow":177
+  },
+  {
+    "projektant":"Agata Prabucka",
+    "liczba_projektow":149
+  },
+  {
+    "projektant":"Paweł Rogalski",
+    "liczba_projektow":146
+  },
+  {
+    "projektant":"Marek Kublicki",
+    "liczba_projektow":145
+  },
+  {
+    "projektant":"Marian Szpilkowski",
+    "liczba_projektow":115
+  },
+  {
+    "projektant":"Dawid Żmudziejewski",
+    "liczba_projektow":112
+  },
+  {
+    "projektant":"Ireneusz Kapejewski",
+    "liczba_projektow":108
+  },
+  {
+    "projektant":"Kazimierz  Błahut",
+    "liczba_projektow":107
+  },
+  {
+    "projektant":"Aleksander  Bohm",
+    "liczba_projektow":105
+  },
+  {
+    "projektant":"Damian Wolant",
+    "liczba_projektow":104
+  },
+  {
+    "projektant":"Ireneusz Krajewski",
+    "liczba_projektow":104
+  },
+  {
+    "projektant":"Adrian Ciepłowski",
+    "liczba_projektow":101
+  },
+  {
+    "projektant":"Magdalena Zgorzelska",
+    "liczba_projektow":98
+  },
+  {
+    "projektant":"Tomasz Tomaniak",
+    "liczba_projektow":91
+  },
+  {
+    "projektant":"Łukasz Kołbyk",
+    "liczba_projektow":89
+  },
+  {
+    "projektant":"Piotr Schulz",
+    "liczba_projektow":76
+  },
+  {
+    "projektant":"Jakub Podstawski",
+    "liczba_projektow":70
+  },
+  {
+    "projektant":"Adam Piotrowicz",
+    "liczba_projektow":70
+  },
+  {
+    "projektant":"Szymon Napierała",
+    "liczba_projektow":70
+  },
+  {
+    "projektant":"Dominik Piesik",
+    "liczba_projektow":69
+  },
+  {
+    "projektant":"Jerzy Sosnowski",
+    "liczba_projektow":69
+  },
+  {
+    "projektant":"Agnieszka Marcinik",
+    "liczba_projektow":66
+  },
+  {
+    "projektant":"Piotr Kruszyński",
+    "liczba_projektow":66
+  },
+  {
+    "projektant":"Monika Grieger",
+    "liczba_projektow":65
+  },
+  {
+    "projektant":"Daniel Hubert",
+    "liczba_projektow":64
+  },
+  {
+    "projektant":"Piotr  Mojsiewicz",
+    "liczba_projektow":63
+  },
+  {
+    "projektant":"Norbert Adamkiewicz",
+    "liczba_projektow":62
+  },
+  {
+    "projektant":"Dariusz Skuza",
+    "liczba_projektow":62
+  },
+  {
+    "projektant":"Tomasz Kondarewicz",
+    "liczba_projektow":60
+  },
+  {
+    "projektant":"Iwona  Całus",
+    "liczba_projektow":60
+  },
+  {
+    "projektant":"Andrzej  Pióro",
+    "liczba_projektow":59
+  },
+  {
+    "projektant":"Michał Skup",
+    "liczba_projektow":58
+  },
+  {
+    "projektant":"Magdalena  Żebrowska",
+    "liczba_projektow":58
+  },
+  {
+    "projektant":"Magdalena  Zgorzelska",
+    "liczba_projektow":58
+  },
+  {
+    "projektant":"Sławomir Sytnik",
+    "liczba_projektow":56
+  },
+  {
+    "projektant":"Agata  Kupracz-Pryputniewicz",
+    "liczba_projektow":56
+  },
+  {
+    "projektant":"Leszek Rajfur",
+    "liczba_projektow":55
+  },
+  {
+    "projektant":"Dawid Sobestjański",
+    "liczba_projektow":55
+  },
+  {
+    "projektant":"Krzysztof Grabowski",
+    "liczba_projektow":55
+  },
+  {
+    "projektant":"Andrzej  Gryciuk",
+    "liczba_projektow":54
+  },
+  {
+    "projektant":"Alicja Wróbel",
+    "liczba_projektow":53
+  },
+  {
+    "projektant":"Damian Ołdziejewski",
+    "liczba_projektow":52
+  },
+  {
+    "projektant":"Piotr Ciechanowski",
+    "liczba_projektow":51
+  },
+  {
+    "projektant":"Monika Daciów-Grabicka",
+    "liczba_projektow":51
+  },
+  {
+    "projektant":"Romuald Pawelski",
+    "liczba_projektow":51
+  },
+  {
+    "projektant":"Anna Dąbrowska",
+    "liczba_projektow":49
+  },
+  {
+    "projektant":"Tadeusz  Połoczański",
+    "liczba_projektow":49
+  },
+  {
+    "projektant":"Dariusz  Skuza",
+    "liczba_projektow":48
+  },
+  {
+    "projektant":"Maria Berlińska-Wytyk",
+    "liczba_projektow":47
+  },
+  {
+    "projektant":"Tomasz Paszczak",
+    "liczba_projektow":47
+  },
+  {
+    "projektant":"Piotr Synowiec",
+    "liczba_projektow":47
+  },
+  {
+    "projektant":"Bernard Bartosik",
+    "liczba_projektow":47
+  },
+  {
+    "projektant":"Mariusz Pawelczak",
+    "liczba_projektow":46
+  },
+  {
+    "projektant":"Karolina Siwek",
+    "liczba_projektow":46
+  },
+  {
+    "projektant":"Stanisław Broź",
+    "liczba_projektow":45
+  },
+  {
+    "projektant":"Marian  Szpilkowski",
+    "liczba_projektow":45
+  },
+  {
+    "projektant":"Jan Kaczmarek",
+    "liczba_projektow":44
+  },
+  {
+    "projektant":"Dorota Dominowska",
+    "liczba_projektow":44
+  },
+  {
+    "projektant":"Marta Kulej-Kaźmierczak",
+    "liczba_projektow":43
+  },
+  {
+    "projektant":"Wioletta Kmita",
+    "liczba_projektow":43
+  },
+  {
+    "projektant":"Leszek Piątek",
+    "liczba_projektow":43
+  },
+  {
+    "projektant":"Włodzimierz Krajczyński",
+    "liczba_projektow":41
+  },
+  {
+    "projektant":"Marta  Wasilewska",
+    "liczba_projektow":40
+  },
+  {
+    "projektant":"Grzegorz Kamiński",
+    "liczba_projektow":40
+  },
+  {
+    "projektant":"Adam Wierzbowski",
+    "liczba_projektow":40
+  },
+  {
+    "projektant":"Iga Gontarz",
+    "liczba_projektow":39
+  },
+  {
+    "projektant":"Ireneusz KAPEJEWSKI",
+    "liczba_projektow":39
+  },
+  {
+    "projektant":"Zbigniew Woźniak",
+    "liczba_projektow":38
+  },
+  {
+    "projektant":"Zdzisław Baranowski",
+    "liczba_projektow":38
+  },
+  {
+    "projektant":"Piotr  Adamowski",
+    "liczba_projektow":38
+  },
+  {
+    "projektant":"Ludmiła Styczyńska",
+    "liczba_projektow":38
+  },
+  {
+    "projektant":"Agata Pietkiewicz",
+    "liczba_projektow":37
+  },
+  {
+    "projektant":"Kamil Kuciński",
+    "liczba_projektow":36
+  },
+  {
+    "projektant":"Jan  Pędziwiatr",
+    "liczba_projektow":36
+  },
+  {
+    "projektant":"Łukasz Traczyk",
+    "liczba_projektow":36
+  },
+  {
+    "projektant":"Stanisław Duda",
+    "liczba_projektow":36
+  },
+  {
+    "projektant":"Zbigniew  Kaczanowicz",
+    "liczba_projektow":36
+  },
+  {
+    "projektant":"Adam  Sterczak",
+    "liczba_projektow":35
+  },
+  {
+    "projektant":"Dariusz Kędzierski",
+    "liczba_projektow":35
+  },
+  {
+    "projektant":"Marta Rymar",
+    "liczba_projektow":34
+  },
+  {
+    "projektant":"Tomasz  Chudyk",
+    "liczba_projektow":34
+  },
+  {
+    "projektant":"Liliana Puzo",
+    "liczba_projektow":34
+  },
+  {
+    "projektant":"Karol  Sekuterski",
+    "liczba_projektow":34
+  },
+  {
+    "projektant":"Katarzyna Frankiewicz",
+    "liczba_projektow":33
+  },
+  {
+    "projektant":"Krzysztof Kania",
+    "liczba_projektow":32
+  },
+  {
+    "projektant":"Mariusz Popiel",
+    "liczba_projektow":32
+  },
+  {
+    "projektant":"Żaneta Maślak",
+    "liczba_projektow":32
+  },
+  {
+    "projektant":"Marek Warchoł",
+    "liczba_projektow":32
+  },
+  {
+    "projektant":"Jan Drożdż",
+    "liczba_projektow":32
+  },
+  {
+    "projektant":"Bogusława Lipik-Wojciech",
+    "liczba_projektow":32
+  },
+  {
+    "projektant":"Jacek Tybińkowski",
+    "liczba_projektow":30
+  },
+  {
+    "projektant":"Miłosz Stachera",
+    "liczba_projektow":29
+  },
+  {
+    "projektant":"Henryk Gawroński",
+    "liczba_projektow":29
+  },
+  {
+    "projektant":"Krzysztof  Gojżewski",
+    "liczba_projektow":29
+  },
+  {
+    "projektant":"Grzegorz Stasik",
+    "liczba_projektow":29
+  },
+  {
+    "projektant":"Kamila Majewska",
+    "liczba_projektow":29
+  },
+  {
+    "projektant":"Tomasz Sobiecki",
+    "liczba_projektow":28
+  },
+  {
+    "projektant":"Marek Konarzewski",
+    "liczba_projektow":28
+  },
+  {
+    "projektant":"Elżbieta Mestl",
+    "liczba_projektow":28
+  },
+  {
+    "projektant":"Kamil  Kostrzewa",
+    "liczba_projektow":27
+  },
+  {
+    "projektant":"Tomasz Rostecki",
+    "liczba_projektow":27
+  },
+  {
+    "projektant":"Małgorzata Spychalska",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Janusz Sowiński",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Paweł  Rogalski",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Janusz Tomaszewski",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Paweł Kaliczyński",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Daniel Strzeszewski",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Marcin Araźny",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Ewa Rybak",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Małgorzata Olszyńska",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Natalia Lichota",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Jan Staniszewski",
+    "liczba_projektow":26
+  },
+  {
+    "projektant":"Karol  Jurga",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Paweł  Kaliczyński",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Monika  Głodowska",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Wiesław  Litwin",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Magdalena Żebrowska",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Iwona Całus",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Anita Fert",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Dariusz Łącki",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Krystyna Nowosielecka",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Małgorzata Wojtaś-Frankowska",
+    "liczba_projektow":25
+  },
+  {
+    "projektant":"Walenty  Kallaur",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Sylwia Kozanecka",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Bolesław Gąsiorowski",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Tomasz Wolanin",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Roger  Kostarczyk",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Monika Machniewska",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Otton Wyszomirski",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Stanisław Padiasek",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Paweł  Przydanek",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Grzegorz Lesner",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Remigiusz Smolik",
+    "liczba_projektow":24
+  },
+  {
+    "projektant":"Danuta Dębska",
+    "liczba_projektow":23
+  },
+  {
+    "projektant":"Leszek Kaszak",
+    "liczba_projektow":23
+  },
+  {
+    "projektant":"Grzegorz Kilian",
+    "liczba_projektow":23
+  },
+  {
+    "projektant":"Andrzej Lorek",
+    "liczba_projektow":23
+  },
+  {
+    "projektant":"Tomasz Brejdak",
+    "liczba_projektow":23
+  },
+  {
+    "projektant":"Jakub Kamiński",
+    "liczba_projektow":23
+  },
+  {
+    "projektant":"Bożena Tołłoczko",
+    "liczba_projektow":23
+  },
+  {
+    "projektant":"Mirosław Górski",
+    "liczba_projektow":22
+  },
+  {
+    "projektant":"Jakub Fidor",
+    "liczba_projektow":22
+  },
+  {
+    "projektant":"Tomasz Wawrzyniak",
+    "liczba_projektow":22
+  },
+  {
+    "projektant":"Angelika Kubicka",
+    "liczba_projektow":22
+  },
+  {
+    "projektant":"Maciej Kubiak",
+    "liczba_projektow":22
+  },
+  {
+    "projektant":"Zofia Lempert van Heerden",
+    "liczba_projektow":22
+  },
+  {
+    "projektant":"Anna Galinowicz",
+    "liczba_projektow":22
+  },
+  {
+    "projektant":"Elżbieta Kulaj-Jakubas",
+    "liczba_projektow":22
+  },
+  {
+    "projektant":"RAFAŁ  CZUCZWARA",
+    "liczba_projektow":22
+  },
+  {
+    "projektant":"Michał Wawrowicz",
+    "liczba_projektow":21
+  },
+  {
+    "projektant":"Marian Rozwarski",
+    "liczba_projektow":21
+  },
+  {
+    "projektant":"Justyna Bernat-Łagoda",
+    "liczba_projektow":21
+  },
+  {
+    "projektant":"Jakub  Fidor",
+    "liczba_projektow":21
+  },
+  {
+    "projektant":"Paweł Zaryczański",
+    "liczba_projektow":21
+  },
+  {
+    "projektant":"Katarzyna Przybysz",
+    "liczba_projektow":21
+  },
+  {
+    "projektant":"Małgorzata Furtała",
+    "liczba_projektow":21
+  },
+  {
+    "projektant":"Karina Szerzeniewska-Pestka",
+    "liczba_projektow":21
+  },
+  {
+    "projektant":"Monika Lis",
+    "liczba_projektow":21
+  },
+  {
+    "projektant":"Michał Grzybowski",
+    "liczba_projektow":20
+  },
+  {
+    "projektant":"Krzysztof Gojżewski",
+    "liczba_projektow":20
+  },
+  {
+    "projektant":"Zbigniew Maruszczak",
+    "liczba_projektow":20
+  },
+  {
+    "projektant":"Tomasz Tkaczenko",
+    "liczba_projektow":20
+  },
+  {
+    "projektant":"Tomasz Bąk",
+    "liczba_projektow":20
+  },
+  {
+    "projektant":"Marek  Konarzewski",
+    "liczba_projektow":20
+  },
+  {
+    "projektant":"Agnieszka  Augustyniak",
+    "liczba_projektow":19
+  },
+  {
+    "projektant":"Bartłomiej Nowak",
+    "liczba_projektow":19
+  },
+  {
+    "projektant":"Patryk Sadkowski",
+    "liczba_projektow":19
+  },
+  {
+    "projektant":"Arkadiusz Rucki",
+    "liczba_projektow":19
+  },
+  {
+    "projektant":"Elżbieta Nowak-Krzywańska",
+    "liczba_projektow":19
+  },
+  {
+    "projektant":"Andrzej Tyszecki",
+    "liczba_projektow":19
+  },
+  {
+    "projektant":"Adrian Wiczk",
+    "liczba_projektow":19
+  },
+  {
+    "projektant":"Krzysztof Małecki",
+    "liczba_projektow":19
+  },
+  {
+    "projektant":"Andrzej     Szwed - Michalski",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Krzysztof Piątkowski",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Monika Daciów - Grabicka",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Leon Zuń",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Konrad Wesołowski",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Piotr Mojsiewicz",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Krzysztof Hodun",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Mateusz Krawczyk",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Tomasz Kieszniewski",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Edward Mickiewicz",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Piotr Sołtys",
+    "liczba_projektow":18
+  },
+  {
+    "projektant":"Przemysław Mielewczyk",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Paweł Winiecki",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Marek Zdanowski",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"MIchał Skup",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Małgorzata Fertała",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Maciej Zombirt",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Mieczysław Lipik",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Krystyna Hańczuk",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Józef Barwiński",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Czesław Złotnik",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Szymon Guza",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Ireneusz Kapajewski",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Marcin Hamerski",
+    "liczba_projektow":17
+  },
+  {
+    "projektant":"Witold Krzyżanowski",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Henryk Rak",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Beata  Talaśka",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Joanna  Grzybowska",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Małgorzata Pruchnicka",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Marta Sajewicz",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Zdzisław  Wawrzczak",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Dagmar Wolak",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Karolina  Naróg",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Janusz Bieleń",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Krzysztof Wysocki",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Maciej Krasowski",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Karolina  Kołodziej",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Jerzy Halek",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Karol Sekuterski",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Aleksandra Kozakiewicz",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Kazimierz Błahut",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Artur Paluch",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Maciej Polak",
+    "liczba_projektow":16
+  },
+  {
+    "projektant":"Grzegorz Madej",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Marek  Wikierski",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Jolanta Skowron",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Marta Miller",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Ewa Kochanowska-Śron",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Ryszard Włodarczyk",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Adam Supiński",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Szymon Zmaczyński",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Aneta Sochalska",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Elżbieta Konarska",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Rafał  Swalski",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Narcyz Gągało",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Mateusz Dołżonek",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Jan Pędziwiatr",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Irena Romysz-Skowyrska",
+    "liczba_projektow":15
+  },
+  {
+    "projektant":"Marcin Olek",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Piotr Dziaczek",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Andrzej  Soroko",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Marek Rabiega",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Joanna Haracz",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Piotr Nowak",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Mikołaj  Krajewski",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Damian  Wolant",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Katarzyna Parzymies",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Kamil  Karwowski",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Marcin  Jóźwiak",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Łukasz Łukin",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Krzysztof Motylak",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Anna Kazimierska",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Ewa Kuberska",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Bartosz Giza",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Józefa  Benłużańska",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Leon Piszczyk",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Mariusz Januszewski",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Jarosław Sawicki",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"LESZEK BOBROWSKI",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Alina Krysiak-Błaszak",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Sebastian Szyszłowski",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Stanisław  Sendera",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Justyna  Karwowska",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Joanna Sypniewska",
+    "liczba_projektow":14
+  },
+  {
+    "projektant":"Marcin Kmita",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Paweł Paczyński",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Szymon  Napierała",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Jerzy Nowak",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Arkadiusz Fiącek",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Bartłomiej Kiereś",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Karol Jurga",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Małgorzata Straszewska",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Daniel Gierszal",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Bogusława Lipik - Wojciech",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Krzysztof Imbra",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Leszek   Bożek",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Adam  Wróbel",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Karolina Koronacka-Hanczewska",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Magdalena Milewska",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Aleksandra Zasimowicz-Zielińska",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Justyna Gidel-Miaskauzy",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Michał Małolepszy",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Jan Pruński",
+    "liczba_projektow":13
+  },
+  {
+    "projektant":"Miłosz Kondraciuk",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Krystian Haraszczuk",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Agata Kaszyca",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Wacław Liniewicz",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Stanisław Machura",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Magdalena Sukiennik",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Krzysztof Romańczuk",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Jan  Bagiński",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Zbigniew  Cieśla",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Mariusz Szczepocki",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Agata Kupracz-Pryputniewicz",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Łukasz  Kotulski",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Beata Bartecka",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Piotr Ćwiek",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Jarosław Połczyński",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Jerzy Ryżyński",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Monika Potomska",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Dariusz Meyer",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Mieczysław Korzeński",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Edyta Waszak",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Michał Bay",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Mirosław Kaup",
+    "liczba_projektow":12
+  },
+  {
+    "projektant":"Dariusz   Skuza",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Józef Tomaszewicz",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Zbigniew Kaczanowicz",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Paweł   Rogalski",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Mariusz Jażdżewski",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Karolina Nowaczyk",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Jacek Krupa",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Roman Wojtków",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Maciej Wańkowski",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Krzysztof Witkowicz",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Robert Rybacki",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Marek Orłowski",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Katarzyna Gauden",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Agata Ukleja",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Przemysław Murawski",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Małgorzata Śliwka",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Karolina Prałat-Orłowska",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Przemysław  Misa",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Adam  Rojek",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Hubert Majchrowski",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"DONATA BUDZYŃSKA",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Bartosz Malinowski",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Paulina Przygodzka",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Jacek Machowina",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Janusz  Sowiński",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Jan Kuzański",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Arkadiusz Czarkowski",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Piotr Majchrzak",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Dariusz Fornal",
+    "liczba_projektow":11
+  },
+  {
+    "projektant":"Krzysztof Arszeluk",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Paweł Żuk",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"MARCIN KRYSZCZYŃSKI",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Katarzyna Krawiecka-Kołaczek",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Katarzyna  Słonina",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Marek  Kublicki",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Renata  Pszczółkowska",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Karol Nieradka",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Andrzej  Małolepszy",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Bogusław Drożdż",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Lilianna Puzo",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Błażej Pachołek",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Bartłomiej Jaskowski",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Piotr  Sobiecki",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Karol Bukowski",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Dariusz Zawadzki",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Mariusz  Popiel",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Henryk Domaradzki",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Stanisław Ziębiński",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Paweł Sterczak",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Artur  Konieczny",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Witold  Pańczak",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Mirosław Hussakowski",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Hanna Safanów",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Agnieszka Ptak-Krawczyk",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Przemysław  Opowicz",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Magdalena Nowak",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Mariusz  Pawelczak",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Damian Wesołowski",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Krzysztof  Grabowski",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Maria Wiśniewska",
+    "liczba_projektow":10
+  },
+  {
+    "projektant":"Daniel  Gierszal",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Maciej Biryło",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Agnieszka Małagocka",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Monika Sobczyk",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Dawid Giese",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Krzysztof  Wysocki",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Arkadiusz Budnicki",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Ryszard Zalewski",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Stanisław Budnicki",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Tadeusz Tylka",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Adam Spychalski",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Jan Konwiński",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Ireneusz  Kapejewski",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Beata Januszewska",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Dorora Dominowska",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Ryszard  Zalewski",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Beata Piotrowska",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Grzegorz Kmiecik",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Jakub Kijewski",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Maciej  Szwed",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"SZYMON BIELENIS",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Andrzej  Marciniak",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Katarzyna Sucholas",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Krzysztof Ciepłowski",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Marcin Czyżewski",
+    "liczba_projektow":9
+  },
+  {
+    "projektant":"Irena Romysz - Skowyrska",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Ireneusz Lech",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Ewa  Rybak",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Jan  Staniszewski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Michał Podleśny",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Piotr Schulc",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Grażyna Szadzewicz",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Andrzej Gaborski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Michał  Opowicz",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Krzysztof Bil",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Roman Góral",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Tomasz Cisek",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Marta Włosek",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Maciej Panek",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Agnieszka Witkowska",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Joanna Marcinkowska",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Leszek Tustanowski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"MAREK CZAPLICKI",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Piotr Krakowiak",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Sławomir Cackowski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Wojciech Błazucki",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Dariusz Mayer",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Wanda Sterczyńska",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Sławomir Zientarski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Tomasz Małachowicz",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Dariusz Wiśniewski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Wojciech Kamiński",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Adrian Drzewucki",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Zbigniew  Augustyniak",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Anna Banasik",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Lesław Pączkowski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Artur Kubicki",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Ryszard Gmyrek",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Lilia Znamirowska",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Mirosław Gołębiowski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Karolina Borkowska",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Krzysztof Kryzar",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Eugeniusz Kasprzak",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Jan  Guz",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Ryszard Długopolski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Jerzy Maciejewski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Maciej Furmańczyk",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Justyna Jurczak-Groth",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Stanisław Walczak",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Jarosław Rogalski",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Hubert Stenzel",
+    "liczba_projektow":8
+  },
+  {
+    "projektant":"Czesław Nowakowski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Rafał Sitko",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Rafał  Wolski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Żaneta  Maślak",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Agata  Pietkiewicz",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Ireneusz Stasiełowicz",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Bogna Tomaszewska",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Maria Berlińska - Wytyk",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Mateusz   Sroka",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Tadeusz Połoczański",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Jacek Nesterowicz",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Jacek Więckowski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Ryszard Moraczewski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Anna Borkowska-Koniewicz",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Donata   Budzyńska",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Anna Jonasik",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Mariusz Janczak",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Bartłomiej  Żaczek",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Jarosław Sajewski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Monika Lichota-Tuszyńska",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Paweł   Choma",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Joanna Chorzępa",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Aleksandra Ejsmont",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Ewa Klincewicz",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Tomasz  Włodarczyk",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Danuta Ziobrowska",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Agnieszka Zakrzewska",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"AGATA PIETKIEWICZ",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"marian szpilkowski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Tomasz Maksymiuk",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Grzegorz Pawłowski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Mateusz Maciejewski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Łukasz Ilkiewicz",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Nela Karpińska",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Tomasz Mikołajczyk",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Marcin Szymański",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Łukasz  Grzeszczak",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Maciej Szwed",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Justyna Karwowska",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Ewa Zemła",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Czesław  Nowakowski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Piotr Baliński",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Stanisław  Padiasek",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"PAWEŁ ROGALSKI",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Adam  Siwczuk",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Edyta Pospychała",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Jarosław Kowalczyk",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Ryszard Kot",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Maciej  Leżuchowski",
+    "liczba_projektow":7
+  },
+  {
+    "projektant":"Beata Nizio-Bobecka",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Grażyna Musiałkowska-Markowska",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Małgorzata Sazon",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Grzegorz Wojewódka",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Sebastian Przeszak",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Andrzej Czerniecki",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Konrad Troszczyński",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Michał  Koman",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Andrzej Pierścionek",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Mateusz  Maciejewski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Przemysław Włosek",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Krzysztof Machowski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Roman Szumny",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Jacek  Lenart",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Andrzej Małolepszy",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Dominika Krupowicz",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Edwin Nowak",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Dawid Witamborski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Marian  Sztoldo",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Tomasz Antolak",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Anna  Siwek Spychalska",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Józef  Błaź",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"SZYMON BEDNAREK",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Bartosz Balejko",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Krzysztof  Tetera",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Witold Pańczak",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Tomasz  Wolanin",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Krzysztof Kalert",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Krzysztof Gogulski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Grzegorz  Łajeczko",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Jerzy  Kutynia",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Agata  Prabucka",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Piotr Kaczorkiewicz",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Maciej Dumin",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Marcin  Nastaj",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Hubert Kotynia",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Marek Antczak",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Rafał Antonowicz",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Łukasz  Kołbyk",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Andrzej Soroko",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Alicja Gajdis-Mateńko",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Krzysztof Lechowicz",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Dariusz  Kędzierski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Bartosz Madajewski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Marek  Antczak",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Krzysztof   Grabowski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Zbigniew Rączka",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Michał  Olejnik",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Ewa Kochanowska- Śron",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Marta Augustyniak",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Daniel Capar",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Artur Musiał",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Kacper Kurdek",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Edyta Garczyńska",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"paweł rogalski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Anna Milżyńska",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Barbara Molęda",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Sławomir Kosowicz",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Maciej  Murawski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Halina Zbijowska",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Grażyna Hamrol",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Rafał Rogalski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Dymitr Szwajlik",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Justyna Jurczak - Groth",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Robert  Rybacki",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Monika Daciów- Grabicka",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Robert Taratuta",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Dariusz Stachura",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Alicja  Wróbel",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Kazimierz Krakowiak",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Michał Grzybkowski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Janusz Podlewski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Jan Szewczyk",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Paweł Krawczyk",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Piotr Czujkowski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Damian Ludka",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Pawweł Rogalski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Katarzyna Krawiecka - Kołaczek",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Przemysław Opowicz",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Violetta  Małowiejska",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Kamil Bocian",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Błażej  Sznurkowski",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Iwona Maciejewicz - Wojtkiewicz",
+    "liczba_projektow":6
+  },
+  {
+    "projektant":"Dariusz Ruta",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Grzegorz Marciniszyn",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Agnieszka   Burak",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Piotr Bach",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Maciej Gardiasz",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Ewa Słynarska",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Jarosław Zacharek",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Anna  Płatek",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Adam Bodnar",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Rafał Swalski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Bogusław  Markowski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Alexandr Nilogov",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Józef Warowy",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Zbigniew   Woźniak",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Mariusz Carło",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Mariusz Maciaszczyk",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Katarzyna Krejczy-Myślicka",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Tomasz Tessikowski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Janusz Piotrowicz",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Marek Komar",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Agnieszka Cofta-Maćkowiak",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Jan Drzazga",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Łukasz  Lenczewski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Stanisław Osiński",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Marek Wikierski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Robert Wowk",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Stanisław  Budnicki",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Gaweł Biedunkiewicz",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Maria  Sobańska",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Marta Krysztofiak",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Dorota  Dominowska",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Mirosław Musiał",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Grzegorz Kanigowski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Bartosz Muszyński",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Monika Korzeniewicz",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Grzegorz  Dybicz",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Norbert   Adamkiewicz",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Romuald Hałas",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Andrzej Łącki",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Wojciech  Podruczny",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Piotr Płaskowicki",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Jakub Tomczak",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Marek Jankowski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Piotr Żolik",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Zdzisław  Baranowski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Jacek  Malinowski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Krzysztof Chromiec",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Maciej  Matyjaszczyk",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Grzegorz Szczepaniak",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Paweł Kuwik",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Janusz  Tomaszewski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Grzegorz  Żandarski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Magdalena Sikorska",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Piotr Końciak",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Krzysztof Nowicki",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Katarzyna Ciupak",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Maria Berlińska- Wytyk",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Maria  Berlińska-Wytyk",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Bogumiła Hejmo",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Lech Wojtasik",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Agnieszka  Przezwicka-Litwin",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Edmund Markowski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Rafał Wolski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Paweł  Choma",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Halina  Ryl",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Bartosz Warzecha",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Piotr  Bezubik",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Tomasz Nagórski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Renata Sarnot",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Arkadiusz Czrkowski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Elżbieta Bieszk",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Jarosław Woźnica",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Maciej  Panek",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Sara Pietrzyk",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Michał Koman",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Marlena Chmielewska",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Katarzyna Krawiecka- Kołaczek",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Katarzyna   Przybysz",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Tomasz  Kondarewicz",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Piotr Fiuk",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Jakub  Wróblewski",
+    "liczba_projektow":5
+  },
+  {
+    "projektant":"Dariusz  Zawadzki",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marta  Rymar",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Adriana Szubryt",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jakub  Kamiński",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Przemysław Petrus",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Janusz Korpalski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Katarzyna Dekert",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Krzysztof Miziński",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Piotr Matysik",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Anna Kiriakou",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Zofia  Kozłowska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Seweryn Duszewski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Zdzisław Rumas",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marian Suława",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Janusz Bieńkowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Adam Niedośpiał",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Karolina Maj-Wasilewska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jan Śron",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jan Jurecki",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marian Pouch",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Ewa  Słynarska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Agnieszka Piecuch",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jerzy Radoń",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jerzy Kutynia",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Krzysztof  Motylak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Paweł Rytlewski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Kamil Karwowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Wojciech Kubiak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Karol Krzątała",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Adrian  Ciepłowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Adam Białczewski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Mateusz Diakowicz",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Paweł Gajdowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Paweł Piekarski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Magdalena  Milewska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"MICHŁ POTYRAŁA",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Katarzyna Sawicz-Jabłońska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Rafał Wojciechowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Ewa Ziętek",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Mateusz Staszewski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"PAweł Rogalski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marek  Racki",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Robert Blicharski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Elzbieta  Serwatka-Bunio",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jolanta Kupień",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Kamil  Bocian",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Mikołaj Kurzak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Emil Rojewski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"PAWEŁ SZMYT",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Anna Zawiła",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Patryk   Sadowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jadwiga Łuczak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marek Grabowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marian Droń",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Bernadeta Jastrzębska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Agnieszka Chromińska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Krzysztof Wieczorek",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Grzegorz Morąg",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Katarzyna Waszkiewicz",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jerzy  Gołębiowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Andrzej  Poźniak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Irena Romysz Skowyrska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Bartosz  Muszyński",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marcin Kuźnik",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Kacper  Szczepaniak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Adam Lewandowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jacek  Antonow",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Rafał  Schmidt",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Natalia Poniewiera",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Arnold Podstawsi",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jacek  Pągowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Tomasz   Paszczak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Leon Altmark",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Maciej Grzywacz",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Magdalena Górska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Tomasz Bernacki",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Leszek Świątek",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Dawid  Bogacz",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Sylwia Białoszycka-Gątarek",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Michał Potyrała",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Piotr Topyła",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Lech Kuroczycki",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Zbigniew Cieśla",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Michał Słobodzian",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marcin  Pierechód",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Irena Romysz- Skowyrska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Szymon Przybylski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Sylwia Dziobkowska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Adam  Supiński",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jacek Stróżewski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Igor  Buszkiewicz",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Przemysław Rybacki",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Bogdan Adamczyk",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Donata Budzyńska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Krzysztof  Kania",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Antoni Kulesza",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Emilia Miller",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Łukasz  Słaby",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Tomassz Wolanin",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Wiktor Gabryliszyn",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Mariusz Świątek",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Sławomir Spławski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Katarzyna  Sawicz – Jabłońska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Kornel Suski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Kamil  Kuciński",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Radosław  Zaborowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Zdzisław Czaplicki",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Piotr Bander",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Anna Płatek",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Ireneusz Skibski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Tomasz Kusznierów",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Anna Popiołek",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Henryk Firley",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Mariusz Szefner",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Mirosław Sołtys",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"ŁUKASZ RESZKA",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Krzysztof  Rzeszutko",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Piotr Adamowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marek  Warchoł",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Magdalena  Słoka - Opłony",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Marzena Newerla",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Ewelina Bożacka",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Agnieszka Kubacka",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Daniel  Strzeszewski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Kamil Luma",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Anna Tannenberg",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Krzysztof Ratajczak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Sławomir Kiersnowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Izabela Pietrzak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Leszek Skrzypczak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Łukasz  Włódarczak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jarosław Piesik",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Karolina Timoszyk",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Łukasz Włodarczak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jerzy   Srtępczyk",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Adam Wróbel",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Arnold Kraska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Agnieszka Marciniak",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Robert  Taratuta",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Wojciech Jabłoński",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Józefa Benłużańska",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Wiktor Gałęzowski",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Michał Kołodziejczyk",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Piotr Sobiecki",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Ryszard Lulek",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Jan Drapała",
+    "liczba_projektow":4
+  },
+  {
+    "projektant":"Miłaida Ogińska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Agnieszka Kusiewicz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Kinga Mielczarek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Dorota Tkaczyk-Jałowiecka",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Michał Szczepanek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marek  Orzechowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marek  Niewiarowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Aleksandra Rus",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Iwona  Kaczyńska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Przemysław Jędrzejczak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marta  Sajewicz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Krzysztof Grabawski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Justyna  Jurczak-Groth",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Grażyna Lokś",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Angelika  Kubicka",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jacek Rossa",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"AGNIESZKA SZARKOWSKA",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Henryk Demkowicz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Aleksander Zaborowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Paulina Puzowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Mirosław  Osiecki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Mariusz Bodnar",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Edward Duda",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Paweł Woźniak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jacek Sudak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Elżbieta  Mestl",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Justyna Tchórowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Grzegorz Małecki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Liliana  Puzo",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Irena Kuznowicz - Bil",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Iwona Piskorz-Wilczak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Justyna  Just",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marek Kuciński",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Janusz Witanowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Ryszard  Długopolski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"MARCIN HAMERSKI",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Maciej Król",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Ernest Kłosowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz Kowalczyk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz Kubicki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Adrian Skwarek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marta  Cieślak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Leszek Marszałek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz Pigulski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"leszek kaszak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marian  Rozwarski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marek Zajączkowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Krystyna Drewnowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tadeusz Siwiec",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Katarzyna  Dorota Krawiecka -Kołaczek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"PAULINA PRZYGODZKA",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"NELA KARPIŃSKA",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz Bukartyk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Maciej Fischer",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Patryk Krupcała",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Wojciech Zawarski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Krzysztof Sokołowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz Serafin",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Artur  Szenwald",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marian Kowalicki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jolanta Duziak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Magdalena Pachocka",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Szymon  Guza",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Agata  Ukleja",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Rafał   Dziedzic",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"PAWEŁ SAWICKI",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Wiesław Litwin",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Rafał Pieńkowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Wojciech  Kosiba",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz Tur",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Piotr Kondraciuk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Joanna Leszkowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"MIKOŁAJ HEIGEL",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Witold Próchnicki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Waldemar Kłosowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Agnieszka Wasylów",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Michał Rakiej",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Piotr Korzeniowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Sylwia Białoszycka - Gątarek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Bartosz  Malinowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Bolesław  Gąsiorowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Halina Szalińska-Gutowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Krzysztof  Wieczorek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Maciej Mikołajczyk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marcin Karczewski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Andrzej   Szwed Michalski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Piotr  Schulz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Waldemar  Jabłoński",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Krzysztof Zalewski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Grzegorz Mstowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Joanna Mazepa",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Elżebieta Mestl",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Lesław Herman",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Ewa   Rybak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Ryszard Pomierczyk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Wojciech Kolesiński",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Roman  Sobolewski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Piotr  Mróz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Bonifacy Rawdanowicz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Przemysław Nowak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Daniel  HUBERT",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marcin Fiuk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Dobrosława Matela-Łapczuch",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Syldatk  Agnieszka",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Kacper Szczepaniak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Dariusz Scheffs",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Łukasz  Traczyk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Wilhelm  Heleniak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Łukasz  Krykant",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"IRENA ROMYSZ - SKOWYRSKA",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jerzy  Skołysz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Natasza Kulesza",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Paweł Grudziński",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Mariusz Ostrowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Mirosława Markowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Michał Stankiewicz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Michał Krajewski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"MICHAŁ WAWROWICZ",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Narcyz  Gągało",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Daniel Sielowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Dominika Siemak-Oses",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Szymon Tymoń",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marcin  Jackowiak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Anna Aurelia Dąbrowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Rafał Młynarczyk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Kamil Skowysz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Zbigniew Augustyniak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Piotr  Synowiec",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Zbigniew  Paszkowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Paweł Wołejsza",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marcin Stepków",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Mirosław  Górski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Andrzej Marek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Andrzej  Oelke",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marzena Jaroszek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"DAGMAR WOLAK",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"DAMIAN WOLANT",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Krzysztof  Bizio",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marcin Kryszczyński",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marian SzpilkowskI",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"IGA GONTARZ",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Stanisław  Duda",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Joanna  Sypniewska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Kamil Krain",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz  Cieplik",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jan Tołłoczko",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"ANITA FERT",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Bogdan Towalewski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Katarzyna  Oźminkowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jan  Drapała",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Włodzimierz Pilarz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz Chmiel",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Andrzej Pióro",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Paweł  Garbacki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Paweł Wachnicki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Agnieszka Augustyniak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jacek Węcławowicz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Stanisław Sobański",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Witold Jurga",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Ludwik Grodek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Anna Sokołowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz Chudyk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Anna Zuska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jolanta Behnke",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Maciej Kwaśniewski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Natalia Kulesza",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Rajmund  Maliszewski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Piotr Kucharski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"MARTA WŁOSEK",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Małgorzata Adamczyk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marcin Tur",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Henryk Markowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Bartosz Fąfara",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Kazimierz   Błahut",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jerzy Świergiel",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Dariusz Jabłoński",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Kazimierz Ratajczak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Piotr Kwiatkowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz  Sobiecki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Ryszard Kowalski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Magdalena Sobolewska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Maria Czubińska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Małgorzata Szalewicz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Paulina Cygnar",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Grzegorz Naszydłowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marcin Ostrowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Przemysław Lak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Renata Strzeszewska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Bernadeta  Jastrzębska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marcin  Czyżewski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz Pieńkowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Magdalena Kulesza",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Artur  Paluch",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Dariusz  Łącki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Maciej Zasada",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Krzysztof Bizio",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Ewa  Dobiecka",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Maria Purczyńska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Maria Mazurek",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Halina Ryl",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Tomasz  Jezierski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Kazimierz Halicki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Łukasz Komorowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Katarzyna Chmara",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Katarzyna Sawicz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Janusz Szawłowski",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Miłosz  Kondraciuk",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Piotr Antoińczak",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Marek  Piasecki",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Błahut Kazimierz",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Jerzy Halen",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Małgorzata Konarska-Stroynowska",
+    "liczba_projektow":3
+  },
+  {
+    "projektant":"Agata   Kupracz-Pryputniewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Agnieszka Jakubczak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bartłomiej Bajon",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Justyna Bartel",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Aleksander Hak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Janusz Nierzwicki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"DOMINIKA KRUPOWICZ",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mieczysław Kaptur",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jurata Szolc",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Roma Barczak - Suszczewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ewa kochanowska- Śron",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ewa Patos",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech Piasecki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin  Kuźnik",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zbigniew Sus",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"TOMASZ RYMAREK",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Błażej Rolbiecki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Krystian Kubiak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ewa Bielesza-Karolak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mateusz Dziakowicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mieczysław Pawlaczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marek Piekarski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jan STaniszewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Oreneusz   Kapejewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"TOMASZ MAŁACHOWICZ",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Sebastian  Przeszak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ewa Ostrowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr  Ciechanowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Janusz Łopieński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Krzysztof  Hoffmann",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Agnieszka Daraszkiewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Schuz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Paweł Kochański",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Urszula Trepaszko",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Witold Nowakowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech Kępka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bartosz Wójcik",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Urszula Kotwicka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Stanisław Skład",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bernard Kulesza",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Roman Rusiecki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jakub Starzyński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marian Boniakowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Paweł  Zaremba",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Miłosz Raczyński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Dariusz  Ruta",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zdzisław Grzebielucha",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Beata  Piotrowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Stanisław Duda Stanisław",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Grażyna Musiałkowska Markowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mirosław  Hussakowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin Durys",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Krzysztof Greczuk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jan Sabiniarz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ryszard Mendrek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mgdalena Zgorzelska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Szymon  Januszewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Maciej Nagórski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"DANUTA  ZIOBROWSKA",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Aleksandra Szymańska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zbigniew Andruszkiewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Eugeniusz Redlarski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin Bonikowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Dorota   Dominowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"WIESŁAW  WIESŁAW REDZIMSKI",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Emilia Kuhn-Ciupak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Przemysław  Sakowski,",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jakub Joachim Podstawski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna Szulc",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zofia Lempert-van Heerden",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Konrad Kałuża",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jolanta Kowalska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Łukasz  Hebel",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Tomasz Kuszznierów",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Magdalena  Górska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jacek Czaplicki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"JÓZEF TOMASZEWICZ",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Norbert Wszytko",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Dawid Mucha",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bohdan  Bay",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Emanuel  Czernik",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Katarzyna  Krawiecka - Kołaczek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Łukasz Mężydło",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"JAN  STANISZEWSKI",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Adam Gierach",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Monika Łuniewska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jerzy Gołębiowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bogusław Dąbrowny",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Danuta Bartoszewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"marek antczak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Sebastian  Szyszłowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Karina Sterzeniewska-Pestka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Artur Kamiński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Antoni  Bukowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Joanna  Kaluba-Kobryńska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Paweł PRZYDANEK",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anatol Prokopczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Iwona  Kosmala-Dumin",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mikołaj Heigel",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bohdan Bay",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mirosław  Gocki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Justyna Bernat - Łagoda",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jakub  Kijewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"JAROSŁAW SAJEWSKI",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Maciej  Nowak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jolanta Urban",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marek  Madejski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Monika Mejka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Sylwia Tupalska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Joanna  Szafarz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr  Kędziora",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"ADRIAN MALCHEREK",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin Kowalski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech Woźniak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marian Podsiodło",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bogna  Tomaszewska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ignacy Janczak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin  Ostrowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marek  Rutkowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wiesław Marciniak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Andrzej Tromski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Rafał Taracha",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Elzbieta Mestl",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Paweł Sąsiadek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Beata  Nizio-Bobecka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Karolina  Nowaczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Konrad Filus",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Agnieszka Przezwicka-Litwin",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"MAREK KUBLICKI",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marta Cieślak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"MAŁGORZATA WOSZCZYK",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Stanisław  Broź",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Tomasz  Tur",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"ANNA FLICIŃSKA",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Stefan Bigda",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Barbara Rachwalska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Fiałkowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Elzbieta  Mestl",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ernest  Ignatowicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jarosław Ostrowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zbigniew  Bednarczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Małgorzata  Wojtaś-Frankowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Danuta  Dębska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bartosz Strugalski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Artur Tępiński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Katarzyna  KRAWIECKA-KOŁACZEK",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"JUSTYNA BERNAT-ŁAGODA",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Elżbieta Klimek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Andrzej Doktor",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Krzysztof RATAJCZAK",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Agnieszka  Cofta-Maćkowiak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Szymon Schmeldel",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Hanna Wróblewska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr  Nowak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Robert Chwyć",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Tomasz Włodarczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bogdan Bloch",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marta Smołka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Hanna Szymczak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Katarzyna  Stręg-Kukuła",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"paweł Przydanek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Barbara Płazińska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Milita Gruszecka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Oktawian Fior",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Joanna Siemionczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Dagmara Doruch-Sobczak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Elżbieta Nowak- Krzywańska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Agnieszka Kuźma",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna Borodyn-Perek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Andrzej Rychlicki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Dariusz  Wiśniewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Antończak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Olgierd  Żwirełło",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Mróz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna Drapała",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Witold Kotarski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Witold  Krzyżanowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Artur Kaczmarek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Krzysztof Śniadek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Waldemar  Dziedziech",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Daniel Gubert",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Małgorzata Wojtaś - Frankowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Andrzej Janusz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wacław  Grynkiewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin  Hamerski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Waldemar Dziedziech",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marek Antoszczyszyn",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Igor Buszkiewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Adam  Wierzbowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Andrzej Rosiński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Katarzyna Koczergo",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marek  Orłowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Urszula Koźlakowska-Kupczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"paweł przydanek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Justyna  Bernat-Łagoda",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Kostas Hrisulidis",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wiesława  Małolepsza-Radzik",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anita Luniak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zbigniew Moździerz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marek  Sietnicki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Paweł Poryzała",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Joanna Czerkawska-Steczek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Sławomir Mućko",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr  Krakowiak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Karolina  Siwek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zbigniew Paszkowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Adrian WICZK",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Michał Majchrzak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marta Hahn",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna  Szymborska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jacek Szewczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Maciej  Dumin",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna Cofta",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Renata  Sarnot",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wiesław Gołacki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Izabela Mazepa",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Tomasz Wolanina",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna Dabrowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zbigniew Czerwiński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"ŁUKASZ MĘŻYDŁO",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Katarzyna FRANKIEWICZ",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Dominik  Piesik",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jakub Joachim",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Maćkiewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Monika Daciów -Grabicka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Krzysztof  Hodun",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna Gramza-Jurek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marta Gajda",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna Kulawińska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Stanisław  Sobański",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna  Karnicka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mariusz  Boderek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech Słupczyński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Małgorzata  Gruszecka – Szczepańska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Grzegorz Kłysz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna Kapusta",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech Smuk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mariusz Jażsżewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Seweryn Podstawski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Franciszek Dyl",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marek  Komar",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech  Kowalczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Beata Nizio - Bobecka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"WIESŁAW  REDZIMSKI",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Michał  Mielnicki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Tadeusz Krepski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Grzegorz  Stasik",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Katarzyna Kuźmicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Leszek Pierzchliński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Przemysław  Kurcin",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Paulina  Kij",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jacek Pawlaczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Sylwia Kołowiecka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Konrad Stelmaszyński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Ciachanowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wiesław Heropolitański",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wiolettta Kmita",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jakub Prajwowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Lidia Bautrel",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jan staniszewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jan Bohatyrewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zbigniew Papajewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mariusz Żamoić",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Joanna Balsewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jakub  Mrotek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anita  Fert",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Dariusz Dygutowicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Kinga Szymczak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Kamila  Majewska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Krzysztof Wierzbicki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Przemysław  Sagan",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Aleksander Żuk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mirosław Strugarek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Elżbieta Hellstein",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ryszard   Włodarczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Michał Kuś",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"mariusz pawelczak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Paulina  Cygnar",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jan  Drożdż",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Beata Hirsz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna   Drygalska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jakub Mrotek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bartosz Żyszkowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Michał Jackowicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Leszek Kassijan-Wicherek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Emilia Kierstan",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bogusław Markowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mariusz Zamoić",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech  Kamiński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mateusz Mocek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jan Pięciński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Tomasz Lassota",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Wiśniewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marek Madejski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"ANNA PŁATEK",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jan  Zych",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Żuchniewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Agnieszka Szarkowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin  Ciechanoicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Adam  Gierach",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Radosław Goliat",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Amelia  Zawora-Smeja",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"paweł kaliczyński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Krzysztof  Niechciał",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Małgorzata Głogowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Małgorzata  Spychalska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Wilento",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Daniel Stożek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Dariusz  Fornal",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Grzegorz Błaszczyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Monika Rudnicka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Agnieszka  Wiercińska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr  Drapikowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Majewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mariusz Dymecki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bartosz Góral",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Stanisław  Skład",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Andrzej Girlikowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Maria Berlińska Wytyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Patryk Ostrowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Małgorzata Belka-Skowrońska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"SZYMON GUZA",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin Banaś",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marta Heigel-Kleka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Adam  Czernikiewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Sławomir Kolanus",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Katarzyna  Frankiewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Szymon Sobolewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jan Pruchniewicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Mikołaj Krajweski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Maciej Nowak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"JAN STANISZEWSKI",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"magdalena zgorzelska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Maciej Zubek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Justyna Jurczuk-Groth",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zdzisław Wawrzczak",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech Pestka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Julian Figuła",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Aleksander  Böhm",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Joanna Szafarz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Leszek  Pupecki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ewa  Kochanowska-Śron",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Monika Daciów-Grabica",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Joanna Wachowicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Waldemar Sikorski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bartosz Krawiec",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Leszek Łoziński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ernest Ignatowicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Karolina Siewk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech Dunaj",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech Hejduk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Ewa Kochanowska- Sron",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Grzegorz  Kilian",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Michał Górczyński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Henryk  Markowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Anna Józefowicz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Beata Pilawska-Głowacka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Teofil Andryka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bartłomiej Lewański",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin  Kurcin",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Stanisław   Padiasek",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Marcin Tomaszewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Arkadiusz  Czarkowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Miłosz  Raczyński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Paweł Sawicki",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Łukasz Kółbyk",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Elżbieta Nowak - Krzywańska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"DARIUSZ SKUZA",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Roman Kałahurski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Bożena  Radacz",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jolanta   Skowron",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jolanta Piechocka",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Piotr Błażejewski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Rafał Sobieraj",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Zbigniew  Majchrowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Wojciech Łapiński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Maciej  Krasowski",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Dagmara Adamy-Kołodziejska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Inga Łagan",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Henryk Saczko",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jan Kogut",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Małgorzata  Olszyńska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Jarosław Dyliński",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Aleksandra Grabowska",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Krzysztof Linke",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Przemysław Sagan",
+    "liczba_projektow":2
+  },
+  {
+    "projektant":"Pawel Przydanek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szmaja  Czesław",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra Zasimowicz - Zielińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksander Żak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Niziołek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Nogaj",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Dobiszewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iwona Ratajczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Natalia Milwicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kamil Kusiński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Janusz Podstawski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Justyna   Markowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna   Przybysz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Staszałek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magda Romanowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MONIKA LIS",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław  Olekszy",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej   Lorek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"bogusław dąbrowny",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dariusz Tyzo",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Cezary  Grabowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Pożoga",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof  Kaufman",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agata  Kaszyca",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kazimierz Krawkowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maciej Matyjaszczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maria Kucharska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Macinik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maria Durczak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Chrobiński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Hubert Jan Stenzel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena  Kużela",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mieczysław Królak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kubicka Angelika",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agata  Kupracz-Pryputniewczi",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Chmielewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dominika  Krupowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maria Czubańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"M Miedzielska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wiesław Krakowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dominika  Kurpowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"KATARZYNA  JANISZEWSKA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata  Straszewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mateusz Rajfur",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Stefan  Wyszomirski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paulina Suchenek-Descours",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan  Pruński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Syldatk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jerzy Fornal",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan pędziwiatr",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Gołębiowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid Wachowiec",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata  Olszańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Bokiewicz-Marchewka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Daniel Szuster",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Gołebiowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jadwiga Klimkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"paweł piekarski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Ryba",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał  Stachera",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Majewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kinga Cichocka-Wróbel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"tomasz Stobiecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iwona Czech-Boroń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam   Wierzbowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid ŻmudziejewskI",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Regina Mowczan",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Łajeczko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Guz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"LesłAw Pączkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Tomaniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław  Lisiecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Żurowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Władysław Piwowarczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zdzisław Ciesek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jarosław Kwiatkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"TOMASZ BĄK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Hanna  Safanów",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Dornik - Morawiec",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mirosław Kończak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Chyła",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Głowacki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Wiśniewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartosz  Balejko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Sobkowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam Rojek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Bąk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szymon  Nawrat",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Lenart",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agata   Pietkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Olejnik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra Zasimowicz- Zielińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mateusz Alcer",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ewelina  Bożacka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Krzyżaniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dominika  Siemak -Oses",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mieczysław  Lipik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Władysław Podgórski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karol Frączek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Wierzbowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid  Karwowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr  Błażejewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"DANUTA ZIOBROWSKA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Kubaczka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta  Spież",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Czarnecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zygmunt Cheba",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Włodzimierz Krajczynski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"HANNA SAFANÓW",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Dybicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MICHAŁ SZCZEPANEK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina   Prałat-Orłowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ewa  Merda",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Nestorowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Nejranowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"karolina Naróg",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr  Topyła",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylwia Mielnik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Taduesz Tylka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogusława  Lipik - Wojciech",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Kuźmiuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MArek Kozieł",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iwona   Całus",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iga   Gontarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Szymański",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz   Marciniszyn",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krystyna  Konwińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Witold Litecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Studziński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zbigniew Wawrzczak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof Wudziński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ryszard  Gmyrek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr  Kondarewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Gaweł  Biedunkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bolesław Gasiorowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Zebrowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Zaryczański",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra Lisowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sławomir  Pawłowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"AGNIESZKA MARCINIAK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jakub Podstwaski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna Skrzypczak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Irena   Romysz-Skowyrska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina  Prałat-Orłowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Cięszczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jakub Kądziela",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jolanta Bartoszewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jakub Drobnik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jolanta Zakrzewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zdzisław Konecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mateusz  Mateńko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Iwanus",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ewa Kochanowska-Śroń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna  Krejczy-Myślicka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Ciechanowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Pawłuszewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogusław  Rysak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karol  Nieradka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"DAMIAN  WOLANT",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Justybna Bernat-Łagoda",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek Rajfurt",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"AGNIESZKA  MARCINIK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maciej  Knuth",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MAriusz Boderek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kinga  Konopka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Konrad  Wolanin",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wilhelm   Heleniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Pawłowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Konopski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mąłgorzata Olszyńska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kamila   Majewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Koniec",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra Płużek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz  Sztandera",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dominik  Mikiprowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Rafał Dutka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartłomiej  Jaskowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr  Buczak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Lidia  Micza",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina  Borkowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mateusz  Mikołajów",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krystyna  Noowosielecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław Piszczek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Małagoscka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"piotr Żolik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Barbara  Garncarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krysttyna Nowosielecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Szczepaniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Ołówka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Twardowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marta Ścibor",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ireneusz Bączkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leon  Zuń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iga Czarniak-Maćkowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Irena Skowyrska-Romysz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Włodarczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agara Prabucka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iwona Kubacka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krystyna   Klich Kierczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalen Zgorzelska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"ANDRZEJ RYCHLICKI",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Kuciak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Beata   Nizio-Bobecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika  Bucholc- Żogała",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna Sęczkowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Cupak-Cassanyer",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dominik Górski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dobrosława Matela - Łapczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Giedrowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Danuta  Ziobrowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Nowaczyk 61\/WPOKK\/UpB\/2011",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Danuta Szymańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna Berlińska-Wytyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Edyta  Osuchowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Kopeć",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna  Tomczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof Parys",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Ubycha",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marian Sztoldo",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wacław Grynkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Hanna Kramarczyk-Leśniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz Wojciechowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"grzegorz cichosz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina  Okoń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dobrosława  Matela Łapczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jalkub Podstawski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"karolina timoszyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Rafał Lazarek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek  Piątek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Henryk Lamach",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dagmara  Adamy-Kołodziejska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Narian Szpilkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta Nowak-Krzywanska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław   Lisiecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Matejek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Samborski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Lidia Kaczorowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Ptak- Krawczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karol   Sekuterski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kacper Maskulak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Roma Barczak-Suszczewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Stanisław Jakubowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Józef Kordas",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech  Jabłoński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Podbucki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dagmara Adamy-Kołodziejski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tadeusz  Szymkowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam  Białczewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Baranowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan  Tołłoczko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Nowakowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Skalski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam Kulikowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta Kojałowicz- Bethke",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kamil Buczkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Eugeniusz Przychoćko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Irena Romysz -Skowyrska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Lucyna Till-Modelewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jerzy  Nowak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Stanisław Gaczyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piiotr Schulz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Stanisław  Broż",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Daniel Mroziński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Damian  Wesołowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek Rostocki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylwia  Kozanecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Waldemar Tobiasz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wanda   Kierebińska-Tokarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Zimnicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Staszewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Zieliński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Szurlej",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tadeusz  Kostoń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek  Ogorzelski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna  Milżyńska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"DARIUSZ KĘDZIERSKI",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"ELŻBIETA KULAJ-JAKUBAS",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Robert  Wowk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MAŁGORZATA WIECZOREK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anita Łazowik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna  Sypniewska – Dysarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jerzy Prokopowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Robert  Kowalski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zbigniew  Ławrynowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marta Nowak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta Kojałowicz-Bethke",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Sobek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylwester Chudy",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr  Koński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Justyna  Ewa Jurczak - Groth",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"TOMASZ CISEK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Miłosz Ruszel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jarosław  Sajewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna Sypkiewicz-Dysarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika  Lis",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Bogucki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Daniel Caper",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MICHAŁ MAŁOLEPSZY",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalenia Żebrowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Włodzimierz Makowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Gubała",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek Tomczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogusław Blum",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam  Piotrowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylwia Dzibkowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Langner",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek  Grabowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek Lasota",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej  Czerniecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna Sypniewska-Dysarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ewa Rzymska-Satkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kinga Mielczrek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jakub Fiodor",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Różański",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Długaszek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"KAMILA MAJEWSKA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jarosłąw Sajewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra Kulbas-Leśniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Staniosław Duda",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Drzazgo",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej  Dylewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Malinowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ireneusz Gołub",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Górski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bożena STACHOWICZ",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna Drygalska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bernadeta Czarna",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Drzyzga",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Cichosz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sławomir Kruk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Waldemar  Anioła",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Justyna Bernat-Ładoga",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Stefan Bara",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jędrzej Kuliński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał  Małolepszy",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tadeusz Szmyt",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kamila Steinke - Libera",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elzbieta Nowak-Krzywańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna  Dąbrowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Patryk  Krupcała",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Gruszecka-Szczepańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina Bernacka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MARCIN MĘDREK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Kumor",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Kruszelnicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maciej Sochanowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Koński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra Koczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MAREK ANTOSZCZYSZYN",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Janusz Rączka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"paweł Kaliczyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Flak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej  Łącki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał  Słobodzian",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid Wolant",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław Michalak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"HENRYK  MARKOWSKI",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Piotrowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Zgorelska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek  Czaplicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"andrzej soroko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kinga i Paweł Świderscy",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kasjan Wielechowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Henryk  Demkowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna Zielińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dominika Kurpowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sławomir Nowicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof  Michniewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł   Zimnicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zofia Lepert van Heerden",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Beata  Bogdanowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina Pykało-Krzywdzińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kazimierz Barnowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz Grześkowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dominika Bogdanowicz-Czaplicka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Miłaida  Ogińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Niebieszczański",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek  Skiba",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Robaszyńska-Markiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Józef Błaźż",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylwia  Smoleń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylawia Kozanecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ewelina  Liberacka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika Dacoów-Grabicka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kinga Konopka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr   Stachowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra Szewczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kmet  Stanisław",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogdan  Idzik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ireneusz  Lech",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agata Kuprowicz - Prypuniewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Kinal",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Radosław Dziubczyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Hanna  Zielińska Stachowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Danuta Grużewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam  Wawoczny",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wiesław Jędryszek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna Sypniewska-Dysiarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna  Stawiniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ryszard Jachtoma",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iwona Maciejewicz-Wojtkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Sachanowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Halina Szalińska - Gutowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dobrosława  Matela - Lapczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dorota Tkaczyk - Jałowiecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta  Konarska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"PIOTR MAJCHRZAK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz   Kochanowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Mielnik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Rosiński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Malgorzata Wojtaś-Frankowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł  Woźniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Zamolski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Roma  Barczak-Suszczkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Kędziora",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena  Nowak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam Nogaj",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz  Morąg",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Kozanecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Ptak - Krawczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maciej  Gardiasz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Kopański",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Julian  Iwicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kamil Burblis",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alicja Gajdis-Matenko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piątek Leszek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna Karnicka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech  Łapiński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Witold Malmon",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł  Boduch",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Lucyna  TiLL-Modelewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"DARIUSZ ZAWADZKI",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ewa Rogowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid Zmudziejewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Damian Dudek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krystian  Haraszczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Edward  Kozina",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Sobecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof Grzegorzewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kamil  Paszek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Barbara Mikołajczak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dariusz   Kędzierski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Janusz Barnaś",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ewa Stańczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylwia Dziobowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marta Starzyńska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Cajgner-Olędzka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Skwara",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Daniel Kisała",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogdan Wencel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek  MALECHA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Prażuch",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agata Kurpacz Pryputniewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta Mstl",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Kramer",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Portalski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Irena Kuznowicz-Bil",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Halina Rutyna",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Piotrowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna  Burysz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna  Oleksińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta Kojałowicz - Bethke",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Guza Szymon",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Patryk  Sadkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szymon Nawrot",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sławomir Zwiefka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Sobecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Łysio",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Piwek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Galubińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maciej Tomasz Zasada",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra  Rus",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wiktor  Gabryliszyn",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"agata Ukleja",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam   Sterczak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Lange",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Janusz Wójcik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MARIA  BERLIŃSKA-WYTYK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kacper Baradziej",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcelina  Szubert-Więckowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Brejdak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek   Piasecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Kozik-Niesterok",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra  Mazij",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maciej krzymień",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Słoka-Opłotny",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra  Zasimowicz-Zielińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grażyna Łopacińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Artur  Bieńkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna Szadkowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jerzy  Sosonowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna DEKERT",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta  Sudoł-Czubaj",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek  Jarych",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Gromacki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Trafas",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina Łakis",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna   Haracz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Renata Słowik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbeita Mestl",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Jacyniewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek  Surudo",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dobrosława Matela-łapczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Kulczycki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jarosław Włodarczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MARIA WIŚNIEWSKA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paulina Żukowska-Ptak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Szlingiert",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta   Nowak-Krzywańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marian Sziplkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Łaniucha",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra Nowik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Paszkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Rafał Szpilkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Sietnicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta  Kojałowicz- Bethke",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Władysław Kostiw",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Rafał Lubowicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Beata Falarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Rucka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Furmanek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Nasiłowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata  Sazon",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Henryk  Gawroński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka  Bokiewicz-Marchewka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jutyna Karwowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Grzewka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"JACEK KRUPA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kinga  Mielczarek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agata Zielińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"pAWEŁ Kuwik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"ZDZISŁAW BARANOWSKI",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Ryba",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Rymer",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata  Gruszecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Witold Krzyażanowki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Danuta Ziorbowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mateusz Bogusz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Hendzlik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"ADAM  SPYCHALSKI",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid  Żmudziejewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Dymek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sławomir  Spławski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zbigniew Mike",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Żandarski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław  Petrus",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Robert  Grzywnowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ignacy Żabniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aneta Mandes-Woźniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kamil Zielazek  Kamil Zielazek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dariusz Ćwilich",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Artur Marciniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alicja Gajdis - Mateńko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maria Sajewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Słup",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika   Lis",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krystain  Haraszczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Jackowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Kolbyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Barbara Garncarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sebastian Lisiecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Wieczorek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Olejnik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof Łojewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"tomasz pożoga",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wioletta  Kmita",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina Timoszczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dorota Sukiennik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Emilia Pietrzak-Kurzyńska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Bekas",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Arkadiusz  Rucki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam   Kotarski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Twardowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krajewski Mikołaj",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna  Drygalska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grażyna  Musiałkowska-Markowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Józef Kwiatkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Julian Iwicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Daniel  Hubert",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mateusz Moskalewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna  Chmielewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marian   Szpilkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej  Szymkowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Przyadanek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Zawadzki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Małogocka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech   Niewiadomski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Szpinda",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz Kaniewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam Mickiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina Prałat- Orłowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Sawicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina Okoń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz Cadler",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał  Warowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zofia Kozłowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz Boderek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jarosław Krupecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartłomiej Komar",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Eugeniusz Gauza",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Krasiński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"elżbieta konarska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ireneusz Staciełowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kinga  Cichocka - Wróbel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek Rostecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek Piatek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kubicki Artur",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika Daciow-Grabicka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ryszard Gąsior",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Juliusz Dudniczek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Czerwonka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MARTA  BEJNAR-BEJNAROWICZ",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Drelichowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zbigniew Cieślak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dobrosława  Matela - Łapczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika  Lichota Tuszyńska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alicja Markowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr  Majchrzak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek Piątkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka  Ogrodowczyk-Gruszczyńska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Wojtaś-Grankowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sebastian Jóźwiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jolanta Szymańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina   Naróg",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Stawniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna  Dubicka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Feodorów",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogdan  Mrozowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Wajs",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Błauciak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Konrad Matuszewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek  Tustanowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika Majek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alicja Woźnica - Kicińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz Olszewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Narcyz  Gągąło",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tadeusz Orczyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jerzy  Świerczak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"HANNA WRÓBLEWSKA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wiesław Skrzypczak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"DANUTA LIZAKOWSKA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Justyna Widawska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Patryk  Pniewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tamara Możejewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"KATARZYNA  FRANKIEWIC",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław Dudziński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylwia Kolasińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maja Sajewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Ciszewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Konrad Roszak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof Paszkowski-Thurow",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"ARKADIUSZ FIĄCEK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika Lichota-Tuszyńśka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Stanisław Tudrujek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Eugeniusz Siwko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mirosław  Błoniarz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jolanta Czopur",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karina Szerzeniewska - Pestka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aneta Mostowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alicja  Gajdis - Mateńko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław   Lak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leon  Piszczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wiktor Panczew",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Leszek  Rajfur",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika  Zygmunt",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Zakrzewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Błażej Szurkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Urszula  Koźlakowska - kupczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marta  Włosek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"TOMASZ WOLANIN",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta  Nowak - Krzywańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ryszard Madejski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Partyk Sadkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof Jerzy  Wolski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jolanta  Urban",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid Rotman",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka  Marcinik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bieszk Elżbieta",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ruyszard Zalewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paulina Kij",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Roszczyc",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylwia Smoleń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Edward Koźma",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dariusz  Łukowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paulina  Puzowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sylwia kozanecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"ryszard Gmyrek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Pakulska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zenon Mazurek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka  Szustkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina Prałat - Orłowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Justyna   Just",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz  Januszewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Beata Talaśka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Matławski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Hanna Borninska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jarosław  Połczyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maria Berli8ńska-Wytyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"wojciech słupczyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"JOanna Sypniewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Mibrandt",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna  Tytuła",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Slamslaw  Skiad",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Polak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maciej  Wańkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wopjciech Strzeszewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartosz  Giza",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid Nocoń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Rafał  Sawicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"PIOTR CIECHANOWSKI",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"RAJMUND RINK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Stanisław Stasik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Stefan Słoniecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam Borecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jarosław Nowicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MIROSŁAW  KOŃCZAK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech   Pawłowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław Łukasiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta Serwatka-Budnio",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid Chojnacki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bożena Radacz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartłomiej Stąpór",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek  Woszczyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Zawisza",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Kaczamarek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna Dziel-Jasek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł  Dutkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Kulczyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mikołaj KRajewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Roksana  Kiełbasa",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Romuald Saczewa",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Barbara  Molęda",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"AGnieszka Marcinik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tadeusz Kostoń",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jolanta Pawłowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adrian  Górecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Andrzejuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Zalewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"KATARZYNA KUŹMICZ",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Kapłan",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Renata Gajer-Hackemer",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Stępień",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Plutowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wacław Andrzej Szczuchniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Paterkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szymon Hofman",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Waldemar Bala",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika Mizińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksander  Michalski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wiktora  Zawora",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dominika  Skrobiszewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szymon Domagalski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Izabela Kozłowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Suchodolski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna Banaszkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wiesława  Szczurowska-Chudecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Kołodziejska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ryszard Koniarek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna  Sawicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartosz Bernacki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Syryca",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krysztof Gogulski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Beata Wierna- Figiel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dorota Krych",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Roman Sobolewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Romuald  Hałas",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr  Wilento",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Odor",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka PIECUCH",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Artur Litwin",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bożena Gniewosz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Piotrowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof Gajewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz  Bodnar",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marta  Rosada Mataczyńska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"KAROLINA NARÓG",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alicja Wróbrl",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Kryzar",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Przudanek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan  Kogut",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Traczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"MAŁGORZATA PRUCHNICKA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iwona Wierzbicka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin  Sołtysek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Pronobis",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"SZYMON ZMACZYŃSKI",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łącki Dariusz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek  Caban",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szymon Diering",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agata Kupracz-Pryputyniewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Prauzińska-Czarnul",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Kuba  Wawrowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Kazimierz Konwiński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogusław Drożdżź",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Szlis",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Justyna Jurczyk-Groth",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Ryszard  Stachowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartłomiej Bazylczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksandra  Kulbas-Leśniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Kwapis",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Grabowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tadeusz Mikołajewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam Malczewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Marchewka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Żelachowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr  Piotr Krakowiak LBS\/0063\/PWBE\/15",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iwona  Maciejewicz- Wojtkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zbigniew Pachura",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mieczysław Bielawski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Stanisław  Lenard",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin  Górski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Hanna  Stępień",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Janusz Cora",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Artur Szumiec`",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szczepan  Słuszkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jarosław Michałowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Hanna Michniewicz-Bach",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Janusz  Kaczmarek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Zaleski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jolanta  Zakrzewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz Jagiełło",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin  Fiuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Jędrzejek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Antoni  Kulesza",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogdan  Przylipiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna Żebracka-Prus",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżbieta Serwatka-Bunio",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasza Wolanin",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Sachanowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marian Glapiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Dorota Krawiecka - Kołaczek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Edyta  Pospychała",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"TADEUSZ MIELEWCZYK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Chruszczewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alina Puchalska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Robert Golczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Dzazga",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartosz Sołtysiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz Żubrynowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka   Cofta-Maćkowiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tadeusz Przyborski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dagmara Wolak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Hubert Boryka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zbigniew Ćwiek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartłomiej  Turski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Gruszecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iwona Olszewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Patrycjusz Szewczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Robert   Bieć",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Konrad  Troszczyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Kołbyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej  Staszak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tadeusz  Tylka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna Balasewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bartłomiej Pawełczuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka  MARCINIK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zofia Wernerowska-Frąckiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agata Brabucka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Przemysław Dworkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz  Popiołek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dagmar   Wolak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Burian",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sebastian Nowakowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Mokrosiński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zbigniew Stawski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna Nowacka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kamila Wilk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marian Szpilowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Gaudyn",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Zgorzleska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jowita Pietraszkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krystian Andrzej  Kubiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Edward Kusiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mirosława Pilarska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał  Boroński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Mazurczak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Józef Urbaniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Szczygielska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Staniszrewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Adam Tuszyński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łopacińska  Grażyna",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Schulz Piotr",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna  Zawiła",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Milaida Ogińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz  Carło",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł Jackowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Żebrowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sonia Rutkowska-Michalska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Słoka - Opłotny",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"AGATA PRABUCKA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan  Guzowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Strzyżewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Katarzyna Goldman-Danilewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogusław Żukowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mateusz  Diakowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika Jasińska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Rafał Sawicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"magdalena kulesza",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Bartosz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Patryk  Tarnowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogdan Idzik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Mikołajczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tadeusz  Milewczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Duliński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata  Gruszecka-Szczepańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof  Ciepłowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grażyna Czarczyńska - Kaja",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zdzisław Baranwoski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Grzegorz  Marciniszyn",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Hubert Jan  Stenzel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz  Chmiel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz   Stróżyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maciej Górniak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Elżebita Kulaj-Jakubas",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof  Trochimowicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Koguciuk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł  Plutowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Sztandera",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Trybińkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Rybeński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karolina Adamowicz-Łyko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof Kaczmarek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka Puchyr",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna  Marcinkowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Sosnowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alicja Kicińska - Woźnica",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mateusz Kamiński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szymon Sobisiak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Izabela Kowerczuk-Borecka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"leszek Kaszak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł  Frankiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Rafał Depowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna  Jonasik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szczepan  Stuszkiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Czesław złotnik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika Zygmunt",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jacek Chyła",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał   POM\/0189\/PBE\/19",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Agnieszka  Kuźma",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"ewa Stańczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Magdalena Wojciechowska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Konrad Wesolowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan Kaczamerk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"EDYTA WASZAK",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł  Winiecki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Janusz Tomaszewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jadwiga  Maciejewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paulina Żukowska -Ptak",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wacław Łazarczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Sieradzki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Kuriański",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Kamil Kostrzewa",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Joanna Czerkawska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Szymon Schmeidel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mikolaj Krajewski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Słodkowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Justyna  Jurczak-Groth 3",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"20\/ZPOIA\/2003 Zgorzelska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mateusz Mateńko",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Miłejszo",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Dąbrowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Krzysztof  Miziński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marian  Tyszka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Małgorzata Gruszecka - Szczepańska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Sucholski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Anna KAZIMIERSKA",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jerzy Sawicki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mirosław Skup",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Monika Gawrońska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alicja Potiechin",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Wojciech Dobrzański",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sebastian Dziekoński",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Beata Wierna-Figiel",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Aleksander Bohm",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Sławomir  Sytnik",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Michał Szymankiewicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Bożek",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Tomasz Goraj",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Zofia Lempert",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Barbara Mikołajczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Łukasz Podstawski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan  Drzazga",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Iwona  Ratajczyk",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Alicja Misztal",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Piotr Kondareicz",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karina Szerzeniewsk-Pestka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Karoj Nieradka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mariusz  Szczepocki",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marcin Zwierzykowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid Kędzierski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Paweł  Nejranowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Jan   Droż",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dorota  Stelmach",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Marek Ośka",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Dawid Żmudziejewskiego",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"JAKUB FIDOR",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Robert  Bieć",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Mirosław Smok",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Bogdan Jankowski",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Maciej Sywula",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Malgorzata Straszewska",
+    "liczba_projektow":1
+  },
+  {
+    "projektant":"Andrzej Gierlikowski",
+    "liczba_projektow":1
+  }
+]

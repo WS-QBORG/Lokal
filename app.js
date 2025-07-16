@@ -209,7 +209,7 @@ function showProfile(name) {
       const html = f.properties?.popup || "Brak opisu";
       const match = html.match(/<b>Inwestycja:<\/b>\s*(.*?)<br>/i);
       const rodzaj = match ? match[1] : "Brak opisu";
-      return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;"><b>${dzialka}</b> – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
+      return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;" style="color:white; text-decoration:none; font-weight:normal;">${dzialka} – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
     }).join("");
 
   const liczba = geojsonFeatures.filter(f => f.properties?.projektant === name).length;

@@ -22,7 +22,7 @@ function createClusterGroup() {
       else if (count >= 10) color = '#9ca3af';
 
       return new L.DivIcon({
-        html: <div style="
+        html: `<div style="
           background: ${color};
           color: white;
           width: 40px;
@@ -33,7 +33,7 @@ function createClusterGroup() {
           line-height: 38px;
           font-size: 14px;
           font-weight: bold;
-        ">${count}</div>,
+        ">${count}</div>`,
         className: 'custom-cluster',
         iconSize: [40, 40]
       });
@@ -79,7 +79,7 @@ function bindPopupToLayer(feature, layer) {
   const dzialka = feature.properties?.dzialka || 'Brak działki';
   const assigned = projektanciAssigned[proj] || "";
 
-  let popup = 
+  let popup = `
     <b>${proj}</b><br/>
     Rok: ${rok}<br/>
     <b>Inwestycja:</b> ${inwestycja}<br/>
@@ -88,10 +88,10 @@ function bindPopupToLayer(feature, layer) {
     <label>Przypisz handlowca:</label>
     <select onchange="assignHandlowiecFromPopup('${proj}', this.value)">
       <option value="">(brak)</option>
-      ${handlowcy.map(h => <option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>).join('')}
+      ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
     </select>
     <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
-  ;
+  `;
 
   layer.bindPopup(popup);
 }
@@ -113,16 +113,16 @@ function renderProjektanciList(list) {
     const assigned = projektanciAssigned[p.projektant] || "";
     const div = document.createElement("div");
     div.className = "projektant-entry";
-    div.innerHTML = 
+    div.innerHTML = `
       <label style="display: flex; align-items: center; gap: 0.5rem;">
         <input type="checkbox" value="${p.projektant}" />
         <span class="name" onclick="showProfile('${p.projektant}')">${p.projektant} – ${p.liczba_projektow} projektów</span>
       </label>
       <select onchange="assignHandlowiec('${p.projektant}', this.value)">
         <option value="">(brak)</option>
-        ${handlowcy.map(h => <option ${h === assigned ? 'selected' : ''}>${h}</option>).join('')}
+        ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
       </select>
-    ;
+    `;
     container.appendChild(div);
   });
 }
@@ -201,22 +201,20 @@ function showProfile(name) {
   const projekty = geojsonFeatures
     .filter(f => f.properties?.projektant === name)
     .map((f) => {
-    const html = f.properties?.popup || "";
-    const matchDzialka = html.match(/<b>Działka:<\/b>\s*(.*?)<br>/i);
-    const dzialka = matchDzialka ? matchDzialka[1] : "?";
-    const matchInwest = html.match(/<b>Inwestycja:<\/b>\s*(.*?)<br>/i);
-    const rodzaj = matchInwest ? matchInwest[1] : "Brak opisu";
-    const rok = f.properties?.rok || "?";
-    const coords = f.geometry?.coordinates;
-    const lat = coords ? coords[1] : null;
-    const lon = coords ? coords[0] : null;
-
-    return <li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;"><b>${dzialka}</b> – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>;
-  }).join("");
+      const dzialka = f.properties?.dzialka?.replace(/<[^>]+>/g, '').trim() || "?";
+      const rok = f.properties?.rok || "?";
+      const coords = f.geometry?.coordinates;
+      const lat = coords ? coords[1] : null;
+      const lon = coords ? coords[0] : null;
+      const html = f.properties?.popup || "Brak opisu";
+      const match = html.match(/<b>Inwestycja:<\/b>\s*(.*?)<br>/i);
+      const rodzaj = match ? match[1] : "Brak opisu";
+      return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;"><b>${dzialka}</b> – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
+    }).join("");
 
   const liczba = geojsonFeatures.filter(f => f.properties?.projektant === name).length;
 
-  content.innerHTML = 
+  content.innerHTML = `
     <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
     <h3>${name}</h3>
     <p><b>Handlowiec:</b> ${handlowiec}</p>
@@ -225,7 +223,7 @@ function showProfile(name) {
     <textarea onchange="projektanciNotes['${name}'] = this.value">${notes}</textarea>
     <hr>
     <b>📋 Projekty:</b><ul style="padding-left: 1.2rem;">${projekty || "<li>Brak projektów</li>"}</ul>
-  ;
+  `;
 
   profile.classList.add("show");
 }

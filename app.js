@@ -14,6 +14,68 @@ function cleanName(name) {
   return name.toLowerCase().replace(/\s+/g, ' ').trim();
 }
 
+async function loadAssignmentsFromGitHub() {
+  try {
+    const res = await fetch(API_URL, {
+      headers: { Authorization: `token ${GITHUB_TOKEN}` }
+    });
+    const data = await res.json();
+    fileSha = data.sha;
+    const loaded = JSON.parse(atob(data.content));
+    Object.assign(projektanciAssigned, loaded);
+  } catch (err) {
+    console.error("Błąd ładowania przypisań z GitHuba:", err);
+  }
+}
+
+async function saveAssignmentsToGitHub() {
+  try {
+    const content = btoa(JSON.stringify(projektanciAssigned, null, 2));
+    const res = await fetch(API_URL, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Aktualizacja przypisanych handlowców',
+        content,
+        sha: fileSha,
+        branch: BRANCH
+      })
+    });
+    const data = await res.json();
+    fileSha = data.content.sha;
+  } catch (err) {
+    console.error("Błąd zapisu przypisań do GitHuba:", err);
+  }
+}
+
+function updateProfileHandlowiec(name) {
+  const profile = document.getElementById("profileContent");
+  if (!profile || !profile.innerHTML.includes(name)) return;
+  const handlowiec = projektanciAssigned[name] || "(nieprzypisany)";
+  const el = profile.querySelector("p");
+  if (el) el.innerHTML = `<b>Handlowiec:</b> ${handlowiec}`;
+}
+
+
+
+// GitHub API – przypisania handlowców
+const GITHUB_TOKEN = 'TWÓJ_TOKEN_TUTAJ';
+const REPO_OWNER = 'WS-QBORG';
+const REPO_NAME = 'Lokal';
+const FILE_NAME = 'handlowcy.json';
+const BRANCH = 'main';
+const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_NAME}`;
+
+
+let fileSha = null;
+
+function cleanName(name) {
+  return name.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
 async function loadAssignments() {
   try {
     const res = await fetch(API_URL, {
@@ -63,6 +125,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let geojsonFile = 'dzialki.geojson';
 let markerCluster;
 let projektanciGlobal = [];
+
 let projektanciNotes = {};
 let geojsonFeatures = [];
 
@@ -238,11 +301,16 @@ function applySortFilter() {
 function assignHandlowiec(projektant, handlowiec) {
   if (handlowiec) projektanciAssigned[projektant] = handlowiec;
   else delete projektanciAssigned[projektant];
+  renderProjektanciList(projektanciGlobal);
+  updateProfileHandlowiec(projektant);
+  saveAssignmentsToGitHub();
 }
 
 function assignHandlowiecFromPopup(projektant, handlowiec) {
   assignHandlowiec(projektant, handlowiec);
   renderProjektanciList(projektanciGlobal);
+  updateProfileHandlowiec(projektant);
+  saveAssignmentsToGitHub();
 }
 
 function showProfile(name) {
@@ -332,7 +400,7 @@ function hideProfile() {
 
 
 // ========== 🔄 GitHub API Integration for persistent assignments ==========
-const GITHUB_TOKEN = 'TWÓJ_TOKEN_TUTAJ';
+const GITHUB_TOKEN = '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';
 const REPO_OWNER = 'WS-QBORG';
 const REPO_NAME = 'Lokal';
 const FILE_NAME = 'handlowcy.json';
@@ -403,82 +471,9 @@ function updateProfileHandlowiec(name) {
 }
 
 
-(async () => {
-  await loadAssignmentsFromGitHub();
-  loadGeoJSONWithFilter(null);
-})();
 
 
-// ========== 🔄 GitHub API Integration for persistent assignments ==========
-const GITHUB_TOKEN = 'TWÓJ_TOKEN_TUTAJ';
-const REPO_OWNER = 'WS-QBORG';
-const REPO_NAME = 'Lokal';
-const FILE_NAME = 'handlowcy.json';
-const BRANCH = 'main';
-const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_NAME}`;
-let fileSha = null;
 
-async function loadAssignmentsFromGitHub() {
-  try {
-    const res = await fetch(API_URL, {
-      headers: { Authorization: `token ${GITHUB_TOKEN}` }
-    });
-    const data = await res.json();
-    fileSha = data.sha;
-    const loaded = JSON.parse(atob(data.content));
-    Object.assign(projektanciAssigned, loaded);
-  } catch (err) {
-    console.error("Błąd ładowania przypisań z GitHuba:", err);
-  }
-}
-
-async function saveAssignmentsToGitHub() {
-  try {
-    const content = btoa(JSON.stringify(projektanciAssigned, null, 2));
-    const res = await fetch(API_URL, {
-      method: 'PUT',
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: 'Aktualizacja przypisanych handlowców',
-        content,
-        sha: fileSha,
-        branch: BRANCH
-      })
-    });
-    const data = await res.json();
-    fileSha = data.content.sha;
-  } catch (err) {
-    console.error("Błąd zapisu przypisań do GitHuba:", err);
-  }
-}
-
-// Nadpisanie funkcji przypisujących handlowców
-const originalAssignHandlowiec = assignHandlowiec;
-assignHandlowiec = function(projektant, handlowiec) {
-  originalAssignHandlowiec(projektant, handlowiec);
-  updateProfileHandlowiec(projektant);
-  saveAssignmentsToGitHub();
-};
-
-const originalAssignPopup = assignHandlowiecFromPopup;
-assignHandlowiecFromPopup = function(projektant, handlowiec) {
-  originalAssignPopup(projektant, handlowiec);
-  updateProfileHandlowiec(projektant);
-  saveAssignmentsToGitHub();
-};
-
-function updateProfileHandlowiec(name) {
-  const profile = document.getElementById("profileContent");
-  if (!profile || !profile.innerHTML.includes(name)) return;
-  const handlowiec = projektanciAssigned[name] || "(nieprzypisany)";
-  const el = profile.querySelector("p");
-  if (el) el.innerHTML = `<b>Handlowiec:</b> ${handlowiec}`;
-}
-
-// Auto-start
 (async () => {
   await loadAssignmentsFromGitHub();
   loadGeoJSONWithFilter(null);

@@ -200,6 +200,11 @@ function showProfile(name) {
 
   const projekty = geojsonFeatures
   .filter(f => f.properties?.projektant === name)
+  .sort((a, b) => {
+    const ra = parseInt(a.properties?.rok) || 0;
+    const rb = parseInt(b.properties?.rok) || 0;
+    return ra - rb;
+  })
   .map((f) => {
     const html = f.properties?.popup || "";
     const matchDzialka = html.match(/<b>Działka:<\/b>\s*(.*?)<br>/i);
@@ -212,7 +217,8 @@ function showProfile(name) {
     const lon = coords ? coords[0] : null;
 
     return `<li><a href="#" class="projekt-link" onclick="map.setView([${lat}, ${lon}], 18); return false;">${dzialka} – ${rodzaj} <span class="projekt-rok">(${rok})</span></a></li>`;
-}).join("");
+  }).join("");
+
 
 
   const liczba = geojsonFeatures.filter(f => f.properties?.projektant === name).length;

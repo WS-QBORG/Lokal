@@ -62,15 +62,8 @@ function updateProfileHandlowiec(name) {
 
 
 // GitHub API – przypisania handlowców
-const GITHUB_TOKEN = 'TWÓJ_TOKEN_TUTAJ';
-const REPO_OWNER = 'WS-QBORG';
-const REPO_NAME = 'Lokal';
-const FILE_NAME = 'handlowcy.json';
-const BRANCH = 'main';
-const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_NAME}`;
 
 
-let fileSha = null;
 
 function cleanName(name) {
   return name.toLowerCase().replace(/\s+/g, ' ').trim();
@@ -400,13 +393,6 @@ function hideProfile() {
 
 
 // ========== 🔄 GitHub API Integration for persistent assignments ==========
-const GITHUB_TOKEN = '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';
-const REPO_OWNER = 'WS-QBORG';
-const REPO_NAME = 'Lokal';
-const FILE_NAME = 'handlowcy.json';
-const BRANCH = 'main';
-const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_NAME}`;
-let fileSha = null;
 
 // Load from GitHub
 async function loadAssignmentsFromGitHub() {

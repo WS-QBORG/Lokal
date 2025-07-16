@@ -198,10 +198,12 @@ function showProfile(name) {
   const notes = projektanciNotes[name] || "";
   const handlowiec = projektanciAssigned[name] || "(nieprzypisany)";
 
-  const projekty = geojsonFeatures
+  const wszystkieProjekty = geojsonFeatures
     .filter(f => f.properties?.projektant === name)
-    .sort((a, b) => (parseInt(a.properties?.rok) || 0) - (parseInt(b.properties?.rok) || 0))
-    .map((f) => {
+    .sort((a, b) => (parseInt(a.properties?.rok) || 0) - (parseInt(b.properties?.rok) || 0));
+
+  const projektyHTML = (projekty) =>
+    projekty.map(f => {
       const html = f.properties?.popup || "";
       const matchDzialka = html.match(/<b>Działka:<\/b>\s*(.*?)<br>/i);
       const dzialka = matchDzialka ? matchDzialka[1] : "?";
@@ -212,10 +214,10 @@ function showProfile(name) {
       const lat = coords ? coords[1] : null;
       const lon = coords ? coords[0] : null;
 
-      return `<li><a href="#" class="projekt-link" onclick="map.setView([${lat}, ${lon}], 18); return false;">${dzialka} – ${rodzaj} <span class="projekt-rok">(${rok})</span></a></li>`;
+      return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;" style="color:white; text-decoration:none; font-weight:normal;">${dzialka} – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
     }).join("");
 
-  const liczba = geojsonFeatures.filter(f => f.properties?.projektant === name).length;
+  const liczba = wszystkieProjekty.length;
 
   content.innerHTML = `
     <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
@@ -233,36 +235,39 @@ function showProfile(name) {
       <option value="2024">2024</option>
       <option value="2025">2025</option>
     </select>
-    <ul id="projektyList" style="padding-left: 1.2rem;">${projekty || "<li>Brak projektów</li>"}</ul>
+    <ul id="projektyList" style="padding-left: 1.2rem;">${projektyHTML(wszystkieProjekty) || "<li>Brak projektów</li>"}</ul>
   `;
 
   profile.classList.add("show");
+
+  // zapisanie danych tymczasowo
+  window._projektyBackup = wszystkieProjekty;
 }
+
 
 function filterProjektyByRok(name) {
   const selectedRok = document.getElementById("rokFilter").value;
   const list = document.getElementById("projektyList");
 
-  const projekty = geojsonFeatures
-    .filter(f => f.properties?.projektant === name)
-    .filter(f => !selectedRok || f.properties?.rok == selectedRok)
-    .sort((a, b) => (parseInt(a.properties?.rok) || 0) - (parseInt(b.properties?.rok) || 0))
-    .map((f) => {
-      const html = f.properties?.popup || "";
-      const matchDzialka = html.match(/<b>Działka:<\/b>\s*(.*?)<br>/i);
-      const dzialka = matchDzialka ? matchDzialka[1] : "?";
-      const matchInwest = html.match(/<b>Inwestycja:<\/b>\s*(.*?)<br>/i);
-      const rodzaj = matchInwest ? matchInwest[1] : "Brak opisu";
-      const rok = f.properties?.rok || "?";
-      const coords = f.geometry?.coordinates;
-      const lat = coords ? coords[1] : null;
-      const lon = coords ? coords[0] : null;
+  const projekty = (window._projektyBackup || []).filter(f => 
+    !selectedRok || f.properties?.rok == selectedRok
+  );
 
-      return `<li><a href="#" class="projekt-link" onclick="map.setView([${lat}, ${lon}], 18); return false;">${dzialka} – ${rodzaj} <span class="projekt-rok">(${rok})</span></a></li>`;
-    }).join("");
+  list.innerHTML = projekty.map(f => {
+    const html = f.properties?.popup || "";
+    const matchDzialka = html.match(/<b>Działka:<\/b>\s*(.*?)<br>/i);
+    const dzialka = matchDzialka ? matchDzialka[1] : "?";
+    const matchInwest = html.match(/<b>Inwestycja:<\/b>\s*(.*?)<br>/i);
+    const rodzaj = matchInwest ? matchInwest[1] : "Brak opisu";
+    const rok = f.properties?.rok || "?";
+    const coords = f.geometry?.coordinates;
+    const lat = coords ? coords[1] : null;
+    const lon = coords ? coords[0] : null;
 
-  list.innerHTML = projekty || "<li>Brak projektów</li>";
+    return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;" style="color:white; text-decoration:none; font-weight:normal;">${dzialka} – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
+  }).join("") || "<li>Brak projektów</li>";
 }
+
 
 function hideSidebar() {
   document.getElementById("sidebar").classList.remove("show");

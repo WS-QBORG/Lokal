@@ -201,7 +201,7 @@ function showProfile(name) {
   const projekty = geojsonFeatures
     .filter(f => f.properties?.projektant === name)
     .map((f) => {
-      const dzialka = f.properties?.dzialka || "?";
+      const dzialka = f.properties?.dzialka?.replace(/<[^>]+>/g, '').trim() || "?";
       const rok = f.properties?.rok || "?";
       const coords = f.geometry?.coordinates;
       const lat = coords ? coords[1] : null;

@@ -52,6 +52,9 @@ function loadGeoJSONWithFilter(filterFn) {
       const filtered = filterFn ? data.features.filter(filterFn) : data.features;
 
       const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+        pointToLayer: (feature, latlng) => {
+          return L.marker(latlng);
+        },
         onEachFeature: (feature, layer) => bindPopupToLayer(feature, layer)
       });
 
@@ -140,6 +143,9 @@ function applyProjektantFilter() {
   const filtered = geojsonFeatures.filter(f => selectedNames.includes(f.properties?.projektant?.trim()));
 
   const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+    pointToLayer: (feature, latlng) => {
+      return L.marker(latlng);
+    },
     onEachFeature: (feature, layer) => bindPopupToLayer(feature, layer)
   });
 

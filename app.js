@@ -212,7 +212,7 @@ function showProfile(name) {
     const lon = coords ? coords[0] : null;
 
     return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;" style="color:white; text-decoration:none; font-weight:normal;">${dzialka} – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
-
+  }).join("");
 
   const liczba = geojsonFeatures.filter(f => f.properties?.projektant === name).length;
 

@@ -206,20 +206,16 @@ function showProfile(name) {
     return ra - rb;
   })
   .map((f) => {
-    const html = f.properties?.popup || "";
-    const matchDzialka = html.match(/<b>Działka:<\/b>\s*(.*?)<br>/i);
-    const dzialka = matchDzialka ? matchDzialka[1] : "?";
-    const matchInwest = html.match(/<b>Inwestycja:<\/b>\s*(.*?)<br>/i);
-    const rodzaj = matchInwest ? matchInwest[1] : "Brak opisu";
-    const rok = f.properties?.rok || "?";
-    const coords = f.geometry?.coordinates;
-    const lat = coords ? coords[1] : null;
-    const lon = coords ? coords[0] : null;
-
-    return `<li><a href="#" class="projekt-link" onclick="map.setView([${lat}, ${lon}], 18); return false;">${dzialka} – ${rodzaj} <span class="projekt-rok">(${rok})</span></a></li>`;
-  }).join("");
-
-
+      const dzialka = f.properties?.dzialka?.replace(/<[^>]+>/g, '').trim() || "?";
+      const rok = f.properties?.rok || "?";
+      const coords = f.geometry?.coordinates;
+      const lat = coords ? coords[1] : null;
+      const lon = coords ? coords[0] : null;
+      const html = f.properties?.popup || "Brak opisu";
+      const match = html.match(/<b>Inwestycja:<\/b>\s*(.*?)<br>/i);
+      const rodzaj = match ? match[1] : "Brak opisu";
+      return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;"><b>${dzialka}</b> – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
+    }).join("");
 
   const liczba = geojsonFeatures.filter(f => f.properties?.projektant === name).length;
 

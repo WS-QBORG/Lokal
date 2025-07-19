@@ -357,9 +357,15 @@ async function loadAssignmentsFromGitHub() {
       headers: { Authorization: `token ${GITHUB_TOKEN}` }
     });
     const data = await res.json();
+    
     fileSha = data.sha;
-    const base64 = (data.content || "").replace(/\n/g, "").replace(/\r/g, "");
-    projektanciAssigned = JSON.parse(atob(base64));
+
+    if (!data.content) throw new Error("Brak content w odpowiedzi z GitHub");
+
+    const base64 = data.content.replace(/\n/g, '').replace(/\r/g, '');
+    const jsonString = atob(base64);
+
+    projektanciAssigned = jsonString ? JSON.parse(jsonString) : {};
   } catch (err) {
     console.error("Błąd ładowania przypisań z GitHuba:", err);
     projektanciAssigned = {};
@@ -367,10 +373,13 @@ async function loadAssignmentsFromGitHub() {
 }
 
 
+
 // Save to GitHub
 async function saveAssignmentsToGitHub() {
   try {
-    const content = btoa(JSON.stringify(projektanciAssigned, null, 2));
+    const json = JSON.stringify(projektanciAssigned, null, 2);
+    const encoded = btoa(unescape(encodeURIComponent(json)));  // naprawia polskie znaki
+
     const res = await fetch(API_URL, {
       method: 'PUT',
       headers: {
@@ -379,17 +388,19 @@ async function saveAssignmentsToGitHub() {
       },
       body: JSON.stringify({
         message: 'Aktualizacja przypisanych handlowców',
-        content,
+        content: encoded,
         sha: fileSha,
         branch: BRANCH
       })
     });
+
     const data = await res.json();
-    fileSha = data.content.sha;
+    fileSha = data.content?.sha || fileSha; // update SHA tylko jeśli jest
   } catch (err) {
     console.error("Błąd zapisu przypisań do GitHuba:", err);
   }
 }
+
 
 // Override assign functions to trigger sync and save
 function assignHandlowiec(projektant, handlowiec) {

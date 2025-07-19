@@ -1,0 +1,24 @@
+name: Handle Handlowcy Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  update-handlowcy-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Extract JSON from issue body
+        run: |
+          echo "${{ github.event.issue.body }}" | sed -n '/```/,/```/p' | sed '1d;$d' > handlowcy.json
+
+      - name: Commit and push
+        run: |
+          git config user.name "AutoBot"
+          git config user.email "action@github.com"
+          git add handlowcy.json
+          git commit -m "Aktualizacja handlowców przez issue #${{ github.event.issue.number }}"
+          git push

@@ -1,4 +1,4 @@
-// ✅ app.js – naprawiona wersja z poprawnym formatowaniem i bez błędu line break
+// ✅ app.js – poprawiona wersja bez błędów "string literal contains an unescaped line break" i z przywróconymi funkcjami globalnymi
 
 const REPO_OWNER = 'WS-QBORG';
 const REPO_NAME = 'Lokal';
@@ -182,7 +182,7 @@ async function loadAssignmentsFromGitHub() {
 async function saveAssignmentsToGitHub() {
   try {
     const json = JSON.stringify(projektanciAssigned, null, 2);
-    const bodyText = "```\n" + json + "\n```";
+    const bodyText = ["```json", json, "```"].join("\n");
 
     await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues`, {
       method: "POST",
@@ -199,6 +199,9 @@ async function saveAssignmentsToGitHub() {
     console.error("Błąd zapisu przypisań przez issue:", err);
   }
 }
+
+window.filterMap = filterMap;
+window.showProjektanci = showProjektanci;
 
 (async () => {
   await loadAssignmentsFromGitHub();

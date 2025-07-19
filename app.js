@@ -358,12 +358,14 @@ async function loadAssignmentsFromGitHub() {
     });
     const data = await res.json();
     fileSha = data.sha;
-    projektanciAssigned = JSON.parse(atob(data.content));
+    const base64 = (data.content || "").replace(/\n/g, "").replace(/\r/g, "");
+    projektanciAssigned = JSON.parse(atob(base64));
   } catch (err) {
     console.error("Błąd ładowania przypisań z GitHuba:", err);
     projektanciAssigned = {};
   }
 }
+
 
 // Save to GitHub
 async function saveAssignmentsToGitHub() {

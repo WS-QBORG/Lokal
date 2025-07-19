@@ -1,4 +1,4 @@
-// ✅ app.js – wersja z pełną funkcjonalnością + showProjektanci()
+// ✅ app.js – wersja z pełną funkcjonalnością + showProjektanci() i showProfile()
 
 const REPO_OWNER = 'WS-QBORG';
 const REPO_NAME = 'Lokal';
@@ -72,6 +72,32 @@ function showProjektanci() {
       renderProjektanciList(projektanciGlobal);
       document.getElementById("sidebar").classList.add("show");
     });
+}
+
+function showProfile(projektant) {
+  const dane = projektanciGlobal.find(p => p.projektant === projektant);
+  const handlowiec = projektanciAssigned[projektant] || "(nieprzypisany)";
+  const notes = projektanciNotes[projektant] || "";
+  const projekty = geojsonFeatures.filter(f => f.properties?.projektant === projektant);
+
+  const container = document.getElementById("profileContent");
+  container.innerHTML = `
+    <span id="profileClose" onclick="hideProfile()">✖</span>
+    <h2>${projektant}</h2>
+    <p><b>Handlowiec:</b> ${handlowiec}</p>
+    <p><b>Liczba projektów:</b> ${dane?.liczba_projektow || projekty.length}</p>
+    <h3>Notatki</h3>
+    <textarea onchange="projektanciNotes['${projektant}'] = this.value">${notes}</textarea>
+    <h3>Projekty</h3>
+    <ul>
+      ${projekty.map(p => `<li><a class="projekt-link" href="https://www.google.com/maps/search/?api=1&query=${p.geometry?.coordinates[1]},${p.geometry?.coordinates[0]}" target="_blank">${p.properties?.popup || "Brak opisu"}</a> <span class="projekt-rok">(${p.properties?.rok})</span></li>`).join('')}
+    </ul>
+  `;
+  document.getElementById("profilePanel").classList.add("show");
+}
+
+function hideProfile() {
+  document.getElementById("profilePanel").classList.remove("show");
 }
 
 function bindPopupToLayer(feature, layer) {
@@ -165,7 +191,9 @@ async function saveAssignmentsToGitHub() {
       },
       body: JSON.stringify({
         title: "Aktualizacja przypisań handlowców – " + new Date().toISOString(),
-        body: "```\n" + json + "\n```"
+        body: "```
+" + json + "
+```"
       })
     });
   } catch (err) {

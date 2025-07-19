@@ -14,42 +14,6 @@ function cleanName(name) {
   return name.toLowerCase().replace(/\s+/g, ' ').trim();
 }
 
-async function loadAssignmentsFromGitHub() {
-  try {
-    const res = await fetch(API_URL, {
-      headers: { Authorization: `token ${GITHUB_TOKEN}` }
-    });
-    const data = await res.json();
-    fileSha = data.sha;
-    const loaded = JSON.parse(atob(data.content));
-    Object.assign(projektanciAssigned, loaded);
-  } catch (err) {
-    console.error("Błąd ładowania przypisań z GitHuba:", err);
-  }
-}
-
-async function saveAssignmentsToGitHub() {
-  try {
-    const content = btoa(JSON.stringify(projektanciAssigned, null, 2));
-    const res = await fetch(API_URL, {
-      method: 'PUT',
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: 'Aktualizacja przypisanych handlowców',
-        content,
-        sha: fileSha,
-        branch: BRANCH
-      })
-    });
-    const data = await res.json();
-    fileSha = data.content.sha;
-  } catch (err) {
-    console.error("Błąd zapisu przypisań do GitHuba:", err);
-  }
-}
 
 function updateProfileHandlowiec(name) {
   const profile = document.getElementById("profileContent");
@@ -289,14 +253,6 @@ function applySortFilter() {
   }
 
   renderProjektanciList(list);
-}
-
-function assignHandlowiec(projektant, handlowiec) {
-  if (handlowiec) projektanciAssigned[projektant] = handlowiec;
-  else delete projektanciAssigned[projektant];
-  renderProjektanciList(projektanciGlobal);
-  updateProfileHandlowiec(projektant);
-  saveAssignmentsToGitHub();
 }
 
 function assignHandlowiecFromPopup(projektant, handlowiec) {

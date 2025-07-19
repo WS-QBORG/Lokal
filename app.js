@@ -1,3 +1,5 @@
+// ✅ app.js – naprawiona wersja z poprawnym formatowaniem i bez błędu line break
+
 const REPO_OWNER = 'WS-QBORG';
 const REPO_NAME = 'Lokal';
 const MAIN_FILE = 'handlowcy.json';

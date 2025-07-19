@@ -1,77 +1,11 @@
+// ✅ app.js – wersja bez tokena, działa z GitHub Issues + GitHub Actions
 
-// GitHub API – przypisania handlowców
-const GITHUB_TOKEN = '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';
 const REPO_OWNER = 'WS-QBORG';
 const REPO_NAME = 'Lokal';
-const FILE_NAME = 'handlowcy.json';
-const BRANCH = 'main';
-const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_NAME}`;
+const MAIN_FILE = 'handlowcy.json';
+const RAW_MAIN_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${MAIN_FILE}`;
 
 let projektanciAssigned = {};
-let fileSha = null;
-
-function cleanName(name) {
-  return name.toLowerCase().replace(/\s+/g, ' ').trim();
-}
-
-
-function updateProfileHandlowiec(name) {
-  const profile = document.getElementById("profileContent");
-  if (!profile || !profile.innerHTML.includes(name)) return;
-  const handlowiec = projektanciAssigned[name] || "(nieprzypisany)";
-  const el = profile.querySelector("p");
-  if (el) el.innerHTML = `<b>Handlowiec:</b> ${handlowiec}`;
-}
-
-
-
-// GitHub API – przypisania handlowców
-
-
-
-function cleanName(name) {
-  return name.toLowerCase().replace(/\s+/g, ' ').trim();
-}
-
-async function loadAssignments() {
-  try {
-    const res = await fetch(API_URL, {
-      headers: { Authorization: `token ${GITHUB_TOKEN}` }
-    });
-    const data = await res.json();
-    fileSha = data.sha;
-    projektanciAssigned = JSON.parse(atob(data.content));
-  } catch (err) {
-    console.error("Nie udało się wczytać przypisań:", err);
-    projektanciAssigned = {};
-  }
-}
-
-async function saveAssignments() {
-  try {
-    const content = btoa(JSON.stringify(projektanciAssigned, null, 2));
-    const res = await fetch(API_URL, {
-      method: 'PUT',
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: 'Aktualizacja przypisanych handlowców',
-        content,
-        sha: fileSha,
-        branch: BRANCH
-      })
-    });
-    const data = await res.json();
-    fileSha = data.content.sha;
-  } catch (err) {
-    console.error("Błąd zapisu do GitHuba:", err);
-  }
-}
-
-
-// app.js
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski"];
 
 let map = L.map('map').setView([53.4285, 14.5528], 8);
@@ -82,9 +16,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let geojsonFile = 'dzialki.geojson';
 let markerCluster;
 let projektanciGlobal = [];
-
 let projektanciNotes = {};
 let geojsonFeatures = [];
+
+function cleanName(name) {
+  return name.toLowerCase().replace(/\s+/g, ' ').trim();
+}
 
 function createClusterGroup() {
   return L.markerClusterGroup({
@@ -95,18 +32,7 @@ function createClusterGroup() {
       else if (count >= 10) color = '#9ca3af';
 
       return new L.DivIcon({
-        html: `<div style="
-          background: ${color};
-          color: white;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          border: 2px solid white;
-          text-align: center;
-          line-height: 38px;
-          font-size: 14px;
-          font-weight: bold;
-        ">${count}</div>`,
+        html: `<div style="background: ${color}; color: white; width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; text-align: center; line-height: 38px; font-size: 14px; font-weight: bold;">${count}</div>`,
         className: 'custom-cluster',
         iconSize: [40, 40]
       });
@@ -125,10 +51,8 @@ function loadGeoJSONWithFilter(filterFn) {
       const filtered = filterFn ? data.features.filter(filterFn) : data.features;
 
       const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-        pointToLayer: (feature, latlng) => {
-          return L.marker(latlng);
-        },
-        onEachFeature: (feature, layer) => bindPopupToLayer(feature, layer)
+        pointToLayer: (feature, latlng) => L.marker(latlng),
+        onEachFeature: bindPopupToLayer
       });
 
       markerCluster.addLayer(layer);
@@ -152,7 +76,7 @@ function bindPopupToLayer(feature, layer) {
   const dzialka = feature.properties?.dzialka || 'Brak działki';
   const assigned = projektanciAssigned[proj] || "";
 
-  let popup = `
+  const popup = `
     <b>${proj}</b><br/>
     Rok: ${rok}<br/>
     <b>Inwestycja:</b> ${inwestycja}<br/>
@@ -169,14 +93,16 @@ function bindPopupToLayer(feature, layer) {
   layer.bindPopup(popup);
 }
 
-function showProjektanci() {
-  fetch('projektanci.json')
-    .then(res => res.json())
-    .then(projektanci => {
-      projektanciGlobal = projektanci;
-      renderProjektanciList(projektanciGlobal);
-      document.getElementById("sidebar").classList.add("show");
-    });
+function assignHandlowiec(projektant, handlowiec) {
+  if (handlowiec) projektanciAssigned[projektant] = handlowiec;
+  else delete projektanciAssigned[projektant];
+  renderProjektanciList(projektanciGlobal);
+  updateProfileHandlowiec(projektant);
+  saveAssignmentsToGitHub();
+}
+
+function assignHandlowiecFromPopup(projektant, handlowiec) {
+  assignHandlowiec(projektant, handlowiec);
 }
 
 function renderProjektanciList(list) {
@@ -200,224 +126,6 @@ function renderProjektanciList(list) {
   });
 }
 
-function filterProjektanciList() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const filtered = projektanciGlobal.filter(p => p.projektant.toLowerCase().includes(input));
-  renderProjektanciList(filtered);
-}
-
-function applyProjektantFilter() {
-  const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
-  const selectedNames = Array.from(checkboxes).map(cb => cb.value.trim());
-
-  if (markerCluster) map.removeLayer(markerCluster);
-  markerCluster = createClusterGroup();
-
-  const filtered = geojsonFeatures.filter(f => selectedNames.includes(f.properties?.projektant?.trim()));
-
-  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-    pointToLayer: (feature, latlng) => {
-      return L.marker(latlng);
-    },
-    onEachFeature: (feature, layer) => bindPopupToLayer(feature, layer)
-  });
-
-  markerCluster.addLayer(layer);
-  map.addLayer(markerCluster);
-  hideSidebar();
-}
-
-function applySortFilter() {
-  const value = document.getElementById("sortFilterSelect").value;
-  let list = [...projektanciGlobal];
-
-  switch (value) {
-    case "az":
-      list.sort((a, b) => a.projektant.localeCompare(b.projektant));
-      break;
-    case "za":
-      list.sort((a, b) => b.projektant.localeCompare(a.projektant));
-      break;
-    case "has-handlowiec":
-      list = list.filter(p => projektanciAssigned[p.projektant]);
-      break;
-    case "no-handlowiec":
-      list = list.filter(p => !projektanciAssigned[p.projektant]);
-      break;
-    case "proj-asc":
-      list.sort((a, b) => a.liczba_projektow - b.liczba_projektow);
-      break;
-    case "proj-desc":
-      list.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
-      break;
-  }
-
-  renderProjektanciList(list);
-}
-
-function assignHandlowiecFromPopup(projektant, handlowiec) {
-  assignHandlowiec(projektant, handlowiec);
-  renderProjektanciList(projektanciGlobal);
-  updateProfileHandlowiec(projektant);
-  saveAssignmentsToGitHub();
-}
-
-function showProfile(name) {
-  const profile = document.getElementById("profilePanel");
-  const content = document.getElementById("profileContent");
-  const notes = projektanciNotes[name] || "";
-  const handlowiec = projektanciAssigned[name] || "(nieprzypisany)";
-
-  const wszystkieProjekty = geojsonFeatures
-    .filter(f => f.properties?.projektant === name)
-    .sort((a, b) => (parseInt(a.properties?.rok) || 0) - (parseInt(b.properties?.rok) || 0));
-
-  const projektyHTML = (projekty) =>
-    projekty.map(f => {
-      const html = f.properties?.popup || "";
-      const matchDzialka = html.match(/<b>Działka:<\/b>\s*(.*?)<br>/i);
-      const dzialka = matchDzialka ? matchDzialka[1] : "?";
-      const matchInwest = html.match(/<b>Inwestycja:<\/b>\s*(.*?)<br>/i);
-      const rodzaj = matchInwest ? matchInwest[1] : "Brak opisu";
-      const rok = f.properties?.rok || "?";
-      const coords = f.geometry?.coordinates;
-      const lat = coords ? coords[1] : null;
-      const lon = coords ? coords[0] : null;
-
-      return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;" style="color:white; text-decoration:none; font-weight:normal;">${dzialka} – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
-    }).join("");
-
-  const liczba = wszystkieProjekty.length;
-
-  content.innerHTML = `
-    <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
-    <h3>${name}</h3>
-    <p><b>Handlowiec:</b> ${handlowiec}</p>
-    <p><b>Liczba projektów:</b> ${liczba}</p>
-    <label>📝 Notatki:</label>
-    <textarea onchange="projektanciNotes['${name}'] = this.value">${notes}</textarea>
-    <hr>
-    <b>📋 Projekty:</b><br>
-    <label>📆 Filtruj po roku:</label>
-    <select id="rokFilter" onchange="filterProjektyByRok('${name}')">
-      <option value="">Wszystkie</option>
-      <option value="2023">2023</option>
-      <option value="2024">2024</option>
-      <option value="2025">2025</option>
-    </select>
-    <ul id="projektyList" style="padding-left: 1.2rem;">${projektyHTML(wszystkieProjekty) || "<li>Brak projektów</li>"}</ul>
-  `;
-
-  profile.classList.add("show");
-
-  // zapisanie danych tymczasowo
-  window._projektyBackup = wszystkieProjekty;
-}
-
-
-function filterProjektyByRok(name) {
-  const selectedRok = document.getElementById("rokFilter").value;
-  const list = document.getElementById("projektyList");
-
-  const projekty = (window._projektyBackup || []).filter(f => 
-    !selectedRok || f.properties?.rok == selectedRok
-  );
-
-  list.innerHTML = projekty.map(f => {
-    const html = f.properties?.popup || "";
-    const matchDzialka = html.match(/<b>Działka:<\/b>\s*(.*?)<br>/i);
-    const dzialka = matchDzialka ? matchDzialka[1] : "?";
-    const matchInwest = html.match(/<b>Inwestycja:<\/b>\s*(.*?)<br>/i);
-    const rodzaj = matchInwest ? matchInwest[1] : "Brak opisu";
-    const rok = f.properties?.rok || "?";
-    const coords = f.geometry?.coordinates;
-    const lat = coords ? coords[1] : null;
-    const lon = coords ? coords[0] : null;
-
-    return `<li><a href="#" onclick="map.setView([${lat}, ${lon}], 18); return false;" style="color:white; text-decoration:none; font-weight:normal;">${dzialka} – ${rodzaj} <span style='color:#9ca3af'>(${rok})</span></a></li>`;
-  }).join("") || "<li>Brak projektów</li>";
-}
-
-
-function hideSidebar() {
-  document.getElementById("sidebar").classList.remove("show");
-}
-
-function hideProfile() {
-  document.getElementById("profilePanel").classList.remove("show");
-}
-
-
-// ========== 🔄 GitHub API Integration for persistent assignments ==========
-
-// Load from GitHub
-async function loadAssignmentsFromGitHub() {
-  try {
-    const res = await fetch(API_URL, {
-      headers: { Authorization: `token ${GITHUB_TOKEN}` }
-    });
-    const data = await res.json();
-    
-    fileSha = data.sha;
-
-    if (!data.content) throw new Error("Brak content w odpowiedzi z GitHub");
-
-    const base64 = data.content.replace(/\n/g, '').replace(/\r/g, '');
-    const jsonString = atob(base64);
-
-    projektanciAssigned = jsonString ? JSON.parse(jsonString) : {};
-  } catch (err) {
-    console.error("Błąd ładowania przypisań z GitHuba:", err);
-    projektanciAssigned = {};
-  }
-}
-
-
-
-// Save to GitHub
-async function saveAssignmentsToGitHub() {
-  try {
-    const json = JSON.stringify(projektanciAssigned, null, 2);
-    const encoded = btoa(unescape(encodeURIComponent(json)));  // naprawia polskie znaki
-
-    const res = await fetch(API_URL, {
-      method: 'PUT',
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: 'Aktualizacja przypisanych handlowców',
-        content: encoded,
-        sha: fileSha,
-        branch: BRANCH
-      })
-    });
-
-    const data = await res.json();
-    fileSha = data.content?.sha || fileSha; // update SHA tylko jeśli jest
-  } catch (err) {
-    console.error("Błąd zapisu przypisań do GitHuba:", err);
-  }
-}
-
-
-// Override assign functions to trigger sync and save
-function assignHandlowiec(projektant, handlowiec) {
-  if (handlowiec) projektanciAssigned[projektant] = handlowiec;
-  else delete projektanciAssigned[projektant];
-  renderProjektanciList(projektanciGlobal);
-  updateProfileHandlowiec(projektant);
-  saveAssignmentsToGitHub();
-}
-
-function assignHandlowiecFromPopup(projektant, handlowiec) {
-  assignHandlowiec(projektant, handlowiec);
-  renderProjektanciList(projektanciGlobal);
-  updateProfileHandlowiec(projektant);
-}
-
-// Update profile handlowiec field
 function updateProfileHandlowiec(name) {
   const profile = document.getElementById("profileContent");
   if (!profile || !profile.innerHTML.includes(name)) return;
@@ -425,9 +133,35 @@ function updateProfileHandlowiec(name) {
   profile.querySelector("p").innerHTML = `<b>Handlowiec:</b> ${handlowiec}`;
 }
 
+async function loadAssignmentsFromGitHub() {
+  try {
+    const res = await fetch(RAW_MAIN_URL);
+    projektanciAssigned = await res.json();
+  } catch (err) {
+    console.error("Nie udało się pobrać handlowców:", err);
+    projektanciAssigned = {};
+  }
+}
 
+async function saveAssignmentsToGitHub() {
+  try {
+    const json = JSON.stringify(projektanciAssigned, null, 2);
 
-
+    await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues`, {
+      method: "POST",
+      headers: {
+        Accept: "application/vnd.github+json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: "Aktualizacja przypisań handlowców – " + new Date().toISOString(),
+        body: "```\n" + json + "\n```"
+      })
+    });
+  } catch (err) {
+    console.error("Błąd zapisu przypisań przez issue:", err);
+  }
+}
 
 (async () => {
   await loadAssignmentsFromGitHub();

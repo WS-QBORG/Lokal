@@ -1,4 +1,4 @@
-// ✅ app.js – poprawiona wersja bez błędów "string literal contains an unescaped line break" i z przywróconymi funkcjami globalnymi
+// ✅ app.js – wersja działająca z GitHub Action i ręcznym zapisem jako handlowcy.tmp.json
 
 const REPO_OWNER = 'WS-QBORG';
 const REPO_NAME = 'Lokal';
@@ -134,7 +134,7 @@ function assignHandlowiec(projektant, handlowiec) {
   else delete projektanciAssigned[projektant];
   renderProjektanciList(projektanciGlobal);
   updateProfileHandlowiec(projektant);
-  saveAssignmentsToGitHub();
+  saveAssignmentsToTmp();
 }
 
 function assignHandlowiecFromPopup(projektant, handlowiec) {
@@ -179,27 +179,15 @@ async function loadAssignmentsFromGitHub() {
   }
 }
 
-async function saveAssignmentsToGitHub() {
-  try {
-    const json = JSON.stringify(projektanciAssigned, null, 2);
-    const bodyText = ["```json", json, "```"].join("\n");
-
-    await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues`, {
-      method: "POST",
-      headers: {
-        Accept: "application/vnd.github+json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        title: "Aktualizacja przypisań handlowców – " + new Date().toISOString(),
-        body: bodyText
-      })
-    });
-  } catch (err) {
-    console.error("Błąd zapisu przypisań przez issue:", err);
-  }
+function saveAssignmentsToTmp() {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(projektanciAssigned, null, 2));
+  const downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", "handlowcy.tmp.json");
+  document.body.appendChild(downloadAnchorNode);
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
 }
-
 
 window.filterMap = filterMap;
 window.showProjektanci = showProjektanci;

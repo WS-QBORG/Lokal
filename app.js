@@ -200,6 +200,7 @@ async function saveAssignmentsToGitHub() {
   }
 }
 
+
 window.filterMap = filterMap;
 window.showProjektanci = showProjektanci;
 

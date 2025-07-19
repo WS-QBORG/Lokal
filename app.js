@@ -1,4 +1,4 @@
-// ✅ app.js – wersja bez tokena, działa z GitHub Issues + GitHub Actions
+// ✅ app.js – wersja z pełną funkcjonalnością + showProjektanci()
 
 const REPO_OWNER = 'WS-QBORG';
 const REPO_NAME = 'Lokal';

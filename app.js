@@ -1,5 +1,3 @@
-// ✅ app.js – wersja z pełną funkcjonalnością + showProjektanci() i showProfile()
-
 const REPO_OWNER = 'WS-QBORG';
 const REPO_NAME = 'Lokal';
 const MAIN_FILE = 'handlowcy.json';
@@ -182,6 +180,7 @@ async function loadAssignmentsFromGitHub() {
 async function saveAssignmentsToGitHub() {
   try {
     const json = JSON.stringify(projektanciAssigned, null, 2);
+    const bodyText = "```\n" + json + "\n```";
 
     await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues`, {
       method: "POST",
@@ -191,9 +190,7 @@ async function saveAssignmentsToGitHub() {
       },
       body: JSON.stringify({
         title: "Aktualizacja przypisań handlowców – " + new Date().toISOString(),
-        body: "```
-" + json + "
-```"
+        body: bodyText
       })
     });
   } catch (err) {

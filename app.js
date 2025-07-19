@@ -1,6 +1,6 @@
 
 // GitHub API – przypisania handlowców
-const GITHUB_TOKEN = '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';
+const GITHUB_TOKEN = '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';
 const REPO_OWNER = 'WS-QBORG';
 const REPO_NAME = 'Lokal';
 const FILE_NAME = 'handlowcy.json';

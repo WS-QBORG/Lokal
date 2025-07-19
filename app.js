@@ -64,6 +64,16 @@ function filterMap(rok) {
   loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
 }
 
+function showProjektanci() {
+  fetch('projektanci.json')
+    .then(res => res.json())
+    .then(projektanci => {
+      projektanciGlobal = projektanci;
+      renderProjektanciList(projektanciGlobal);
+      document.getElementById("sidebar").classList.add("show");
+    });
+}
+
 function bindPopupToLayer(feature, layer) {
   const coords = feature.geometry?.coordinates;
   const lat = coords ? coords[1] : null;

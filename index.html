@@ -194,6 +194,31 @@
     color: #9ca3af !important;
   }
   </style>
+<script type="module">
+  // modułowa składnia SDK v9+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "…",
+    authDomain: "…",
+    databaseURL: "https://projektanci-4f7e8-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "projektanci-4f7e8",
+    // itd.
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // Expose for app.js
+  window.firebaseDB = db;
+  window.firebaseRef = ref;
+  window.firebaseOnValue = onValue;
+  window.firebaseSet = set;
+</script>
+<script src="app.js"></script>
+
+
 </head>
 <body>
   <header>

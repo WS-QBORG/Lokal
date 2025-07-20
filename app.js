@@ -200,3 +200,18 @@ function updateProfileHandlowiec(name) {
 (async () => {
   loadGeoJSONWithFilter(null);
 })();
+
+// Umożliwiamy wywołanie z HTML
+window.filterMap = filterMap;
+window.showProjektanci = showProjektanci;
+window.assignHandlowiec = assignHandlowiec;
+window.assignHandlowiecFromPopup = assignHandlowiecFromPopup;
+window.renderProjektanciList = renderProjektanciList;
+window.updateProfileHandlowiec = updateProfileHandlowiec;
+window.showProfile = showProfile;
+window.hideProfile = hideProfile;
+window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
+window.filterProjektanciList = () => {}; // jeśli nie masz jeszcze tej funkcji, a używasz w HTML
+window.applySortFilter = () => {};       // to samo – dodaj placeholder jeśli funkcja nie istnieje
+window.applyProjektantFilter = () => {}; // lub zaimplementuj jeśli potrzebna
+

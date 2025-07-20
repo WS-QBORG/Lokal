@@ -7,6 +7,21 @@ let markerCluster;
 
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski"];
 
+function showProjektanci() {
+  fetch('projektanci.json')
+    .then(res => res.json())
+    .then(data => {
+      projektanciGlobal = data;
+      renderProjektanciList(projektanciGlobal);
+      document.getElementById("sidebar").classList.add("show");
+    });
+}
+
+function showHandlowcy() {
+  renderHandlowcyList(handlowcy);
+  document.getElementById("handlowcyPanel").classList.add("show");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const db = window.firebaseDB;
   const ref = window.firebaseRef;
@@ -112,63 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     layer.bindPopup(popup);
   }
-
-  window.showProjektanci = function () {
-    fetch('projektanci.json')
-      .then(res => res.json())
-      .then(data => {
-        projektanciGlobal = data;
-        renderProjektanciList(projektanciGlobal);
-        document.getElementById("sidebar").classList.add("show");
-      });
-  };
-
-  window.showHandlowcy = function () {
-    renderHandlowcyList(handlowcy);
-    document.getElementById("handlowcyPanel").classList.add("show");
-  };
-
-  window.renderProjektanciList = function (list) {
-    const container = document.getElementById("sidebarContent");
-    const searchValue = document.getElementById("searchInput")?.value?.toLowerCase() || "";
-    container.innerHTML = "";
-    list.filter(p => p.projektant.toLowerCase().includes(searchValue))
-      .forEach(p => {
-        const assigned = projektanciAssigned[p.projektant] || "";
-        const div = document.createElement("div");
-        div.className = "projektant-entry";
-        div.innerHTML = `
-          <label style="display:flex;align-items:center;gap:0.5rem;">
-            <input type="checkbox" value="${p.projektant}" />
-            <span class="name" onclick="showProfile('${p.projektant}')">
-              ${p.projektant} – ${p.liczba_projektow} projektów
-            </span>
-          </label>
-          <select onchange="assignHandlowiec('${p.projektant}', this.value)">
-            <option value="">(brak)</option>
-            ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-          </select>
-        `;
-        container.appendChild(div);
-      });
-  };
-
-  window.renderHandlowcyList = function (list) {
-    const container = document.getElementById("handlowcyContent");
-    const search = document.getElementById("handlowcySearchInput").value.toLowerCase();
-    container.innerHTML = "";
-    list.filter(h => h.toLowerCase().includes(search)).forEach(h => {
-      const count = Object.values(projektanciAssigned).filter(x => x === h).length;
-      const div = document.createElement("div");
-      div.className = "handlowiec-entry";
-      div.innerHTML = `
-        <input type="checkbox" value="${h}" />
-        <span class="name">${h}</span>
-        <span style="color:#9ca3af;">${count} przypisań</span>
-      `;
-      container.appendChild(div);
-    });
-  };
 
   window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");

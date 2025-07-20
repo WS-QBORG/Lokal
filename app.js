@@ -133,9 +133,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   window.renderProjektanciList = function (list) {
-    const container = document.getElementById("sidebarContent");
-    container.innerHTML = "";
-    list.forEach(p => {
+  const container = document.getElementById("sidebarContent");
+  container.innerHTML = "";
+
+  const searchValue = document.getElementById("searchInput")?.value?.toLowerCase() || "";
+
+  list
+    .filter(p => p.projektant.toLowerCase().includes(searchValue))
+    .forEach(p => {
       const assigned = projektanciAssigned[p.projektant] || "";
       const div = document.createElement("div");
       div.className = "projektant-entry";
@@ -153,7 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       container.appendChild(div);
     });
-  };
+};
+
 
   window.assignHandlowiec = function (projektant, handlowiec) {
     if (handlowiec) projektanciAssigned[projektant] = handlowiec;

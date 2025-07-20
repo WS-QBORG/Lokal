@@ -325,14 +325,15 @@
  <div id="handlowcyPanel">
   <span id="handlowcyClose" onclick="hideHandlowcy()">✖</span>
   <input type="text" id="handlowcySearchInput" placeholder="Szukaj handlowca..." oninput="filterHandlowcyList()" />
+<button id="applyHandlowcyBtn" onclick="applyHandlowcyFilter()">Pokaż wybrane</button>
 <select id="handlowcySortSelect" onchange="applyHandlowcySort()">  
-<button id="applyHandlowcyBtn" onclick="applyHandlowcyFilter()">Pokaż wybrane</button>  
-    <option disabled selected>— Sortuj —</option>
-    <option value="az">A–Z</option>
-    <option value="za">Z–A</option>
-    <option value="most">Najwięcej przypisań</option>
-    <option value="least">Najmniej przypisań</option>
-  </select>
+  <option disabled selected>— Sortuj —</option>
+  <option value="az">A–Z</option>
+  <option value="za">Z–A</option>
+  <option value="most">Najwięcej przypisań</option>
+  <option value="least">Najmniej przypisań</option>
+</select>
+
   <div id="handlowcyContent"></div>
 </div>
 

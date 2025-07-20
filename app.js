@@ -13,13 +13,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const ref = window.firebaseRef;
   const onValue = window.firebaseOnValue;
   const set = window.firebaseSet;
-
   const assignmentsRef = ref(db, 'assignments');
+
+function updateTabCounters() {
+  const countByYear = { '2023': 0, '2024': 0, '2025': 0 };
+  geojsonFeatures.forEach(f => {
+    const rok = f.properties?.rok;
+    if (countByYear[rok]) countByYear[rok]++;
+  });
+
+  const handlowcySet = new Set(Object.values(projektanciAssigned).filter(Boolean));
+
+  document.querySelector("button[onclick=\"filterMap('2023')\"]").textContent = `2023 (${countByYear['2023']})`;
+  document.querySelector("button[onclick=\"filterMap('2024')\"]").textContent = `2024 (${countByYear['2024']})`;
+  document.querySelector("button[onclick=\"filterMap('2025')\"]").textContent = `2025 (${countByYear['2025']})`;
+  document.querySelector("button[onclick=\"showHandlowcy()\"]").textContent = `Handlowcy (${handlowcySet.size})`;
+}
+
   onValue(assignmentsRef, snapshot => {
     projektanciAssigned = snapshot.val() || {};
     console.log('📥 Firebase assignments:', projektanciAssigned);
     renderProjektanciList(projektanciGlobal);
+    updateTabCounters();
   });
+
+
+
+
 
   window.saveAssignment = function (projektant, handlowiec) {
     set(ref(db, `assignments/${projektant}`), handlowiec)
@@ -59,8 +79,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('dzialki.geojson')
       .then(res => res.json())
       .then(data => {
-        geojsonFeatures = data.features;
-        const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
+  geojsonFeatures = data.features;
+  updateTabCounters();
+  const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
         const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
           pointToLayer: (feature, latlng) => L.marker(latlng),
           onEachFeature: bindPopupToLayer

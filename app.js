@@ -170,14 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
     <option value="">(brak)</option>
     ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
   </select>
-  <textarea placeholder="Notatki...">${projektanciNotes[p.projektant] || ""}</textarea>
 `;
 
-const textarea = div.querySelector("textarea");
-textarea.addEventListener("change", () => {
-  projektanciNotes[p.projektant] = textarea.value;
-  saveNote(p.projektant, textarea.value);
-});
 
 
       container.appendChild(div);

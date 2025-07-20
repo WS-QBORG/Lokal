@@ -68,40 +68,44 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function loadGeoJSONWithFilter(filterFn) {
-    if (markerCluster) map.removeLayer(markerCluster);
-    markerCluster = createClusterGroup();
+  if (markerCluster) map.removeLayer(markerCluster);
+  markerCluster = createClusterGroup();
 
-    fetch('dzialki.geojson')
-      .then(res => res.json())
-      .then(data => {
-        geojsonFeatures = data.features;
-        const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
-        const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-  pointToLayer: (feature, latlng) => {
-    if (feature.geometry.type === "Point") {
-      return L.marker(latlng);
-    }
-  },
-  onEachFeature: (feature, layer) => {
-    // Dodaj obrys (polygon), jeśli to nie Point
-    if (feature.geometry.type !== "Point") {
-      L.geoJSON(feature, {
-        style: {
-          color: "#3b82f6",
-          weight: 2,
-          fillOpacity: 0.1
+  fetch('dzialki.geojson')  // lub dzialki_HYBRYDA.geojson, jeśli używasz tego pliku
+    .then(res => res.json())
+    .then(data => {
+      geojsonFeatures = data.features;
+      const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
+
+      filtered.forEach(feature => {
+        const geometryType = feature.geometry.type;
+
+        // 1. Obrys działki – Polygon / MultiPolygon
+        if (geometryType === "Polygon" || geometryType === "MultiPolygon") {
+          const polygonLayer = L.geoJSON(feature, {
+            style: {
+              color: "#3b82f6",
+              weight: 2,
+              fillOpacity: 0.1
+            }
+          }).addTo(markerCluster);
+          bindPopupToLayer(feature, polygonLayer); // przypnij popup do obrysu
         }
-      }).addTo(markerCluster);
-    }
-    // Wciąż przypnij popup do dowolnej warstwy (Point lub Polygon)
-    bindPopupToLayer(feature, layer);
-  }
-});
 
-        markerCluster.addLayer(layer);
-        map.addLayer(markerCluster);
+        // 2. Pinezka na środku – Point
+        if (geometryType === "Point") {
+          const coords = feature.geometry.coordinates;
+          const latlng = [coords[1], coords[0]];
+          const marker = L.marker(latlng);
+          bindPopupToLayer(feature, marker);
+          markerCluster.addLayer(marker);
+        }
       });
-  }
+
+      map.addLayer(markerCluster);
+    });
+}
+
 
   window.filterMap = function (rok) {
     loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);

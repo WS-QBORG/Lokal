@@ -77,9 +77,27 @@ document.addEventListener("DOMContentLoaded", () => {
         geojsonFeatures = data.features;
         const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
         const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-          pointToLayer: (feature, latlng) => L.marker(latlng),
-          onEachFeature: bindPopupToLayer
-        });
+  pointToLayer: (feature, latlng) => {
+    if (feature.geometry.type === "Point") {
+      return L.marker(latlng);
+    }
+  },
+  onEachFeature: (feature, layer) => {
+    // Dodaj obrys (polygon), jeśli to nie Point
+    if (feature.geometry.type !== "Point") {
+      L.geoJSON(feature, {
+        style: {
+          color: "#3b82f6",
+          weight: 2,
+          fillOpacity: 0.1
+        }
+      }).addTo(markerCluster);
+    }
+    // Wciąż przypnij popup do dowolnej warstwy (Point lub Polygon)
+    bindPopupToLayer(feature, layer);
+  }
+});
+
         markerCluster.addLayer(layer);
         map.addLayer(markerCluster);
       });

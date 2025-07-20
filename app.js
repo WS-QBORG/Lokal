@@ -71,16 +71,18 @@ document.addEventListener("DOMContentLoaded", () => {
   if (markerCluster) map.removeLayer(markerCluster);
   markerCluster = createClusterGroup();
 
-  fetch('dzialki.geojson')  // lub dzialki_HYBRYDA.geojson, jeśli używasz tego pliku
+  fetch('dzialki.geojson') // lub dzialki_HYBRYDA.geojson
     .then(res => res.json())
     .then(data => {
       geojsonFeatures = data.features;
       const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
 
       filtered.forEach(feature => {
+        if (!feature.geometry || !feature.geometry.type) return; // zabezpieczenie
+
         const geometryType = feature.geometry.type;
 
-        // 1. Obrys działki – Polygon / MultiPolygon
+        // Obrys działki
         if (geometryType === "Polygon" || geometryType === "MultiPolygon") {
           const polygonLayer = L.geoJSON(feature, {
             style: {
@@ -89,10 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
               fillOpacity: 0.1
             }
           }).addTo(markerCluster);
-          bindPopupToLayer(feature, polygonLayer); // przypnij popup do obrysu
+          bindPopupToLayer(feature, polygonLayer);
         }
 
-        // 2. Pinezka na środku – Point
+        // Pinezka
         if (geometryType === "Point") {
           const coords = feature.geometry.coordinates;
           const latlng = [coords[1], coords[0]];
@@ -105,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       map.addLayer(markerCluster);
     });
 }
+
 
 
   window.filterMap = function (rok) {

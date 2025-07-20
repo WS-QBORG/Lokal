@@ -132,5 +132,10 @@ document.addEventListener("DOMContentLoaded", () => {
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");
   window.hideHandlowcy = () => document.getElementById("handlowcyPanel").classList.remove("show");
 
+// ===== Rejestracja funkcji globalnych =====
+window.showProjektanci = showProjektanci;
+window.showHandlowcy = showHandlowcy;
+
+
   loadGeoJSONWithFilter(null);
 });

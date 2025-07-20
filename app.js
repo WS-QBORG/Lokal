@@ -1,9 +1,24 @@
-// ✅ app.js – wersja działająca z GitHub Action i ręcznym zapisem jako handlowcy.tmp.json
+// =========== Inicjalizacja Firebase + listener ===========
 
-const REPO_OWNER = 'WS-QBORG';
-const REPO_NAME = 'Lokal';
-const MAIN_FILE = 'handlowcy.json';
-const RAW_MAIN_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${MAIN_FILE}`;
+const db = window.firebaseDB;
+const ref = window.firebaseRef;
+const onValue = window.firebaseOnValue;
+const set = window.firebaseSet;
+
+const assignmentsRef = ref(db, 'assignments');
+onValue(assignmentsRef, snapshot => {
+  projektanciAssigned = snapshot.val() || {};
+  console.log('Odczytano assignments:', projektanciAssigned);
+  renderProjektanciList(projektanciGlobal);
+}, err => console.error(err));
+
+function saveAssignment(projektant, handlowiec) {
+  set(ref(db, `assignments/${projektant}`), handlowiec)
+    .then(() => console.log('Zapisano', projektant, handlowiec))
+    .catch(e => console.error(e));
+}
+
+// =========== Reszta twojego dotychczasowego app.js ===========
 
 let projektanciAssigned = {};
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski"];
@@ -32,7 +47,10 @@ function createClusterGroup() {
       else if (count >= 10) color = '#9ca3af';
 
       return new L.DivIcon({
-        html: `<div style="background: ${color}; color: white; width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; text-align: center; line-height: 38px; font-size: 14px; font-weight: bold;">${count}</div>`,
+        html: `<div style="background: ${color}; color: white; width: 40px; height: 40px;
+                        border-radius: 50%; border: 2px solid white;
+                        text-align: center; line-height: 38px; font-size: 14px;
+                        font-weight: bold;">${count}</div>`,
         className: 'custom-cluster',
         iconSize: [40, 40]
       });
@@ -63,6 +81,7 @@ function loadGeoJSONWithFilter(filterFn) {
 function filterMap(rok) {
   loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
 }
+window.filterMap = filterMap;
 
 function showProjektanci() {
   fetch('projektanci.json')
@@ -73,6 +92,7 @@ function showProjektanci() {
       document.getElementById("sidebar").classList.add("show");
     });
 }
+window.showProjektanci = showProjektanci;
 
 function showProfile(projektant) {
   const dane = projektanciGlobal.find(p => p.projektant === projektant);
@@ -90,7 +110,15 @@ function showProfile(projektant) {
     <textarea onchange="projektanciNotes['${projektant}'] = this.value">${notes}</textarea>
     <h3>Projekty</h3>
     <ul>
-      ${projekty.map(p => `<li><a class="projekt-link" href="https://www.google.com/maps/search/?api=1&query=${p.geometry?.coordinates[1]},${p.geometry?.coordinates[0]}" target="_blank">${p.properties?.popup || "Brak opisu"}</a> <span class="projekt-rok">(${p.properties?.rok})</span></li>`).join('')}
+      ${projekty.map(p => `
+        <li>
+          <a class="projekt-link"
+             href="https://www.google.com/maps/search/?api=1&query=${p.geometry?.coordinates[1]},${p.geometry?.coordinates[0]}"
+             target="_blank">
+            ${p.properties?.popup || "Brak opisu"}
+          </a>
+          <span class="projekt-rok">(${p.properties?.rok})</span>
+        </li>`).join('')}
     </ul>
   `;
   document.getElementById("profilePanel").classList.add("show");
@@ -119,13 +147,13 @@ function bindPopupToLayer(feature, layer) {
     <b>Adres:</b> ${adres}<br/>
     <b>Działka:</b> ${dzialka}<br/>
     <label>Przypisz handlowca:</label>
-    <select onchange="assignHandlowiecFromPopup('${proj}', this.value)">
+    <select onchange="assignHandlowiec('${proj}', this.value)">
       <option value="">(brak)</option>
       ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
     </select>
-    <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
+    <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}"
+          target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
   `;
-
   layer.bindPopup(popup);
 }
 
@@ -134,9 +162,8 @@ function assignHandlowiec(projektant, handlowiec) {
   else delete projektanciAssigned[projektant];
   renderProjektanciList(projektanciGlobal);
   updateProfileHandlowiec(projektant);
-  saveAssignmentsToTmp();
+  saveAssignment(projektant, handlowiec);
 }
-
 function assignHandlowiecFromPopup(projektant, handlowiec) {
   assignHandlowiec(projektant, handlowiec);
 }
@@ -151,48 +178,25 @@ function renderProjektanciList(list) {
     div.innerHTML = `
       <label style="display: flex; align-items: center; gap: 0.5rem;">
         <input type="checkbox" value="${p.projektant}" />
-        <span class="name" onclick="showProfile('${p.projektant}')">${p.projektant} – ${p.liczba_projektow} projektów</span>
+        <span class="name" onclick="showProfile('${p.projektant}')">
+          ${p.projektant} – ${p.liczba_projektow} projektów
+        </span>
       </label>
       <select onchange="assignHandlowiec('${p.projektant}', this.value)">
         <option value="">(brak)</option>
-        ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-      </select>
-    `;
+        ${handlowcy.map(h => `<option ${h===assigned?'selected':''}>${h}</option>`).join('')}
+      </select>`;
     container.appendChild(div);
   });
 }
 
 function updateProfileHandlowiec(name) {
   const profile = document.getElementById("profileContent");
-  if (!profile || !profile.innerHTML.includes(name)) return;
-  const handlowiec = projektanciAssigned[name] || "(nieprzypisany)";
-  profile.querySelector("p").innerHTML = `<b>Handlowiec:</b> ${handlowiec}`;
+  if (!profile.innerHTML.includes(name)) return;
+  const hand = projektanciAssigned[name] || "(nieprzypisany)";
+  profile.querySelector("p").innerHTML = `<b>Handlowiec:</b> ${hand}`;
 }
-
-async function loadAssignmentsFromGitHub() {
-  try {
-    const res = await fetch(RAW_MAIN_URL);
-    projektanciAssigned = await res.json();
-  } catch (err) {
-    console.error("Nie udało się pobrać handlowców:", err);
-    projektanciAssigned = {};
-  }
-}
-
-function saveAssignmentsToTmp() {
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(projektanciAssigned, null, 2));
-  const downloadAnchorNode = document.createElement('a');
-  downloadAnchorNode.setAttribute("href", dataStr);
-  downloadAnchorNode.setAttribute("download", "handlowcy.tmp.json");
-  document.body.appendChild(downloadAnchorNode);
-  downloadAnchorNode.click();
-  downloadAnchorNode.remove();
-}
-
-window.filterMap = filterMap;
-window.showProjektanci = showProjektanci;
 
 (async () => {
-  await loadAssignmentsFromGitHub();
   loadGeoJSONWithFilter(null);
 })();

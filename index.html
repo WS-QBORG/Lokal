@@ -220,6 +220,52 @@
   font-size: 18px;
 }
 
+.handlowiec-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.handlowiec-entry input[type="checkbox"] {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #3b82f6;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.handlowiec-entry input[type="checkbox"]:checked {
+  background-color: #3b82f6;
+}
+
+.handlowiec-entry input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  top: 0.1rem;
+  left: 0.25rem;
+  width: 0.25rem;
+  height: 0.5rem;
+  border: solid white;
+  border-width: 0 0.15rem 0.15rem 0;
+  transform: rotate(45deg);
+  display: none;
+}
+
+.handlowiec-entry input[type="checkbox"]:checked::after {
+  display: block;
+}
+
+.handlowiec-entry .name {
+  font-weight: bold;
+  color: #3b82f6;
+  cursor: default;
+  flex-grow: 1;
+}
+
+
   </style>
 <script type="module">
   // modułowa składnia SDK v9+
@@ -276,10 +322,11 @@
   <!--  <span id="profileClose" onclick="hideProfile()">✖</span> -->
     <div id="profileContent"></div>
   </div>
-  <div id="handlowcyPanel">
+ <div id="handlowcyPanel">
   <span id="handlowcyClose" onclick="hideHandlowcy()">✖</span>
   <input type="text" id="handlowcySearchInput" placeholder="Szukaj handlowca..." oninput="filterHandlowcyList()" />
-  <select id="handlowcySortSelect" onchange="applyHandlowcySort()">
+<select id="handlowcySortSelect" onchange="applyHandlowcySort()">  
+<button id="applyHandlowcyBtn" onclick="applyHandlowcyFilter()">Pokaż wybrane</button>  
     <option disabled selected>— Sortuj —</option>
     <option value="az">A–Z</option>
     <option value="za">Z–A</option>
@@ -288,6 +335,7 @@
   </select>
   <div id="handlowcyContent"></div>
 </div>
+
 
   <script src="app.js"></script>
 </body>

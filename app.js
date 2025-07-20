@@ -1,226 +1,181 @@
-// =========== Firebase Init ===========" +
-"
-let projektanciAssigned = {};" +
-"
-let projektanciGlobal = [];" +
-"
-let projektanciNotes = {};" +
-"
-let geojsonFeatures = [];" +
-"
-let markerCluster;" +
-"
+// =========== Firebase Init ===========
+let projektanciAssigned = {};
+let projektanciGlobal = [];
+let projektanciNotes = {};
+let geojsonFeatures = [];
+let markerCluster;
 
-const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski"];" +
-"
+const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski"];
 
-document.addEventListener("DOMContentLoaded", () => {" +
-"
-  const db = window.firebaseDB;" +
-"
-  const ref = window.firebaseRef;" +
-"
-  const onValue = window.firebaseOnValue;" +
-"
-  const set = window.firebaseSet;" +
-"
-  const assignmentsRef = ref(db, 'assignments');" +
-"
+document.addEventListener("DOMContentLoaded", () => {
+  const db = window.firebaseDB;
+  const ref = window.firebaseRef;
+  const onValue = window.firebaseOnValue;
+  const set = window.firebaseSet;
+  const assignmentsRef = ref(db, 'assignments');
 
-  function updateTabCounters() {" +
-"
-    const countByYear = { '2023': 0, '2024': 0, '2025': 0 };" +
-"
-    geojsonFeatures.forEach(f => {" +
-"
-      const rok = f.properties?.rok;" +
-"
-      if (countByYear[rok]) countByYear[rok]++;" +
-"
-    });" +
-"
+  function updateTabCounters() {
+    const countByYear = { '2023': 0, '2024': 0, '2025': 0 };
+    geojsonFeatures.forEach(f => {
+      const rok = f.properties?.rok;
+      if (countByYear[rok] !== undefined) countByYear[rok]++;
+    });
 
-    const handlowcySet = new Set(Object.values(projektanciAssigned).filter(Boolean));" +
-"
-    document.querySelector("button[onclick=\"filterMap('2023')\"]").textContent = `2023 (${countByYear['2023']})`;" +
-"
-    document.querySelector("button[onclick=\"filterMap('2024')\"]").textContent = `2024 (${countByYear['2024']})`;" +
-"
-    document.querySelector("button[onclick=\"filterMap('2025')\"]").textContent = `2025 (${countByYear['2025']})`;" +
-"
-    document.querySelector("button[onclick=\"showHandlowcy()\"]").textContent = `Handlowcy (${handlowcySet.size})`;" +
-"
-  }" +
-"
+    const handlowcySet = new Set(Object.values(projektanciAssigned).filter(Boolean));
 
-  onValue(assignmentsRef, snapshot => {" +
-"
-    projektanciAssigned = snapshot.val() || {};" +
-"
-    console.log('📥 Firebase assignments:', projektanciAssigned);" +
-"
-    updateTabCounters();" +
-"
-    if (typeof renderProjektanciList === "function") {" +
-"
-      renderProjektanciList(projektanciGlobal);" +
-"
-    }" +
-"
-  });" +
-"
+    document.getElementById("tab2023").textContent = `2023 (${countByYear['2023']})`;
+    document.getElementById("tab2024").textContent = `2024 (${countByYear['2024']})`;
+    document.getElementById("tab2025").textContent = `2025 (${countByYear['2025']})`;
+    document.querySelector("button[onclick=\"showHandlowcy()\"]").textContent = `Handlowcy (${handlowcySet.size})`;
+  }
 
-  window.saveAssignment = function (projektant, handlowiec) {" +
-"
-    set(ref(db, `assignments/${projektant}`), handlowiec)" +
-"
-      .then(() => console.log('✅ Zapisano:', projektant, handlowiec))" +
-"
-      .catch(console.error);" +
-"
-  };" +
-"
+  onValue(assignmentsRef, snapshot => {
+    projektanciAssigned = snapshot.val() || {};
+    console.log('📥 Firebase assignments:', projektanciAssigned);
+    updateTabCounters();
+    if (typeof renderProjektanciList === "function") {
+      renderProjektanciList(projektanciGlobal);
+    }
+  });
 
-  const map = L.map('map').setView([53.4285, 14.5528], 8);" +
-"
-  window.map = map;" +
-"
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);" +
-"
+  window.saveAssignment = function (projektant, handlowiec) {
+    set(ref(db, `assignments/${projektant}`), handlowiec)
+      .then(() => console.log('✅ Zapisano:', projektant, handlowiec))
+      .catch(console.error);
+  };
 
-  function createClusterGroup() {" +
-"
-    return L.markerClusterGroup({" +
-"
-      iconCreateFunction: cluster => {" +
-"
-        const count = cluster.getChildCount();" +
-"
-        let color = '#3b82f6';" +
-"
-        if (count >= 100) color = '#000000';" +
-"
-        else if (count >= 10) color = '#9ca3af';" +
-"
-        return new L.DivIcon({" +
-"
-          html: `<div style="background:${color};color:white;width:40px;height:40px;" +
-"border-radius:50%;border:2px solid white;text-align:center;" +
-"line-height:38px;font-size:14px;font-weight:bold;">${count}</div>`," +
-"
-          className: 'custom-cluster'," +
-"
-          iconSize: [40, 40]" +
-"
-        });" +
-"
-      }" +
-"
-    });" +
-"
-  }" +
-"
+  const map = L.map('map').setView([53.4285, 14.5528], 8);
+  window.map = map;
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
-  function loadGeoJSONWithFilter(filterFn) {" +
-"
-    if (markerCluster) map.removeLayer(markerCluster);" +
-"
-    markerCluster = createClusterGroup();" +
-"
-    fetch('dzialki.geojson')" +
-"
-      .then(res => res.json())" +
-"
-      .then(data => {" +
-"
-        geojsonFeatures = data.features;" +
-"
-        updateTabCounters();" +
-"
-        const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;" +
-"
-        const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {" +
-"
-          pointToLayer: (feature, latlng) => L.marker(latlng)," +
-"
-          onEachFeature: bindPopupToLayer" +
-"
-        });" +
-"
-        markerCluster.addLayer(layer);" +
-"
-        map.addLayer(markerCluster);" +
-"
-      });" +
-"
-  }" +
-"
+  function createClusterGroup() {
+    return L.markerClusterGroup({
+      iconCreateFunction: cluster => {
+        const count = cluster.getChildCount();
+        let color = '#3b82f6';
+        if (count >= 100) color = '#000000';
+        else if (count >= 10) color = '#9ca3af';
+        return new L.DivIcon({
+          html: `<div style="background:${color};color:white;width:40px;height:40px;border-radius:50%;border:2px solid white;text-align:center;line-height:38px;font-size:14px;font-weight:bold;">${count}</div>`,
+          className: 'custom-cluster',
+          iconSize: [40, 40]
+        });
+      }
+    });
+  }
 
-  window.filterMap = function (rok) {" +
-"
-    loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);" +
-"
-  };" +
-"
+  function loadGeoJSONWithFilter(filterFn) {
+    if (markerCluster) map.removeLayer(markerCluster);
+    markerCluster = createClusterGroup();
+    fetch('dzialki.geojson')
+      .then(res => res.json())
+      .then(data => {
+        geojsonFeatures = data.features;
+        updateTabCounters();
+        const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
+        const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+          pointToLayer: (feature, latlng) => L.marker(latlng),
+          onEachFeature: bindPopupToLayer
+        });
+        markerCluster.addLayer(layer);
+        map.addLayer(markerCluster);
+      });
+  }
 
-  function bindPopupToLayer(feature, layer) {" +
-"
-    const coords = feature.geometry?.coordinates;" +
-"
-    const lat = coords?.[1];" +
-"
-    const lon = coords?.[0];" +
-"
-    const proj = feature.properties?.projektant || 'brak';" +
-"
-    const rok = feature.properties?.rok || 'brak';" +
-"
-    const inwestycja = feature.properties?.popup || 'Brak opisu';" +
-"
-    const adres = feature.properties?.adres || 'Brak adresu';" +
-"
-    const dzialka = feature.properties?.dzialka || 'Brak działki';" +
-"
-    const assigned = projektanciAssigned[proj] || "";" +
-"
+  window.filterMap = function (rok) {
+    loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
+  };
 
-    const popup = `" +
-"
-      <b>${proj}</b><br/>" +
-"
-      Rok: ${rok}<br/>" +
-"
-      <b>Inwestycja:</b> ${inwestycja}<br/>" +
-"
-      <b>Adres:</b> ${adres}<br/>" +
-"
-      <b>Działka:</b> ${dzialka}<br/>" +
-"
-      <label>Przypisz handlowca:</label>" +
-"
-      <select onchange="assignHandlowiec('${proj}', this.value)">" +
-"
-        <option value="">(brak)</option>" +
-"
-        ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}" +
-"
-      </select>" +
-"
-      <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>" +
-"
-    `;" +
-"
-    layer.bindPopup(popup);" +
-"
-  }" +
-"
+  function bindPopupToLayer(feature, layer) {
+    const coords = feature.geometry?.coordinates;
+    const lat = coords?.[1];
+    const lon = coords?.[0];
+    const proj = feature.properties?.projektant || 'brak';
+    const rok = feature.properties?.rok || 'brak';
+    const inwestycja = feature.properties?.popup || 'Brak opisu';
+    const adres = feature.properties?.adres || 'Brak adresu';
+    const dzialka = feature.properties?.dzialka || 'Brak działki';
+    const assigned = projektanciAssigned[proj] || "";
 
-  // === Custom UI functions from user ===" +
-"
-  window.showProjektanci = function () { /* implement */ };" +
-"
-  window.renderProjektanciList = function () { /* implement */ };" +
-"
-  window.showHandlowcy = function () { /* implement */ };" +
-"
+    const popup = `
+      <b>${proj}</b><br/>
+      Rok: ${rok}<br/>
+      <b>Inwestycja:</b> ${inwestycja}<br/>
+      <b>Adres:</b> ${adres}<br/>
+      <b>Działka:</b> ${dzialka}<br/>
+      <label>Przypisz handlowca:</label>
+      <select onchange="assignHandlowiec('${proj}', this.value)">
+        <option value="">(brak)</option>
+        ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+      </select>
+      <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
+    `;
+    layer.bindPopup(popup);
+  }
+
+  // ========= Panel Projektantów =========
+  window.showProjektanci = function () {
+    fetch('projektanci.json')
+      .then(res => res.json())
+      .then(data => {
+        projektanciGlobal = data;
+        renderProjektanciList(projektanciGlobal);
+        document.getElementById("sidebar").classList.add("show");
+      });
+  };
+
+  window.renderProjektanciList = function (list) {
+    const container = document.getElementById("sidebarContent");
+    const searchValue = document.getElementById("searchInput")?.value?.toLowerCase() || "";
+    container.innerHTML = "";
+    list.filter(p => p.projektant.toLowerCase().includes(searchValue))
+      .forEach(p => {
+        const assigned = projektanciAssigned[p.projektant] || "";
+        const div = document.createElement("div");
+        div.className = "projektant-entry";
+        div.innerHTML = `
+          <label style="display:flex;align-items:center;gap:0.5rem;">
+            <input type="checkbox" value="${p.projektant}" />
+            <span class="name" onclick="showProfile('${p.projektant}')">
+              ${p.projektant} – ${p.liczba_projektow} projektów
+            </span>
+          </label>
+          <select onchange="assignHandlowiec('${p.projektant}', this.value)">
+            <option value="">(brak)</option>
+            ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+          </select>
+        `;
+        container.appendChild(div);
+      });
+  };
+
+  window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
+
+  // ========= Panel Handlowców =========
+  window.showHandlowcy = function () {
+    renderHandlowcyList(handlowcy);
+    document.getElementById("handlowcyPanel").classList.add("show");
+  };
+
+  window.renderHandlowcyList = function (list) {
+    const container = document.getElementById("handlowcyContent");
+    const search = document.getElementById("handlowcySearchInput").value.toLowerCase();
+    container.innerHTML = "";
+    list.filter(h => h.toLowerCase().includes(search)).forEach(h => {
+      const count = Object.values(projektanciAssigned).filter(x => x === h).length;
+      const div = document.createElement("div");
+      div.className = "handlowiec-entry";
+      div.innerHTML = `
+        <input type="checkbox" value="${h}" />
+        <span class="name">${h}</span>
+        <span style="color:#9ca3af;">${count} przypisań</span>
+      `;
+      container.appendChild(div);
+    });
+  };
+
+  window.hideHandlowcy = () => document.getElementById("handlowcyPanel").classList.remove("show");
+
+  // Inicjalne ładowanie mapy
+  loadGeoJSONWithFilter(null);
 });

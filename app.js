@@ -112,6 +112,26 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
+   window.applyProjektantFilter = function () {
+    const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
+    const selectedNames = Array.from(checkboxes).map(cb => cb.value.trim());
+
+    if (markerCluster) map.removeLayer(markerCluster);
+    markerCluster = createClusterGroup();
+
+    const filtered = geojsonFeatures.filter(f => selectedNames.includes(f.properties?.projektant?.trim()));
+
+    const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+      pointToLayer: (feature, latlng) => L.marker(latlng),
+      onEachFeature: bindPopupToLayer
+    });
+
+    markerCluster.addLayer(layer);
+    map.addLayer(markerCluster);
+    hideSidebar();
+  };
+
+
   window.renderProjektanciList = function (list) {
     const container = document.getElementById("sidebarContent");
     container.innerHTML = "";
@@ -168,6 +188,35 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     profile.classList.add("show");
   };
+
+  window.applySortFilter = function () {
+    const value = document.getElementById("sortFilterSelect").value;
+    let list = [...projektanciGlobal];
+
+    switch (value) {
+      case "az":
+        list.sort((a, b) => a.projektant.localeCompare(b.projektant));
+        break;
+      case "za":
+        list.sort((a, b) => b.projektant.localeCompare(a.projektant));
+        break;
+      case "has-handlowiec":
+        list = list.filter(p => projektanciAssigned[p.projektant]);
+        break;
+      case "no-handlowiec":
+        list = list.filter(p => !projektanciAssigned[p.projektant]);
+        break;
+      case "proj-asc":
+        list.sort((a, b) => a.liczba_projektow - b.liczba_projektow);
+        break;
+      case "proj-desc":
+        list.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
+        break;
+    }
+
+    renderProjektanciList(list);
+  };
+
 
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");
   window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");

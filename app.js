@@ -1,6 +1,4 @@
-
 // =========== Firebase Init ===========
-
 let projektanciAssigned = {};
 let projektanciGlobal = [];
 let projektanciNotes = {};
@@ -16,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const set = window.firebaseSet;
   const assignmentsRef = ref(db, 'assignments');
 
+  // ——— FILTER: TAB COUNTERS ———
   function updateTabCounters() {
     const countByYear = { '2023': 0, '2024': 0, '2025': 0 };
     geojsonFeatures.forEach(f => {
@@ -25,22 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const handlowcySet = new Set(Object.values(projektanciAssigned).filter(Boolean));
 
-    const tab2023 = document.getElementById("tab2023");
-    const tab2024 = document.getElementById("tab2024");
-    const tab2025 = document.getElementById("tab2025");
-    const tabHandlowcy = document.getElementById("tabHandlowcy");
-
-    if (tab2023) tab2023.textContent = `2023 (${countByYear['2023']})`;
-    if (tab2024) tab2024.textContent = `2024 (${countByYear['2024']})`;
-    if (tab2025) tab2025.textContent = `2025 (${countByYear['2025']})`;
-    if (tabHandlowcy) tabHandlowcy.textContent = `Handlowcy (${handlowcySet.size})`;
+    document.querySelector("button[onclick=\"filterMap('2023')\"]").textContent = `2023 (${countByYear['2023']})`;
+    document.querySelector("button[onclick=\"filterMap('2024')\"]").textContent = `2024 (${countByYear['2024']})`;
+    document.querySelector("button[onclick=\"filterMap('2025')\"]").textContent = `2025 (${countByYear['2025']})`;
+    document.querySelector("button[onclick=\"showHandlowcy()\"]").textContent = `Handlowcy (${handlowcySet.size})`;
   }
 
+  // ——— Firebase: On Value ———
   onValue(assignmentsRef, snapshot => {
     projektanciAssigned = snapshot.val() || {};
     console.log('📥 Firebase assignments:', projektanciAssigned);
-    renderProjektanciList(projektanciGlobal);
-    setTimeout(updateTabCounters, 100);
+    updateTabCounters();
+    if (typeof renderProjektanciList === "function") {
+      renderProjektanciList(projektanciGlobal);
+    }
   });
 
   window.saveAssignment = function (projektant, handlowiec) {
@@ -49,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(console.error);
   };
 
+  // =========== Mapa ===========
   const map = L.map('map').setView([53.4285, 14.5528], 8);
   window.map = map;
 
@@ -56,15 +54,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createClusterGroup() {
     return L.markerClusterGroup({
-      iconCreateFunction: function (cluster) {
+      iconCreateFunction: cluster => {
         const count = cluster.getChildCount();
         let color = '#3b82f6';
         if (count >= 100) color = '#000000';
         else if (count >= 10) color = '#9ca3af';
         return new L.DivIcon({
           html: `<div style="background:${color};color:white;width:40px;height:40px;
-                     border-radius:50%;border:2px solid white;text-align:center;
-                     line-height:38px;font-size:14px;font-weight:bold;">${count}</div>`,
+                   border-radius:50%;border:2px solid white;text-align:center;
+                   line-height:38px;font-size:14px;font-weight:bold;">${count}</div>`,
           className: 'custom-cluster',
           iconSize: [40, 40]
         });
@@ -80,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.json())
       .then(data => {
         geojsonFeatures = data.features;
-        setTimeout(updateTabCounters, 100);
+        updateTabCounters();
         const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
         const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
           pointToLayer: (feature, latlng) => L.marker(latlng),
@@ -97,8 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function bindPopupToLayer(feature, layer) {
     const coords = feature.geometry?.coordinates;
-    const lat = coords ? coords[1] : null;
-    const lon = coords ? coords[0] : null;
+    const lat = coords?.[1];
+    const lon = coords?.[0];
     const proj = feature.properties?.projektant || 'brak';
     const rok = feature.properties?.rok || 'brak';
     const inwestycja = feature.properties?.popup || 'Brak opisu';
@@ -122,6 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     layer.bindPopup(popup);
   }
 
-  // Final initialization
+  // =========== Start ===========
   loadGeoJSONWithFilter(null);
 });

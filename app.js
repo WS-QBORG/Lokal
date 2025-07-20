@@ -27,6 +27,21 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(console.error);
   };
 
+    // === Notatki Firebase ===
+  const notesRef = ref(db, 'notes');
+  onValue(notesRef, snapshot => {
+    projektanciNotes = snapshot.val() || {};
+    console.log('📥 Firebase notatki:', projektanciNotes);
+    renderProjektanciList(projektanciGlobal); // odśwież listę z notatkami
+  });
+
+  window.saveNote = function (projektant, note) {
+    set(ref(db, `notes/${projektant}`), note)
+      .then(() => console.log('✅ Notatka zapisana:', projektant, note))
+      .catch(console.error);
+  };
+
+
   // =========== Mapa ===========
 
   const map = L.map('map').setView([53.4285, 14.5528], 8);
@@ -145,17 +160,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.className = "projektant-entry";
       div.innerHTML = `
-        <label style="display:flex;align-items:center;gap:0.5rem;">
-          <input type="checkbox" value="${p.projektant}" />
-          <span class="name" onclick="showProfile('${p.projektant}')">
-            ${p.projektant} – ${p.liczba_projektow} projektów
-          </span>
-        </label>
-        <select onchange="assignHandlowiec('${p.projektant}', this.value)">
-          <option value="">(brak)</option>
-          ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-        </select>
-      `;
+  <label style="display:flex;align-items:center;gap:0.5rem;">
+    <input type="checkbox" value="${p.projektant}" />
+    <span class="name" onclick="showProfile('${p.projektant}')">
+      ${p.projektant} – ${p.liczba_projektow} projektów
+    </span>
+  </label>
+  <select onchange="assignHandlowiec('${p.projektant}', this.value)">
+    <option value="">(brak)</option>
+    ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+  </select>
+  <textarea placeholder="Notatki...">${projektanciNotes[p.projektant] || ""}</textarea>
+`;
+
       container.appendChild(div);
     });
 };
@@ -190,7 +207,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <p><b>Handlowiec:</b> ${handlowiec}</p>
       <p><b>Liczba projektów:</b> ${liczba}</p>
       <label>📝 Notatki:</label>
-      <textarea onchange="projektanciNotes['${name}'] = this.value">${notes}</textarea>
+      <textarea onchange="projektanciNotes['${name}'] = this.value; saveNote('${name}', this.value)">${notes}</textarea>
+
     `;
     profile.classList.add("show");
   };

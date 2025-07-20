@@ -71,35 +71,42 @@ document.addEventListener("DOMContentLoaded", () => {
   if (markerCluster) map.removeLayer(markerCluster);
   markerCluster = createClusterGroup();
 
-  fetch('dzialki.geojson') // lub dzialki_HYBRYDA.geojson
+  fetch('dzialki.geojson') // <-- zmień jeśli używasz dzialki_HYBRYDA.geojson
     .then(res => res.json())
     .then(data => {
       geojsonFeatures = data.features;
       const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
 
       filtered.forEach(feature => {
-        if (!feature.geometry || !feature.geometry.type) return; // zabezpieczenie
+        // Pomijaj puste wpisy bez geometrii
+        if (!feature.geometry || !feature.geometry.type) return;
 
         const geometryType = feature.geometry.type;
 
-        // Obrys działki
+        // 🔵 1. Jeśli to Polygon lub MultiPolygon → narysuj obrys
         if (geometryType === "Polygon" || geometryType === "MultiPolygon") {
-          const polygonLayer = L.geoJSON(feature, {
+          const polygonLayer = L.geoJSON({
+            type: "Feature",
+            geometry: feature.geometry,
+            properties: feature.properties
+          }, {
             style: {
-              color: "#3b82f6",
+              color: "red",       // Obrys
               weight: 2,
-              fillOpacity: 0.1
+              fillColor: "orange", // Wypełnienie
+              fillOpacity: 0.3
             }
           }).addTo(markerCluster);
-          bindPopupToLayer(feature, polygonLayer);
+
+          bindPopupToLayer(feature, polygonLayer); // przypnij popup do obrysu
         }
 
-        // Pinezka
+        // 📍 2. Jeśli to Point → dodaj pinezkę
         if (geometryType === "Point") {
           const coords = feature.geometry.coordinates;
           const latlng = [coords[1], coords[0]];
           const marker = L.marker(latlng);
-          bindPopupToLayer(feature, marker);
+          bindPopupToLayer(feature, marker); // przypnij popup do pinezki
           markerCluster.addLayer(marker);
         }
       });
@@ -107,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       map.addLayer(markerCluster);
     });
 }
+
 
 
 

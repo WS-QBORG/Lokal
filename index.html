@@ -193,6 +193,33 @@
   .projekt-rok {
     color: #9ca3af !important;
   }
+
+#handlowcyPanel {
+  position: fixed;
+  top: 60px;
+  right: 0;
+  width: 320px;
+  max-width: 90vw;
+  height: calc(100vh - 60px);
+  background-color: #1f2937;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 998;
+  padding: 1rem;
+  transform: translateX(100%);
+}
+#handlowcyPanel.show {
+  transform: translateX(0);
+}
+#handlowcyClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
   </style>
 <script type="module">
   // modułowa składnia SDK v9+
@@ -227,6 +254,7 @@
     <button onclick="filterMap('2024')">2024</button>
     <button onclick="filterMap('2025')">2025</button>
     <button onclick="showProjektanci()">Projektanci</button>
+    <button onclick="showHandlowcy()">Handlowcy</button>
   </header>
   <div id="map"></div>
   <div id="sidebar">
@@ -248,6 +276,19 @@
   <!--  <span id="profileClose" onclick="hideProfile()">✖</span> -->
     <div id="profileContent"></div>
   </div>
+  <div id="handlowcyPanel">
+  <span id="handlowcyClose" onclick="hideHandlowcy()">✖</span>
+  <input type="text" id="handlowcySearchInput" placeholder="Szukaj handlowca..." oninput="filterHandlowcyList()" />
+  <select id="handlowcySortSelect" onchange="applyHandlowcySort()">
+    <option disabled selected>— Sortuj —</option>
+    <option value="az">A–Z</option>
+    <option value="za">Z–A</option>
+    <option value="most">Najwięcej przypisań</option>
+    <option value="least">Najmniej przypisań</option>
+  </select>
+  <div id="handlowcyContent"></div>
+</div>
+
   <script src="app.js"></script>
 </body>
 </html>

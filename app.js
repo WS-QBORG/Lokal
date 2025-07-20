@@ -239,26 +239,25 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   window.renderHandlowcyList = function (list) {
-    const container = document.getElementById("handlowcyContent");
-    const search = document.getElementById("handlowcySearchInput").value.toLowerCase();
-    container.innerHTML = "";
+  const container = document.getElementById("handlowcyContent");
+  const search = document.getElementById("handlowcySearchInput").value.toLowerCase();
+  container.innerHTML = "";
 
-    list
-      .filter(h => h.toLowerCase().includes(search))
-      .forEach(h => {
-        // Zlicz przypisania
-        const count = Object.values(projektanciAssigned).filter(x => x === h).length;
-        const div = document.createElement("div");
-        div.className = "projektant-entry";
-        div.innerHTML = `
-          <label style="display: flex; align-items: center; gap: 0.5rem;">
-            <span class="name">${h}</span>
-            <span style="margin-left:auto; color:#9ca3af;">${count} przypisań</span>
-          </label>
-        `;
-        container.appendChild(div);
-      });
-  };
+  list
+    .filter(h => h.toLowerCase().includes(search))
+    .forEach(h => {
+      const count = Object.values(projektanciAssigned).filter(x => x === h).length;
+      const div = document.createElement("div");
+      div.className = "handlowiec-entry";
+      div.innerHTML = `
+        <input type="checkbox" value="${h}" />
+        <span class="name">${h}</span>
+        <span style="color:#9ca3af;">${count} przypisań</span>
+      `;
+      container.appendChild(div);
+    });
+};
+
 
   window.applyHandlowcySort = function () {
     const value = document.getElementById("handlowcySortSelect").value;
@@ -282,6 +281,24 @@ document.addEventListener("DOMContentLoaded", () => {
     renderHandlowcyList(handlowcy);
   };
 
+ window.applyHandlowcyFilter = function () {
+  const checkboxes = document.querySelectorAll('#handlowcyContent input[type="checkbox"]:checked');
+  const selectedHandlowcy = Array.from(checkboxes).map(cb => cb.value.trim());
+
+  if (markerCluster) map.removeLayer(markerCluster);
+  markerCluster = createClusterGroup();
+
+  const filtered = geojsonFeatures.filter(f => selectedHandlowcy.includes(projektanciAssigned[f.properties?.projektant]));
+
+  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+    pointToLayer: (feature, latlng) => L.marker(latlng),
+    onEachFeature: bindPopupToLayer
+  });
+
+  markerCluster.addLayer(layer);
+  map.addLayer(markerCluster);
+  hideHandlowcy();
+};
 
 
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");

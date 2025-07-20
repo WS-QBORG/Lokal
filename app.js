@@ -223,6 +223,11 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProjektanciList(list);
   };
 
+    window.filterProjektanciList = function () {
+    renderProjektanciList(projektanciGlobal);
+  };
+
+
 
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");
   window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");

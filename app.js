@@ -227,6 +227,61 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProjektanciList(projektanciGlobal);
   };
 
+// =========== Sidebar & Profil HANDLOWCY ===========
+
+  window.showHandlowcy = function () {
+    renderHandlowcyList(handlowcy);
+    document.getElementById("handlowcyPanel").classList.add("show");
+  };
+
+  window.hideHandlowcy = function () {
+    document.getElementById("handlowcyPanel").classList.remove("show");
+  };
+
+  window.renderHandlowcyList = function (list) {
+    const container = document.getElementById("handlowcyContent");
+    const search = document.getElementById("handlowcySearchInput").value.toLowerCase();
+    container.innerHTML = "";
+
+    list
+      .filter(h => h.toLowerCase().includes(search))
+      .forEach(h => {
+        // Zlicz przypisania
+        const count = Object.values(projektanciAssigned).filter(x => x === h).length;
+        const div = document.createElement("div");
+        div.className = "projektant-entry";
+        div.innerHTML = `
+          <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="name">${h}</span>
+            <span style="margin-left:auto; color:#9ca3af;">${count} przypisań</span>
+          </label>
+        `;
+        container.appendChild(div);
+      });
+  };
+
+  window.applyHandlowcySort = function () {
+    const value = document.getElementById("handlowcySortSelect").value;
+    let list = [...handlowcy];
+
+    if (value === "az") list.sort();
+    else if (value === "za") list.sort().reverse();
+    else if (value === "most") list.sort((a, b) =>
+      Object.values(projektanciAssigned).filter(x => x === b).length -
+      Object.values(projektanciAssigned).filter(x => x === a).length
+    );
+    else if (value === "least") list.sort((a, b) =>
+      Object.values(projektanciAssigned).filter(x => x === a).length -
+      Object.values(projektanciAssigned).filter(x => x === b).length
+    );
+
+    renderHandlowcyList(list);
+  };
+
+  window.filterHandlowcyList = function () {
+    renderHandlowcyList(handlowcy);
+  };
+
 
 
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");

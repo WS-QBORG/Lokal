@@ -1,3 +1,4 @@
+
 // =========== Firebase Init ===========
 
 let projektanciAssigned = {};
@@ -15,39 +16,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const set = window.firebaseSet;
   const assignmentsRef = ref(db, 'assignments');
 
-function updateTabCounters() {
-  const countByYear = { '2023': 0, '2024': 0, '2025': 0 };
-  geojsonFeatures.forEach(f => {
-    const rok = f.properties?.rok;
-    if (countByYear[rok]) countByYear[rok]++;
-  });
+  function updateTabCounters() {
+    const countByYear = { '2023': 0, '2024': 0, '2025': 0 };
+    geojsonFeatures.forEach(f => {
+      const rok = f.properties?.rok;
+      if (countByYear[rok]) countByYear[rok]++;
+    });
 
-  const handlowcySet = new Set(Object.values(projektanciAssigned).filter(Boolean));
+    const handlowcySet = new Set(Object.values(projektanciAssigned).filter(Boolean));
 
-  document.querySelector("button[onclick=\"filterMap('2023')\"]").textContent = `2023 (${countByYear['2023']})`;
-  document.querySelector("button[onclick=\"filterMap('2024')\"]").textContent = `2024 (${countByYear['2024']})`;
-  document.querySelector("button[onclick=\"filterMap('2025')\"]").textContent = `2025 (${countByYear['2025']})`;
-  document.querySelector("button[onclick=\"showHandlowcy()\"]").textContent = `Handlowcy (${handlowcySet.size})`;
-}
+    const tab2023 = document.getElementById("tab2023");
+    const tab2024 = document.getElementById("tab2024");
+    const tab2025 = document.getElementById("tab2025");
+    const tabHandlowcy = document.getElementById("tabHandlowcy");
+
+    if (tab2023) tab2023.textContent = `2023 (${countByYear['2023']})`;
+    if (tab2024) tab2024.textContent = `2024 (${countByYear['2024']})`;
+    if (tab2025) tab2025.textContent = `2025 (${countByYear['2025']})`;
+    if (tabHandlowcy) tabHandlowcy.textContent = `Handlowcy (${handlowcySet.size})`;
+  }
 
   onValue(assignmentsRef, snapshot => {
     projektanciAssigned = snapshot.val() || {};
     console.log('📥 Firebase assignments:', projektanciAssigned);
     renderProjektanciList(projektanciGlobal);
-    updateTabCounters();
+    setTimeout(updateTabCounters, 100);
   });
-
-
-
-
 
   window.saveAssignment = function (projektant, handlowiec) {
     set(ref(db, `assignments/${projektant}`), handlowiec)
       .then(() => console.log('✅ Zapisano:', projektant, handlowiec))
       .catch(console.error);
   };
-
-  // =========== Mapa ===========
 
   const map = L.map('map').setView([53.4285, 14.5528], 8);
   window.map = map;
@@ -79,9 +79,9 @@ function updateTabCounters() {
     fetch('dzialki.geojson')
       .then(res => res.json())
       .then(data => {
-  geojsonFeatures = data.features;
-  updateTabCounters();
-  const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
+        geojsonFeatures = data.features;
+        setTimeout(updateTabCounters, 100);
+        const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
         const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
           pointToLayer: (feature, latlng) => L.marker(latlng),
           onEachFeature: bindPopupToLayer
@@ -122,209 +122,6 @@ function updateTabCounters() {
     layer.bindPopup(popup);
   }
 
-  // =========== Sidebar & Profil ===========
-  window.showProjektanci = function () {
-    fetch('projektanci.json')
-      .then(res => res.json())
-      .then(data => {
-        projektanciGlobal = data;
-        renderProjektanciList(projektanciGlobal);
-        document.getElementById("sidebar").classList.add("show");
-      });
-  };
-
-   window.applyProjektantFilter = function () {
-    const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
-    const selectedNames = Array.from(checkboxes).map(cb => cb.value.trim());
-
-    if (markerCluster) map.removeLayer(markerCluster);
-    markerCluster = createClusterGroup();
-
-    const filtered = geojsonFeatures.filter(f => selectedNames.includes(f.properties?.projektant?.trim()));
-
-    const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-      pointToLayer: (feature, latlng) => L.marker(latlng),
-      onEachFeature: bindPopupToLayer
-    });
-
-    markerCluster.addLayer(layer);
-    map.addLayer(markerCluster);
-    hideSidebar();
-  };
-
-
-  window.renderProjektanciList = function (list) {
-  const container = document.getElementById("sidebarContent");
-  container.innerHTML = "";
-
-  const searchValue = document.getElementById("searchInput")?.value?.toLowerCase() || "";
-
-  list
-    .filter(p => p.projektant.toLowerCase().includes(searchValue))
-    .forEach(p => {
-      const assigned = projektanciAssigned[p.projektant] || "";
-      const div = document.createElement("div");
-      div.className = "projektant-entry";
-      div.innerHTML = `
-        <label style="display:flex;align-items:center;gap:0.5rem;">
-          <input type="checkbox" value="${p.projektant}" />
-          <span class="name" onclick="showProfile('${p.projektant}')">
-            ${p.projektant} – ${p.liczba_projektow} projektów
-          </span>
-        </label>
-        <select onchange="assignHandlowiec('${p.projektant}', this.value)">
-          <option value="">(brak)</option>
-          ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-        </select>
-      `;
-      container.appendChild(div);
-    });
-};
-
-
-  window.assignHandlowiec = function (projektant, handlowiec) {
-    if (handlowiec) projektanciAssigned[projektant] = handlowiec;
-    else delete projektanciAssigned[projektant];
-    renderProjektanciList(projektanciGlobal);
-    updateProfileHandlowiec(projektant);
-    saveAssignment(projektant, handlowiec);
-  };
-
-  function updateProfileHandlowiec(name) {
-    const profile = document.getElementById("profileContent");
-    if (!profile.innerHTML.includes(name)) return;
-    const hand = projektanciAssigned[name] || "(nieprzypisany)";
-    profile.querySelector("p").innerHTML = `<b>Handlowiec:</b> ${hand}`;
-  }
-
-  window.showProfile = function (name) {
-    const profile = document.getElementById("profilePanel");
-    const content = document.getElementById("profileContent");
-    const notes = projektanciNotes[name] || "";
-    const handlowiec = projektanciAssigned[name] || "(nieprzypisany)";
-    const projekty = geojsonFeatures.filter(f => f.properties?.projektant === name);
-    const liczba = projekty.length;
-
-    content.innerHTML = `
-      <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
-      <h3>${name}</h3>
-      <p><b>Handlowiec:</b> ${handlowiec}</p>
-      <p><b>Liczba projektów:</b> ${liczba}</p>
-      <label>📝 Notatki:</label>
-      <textarea onchange="projektanciNotes['${name}'] = this.value">${notes}</textarea>
-    `;
-    profile.classList.add("show");
-  };
-
-  window.applySortFilter = function () {
-    const value = document.getElementById("sortFilterSelect").value;
-    let list = [...projektanciGlobal];
-
-    switch (value) {
-      case "az":
-        list.sort((a, b) => a.projektant.localeCompare(b.projektant));
-        break;
-      case "za":
-        list.sort((a, b) => b.projektant.localeCompare(a.projektant));
-        break;
-      case "has-handlowiec":
-        list = list.filter(p => projektanciAssigned[p.projektant]);
-        break;
-      case "no-handlowiec":
-        list = list.filter(p => !projektanciAssigned[p.projektant]);
-        break;
-      case "proj-asc":
-        list.sort((a, b) => a.liczba_projektow - b.liczba_projektow);
-        break;
-      case "proj-desc":
-        list.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
-        break;
-    }
-
-    renderProjektanciList(list);
-  };
-
-    window.filterProjektanciList = function () {
-    renderProjektanciList(projektanciGlobal);
-  };
-
-// =========== Sidebar & Profil HANDLOWCY ===========
-
-  window.showHandlowcy = function () {
-    renderHandlowcyList(handlowcy);
-    document.getElementById("handlowcyPanel").classList.add("show");
-  };
-
-  window.hideHandlowcy = function () {
-    document.getElementById("handlowcyPanel").classList.remove("show");
-  };
-
-  window.renderHandlowcyList = function (list) {
-  const container = document.getElementById("handlowcyContent");
-  const search = document.getElementById("handlowcySearchInput").value.toLowerCase();
-  container.innerHTML = "";
-
-  list
-    .filter(h => h.toLowerCase().includes(search))
-    .forEach(h => {
-      const count = Object.values(projektanciAssigned).filter(x => x === h).length;
-      const div = document.createElement("div");
-      div.className = "handlowiec-entry";
-      div.innerHTML = `
-        <input type="checkbox" value="${h}" />
-        <span class="name">${h}</span>
-        <span style="color:#9ca3af;">${count} przypisań</span>
-      `;
-      container.appendChild(div);
-    });
-};
-
-
-  window.applyHandlowcySort = function () {
-    const value = document.getElementById("handlowcySortSelect").value;
-    let list = [...handlowcy];
-
-    if (value === "az") list.sort();
-    else if (value === "za") list.sort().reverse();
-    else if (value === "most") list.sort((a, b) =>
-      Object.values(projektanciAssigned).filter(x => x === b).length -
-      Object.values(projektanciAssigned).filter(x => x === a).length
-    );
-    else if (value === "least") list.sort((a, b) =>
-      Object.values(projektanciAssigned).filter(x => x === a).length -
-      Object.values(projektanciAssigned).filter(x => x === b).length
-    );
-
-    renderHandlowcyList(list);
-  };
-
-  window.filterHandlowcyList = function () {
-    renderHandlowcyList(handlowcy);
-  };
-
- window.applyHandlowcyFilter = function () {
-  const checkboxes = document.querySelectorAll('#handlowcyContent input[type="checkbox"]:checked');
-  const selectedHandlowcy = Array.from(checkboxes).map(cb => cb.value.trim());
-
-  if (markerCluster) map.removeLayer(markerCluster);
-  markerCluster = createClusterGroup();
-
-  const filtered = geojsonFeatures.filter(f => selectedHandlowcy.includes(projektanciAssigned[f.properties?.projektant]));
-
-  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-    pointToLayer: (feature, latlng) => L.marker(latlng),
-    onEachFeature: bindPopupToLayer
-  });
-
-  markerCluster.addLayer(layer);
-  map.addLayer(markerCluster);
-  hideHandlowcy();
-};
-
-
-  window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");
-  window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
-
-  // Start
+  // Final initialization
   loadGeoJSONWithFilter(null);
 });

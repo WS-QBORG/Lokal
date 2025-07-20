@@ -118,14 +118,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // =========== Sidebar & Profil ===========
   window.showProjektanci = function () {
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar.classList.contains("show")) {
+    sidebar.classList.remove("show");
+  } else {
     fetch('projektanci.json')
       .then(res => res.json())
       .then(data => {
         projektanciGlobal = data;
         renderProjektanciList(projektanciGlobal);
-        document.getElementById("sidebar").classList.add("show");
+        sidebar.classList.add("show");
       });
-  };
+  }
+};
+
 
    window.applyProjektantFilter = function () {
     const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
@@ -249,9 +255,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // =========== Sidebar & Profil HANDLOWCY ===========
 
   window.showHandlowcy = function () {
+  const panel = document.getElementById("handlowcyPanel");
+  if (panel.classList.contains("show")) {
+    panel.classList.remove("show");
+  } else {
     renderHandlowcyList(handlowcy);
-    document.getElementById("handlowcyPanel").classList.add("show");
-  };
+    panel.classList.add("show");
+  }
+};
+
 
   window.hideHandlowcy = function () {
     document.getElementById("handlowcyPanel").classList.remove("show");

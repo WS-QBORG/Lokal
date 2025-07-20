@@ -173,6 +173,13 @@ document.addEventListener("DOMContentLoaded", () => {
   <textarea placeholder="Notatki...">${projektanciNotes[p.projektant] || ""}</textarea>
 `;
 
+const textarea = div.querySelector("textarea");
+textarea.addEventListener("change", () => {
+  projektanciNotes[p.projektant] = textarea.value;
+  saveNote(p.projektant, textarea.value);
+});
+
+
       container.appendChild(div);
     });
 };

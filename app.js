@@ -78,28 +78,30 @@ document.addEventListener("DOMContentLoaded", () => {
   if (markerCluster) map.removeLayer(markerCluster);
   markerCluster = createClusterGroup();
 
-  fetch('dzialki.geojson') // <-- zmień jeśli używasz dzialki_HYBRYDA.geojson
+  fetch('dzialki.geojson')
     .then(res => res.json())
     .then(data => {
-      L.geoJSON(data, {
-      pointToLayer: function (feature, latlng) {
-        const marker = L.marker(latlng);
-        markerCluster.addLayer(marker);
+      geojsonFeatures = data.features;
+      const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
 
-        // DODAJEMY prostokąt dla każdego punktu
-        const rect = createDefaultRectangle(latlng);
-        rect.addTo(drawnItems);
+      L.geoJSON(filtered, {
+        pointToLayer: function (feature, latlng) {
+          const marker = L.marker(latlng);
+          markerCluster.addLayer(marker);
 
-        return marker;
-      }
-    });
-  });
+          // dodaj domyślny prostokąt dla każdego punktu
+          const rect = createDefaultRectangle(latlng);
+          rect.addTo(drawnItems);
 
-    
+          return marker;
+        },
+        onEachFeature: bindPopupToLayer
+      }).addTo(map);
 
       map.addLayer(markerCluster);
     });
 }
+
 
 
 

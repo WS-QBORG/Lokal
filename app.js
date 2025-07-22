@@ -104,7 +104,7 @@ function saveGeoJSONToFirebase() {
     type: "FeatureCollection",
     features: geojsonFeatures
   };
-  import { push } from "firebase/database";
+  
 
 const newRef = push(ref(db, 'punkty'));
 set(newRef, newFeature)
@@ -644,7 +644,7 @@ deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony
 
   // Start
   //loadGeoJSON();
-  //loadGeoJSONFromFirebase(); // zamiast local file
+  loadGeoJSONFromFirebase(); // zamiast local file
 
 });
 

@@ -87,42 +87,57 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function loadGeoJSONWithFilter(filterFn) {
-  showLoading(); // Pokaż spinner
+  map.on('moveend', () => {
+  renderVisibleDzialki();
+});
 
-  if (markerCluster) map.removeLayer(markerCluster);
-  markerCluster = createClusterGroup();
+
+  function loadGeoJSON() {
+  showLoading();
 
   fetch('dzialki.geojson')
     .then(res => res.json())
     .then(data => {
-      geojsonFeatures = data.features.slice(0, 70); // Ograniczanie ilości wyświetlanych punktów 
-      const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
-
-      L.geoJSON(filtered, {
-        pointToLayer: function (feature, latlng) {
-          const marker = L.marker(latlng);
-          markerCluster.addLayer(marker);
-
-          // dodaj domyślny prostokąt
-          const rect = createDefaultRectangle(latlng);
-          rect.addTo(drawnItems);
-
-          return marker;
-        },
-        onEachFeature: bindPopupToLayer
-      }).addTo(map);
-
-      map.addLayer(markerCluster);
-      map.addLayer(drawnItems);  // dodaj obrysy
-
-      hideLoading(); // Ukryj spinner
+      geojsonFeatures = data.features;
+      renderVisibleDzialki(); // pierwszy raz
+      hideLoading();
     })
     .catch(err => {
       console.error("❌ Błąd ładowania GeoJSON:", err);
       hideLoading();
     });
 }
+function renderVisibleDzialki() {
+  const bounds = map.getBounds();
+
+  // wyczyść starą zawartość
+  if (markerCluster) map.removeLayer(markerCluster);
+  markerCluster = createClusterGroup();
+
+  drawnItems.clearLayers();
+
+  const visible = geojsonFeatures.filter(f => {
+    if (!f.geometry || f.geometry.type !== "Point") return false;
+    const [lng, lat] = f.geometry.coordinates;
+    return bounds.contains([lat, lng]);
+  });
+
+  visible.forEach(f => {
+    const [lng, lat] = f.geometry.coordinates;
+    const latlng = L.latLng(lat, lng);
+
+    const marker = L.marker(latlng);
+    bindPopupToLayer(f, marker);
+    markerCluster.addLayer(marker);
+
+    const rect = createDefaultRectangle(latlng);
+    drawnItems.addLayer(rect);
+  });
+
+  map.addLayer(markerCluster);
+  map.addLayer(drawnItems);
+}
+
 
 
 
@@ -448,5 +463,5 @@ loadShapesFromFirebase();
 
 
   // Start
-  loadGeoJSONWithFilter(null);
+  loadGeoJSON();
 });

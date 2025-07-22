@@ -628,7 +628,7 @@ loadShapesFromFirebase();
 
 
   // Start
- // loadGeoJSON();
+  //loadGeoJSON();
   loadGeoJSONFromFirebase(); // zamiast local file
 
 });

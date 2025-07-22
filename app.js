@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       spiderfyOnMaxZoom: false,   // nie rozrzucaj punktów
       showCoverageOnHover: false, // nie pokazuj zasięgu klastra
       zoomToBoundsOnClick: true,  // nadal pozwól kliknąć
+      disableClusteringAtZoom: 18, // Naprawa nachodzących cyfr na punkty
       iconCreateFunction: function (cluster) {
         const count = cluster.getChildCount();
         let color = '#3b82f6';

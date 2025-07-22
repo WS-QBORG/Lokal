@@ -104,20 +104,25 @@ function saveGeoJSONToFirebase() {
     type: "FeatureCollection",
     features: geojsonFeatures
   };
-  set(ref(db, 'geojson'), featureCollection)
-    .then(() => console.log("✅ Nowy punkt zapisany do Firebase"))
-    .catch(console.error);
+  import { push } from "firebase/database";
+
+const newRef = push(ref(db, 'punkty'));
+set(newRef, newFeature)
+  .then(() => console.log("✅ Nowy punkt zapisany"))
+  .catch(console.error);
+
 }
 
 // 🔁 Ładowanie GeoJSON z Firebase przy starcie
 function loadGeoJSONFromFirebase() {
-  onValue(ref(db, 'geojson'), (snapshot) => {
-    const data = snapshot.val();
-    if (!data) return;
-    geojsonFeatures = data.features;
-    renderVisibleDzialki();
-  });
-}
+  onValue(ref(db, 'punkty'), (snapshot) => {
+  const data = snapshot.val();
+  if (!data) return;
+
+  geojsonFeatures = Object.values(data); // wszystkie dodane punkty
+  renderVisibleDzialki();
+});
+
 
 document.getElementById("rotateSlider").addEventListener("input", function () {
   if (!activeRectangle || !baseCorners || !baseLatLng) {

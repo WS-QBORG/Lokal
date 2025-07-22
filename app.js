@@ -25,21 +25,29 @@ document.addEventListener("DOMContentLoaded", () => {
   let originalLatLng = null;
 
 document.getElementById("rotateSlider").addEventListener("input", function () {
-  if (!activeRectangle || !originalLatLng){
-  console.warn("Brak aktywnego prostokąta lub pozycji");
-   return;
+  if (!activeRectangle) {
+    console.warn("Brak aktywnego prostokąta");
+    return;
   }
-  
-  const angle = parseFloat(this.value) * Math.PI / 180;
-  
-  const newCorners = rotateBounds(originalLatLng, 0.0003, angle);
-  console.log("Nowe punkty po obrocie:", newCorners);
-  
-  activeRectangle.setLatLngs([newCorners]); // ważne: tablica tablic
 
-   saveShapesToFirebase(); // ⬅️ tu zapisujemy obrót!
-  
+  // 🧠 Wyciągnij aktualny środek z obecnych punktów prostokąta
+  const latlngs = activeRectangle.getLatLngs()[0];
+  const lat = latlngs.reduce((sum, pt) => sum + pt.lat, 0) / latlngs.length;
+  const lng = latlngs.reduce((sum, pt) => sum + pt.lng, 0) / latlngs.length;
+  originalLatLng = L.latLng(lat, lng); // 🔁 aktualizuj środek
+
+  // 🔄 Przelicz obrócone punkty
+  const angle = parseFloat(this.value) * Math.PI / 180;
+  const newCorners = rotateBounds(originalLatLng, 0.0003, angle);
+
+  console.log("🔁 Nowe punkty po obrocie:", newCorners);
+
+  activeRectangle.setLatLngs([newCorners]);
+
+  // 💾 Zapisz obrót
+  saveShapesToFirebase();
 });
+
   
 
   const assignmentsRef = ref(db, 'assignments');

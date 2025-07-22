@@ -28,6 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProjektanciList(projektanciGlobal);
   });
 
+// Dodanie ładowania
+  function showLoading() {
+    document.getElementById("loadingOverlay").style.display = "flex";
+  }
+  function hideLoading() {
+    document.getElementById("loadingOverlay").style.display = "none";
+  }
+
+
   window.saveAssignment = function (projektant, handlowiec) {
     set(ref(db, `assignments/${projektant}`), handlowiec)
       .then(() => console.log('✅ Zapisano:', projektant, handlowiec))

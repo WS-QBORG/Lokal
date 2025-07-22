@@ -391,6 +391,25 @@
   <div id="handlowcyContent"></div>
 </div>
 
+  <!-- Panel dodawania punktu -->
+<div id="addPointPanel" style="display:none; position:fixed; bottom:20px; left:20px; background:#1f2937; padding:1rem; border-radius:10px; z-index:1001; box-shadow:0 0 10px rgba(0,0,0,0.5); width:300px;">
+  <h3 style="color:white;margin-top:0;">➕ Dodaj punkt</h3>
+  <label style="color:white;">Kto dodaje:</label>
+  <select id="inputHandlowiec" style="width:100%;margin-bottom:0.5rem;"></select>
+
+  <label style="color:white;">Projektant:</label>
+  <input id="inputProjektant" type="text" style="width:100%;margin-bottom:0.5rem;" />
+
+  <label style="color:white;">Adres:</label>
+  <input id="inputAdres" type="text" style="width:100%;margin-bottom:0.5rem;" />
+
+  <label style="color:white;">Klient:</label>
+  <input id="inputKlient" type="text" style="width:100%;margin-bottom:0.5rem;" />
+
+  <button onclick="confirmAddPoint()" style="width:100%;background:#3b82f6;color:white;padding:0.5rem;border:none;border-radius:6px;cursor:pointer;margin-top:0.5rem;">✅ Dodaj na mapę</button>
+  <button onclick="cancelAddPoint()" style="width:100%;background:#ef4444;color:white;padding:0.5rem;border:none;border-radius:6px;cursor:pointer;margin-top:0.5rem;">✖ Anuluj</button>
+</div>
+
 
   <script src="app.js"></script>
 </body>

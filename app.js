@@ -6,6 +6,13 @@ let projektanciNotes = {};
 let geojsonFeatures = [];
 let markerCluster;
 
+// =========== Firebase Init dla rysowania kwadratów  ===========
+
+const db = window.firebaseDB;
+const ref = window.firebaseRef;
+const onValue = window.firebaseOnValue;
+const set = window.firebaseSet;
+
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski"];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -367,6 +374,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");
   window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
+
+// === Funkcja pomocnicza: tworzenie prostokąta wokół punktu ===
+function createDefaultRectangle(latlng, size = 0.001) {
+  const lat = latlng.lat;
+  const lng = latlng.lng;
+  return L.rectangle([
+    [lat - size / 2, lng - size / 2],
+    [lat + size / 2, lng + size / 2]
+  ], {
+    color: "#3b82f6",
+    weight: 2,
+    fillOpacity: 0.2,
+    editable: true
+  });
+}
+
+// === Dodaj rysowanie/edycję obrysów ===
+const drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+const drawControl = new L.Control.Draw({
+  draw: {
+    polygon: true,
+    rectangle: true,
+    circle: false,
+    polyline: false,
+    marker: false,
+    circlemarker: false
+  },
+  edit: {
+    featureGroup: drawnItems
+  }
+});
+map.addControl(drawControl);
+
+// === Po edycji lub dodaniu: zapisuj do Firebase ===
+map.on(L.Draw.Event.CREATED, function (e) {
+  const layer = e.layer;
+  drawnItems.addLayer(layer);
+  saveShapesToFirebase();
+});
+
+map.on(L.Draw.Event.EDITED, function () {
+  saveShapesToFirebase();
+});
+
+map.on(L.Draw.Event.DELETED, function () {
+  saveShapesToFirebase();
+});
+
+// === Zapisz kształty jako GeoJSON do Firebase ===
+function saveShapesToFirebase() {
+  const geojson = drawnItems.toGeoJSON();
+  set(ref(db, 'obrysy'), geojson);
+}
+
+// === Wczytaj kształty z Firebase przy starcie ===
+function loadShapesFromFirebase() {
+  onValue(ref(db, 'obrysy'), (snapshot) => {
+    const data = snapshot.val();
+    if (!data) return;
+    drawnItems.clearLayers();
+    const geojsonLayer = L.geoJSON(data);
+    geojsonLayer.eachLayer(layer => drawnItems.addLayer(layer));
+  });
+}
+loadShapesFromFirebase();
+
 
   // Start
   loadGeoJSONWithFilter(null);

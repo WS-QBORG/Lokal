@@ -110,17 +110,34 @@ document.addEventListener("DOMContentLoaded", () => {
 function renderVisibleDzialki() {
   const bounds = map.getBounds();
 
-  // wyczyść starą zawartość
   if (markerCluster) map.removeLayer(markerCluster);
   markerCluster = createClusterGroup();
-
-  drawnItems.clearLayers();
 
   const visible = geojsonFeatures.filter(f => {
     if (!f.geometry || f.geometry.type !== "Point") return false;
     const [lng, lat] = f.geometry.coordinates;
     return bounds.contains([lat, lng]);
   });
+
+  visible.forEach(f => {
+    const [lng, lat] = f.geometry.coordinates;
+    const latlng = L.latLng(lat, lng);
+
+    const marker = L.marker(latlng);
+    marker.on("click", () => {
+      drawnItems.clearLayers(); // usuwamy poprzedni obrys
+
+      const rect = createDefaultRectangle(latlng);
+      drawnItems.addLayer(rect);
+    });
+
+    bindPopupToLayer(f, marker);
+    markerCluster.addLayer(marker);
+  });
+
+  map.addLayer(markerCluster);
+}
+
 
   visible.forEach(f => {
     const [lng, lat] = f.geometry.coordinates;
@@ -135,7 +152,7 @@ function renderVisibleDzialki() {
   });
 
   map.addLayer(markerCluster);
-  map.addLayer(drawnItems);
+//  map.addLayer(drawnItems);
 }
 
 

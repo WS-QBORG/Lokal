@@ -21,14 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const onValue = window.firebaseOnValue;
   const set = window.firebaseSet;
 
-  const assignmentsRef = ref(db, 'assignments');
-  onValue(assignmentsRef, snapshot => {
-    projektanciAssigned = snapshot.val() || {};
-    console.log('📥 Firebase assignments:', projektanciAssigned);
-    renderProjektanciList(projektanciGlobal);
-
-let activeRectangle = null;
-let originalLatLng = null;
+  let activeRectangle = null;
+  let originalLatLng = null;
 
 document.getElementById("rotateSlider").addEventListener("input", function () {
   if (!activeRectangle || !originalLatLng){
@@ -44,7 +38,13 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
   activeRectangle.setLatLngs([newCorners]); // ważne: tablica tablic
   
 });
+  
 
+  const assignmentsRef = ref(db, 'assignments');
+  onValue(assignmentsRef, snapshot => {
+    projektanciAssigned = snapshot.val() || {};
+    console.log('📥 Firebase assignments:', projektanciAssigned);
+    renderProjektanciList(projektanciGlobal);
 
 
   });

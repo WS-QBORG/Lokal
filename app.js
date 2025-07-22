@@ -139,27 +139,6 @@ function renderVisibleDzialki() {
 }
 
 
-  visible.forEach(f => {
-    const [lng, lat] = f.geometry.coordinates;
-    const latlng = L.latLng(lat, lng);
-
-    const marker = L.marker(latlng);
-    bindPopupToLayer(f, marker);
-    markerCluster.addLayer(marker);
-
-    const rect = createDefaultRectangle(latlng);
-    drawnItems.addLayer(rect);
-  });
-
-  map.addLayer(markerCluster);
-//  map.addLayer(drawnItems);
-}
-
-
-
-
-
-
 
   window.filterMap = function (rok) {
     loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);

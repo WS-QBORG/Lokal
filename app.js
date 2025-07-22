@@ -81,8 +81,19 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('dzialki.geojson') // <-- zmień jeśli używasz dzialki_HYBRYDA.geojson
     .then(res => res.json())
     .then(data => {
-      geojsonFeatures = data.features;
-      const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
+      L.geoJSON(data, {
+      pointToLayer: function (feature, latlng) {
+        const marker = L.marker(latlng);
+        markerCluster.addLayer(marker);
+
+        // DODAJEMY prostokąt dla każdego punktu
+        const rect = createDefaultRectangle(latlng);
+        rect.addTo(drawnItems);
+
+        return marker;
+      }
+    });
+  });
 
       filtered.forEach(feature => {
         // Pomijaj puste wpisy bez geometrii
@@ -110,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 📍 2. Jeśli to Point → dodaj pinezkę
         if (geometryType === "Point") {
-          const coords = feature.geometry.coordinates;
+          const coords = const coords = latlng; // bo i tak mamy go od pointToLayer
           const latlng = [coords[1], coords[0]];
           const marker = L.marker(latlng);
           bindPopupToLayer(feature, marker); // przypnij popup do pinezki

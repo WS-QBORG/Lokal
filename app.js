@@ -34,9 +34,10 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
   if (!activeRectangle || !originalLatLng) return;
   const angle = parseFloat(this.value) * Math.PI / 180;
 
-  const newBounds = rotateBounds(originalLatLng, 0.0003, angle);
-  activeRectangle.setBounds(newBounds);
+  const newCorners = rotateBounds(originalLatLng, 0.0003, angle);
+  activeRectangle.setLatLngs([newCorners]); // ważne: tablica tablic
 });
+
 
 
   });
@@ -423,29 +424,24 @@ function rotateBounds(center, size, angle) {
   });
 }
 
-// === Funkcja pomocnicza: tworzenie prostokąta wokół punktu ===
+// === Funkcja pomocnicza: tworzenie poly wokół punktu ===
 function createDefaultRectangle(latlng, size = 0.0003) {
-  const lat = latlng.lat;
-  const lng = latlng.lng;
-
-
-  // zapisz stan do obrotu
   originalLatLng = latlng;
   document.getElementById("rotateSlider").value = 0;
   document.getElementById("rotateControl").style.display = "block";
 
-  const rect = L.rectangle([
-    [lat - size / 2, lng - size / 2],
-    [lat + size / 2, lng + size / 2]
-  ], {
+  const corners = rotateBounds(latlng, size, 0); // start bez rotacji
+
+  const polygon = L.polygon(corners, {
     color: "#3b82f6",
     weight: 1.2,
     fillOpacity: 0.1
   });
 
-  activeRectangle = rect;
-  return rect;
+  activeRectangle = polygon;
+  return polygon;
 }
+
 
 
 // === Dodaj rysowanie/edycję obrysów ===

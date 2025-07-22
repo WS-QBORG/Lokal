@@ -84,13 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function loadGeoJSONWithFilter(filterFn) {
+  showLoading(); // Pokaż spinner
+
   if (markerCluster) map.removeLayer(markerCluster);
   markerCluster = createClusterGroup();
 
   fetch('dzialki.geojson')
     .then(res => res.json())
     .then(data => {
-      geojsonFeatures = data.features.slice(0, 50); // ⬅️ tylko 50 punktów
+      geojsonFeatures = data.features.slice(0, 50); // ogranicz dla testu
       const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
 
       L.geoJSON(filtered, {
@@ -98,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const marker = L.marker(latlng);
           markerCluster.addLayer(marker);
 
-          // dodaj domyślny prostokąt dla każdego punktu
+          // dodaj domyślny prostokąt
           const rect = createDefaultRectangle(latlng);
           rect.addTo(drawnItems);
 
@@ -107,13 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
         onEachFeature: bindPopupToLayer
       }).addTo(map);
 
-      // ładowanie obrysów dopiero po loadGeoJSONWithFilter() i loadShapesFromFirebase()
-      loadGeoJSONWithFiltUncaught SyntaxError: expected expression, got keyword 'const'app.js:124:26er(null);
-      loadShapesFromFirebase();
-      map.addLayer(drawnItems); // ← dopiero teraz
+      map.addLayer(markerCluster);
+      map.addLayer(drawnItems);  // dodaj obrysy
 
+      hideLoading(); // Ukryj spinner
+    })
+    .catch(err => {
+      console.error("❌ Błąd ładowania GeoJSON:", err);
+      hideLoading();
     });
 }
+
 
 
 

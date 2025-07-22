@@ -26,6 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
     projektanciAssigned = snapshot.val() || {};
     console.log('📥 Firebase assignments:', projektanciAssigned);
     renderProjektanciList(projektanciGlobal);
+
+let activeRectangle = null;
+let originalLatLng = null;
+
+document.getElementById("rotateSlider").addEventListener("input", function () {
+  if (!activeRectangle || !originalLatLng) return;
+  const angle = parseFloat(this.value) * Math.PI / 180;
+
+  const newBounds = rotateBounds(originalLatLng, 0.0003, angle);
+  activeRectangle.setBounds(newBounds);
+});
+
+
   });
 
 // Dodanie ładowania
@@ -390,20 +403,50 @@ function renderVisibleDzialki() {
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");
   window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
 
+// Funkcja obrotu
+function rotateBounds(center, size, angle) {
+  const lat = center.lat;
+  const lng = center.lng;
+  const half = size / 2;
+
+  const corners = [
+    [-half, -half],
+    [-half, +half],
+    [+half, +half],
+    [+half, -half]
+  ];
+
+  return corners.map(([dy, dx]) => {
+    const newLat = lat + dy * Math.cos(angle) - dx * Math.sin(angle);
+    const newLng = lng + dy * Math.sin(angle) + dx * Math.cos(angle);
+    return [newLat, newLng];
+  });
+}
+
 // === Funkcja pomocnicza: tworzenie prostokąta wokół punktu ===
 function createDefaultRectangle(latlng, size = 0.0003) {
   const lat = latlng.lat;
   const lng = latlng.lng;
-  return L.rectangle([
+
+
+  // zapisz stan do obrotu
+  originalLatLng = latlng;
+  document.getElementById("rotateSlider").value = 0;
+  document.getElementById("rotateControl").style.display = "block";
+
+  const rect = L.rectangle([
     [lat - size / 2, lng - size / 2],
     [lat + size / 2, lng + size / 2]
   ], {
-  color: "#3b82f6",       // granatowy
-  weight: 1.2,            // cieńszy obrys
-  fillOpacity: 0.1,        // bardziej przezroczysty
-    editable: true
+    color: "#3b82f6",
+    weight: 1.2,
+    fillOpacity: 0.1
   });
+
+  activeRectangle = rect;
+  return rect;
 }
+
 
 // === Dodaj rysowanie/edycję obrysów ===
 const drawnItems = new L.FeatureGroup();

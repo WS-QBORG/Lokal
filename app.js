@@ -95,39 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-      filtered.forEach(feature => {
-        // Pomijaj puste wpisy bez geometrii
-        if (!feature.geometry || !feature.geometry.type) return;
-
-        const geometryType = feature.geometry.type;
-
-        // 🔵 1. Jeśli to Polygon lub MultiPolygon → narysuj obrys
-        if (geometryType === "Polygon" || geometryType === "MultiPolygon") {
-          const polygonLayer = L.geoJSON({
-            type: "Feature",
-            geometry: feature.geometry,
-            properties: feature.properties
-          }, {
-            style: {
-              color: "red",       // Obrys
-              weight: 2,
-              fillColor: "orange", // Wypełnienie
-              fillOpacity: 0.3
-            }
-          }).addTo(markerCluster);
-
-          bindPopupToLayer(feature, polygonLayer); // przypnij popup do obrysu
-        }
-
-        // 📍 2. Jeśli to Point → dodaj pinezkę
-        if (geometryType === "Point") {
-          const coords = const coords = latlng; // bo i tak mamy go od pointToLayer
-          const latlng = [coords[1], coords[0]];
-          const marker = L.marker(latlng);
-          bindPopupToLayer(feature, marker); // przypnij popup do pinezki
-          markerCluster.addLayer(marker);
-        }
-      });
+    
 
       map.addLayer(markerCluster);
     });

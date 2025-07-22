@@ -376,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
 
 // === Funkcja pomocnicza: tworzenie prostokąta wokół punktu ===
-function createDefaultRectangle(latlng, size = 0.001) {
+function createDefaultRectangle(latlng, size = 0.0003) {
   const lat = latlng.lat;
   const lng = latlng.lng;
   return L.rectangle([

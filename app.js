@@ -36,6 +36,8 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
   console.log("Nowe punkty po obrocie:", newCorners);
   
   activeRectangle.setLatLngs([newCorners]); // ważne: tablica tablic
+
+   saveShapesToFirebase(); // ⬅️ tu zapisujemy obrót!
   
 });
   
@@ -486,11 +488,17 @@ map.on(L.Draw.Event.DELETED, function () {
   saveShapesToFirebase();
 });
 
-// === Zapisz kształty jako GeoJSON do Firebase ===
+// === Zapisz wszystkie kształty z drawnItems do Firebase ===
 function saveShapesToFirebase() {
+  // Konwertujemy grupę warstw (poligony, prostokąty itd.) na format GeoJSON
   const geojson = drawnItems.toGeoJSON();
-  set(ref(db, 'obrysy'), geojson);
+
+  // Zapisujemy dane do Firebase pod ścieżką 'obrysy'
+  set(ref(db, 'obrysy'), geojson)
+    .then(() => console.log('✅ Obrysy zapisane do Firebase'))
+    .catch(console.error);
 }
+
 
 // === Wczytaj kształty z Firebase przy starcie ===
 function loadShapesFromFirebase() {

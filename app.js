@@ -27,6 +27,98 @@ document.addEventListener("DOMContentLoaded", () => {
   let baseCorners = null;       // 🌐 oryginalne narożniki (przed obrotem)
   let baseLatLng = null;        // 🌐 oryginalny środek
 
+
+  // 🔁 Tryb dodawania punktu
+let addPointMode = false;
+
+window.startAddPointMode = function () {
+  addPointMode = true;
+  document.getElementById("addPointPanel").style.display = "block";
+
+  // uzupełnij select handlowców
+  const select = document.getElementById("inputHandlowiec");
+  select.innerHTML = handlowcy.map(h => `<option value="${h}">${h}</option>`).join('');
+};
+
+// ❌ Anuluj
+window.cancelAddPoint = function () {
+  addPointMode = false;
+  document.getElementById("addPointPanel").style.display = "none";
+};
+
+// ✅ Zatwierdź i dodaj marker
+window.confirmAddPoint = function () {
+  const handlowiec = document.getElementById("inputHandlowiec").value;
+  const projektant = document.getElementById("inputProjektant").value.trim();
+  const adres = document.getElementById("inputAdres").value.trim();
+  const klient = document.getElementById("inputKlient").value.trim();
+
+  if (!projektant || !adres || !klient) {
+    alert("Uzupełnij wszystkie pola.");
+    return;
+  }
+
+  alert("Kliknij na mapie, aby wskazać lokalizację.");
+
+  map.once("click", function (e) {
+    const latlng = e.latlng;
+
+    // Dodaj marker
+    const marker = L.marker(latlng).addTo(map);
+    marker.bindPopup(`
+      <b>${projektant}</b><br/>
+      Adres: ${adres}<br/>
+      Klient: ${klient}<br/>
+      Handlowiec: ${handlowiec}
+    `);
+
+    // Zapisz jako nowy punkt w geojsonFeatures
+    const newFeature = {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [latlng.lng, latlng.lat]
+      },
+      properties: {
+        projektant,
+        adres,
+        klient,
+        handlowiec,
+        rok: new Date().getFullYear(),
+        popup: `Dodany punkt – ${adres}`,
+        dzialka: "Brak"
+      }
+    };
+
+    geojsonFeatures.push(newFeature);
+    saveGeoJSONToFirebase(); // ⬇️ zapisz do Firebase
+
+    cancelAddPoint();
+    alert("✅ Punkt dodany!");
+  });
+};
+
+// 💾 Zapis GeoJSON do Firebase
+function saveGeoJSONToFirebase() {
+  const featureCollection = {
+    type: "FeatureCollection",
+    features: geojsonFeatures
+  };
+  set(ref(db, 'geojson'), featureCollection)
+    .then(() => console.log("✅ Nowy punkt zapisany do Firebase"))
+    .catch(console.error);
+}
+
+// 🔁 Ładowanie GeoJSON z Firebase przy starcie
+function loadGeoJSONFromFirebase() {
+  onValue(ref(db, 'geojson'), (snapshot) => {
+    const data = snapshot.val();
+    if (!data) return;
+    geojsonFeatures = data.features;
+    renderVisibleDzialki();
+  });
+}
+
 document.getElementById("rotateSlider").addEventListener("input", function () {
   if (!activeRectangle || !baseCorners || !baseLatLng) {
     console.warn("Brak danych do obrotu");
@@ -56,6 +148,7 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
   drawnItems.addLayer(activeRectangle);
 
   saveShapesToFirebase(); // 💾 Zapis do Firebase
+
 });
 
 
@@ -535,5 +628,7 @@ loadShapesFromFirebase();
 
 
   // Start
-  loadGeoJSON();
+  //loadGeoJSON();
+  loadGeoJSONFromFirebase(); // zamiast local file
+
 });

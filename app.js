@@ -631,9 +631,23 @@ function loadShapesFromFirebase() {
 }
 loadShapesFromFirebase();
 
+import { remove } from "firebase/database"; // jeśli używasz modułów
+
+// 🔥 Jednorazowe usunięcie geojson
+function deleteGeojsonFromFirebase() {
+  remove(ref(db, 'geojson'))
+    .then(() => console.log("🗑️ geojson usunięty z Firebase"))
+    .catch(console.error);
+}
+
+deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony
+
 
   // Start
-  loadGeoJSON();
-  //loadGeoJSONFromFirebase(); // zamiast local file
+  //loadGeoJSON();
+  loadGeoJSONFromFirebase(); // zamiast local file
 
 });
+
+
+

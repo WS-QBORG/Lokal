@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('dzialki.geojson')
     .then(res => res.json())
     .then(data => {
-      geojsonFeatures = data.features; // .slice(0, 50); Ograniczanie ilości wyświetlanych punktów 
+      geojsonFeatures = data.features.slice(0, 500); // Ograniczanie ilości wyświetlanych punktów 
       const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
 
       L.geoJSON(filtered, {

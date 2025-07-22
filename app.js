@@ -643,8 +643,8 @@ deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony
 
 
   // Start
-  //loadGeoJSON();
-  loadGeoJSONFromFirebase(); // zamiast local file
+  loadGeoJSON();
+  //loadGeoJSONFromFirebase(); // zamiast local file
 
 });
 

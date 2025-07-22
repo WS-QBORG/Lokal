@@ -631,7 +631,6 @@ function loadShapesFromFirebase() {
 }
 loadShapesFromFirebase();
 
-import { remove } from "firebase/database"; // jeśli używasz modułów
 
 // 🔥 Jednorazowe usunięcie geojson
 function deleteGeojsonFromFirebase() {

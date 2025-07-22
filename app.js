@@ -24,29 +24,33 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeRectangle = null;
   let originalLatLng = null;
 
+  let baseCorners = null;       // 🌐 oryginalne narożniki (przed obrotem)
+  let baseLatLng = null;        // 🌐 oryginalny środek
+
 document.getElementById("rotateSlider").addEventListener("input", function () {
-  if (!activeRectangle) {
-    console.warn("Brak aktywnego prostokąta");
+  if (!activeRectangle || !baseCorners || !baseLatLng) {
+    console.warn("Brak danych do obrotu");
     return;
   }
 
-  // 🧠 Wyciągnij aktualny środek z obecnych punktów prostokąta
-  const latlngs = activeRectangle.getLatLngs()[0];
-  const lat = latlngs.reduce((sum, pt) => sum + pt.lat, 0) / latlngs.length;
-  const lng = latlngs.reduce((sum, pt) => sum + pt.lng, 0) / latlngs.length;
-  originalLatLng = L.latLng(lat, lng); // 🔁 aktualizuj środek
-
-  // 🔄 Przelicz obrócone punkty
   const angle = parseFloat(this.value) * Math.PI / 180;
-  const newCorners = rotateBounds(originalLatLng, 0.0003, angle);
 
-  console.log("🔁 Nowe punkty po obrocie:", newCorners);
+  // 🔁 Przelicz każdy narożnik względem pierwotnego środka
+  const rotated = baseCorners.map(([lat, lng]) => {
+    const dy = lat - baseLatLng.lat;
+    const dx = lng - baseLatLng.lng;
 
-  activeRectangle.setLatLngs([newCorners]);
+    const newLat = baseLatLng.lat + dy * Math.cos(angle) - dx * Math.sin(angle);
+    const newLng = baseLatLng.lng + dy * Math.sin(angle) + dx * Math.cos(angle);
+    return [newLat, newLng];
+  });
 
-  // 💾 Zapisz obrót
+  console.log("🔁 Nowe punkty po obrocie:", rotated);
+
+  activeRectangle.setLatLngs([rotated]);
   saveShapesToFirebase();
 });
+
 
   
 
@@ -444,11 +448,12 @@ function rotateBounds(center, size, angle) {
 // === Funkcja pomocnicza: tworzenie poly wokół punktu ===
 function createDefaultRectangle(latlng, size = 0.0003) {
   originalLatLng = latlng;
+  baseLatLng = latlng;
   document.getElementById("rotateSlider").value = 0;
   document.getElementById("rotateControl").style.display = "block";
 
-  const corners = rotateBounds(latlng, size, 0); // start bez rotacji
-  console.log("Początkowe punkty prostokąta:", corners);
+  const corners = rotateBounds(latlng, size, 0); // 🔄 startowy obrys (bez obrotu)
+  baseCorners = corners; // 💾 zapamiętaj punkty bazowe
 
   const polygon = L.polygon([corners], {
     color: "#3b82f6",
@@ -459,6 +464,7 @@ function createDefaultRectangle(latlng, size = 0.0003) {
   activeRectangle = polygon;
   return polygon;
 }
+
 
 
 

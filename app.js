@@ -432,7 +432,7 @@ function createDefaultRectangle(latlng, size = 0.0003) {
 
   const corners = rotateBounds(latlng, size, 0); // start bez rotacji
 
-  const polygon = L.polygon(corners, {
+  const polygon = L.polygon([corners], {
     color: "#3b82f6",
     weight: 1.2,
     fillOpacity: 0.1

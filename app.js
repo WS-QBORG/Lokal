@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('dzialki.geojson')
     .then(res => res.json())
     .then(data => {
-      geojsonFeatures = data.features;
+      geojsonFeatures = data.features.slice(0, 50); // ⬅️ tylko 50 punktów
       const filtered = filterFn ? geojsonFeatures.filter(filterFn) : geojsonFeatures;
 
       L.geoJSON(filtered, {
@@ -98,7 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
         onEachFeature: bindPopupToLayer
       }).addTo(map);
 
-      map.addLayer(markerCluster);
+      // ładowanie obrysów dopiero po loadGeoJSONWithFilter() i loadShapesFromFirebase()
+      loadGeoJSONWithFiltUncaught SyntaxError: expected expression, got keyword 'const'app.js:124:26er(null);
+      loadShapesFromFirebase();
+      map.addLayer(drawnItems); // ← dopiero teraz
+
     });
 }
 

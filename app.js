@@ -67,6 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createClusterGroup() {
     return L.markerClusterGroup({
+      spiderfyOnMaxZoom: false,   // nie rozrzucaj punktów
+      showCoverageOnHover: false, // nie pokazuj zasięgu klastra
+      zoomToBoundsOnClick: true,  // nadal pozwól kliknąć
       iconCreateFunction: function (cluster) {
         const count = cluster.getChildCount();
         let color = '#3b82f6';

@@ -385,7 +385,7 @@ function createDefaultRectangle(latlng, size = 0.0003) {
   ], {
   color color: "#3b82f6",       // granatowy
   weight: 1.2,            // cieńszy obrys
-  fillOpacity: 0.1        // bardziej przezroczysty
+  fillOpacity: 0.1,        // bardziej przezroczysty
     editable: true
   });
 }

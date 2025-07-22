@@ -35,7 +35,6 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
 
   const angle = parseFloat(this.value) * Math.PI / 180;
 
-  // 🔁 Przelicz każdy narożnik względem pierwotnego środka
   const rotated = baseCorners.map(([lat, lng]) => {
     const dy = lat - baseLatLng.lat;
     const dx = lng - baseLatLng.lng;
@@ -47,8 +46,16 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
 
   console.log("🔁 Nowe punkty po obrocie:", rotated);
 
-  activeRectangle.setLatLngs([rotated]);
-  saveShapesToFirebase();
+  // 🔄 PRZEORYSUJ NA MAPIE
+  drawnItems.clearLayers();
+  activeRectangle = L.polygon([rotated], {
+    color: "#3b82f6",
+    weight: 1.2,
+    fillOpacity: 0.1
+  });
+  drawnItems.addLayer(activeRectangle);
+
+  saveShapesToFirebase(); // 💾 Zapis do Firebase
 });
 
 

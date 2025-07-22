@@ -31,11 +31,18 @@ let activeRectangle = null;
 let originalLatLng = null;
 
 document.getElementById("rotateSlider").addEventListener("input", function () {
-  if (!activeRectangle || !originalLatLng) return;
+  if (!activeRectangle || !originalLatLng){
+  console.warn("Brak aktywnego prostokąta lub pozycji");
+   return;
+  }
+  
   const angle = parseFloat(this.value) * Math.PI / 180;
-
+  
   const newCorners = rotateBounds(originalLatLng, 0.0003, angle);
+  console.log("Nowe punkty po obrocie:", newCorners);
+  
   activeRectangle.setLatLngs([newCorners]); // ważne: tablica tablic
+  
 });
 
 
@@ -431,6 +438,7 @@ function createDefaultRectangle(latlng, size = 0.0003) {
   document.getElementById("rotateControl").style.display = "block";
 
   const corners = rotateBounds(latlng, size, 0); // start bez rotacji
+  console.log("Początkowe punkty prostokąta:", corners);
 
   const polygon = L.polygon([corners], {
     color: "#3b82f6",

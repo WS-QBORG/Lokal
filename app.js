@@ -343,7 +343,7 @@ function renderVisibleDzialki() {
 
   map.addLayer(markerCluster);
 }
-document.getElementById("statusTabButton").addEventListener("click", showStatusPanel);
+
 
 
 
@@ -755,11 +755,11 @@ window.hideStatusPanel = function () {
 };
 
 
-
-
   // Start
   loadGeoJSON();
   loadGeoJSONFromFirebase(); // zamiast local file
+
+document.getElementById("statusTabButton").addEventListener("click", showStatusPanel);
 
 });
 

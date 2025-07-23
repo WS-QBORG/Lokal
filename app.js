@@ -737,6 +737,40 @@ function deleteGeojsonFromFirebase() {
 }
 
 deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
+// =========== STATUS PANEL FIX ===========
+
+// 📌 Funkcja pokazująca panel statusów
+window.showStatusPanel = function () {
+  const panel = document.getElementById("statusPanel");
+  if (panel) {
+    panel.style.display = "block";
+    renderStatusList();
+    console.log("📈 Panel statusów pokazany");
+  } else {
+    console.error("❌ Nie znaleziono #statusPanel");
+  }
+};
+
+// 📌 Funkcja ukrywająca panel
+window.hideStatusPanel = function () {
+  const panel = document.getElementById("statusPanel");
+  if (panel) {
+    panel.style.display = "none";
+  }
+};
+
+// 📌 Czekamy na załadowanie DOM i podpinamy klik
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("statusTabButton");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      console.log("🟦 Kliknięto Akcje / Statusy");
+      showStatusPanel();
+    });
+  } else {
+    console.warn("❌ Brak przycisku #statusTabButton");
+  }
+});
 
 
   // Start

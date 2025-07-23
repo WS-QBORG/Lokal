@@ -38,10 +38,10 @@ window.renderProjektanciList = function (list) {
 
 // =========== Firebase Init dla rysowania kwadratów  ===========
 
-const db = window.firebaseDB;
+/*const db = window.firebaseDB;
 const ref = window.firebaseRef;
 const onValue = window.firebaseOnValue;
-const set = window.firebaseSet;
+const set = window.firebaseSet;*/
 
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski", "Tomasz Fierek", "Piotr Murawski", "Weronika Stępień"];
 
@@ -62,7 +62,7 @@ const statusy = ["Neutralny", "W kontakcie", "Wizyta zaplanowana", "Wizyta odbyt
 const statusAssigned = {};
 
 // Odczytywanie statusów / akcji
-const statusRef = ref(db, 'statusy');
+const statusRef = firebaseRef(firebaseDB, 'statusy');
 onValue(statusRef, snapshot => {
   Object.assign(statusAssigned, snapshot.val() || {});
   console.log("📥 Statusy:", statusAssigned);

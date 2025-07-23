@@ -788,7 +788,18 @@ window.hideStatusPanel = function () {
   loadGeoJSON();
   loadGeoJSONFromFirebase(); // zamiast local file
 
-document.getElementById("statusTabButton").addEventListener("click", showStatusPanel);
+window.addEventListener("load", () => {
+  const btn = document.getElementById("statusTabButton");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      console.log("🟦 Kliknięto Akcje / Statusy");
+      showStatusPanel();
+    });
+  } else {
+    console.error("❌ Brak przycisku #statusTabButton");
+  }
+});
+
 
 });
 

@@ -340,6 +340,7 @@ const popup = `
   <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
 `;
 
+    layer.bindPopup(popup);
 
   }
 

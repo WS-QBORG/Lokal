@@ -509,7 +509,12 @@
     <button onclick="showProjektanci()">Projektanci</button>
     <button onclick="showHandlowcy()">Handlowcy</button>
     <button onclick="startAddPointMode()">➕ Dodaj punkt</button>
-    <button id="statusTabButton">Akcje / Status</button>
+    <div id="statusDropdownWrapper" style="position: relative;">
+  <button onclick="toggleStatusDropdown()">Statusy ⯆</button>
+  <div id="statusDropdown" style="display:none; position:absolute; top:100%; left:0; background:#1f2937; padding:0.5rem; border-radius:6px; z-index:10003; width:200px; box-shadow:0 2px 6px rgba(0,0,0,0.4);">
+    <!-- Wypełniany dynamicznie -->
+  </div>
+</div>
 
   </header>
 

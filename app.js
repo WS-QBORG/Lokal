@@ -636,14 +636,14 @@ function loadShapesFromFirebase() {
 loadShapesFromFirebase();
 
 
-// 🔥 Jednorazowe usunięcie geojson
+/* 🔥 Jednorazowe usunięcie geojson
 function deleteGeojsonFromFirebase() {
   window.firebaseRemove(ref(db, 'geojson'))
     .then(() => console.log("🗑️ geojson usunięty z Firebase"))
     .catch(console.error);
 }
 
-deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony
+deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
 
 
   // Start

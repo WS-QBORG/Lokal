@@ -360,6 +360,9 @@ const popup = `
   }
 };
 
+document.getElementById("statusTabButton").addEventListener("click", showStatusPanel);
+
+
 
    window.applyProjektantFilter = function () {
     const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');

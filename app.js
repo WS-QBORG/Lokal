@@ -84,10 +84,15 @@ window.saveStatus = function (projektant, status) {
       showStatusPanel();
     });
   } else {
-    setTimeout(waitForStatusTabButton, 300);
+    setTimeout(waitForStatusTabButton, 300); // czekaj, aż HTML się załaduje
   }
 }
-waitForStatusTabButton();
+
+// 🔁 Uruchom po załadowaniu strony
+document.addEventListener("DOMContentLoaded", () => {
+  waitForStatusTabButton();
+});
+
 
 
 

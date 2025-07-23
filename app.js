@@ -76,18 +76,6 @@ window.saveStatus = function (projektant, status) {
     .catch(console.error);
 };
 
-  function waitForStatusTabButton() {
-  const btn = document.getElementById("statusTabButton");
-  if (btn) {
-    btn.addEventListener("click", () => {
-      console.log("🟦 Kliknięto Akcje / Statusy");
-      showStatusPanel();
-    });
-  } else {
-    setTimeout(waitForStatusTabButton, 300); // czekaj, aż HTML się załaduje
-  }
-}
-
 
 
   // 🔁 Tryb dodawania punktu
@@ -390,78 +378,6 @@ const popup = `
 
   // =========== Sidebar & Profil ===========
  
-  
-
-window.showStatusPanel = function () {
-  setTimeout(() => {
-    const panel = document.getElementById("statusPanel");
-    const list = document.getElementById("statusList");
-
-    if (!panel || !list) {
-      console.error("❌ Nie znaleziono panelu lub listy");
-      return;
-    }
-
-    panel.style.display = "block";
-    renderStatusList();
-    console.log("📈 Panel statusów pokazany");
-  }, 0); // ⏱️ 0 ms, ale po "następnym tyknięciu" przeglądarki
-};
-
-
-window.hideStatusPanel = function () {
-  document.getElementById("statusPanel").style.display = "none";
-};
-
-
-function renderStatusList() {
-  console.log("📊 renderStatusList START");
-  const container = document.getElementById("statusList");
-  container.innerHTML = "";
-
-  const grouped = {};
-  let skipped = 0;
-
-  geojsonFeatures.forEach(f => {
-    const name = f.properties?.projektant?.trim();
-    if (!name) {
-      skipped++;
-      return;
-    }
-
-    const status = statusAssigned[name] || "Neutralny";
-    if (!grouped[status]) grouped[status] = [];
-    grouped[status].push(f);
-  });
-
-  console.log("⛔ Pominięto działek bez projektanta:", skipped);
-  console.log("🧩 Statusy znalezione:", Object.keys(grouped));
-
-  statusy.forEach(status => {
-    const items = grouped[status] || [];
-
-    const section = document.createElement("div");
-    section.style.marginBottom = "1rem";
-    section.innerHTML = `<h4 style="color:#3b82f6;">${status} (${items.length})</h4>`;
-
-    if (items.length === 0) {
-      section.innerHTML += `<div style="color:#9ca3af;font-size:13px;">Brak projektów</div>`;
-    } else {
-      items.forEach(f => {
-        const adres = f.properties?.adres || "Brak adresu";
-        section.innerHTML += `<div style="color:white;font-size:13px;">• ${adres}</div>`;
-      });
-    }
-
-    container.appendChild(section);
-  });
-}
-
-
-
-  
-  
-  
   window.showProjektanci = function () {
   const sidebar = document.getElementById("sidebar");
   if (sidebar.classList.contains("show")) {
@@ -651,6 +567,108 @@ function renderStatusList() {
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");
   window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
 
+window.toggleStatusDropdown = function () {
+  const dropdown = document.getElementById("statusDropdown");
+  const icon = document.getElementById("statusIcon");
+  if (!dropdown || !icon) return;
+
+  if (dropdown.style.display === "none" || dropdown.style.display === "") {
+    renderStatusDropdown();
+    dropdown.style.display = "block";
+    icon.textContent = "⯅"; // ▲
+  } else {
+    dropdown.style.display = "none";
+    icon.textContent = "⯆"; // ▼
+  }
+};
+
+
+function renderStatusDropdown() {
+  const container = document.getElementById("statusDropdown");
+  container.innerHTML = "";
+
+  const grouped = {};
+  geojsonFeatures.forEach(f => {
+    const name = f.properties?.projektant?.trim();
+    if (!name) return;
+
+    const status = statusAssigned[name] || "Neutralny";
+    if (!grouped[status]) grouped[status] = [];
+    grouped[status].push(f);
+  });
+
+  statusy.forEach(status => {
+    const count = (grouped[status] || []).length;
+
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.justifyContent = "space-between";
+    div.style.alignItems = "center";
+    div.style.marginBottom = "0.3rem";
+    div.style.color = "white";
+
+    const label = document.createElement("label");
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.gap = "0.5rem";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = status;
+    checkbox.onchange = applyStatusFilter;
+
+    const text = document.createElement("span");
+    text.textContent = status;
+
+    label.appendChild(checkbox);
+    label.appendChild(text);
+
+    const countSpan = document.createElement("span");
+    countSpan.style.color = "#9ca3af";
+    countSpan.style.fontSize = "13px";
+    countSpan.textContent = count;
+
+    div.appendChild(label);
+    div.appendChild(countSpan);
+    container.appendChild(div);
+  });
+}
+
+function applyStatusFilter() {
+  const checkboxes = document.querySelectorAll('#statusDropdown input[type="checkbox"]:checked');
+  const selectedStatusy = Array.from(checkboxes).map(cb => cb.value);
+
+  if (markerCluster) map.removeLayer(markerCluster);
+  markerCluster = createClusterGroup();
+
+  const filtered = geojsonFeatures.filter(f => {
+    const name = f.properties?.projektant?.trim();
+    const status = statusAssigned[name] || "Neutralny";
+    return selectedStatusy.includes(status);
+  });
+
+  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+    pointToLayer: (feature, latlng) => L.marker(latlng),
+    onEachFeature: bindPopupToLayer
+  });
+
+  markerCluster.addLayer(layer);
+  map.addLayer(markerCluster);
+}
+
+document.addEventListener("click", function (e) {
+  const dropdown = document.getElementById("statusDropdown");
+  const wrapper = document.getElementById("statusDropdownWrapper");
+
+  if (dropdown && wrapper && !wrapper.contains(e.target)) {
+    dropdown.style.display = "none";
+    if (icon) icon.textContent = "⯆"; // ▼ po zamknięciu
+  }
+});
+
+
+
+
 // Funkcja obrotu
 function rotateBounds(center, size, angle) {
   const lat = center.lat;
@@ -763,42 +781,11 @@ function deleteGeojsonFromFirebase() {
 deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
 // =========== STATUS PANEL FIX ===========
 
-// 📌 Funkcja pokazująca panel statusów
-window.showStatusPanel = function () {
-  const panel = document.getElementById("statusPanel");
-  if (panel) {
-    panel.style.display = "block";
-    renderStatusList();
-    console.log("📈 Panel statusów pokazany");
-  } else {
-    console.error("❌ Nie znaleziono #statusPanel");
-  }
-};
-
-// 📌 Funkcja ukrywająca panel
-window.hideStatusPanel = function () {
-  const panel = document.getElementById("statusPanel");
-  if (panel) {
-    panel.style.display = "none";
-  }
-};
-
 
   // Start
   loadGeoJSON();
   loadGeoJSONFromFirebase(); // zamiast local file
 
-window.addEventListener("load", () => {
-  const btn = document.getElementById("statusTabButton");
-  if (btn) {
-    btn.addEventListener("click", () => {
-      console.log("🟦 Kliknięto Akcje / Statusy");
-      showStatusPanel();
-    });
-  } else {
-    console.error("❌ Brak przycisku #statusTabButton");
-  }
-});
 
 
 });

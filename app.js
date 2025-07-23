@@ -111,15 +111,21 @@ function saveGeoJSONToFirebase() {
 }
 
 
-// 🔁 Ładowanie GeoJSON z Firebase przy starcie
+// 🔁 Funkcja ładująca dane GeoJSON z Firebase przy starcie
 function loadGeoJSONFromFirebase() {
+  // Nasłuchuj zmian pod ścieżką 'punkty' w Firebase
   onValue(ref(db, 'punkty'), (snapshot) => {
-  const data = snapshot.val();
-  if (!data) return;
+    const data = snapshot.val();
+    if (!data) return;
 
-  geojsonFeatures = Object.values(data); // wszystkie dodane punkty
-  renderVisibleDzialki();
-});
+    // Zamień dane z Firebase na tablicę punktów
+    geojsonFeatures = Object.values(data);
+
+    // Renderuj tylko widoczne działki na mapie
+    renderVisibleDzialki();
+  }); // <- ✅ zamknięcie onValue
+}     // <- ✅ zamknięcie funkcji
+
 
 
 document.getElementById("rotateSlider").addEventListener("input", function () {

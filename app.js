@@ -659,12 +659,14 @@ function applyStatusFilter() {
 document.addEventListener("click", function (e) {
   const dropdown = document.getElementById("statusDropdown");
   const wrapper = document.getElementById("statusDropdownWrapper");
+  const icon = document.getElementById("statusIcon");
 
   if (dropdown && wrapper && !wrapper.contains(e.target)) {
     dropdown.style.display = "none";
     if (icon) icon.textContent = "⯆"; // ▼ po zamknięciu
   }
 });
+
 
 
 

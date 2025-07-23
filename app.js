@@ -407,13 +407,21 @@ function renderStatusList() {
   container.innerHTML = "";
 
   const grouped = {};
+  let skipped = 0;
 
   geojsonFeatures.forEach(f => {
-    const name = f.properties?.projektant;
+    const name = f.properties?.projektant?.trim();
+    if (!name) {
+      skipped++;
+      return;
+    }
+
     const status = statusAssigned[name] || "Neutralny";
     if (!grouped[status]) grouped[status] = [];
     grouped[status].push(f);
   });
+
+  console.log("⛔ Pominięto działek bez projektanta:", skipped);
 
   statusy.forEach(status => {
     const items = grouped[status] || [];
@@ -430,6 +438,8 @@ function renderStatusList() {
     container.appendChild(section);
   });
 }
+
+
   
   
   

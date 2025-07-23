@@ -200,76 +200,6 @@
     color: #9ca3af !important;
   }
 
-#handlowcyPanel {
-  position: fixed;
-  top: 60px;
-  right: 0;
-  width: 320px;
-  max-width: 90vw;
-  height: calc(100vh - 60px);
-  background-color: #1f2937;
-  overflow-y: auto;
-  transition: transform 0.3s ease;
-  z-index: 998;
-  padding: 1rem;
-  transform: translateX(100%);
-}
-#handlowcyPanel.show {
-  transform: translateX(0);
-}
-#handlowcyClose {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: white;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.handlowiec-entry {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.handlowiec-entry input[type="checkbox"] {
-  appearance: none;
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid #3b82f6;
-  background-color: transparent;
-  cursor: pointer;
-  position: relative;
-}
-
-.handlowiec-entry input[type="checkbox"]:checked {
-  background-color: #3b82f6;
-}
-
-.handlowiec-entry input[type="checkbox"]::after {
-  content: "";
-  position: absolute;
-  top: 0.1rem;
-  left: 0.25rem;
-  width: 0.25rem;
-  height: 0.5rem;
-  border: solid white;
-  border-width: 0 0.15rem 0.15rem 0;
-  transform: rotate(45deg);
-  display: none;
-}
-
-.handlowiec-entry input[type="checkbox"]:checked::after {
-  display: block;
-}
-
-.handlowiec-entry .name {
-  font-weight: bold;
-  color: #3b82f6;
-  cursor: default;
-  flex-grow: 1;
-}
 
 /* 🌍 Nowy styl Earth Loader */
 #loadingOverlay {
@@ -507,7 +437,6 @@
     <button id="tab2024" onclick="filterMap('2024')">2024</button>
     <button id="tab2025" onclick="filterMap('2025')">2025</button>
     <button onclick="showProjektanci()">Projektanci</button>
-    <button onclick="showHandlowcy()">Handlowcy</button>
     <button onclick="startAddPointMode()">➕ Dodaj punkt</button>
     
     <div id="statusDropdownWrapper" style="position: relative;">

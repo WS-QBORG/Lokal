@@ -406,7 +406,7 @@ const popup = `
   </select>
 `;
 
-    };
+    }
 
     window.showStatusPanel = function () {
   document.getElementById("statusPanel").style.display = "block";

@@ -393,9 +393,21 @@ const popup = `
   
 
 window.showStatusPanel = function () {
-  document.getElementById("statusPanel").style.display = "block";
-  renderStatusList();
+  setTimeout(() => {
+    const panel = document.getElementById("statusPanel");
+    const list = document.getElementById("statusList");
+
+    if (!panel || !list) {
+      console.error("❌ Nie znaleziono panelu lub listy");
+      return;
+    }
+
+    panel.style.display = "block";
+    renderStatusList();
+    console.log("📈 Panel statusów pokazany");
+  }, 0); // ⏱️ 0 ms, ale po "następnym tyknięciu" przeglądarki
 };
+
 
 window.hideStatusPanel = function () {
   document.getElementById("statusPanel").style.display = "none";

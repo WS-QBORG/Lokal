@@ -76,6 +76,9 @@ window.saveStatus = function (projektant, status) {
     .catch(console.error);
 };
 
+  document.getElementById("statusTabButton").addEventListener("click", window.showStatusPanel);
+
+
 
   // 🔁 Tryb dodawania punktu
 let addPointMode = false;
@@ -376,7 +379,7 @@ const popup = `
 
   // =========== Sidebar & Profil ===========
  
-  document.getElementById("statusTabButton").addEventListener("click", showStatusPanel);
+  
 
 window.showStatusPanel = function () {
   document.getElementById("statusPanel").style.display = "block";

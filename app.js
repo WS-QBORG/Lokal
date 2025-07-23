@@ -425,21 +425,26 @@ function renderStatusList() {
   console.log("⛔ Pominięto działek bez projektanta:", skipped);
   console.log("🧩 Statusy znalezione:", Object.keys(grouped));
 
-  Object.keys(grouped).sort().forEach(status => {
-    const items = grouped[status];
-    if (!items.length) return;
+  statusy.forEach(status => {
+    const items = grouped[status] || [];
 
     const section = document.createElement("div");
     section.style.marginBottom = "1rem";
     section.innerHTML = `<h4 style="color:#3b82f6;">${status} (${items.length})</h4>`;
-    items.forEach(f => {
-      const adres = f.properties?.adres || "Brak adresu";
-      section.innerHTML += `<div style="color:white;font-size:13px;">• ${adres}</div>`;
-    });
+
+    if (items.length === 0) {
+      section.innerHTML += `<div style="color:#9ca3af;font-size:13px;">Brak projektów</div>`;
+    } else {
+      items.forEach(f => {
+        const adres = f.properties?.adres || "Brak adresu";
+        section.innerHTML += `<div style="color:white;font-size:13px;">• ${adres}</div>`;
+      });
+    }
 
     container.appendChild(section);
   });
 }
+
 
 
   

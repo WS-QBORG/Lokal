@@ -46,10 +46,10 @@ const set = window.firebaseSet;
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski", "Tomasz Fierek", "Piotr Murawski", "Weronika Stępień"];
 
 document.addEventListener("DOMContentLoaded", () => {
- /* const db = window.firebaseDB;
+  const db = window.firebaseDB;
   const ref = window.firebaseRef;
   const onValue = window.firebaseOnValue;
-  const set = window.firebaseSet;*/
+  const set = window.firebaseSet;
 
   let activeRectangle = null;
   let originalLatLng = null;

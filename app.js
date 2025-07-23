@@ -401,6 +401,7 @@ window.hideStatusPanel = function () {
   document.getElementById("statusPanel").style.display = "none";
 };
 
+
 function renderStatusList() {
   console.log("📊 renderStatusList START");
   const container = document.getElementById("statusList");
@@ -422,9 +423,10 @@ function renderStatusList() {
   });
 
   console.log("⛔ Pominięto działek bez projektanta:", skipped);
+  console.log("🧩 Statusy znalezione:", Object.keys(grouped));
 
-  statusy.forEach(status => {
-    const items = grouped[status] || [];
+  Object.keys(grouped).sort().forEach(status => {
+    const items = grouped[status];
     if (!items.length) return;
 
     const section = document.createElement("div");

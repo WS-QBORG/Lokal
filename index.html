@@ -440,13 +440,12 @@
 
   </style>
 <script type="module">
-  // modułowa składnia SDK v9+
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+  import { getDatabase, ref, onValue, set, remove, push } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
 
   const firebaseConfig = {
-    apiKey: "…",
-    authDomain: "…",
+    apiKey: "...",
+    authDomain: "...",
     databaseURL: "https://projektanci-4f7e8-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "projektanci-4f7e8",
     // itd.
@@ -460,7 +459,11 @@
   window.firebaseRef = ref;
   window.firebaseOnValue = onValue;
   window.firebaseSet = set;
+  window.firebaseRemove = remove;
+  window.firebasePush = push;
 </script>
+
+
 
 
 

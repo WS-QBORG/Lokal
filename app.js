@@ -638,7 +638,7 @@ loadShapesFromFirebase();
 
 // 🔥 Jednorazowe usunięcie geojson
 function deleteGeojsonFromFirebase() {
-  remove(ref(db, 'geojson'))
+  window.firebaseRemove(ref(db, 'geojson'))
     .then(() => console.log("🗑️ geojson usunięty z Firebase"))
     .catch(console.error);
 }

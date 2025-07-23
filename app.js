@@ -318,29 +318,28 @@ function renderVisibleDzialki() {
     const dzialka = feature.properties?.dzialka || 'Brak działki';
     const assigned = projektanciAssigned[proj] || "";
 
-    const popup = `
-      <b>${proj}</b><br/>
-      Rok: ${rok}<br/>
-      <b>Inwestycja:</b> ${inwestycja}<br/>
-      <b>Adres:</b> ${adres}<br/>
-      <b>Działka:</b> ${dzialka}<br/>
-      <label>Przypisz handlowca:</label>
-      <select onchange="assignHandlowiec('${proj}', this.value)">
-        <option value="">(brak)</option>
-        ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-      </select>
-      <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
-    `;
-    layer.bindPopup(popup);
-
-    // Satusy / akcje
-
     const status = statusAssigned[proj] || "Neutralny";
 
-    <b>Status:</b>
-    <select onchange="saveStatus('${proj}', this.value)">
-      ${statusy.map(s => `<option ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
-    </select>
+const popup = `
+  <b>${proj}</b><br/>
+  Rok: ${rok}<br/>
+  <b>Inwestycja:</b> ${inwestycja}<br/>
+  <b>Adres:</b> ${adres}<br/>
+  <b>Działka:</b> ${dzialka}<br/>
+  <label>Przypisz handlowca:</label>
+  <select onchange="assignHandlowiec('${proj}', this.value)">
+    <option value="">(brak)</option>
+    ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+  </select><br/>
+
+  <label>Status:</label>
+  <select onchange="saveStatus('${proj}', this.value)">
+    ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
+  </select><br/>
+
+  <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
+`;
+
 
   }
 

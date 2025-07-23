@@ -384,13 +384,13 @@
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
 
-  // Expose for app.js
   window.firebaseDB = db;
-  window.firebaseRef = ref;
+  window.firebaseRef = (...args) => ref(...args);  // 🔧 Owijasz ref w funkcję
   window.firebaseOnValue = onValue;
   window.firebaseSet = set;
   window.firebaseRemove = remove;
   window.firebasePush = push;
+
 </script>
 
 

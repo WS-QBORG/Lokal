@@ -6,6 +6,36 @@ let projektanciNotes = {};
 let geojsonFeatures = [];
 let markerCluster;
 
+
+// ===== Renderowanie projektantó =============
+window.renderProjektanciList = function (list) {
+  const container = document.getElementById("sidebarContent");
+  container.innerHTML = "";
+
+  const searchValue = document.getElementById("searchInput")?.value?.toLowerCase() || "";
+
+  list
+    .filter(p => p.projektant.toLowerCase().includes(searchValue))
+    .forEach(p => {
+      const assigned = projektanciAssigned[p.projektant] || "";
+      const div = document.createElement("div");
+      div.className = "projektant-entry";
+      div.innerHTML = `
+        <label style="display:flex;align-items:center;gap:0.5rem;">
+          <input type="checkbox" value="${p.projektant}" />
+          <span class="name" onclick="showProfile('${p.projektant}')">
+            ${p.projektant} – ${p.liczba_projektow} projektów
+          </span>
+        </label>
+        <select onchange="assignHandlowiec('${p.projektant}', this.value)">
+          <option value="">(brak)</option>
+          ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+        </select>
+      `;
+      container.appendChild(div);
+    });
+}; 
+
 // =========== Firebase Init dla rysowania kwadratów  ===========
 
 const db = window.firebaseDB;
@@ -425,33 +455,7 @@ function renderStatusList() {
   };
 
 
-  window.renderProjektanciList = function (list) {
-  const container = document.getElementById("sidebarContent");
-  container.innerHTML = "";
-
-  const searchValue = document.getElementById("searchInput")?.value?.toLowerCase() || "";
-
-  list
-    .filter(p => p.projektant.toLowerCase().includes(searchValue))
-    .forEach(p => {
-      const assigned = projektanciAssigned[p.projektant] || "";
-      const div = document.createElement("div");
-      div.className = "projektant-entry";
-      div.innerHTML = `
-        <label style="display:flex;align-items:center;gap:0.5rem;">
-          <input type="checkbox" value="${p.projektant}" />
-          <span class="name" onclick="showProfile('${p.projektant}')">
-            ${p.projektant} – ${p.liczba_projektow} projektów
-          </span>
-        </label>
-        <select onchange="assignHandlowiec('${p.projektant}', this.value)">
-          <option value="">(brak)</option>
-          ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-        </select>
-      `;
-      container.appendChild(div);
-    });
-} 
+  
 
   window.assignHandlowiec = function (projektant, handlowiec) {
     if (handlowiec) projektanciAssigned[projektant] = handlowiec;

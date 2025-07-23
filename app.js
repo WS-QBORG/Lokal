@@ -449,10 +449,6 @@ function renderStatusList() {
 }
 
 
-      container.appendChild(div);
-    });
-}
-
 
   window.assignHandlowiec = function (projektant, handlowiec) {
     if (handlowiec) projektanciAssigned[projektant] = handlowiec;
@@ -554,7 +550,7 @@ function renderStatusList() {
         <span class="name">${h}</span>
         <span style="color:#9ca3af;">${count} przypisań</span>
       `;
-      container.appendChild(div);
+      ;
     });
 };
 

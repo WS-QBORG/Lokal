@@ -345,6 +345,49 @@ const popup = `
   }
 
   // =========== Sidebar & Profil ===========
+ 
+  document.getElementById("statusTabButton").addEventListener("click", showStatusPanel);
+
+window.showStatusPanel = function () {
+  document.getElementById("statusPanel").style.display = "block";
+  renderStatusList();
+};
+
+window.hideStatusPanel = function () {
+  document.getElementById("statusPanel").style.display = "none";
+};
+
+function renderStatusList() {
+  const container = document.getElementById("statusList");
+  container.innerHTML = "";
+
+  const grouped = {};
+
+  geojsonFeatures.forEach(f => {
+    const name = f.properties?.projektant;
+    const status = statusAssigned[name] || "Neutralny";
+    if (!grouped[status]) grouped[status] = [];
+    grouped[status].push(f);
+  });
+
+  statusy.forEach(status => {
+    const items = grouped[status] || [];
+    if (!items.length) return;
+
+    const section = document.createElement("div");
+    section.style.marginBottom = "1rem";
+    section.innerHTML = `<h4 style="color:#3b82f6;">${status} (${items.length})</h4>`;
+    items.forEach(f => {
+      const adres = f.properties?.adres || "Brak adresu";
+      section.innerHTML += `<div style="color:white;font-size:13px;">• ${adres}</div>`;
+    });
+
+    container.appendChild(section);
+  });
+}
+  
+  
+  
   window.showProjektanci = function () {
   const sidebar = document.getElementById("sidebar");
   if (sidebar.classList.contains("show")) {
@@ -359,8 +402,6 @@ const popup = `
       });
   }
 };
-
-document.getElementById("statusTabButton").addEventListener("click", showStatusPanel);
 
 
 
@@ -411,47 +452,6 @@ document.getElementById("statusTabButton").addEventListener("click", showStatusP
       container.appendChild(div);
     });
 } 
-
-
-    window.showStatusPanel = function () {
-  document.getElementById("statusPanel").style.display = "block";
-  renderStatusList();
-};
-
-window.hideStatusPanel = function () {
-  document.getElementById("statusPanel").style.display = "none";
-};
-
-function renderStatusList() {
-  const container = document.getElementById("statusList");
-  container.innerHTML = "";
-
-  const grouped = {};
-
-  geojsonFeatures.forEach(f => {
-    const name = f.properties?.projektant;
-    const status = statusAssigned[name] || "Neutralny";
-    if (!grouped[status]) grouped[status] = [];
-    grouped[status].push(f);
-  });
-
-  statusy.forEach(status => {
-    const items = grouped[status] || [];
-    if (!items.length) return;
-
-    const section = document.createElement("div");
-    section.style.marginBottom = "1rem";
-    section.innerHTML = `<h4 style="color:#3b82f6;">${status} (${items.length})</h4>`;
-    items.forEach(f => {
-      const adres = f.properties?.adres || "Brak adresu";
-      section.innerHTML += `<div style="color:white;font-size:13px;">• ${adres}</div>`;
-    });
-
-    container.appendChild(section);
-  });
-}
-
-
 
   window.assignHandlowiec = function (projektant, handlowiec) {
     if (handlowiec) projektanciAssigned[projektant] = handlowiec;

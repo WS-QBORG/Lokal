@@ -7,7 +7,7 @@ let geojsonFeatures = [];
 let markerCluster;
 
 
-// ===== Renderowanie projektantó =============
+// ===== Renderowanie projektantów =============
 window.renderProjektanciList = function (list) {
   const container = document.getElementById("sidebarContent");
   container.innerHTML = "";
@@ -391,6 +391,7 @@ window.hideStatusPanel = function () {
 };
 
 function renderStatusList() {
+  console.log("📊 renderStatusList START");
   const container = document.getElementById("statusList");
   container.innerHTML = "";
 

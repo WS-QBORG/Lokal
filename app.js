@@ -76,7 +76,18 @@ window.saveStatus = function (projektant, status) {
     .catch(console.error);
 };
 
-  document.getElementById("statusTabButton").addEventListener("click", window.showStatusPanel);
+  function waitForStatusTabButton() {
+  const btn = document.getElementById("statusTabButton");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      console.log("🟦 Kliknięto Akcje / Statusy");
+      showStatusPanel();
+    });
+  } else {
+    setTimeout(waitForStatusTabButton, 300);
+  }
+}
+waitForStatusTabButton();
 
 
 

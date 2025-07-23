@@ -27,6 +27,25 @@ document.addEventListener("DOMContentLoaded", () => {
   let baseCorners = null;       // 🌐 oryginalne narożniki (przed obrotem)
   let baseLatLng = null;        // 🌐 oryginalny środek
 
+// Zmienne statusów / akcji
+const statusy = ["Neutralny", "W kontakcie", "Wizyta zaplanowana", "Wizyta odbyta", "Stracony"];
+const statusAssigned = {};
+
+// Odczytywanie statusów / akcji
+const statusRef = ref(db, 'statusy');
+onValue(statusRef, snapshot => {
+  Object.assign(statusAssigned, snapshot.val() || {});
+  console.log("📥 Statusy:", statusAssigned);
+});
+
+// Zapisywanie statusów / akcji
+window.saveStatus = function (projektant, status) {
+  statusAssigned[projektant] = status;
+  set(ref(db, `statusy/${projektant}`), status)
+    .then(() => console.log('✅ Status zapisany:', projektant, status))
+    .catch(console.error);
+};
+
 
   // 🔁 Tryb dodawania punktu
 let addPointMode = false;
@@ -313,6 +332,16 @@ function renderVisibleDzialki() {
       <br><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
     `;
     layer.bindPopup(popup);
+
+    // Satusy / akcje
+
+    const status = statusAssigned[proj] || "Neutralny";
+
+    <b>Status:</b>
+    <select onchange="saveStatus('${proj}', this.value)">
+      ${statusy.map(s => `<option ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
+    </select>
+
   }
 
   // =========== Sidebar & Profil ===========
@@ -377,6 +406,43 @@ function renderVisibleDzialki() {
   </select>
 `;
 
+  window.showStatusPanel = function () {
+  document.getElementById("statusPanel").style.display = "block";
+  renderStatusList();
+};
+
+window.hideStatusPanel = function () {
+  document.getElementById("statusPanel").style.display = "none";
+};
+
+function renderStatusList() {
+  const container = document.getElementById("statusList");
+  container.innerHTML = "";
+
+  const grouped = {};
+
+  geojsonFeatures.forEach(f => {
+    const name = f.properties?.projektant;
+    const status = statusAssigned[name] || "Neutralny";
+    if (!grouped[status]) grouped[status] = [];
+    grouped[status].push(f);
+  });
+
+  statusy.forEach(status => {
+    const items = grouped[status] || [];
+    if (!items.length) return;
+
+    const section = document.createElement("div");
+    section.style.marginBottom = "1rem";
+    section.innerHTML = `<h4 style="color:#3b82f6;">${status} (${items.length})</h4>`;
+    items.forEach(f => {
+      const adres = f.properties?.adres || "Brak adresu";
+      section.innerHTML += `<div style="color:white;font-size:13px;">• ${adres}</div>`;
+    });
+
+    container.appendChild(section);
+  });
+}
 
 
       container.appendChild(div);

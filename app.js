@@ -449,7 +449,7 @@ function renderStatusList() {
 
       container.appendChild(div);
     });
-};
+}
 
 
   window.assignHandlowiec = function (projektant, handlowiec) {

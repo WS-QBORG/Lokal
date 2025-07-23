@@ -98,20 +98,18 @@ window.confirmAddPoint = function () {
   });
 };
 
-// 💾 Zapis GeoJSON do Firebase
 function saveGeoJSONToFirebase() {
   const featureCollection = {
     type: "FeatureCollection",
     features: geojsonFeatures
   };
-  
 
-const newRef = push(ref(db, 'punkty'));
-set(newRef, newFeature)
-  .then(() => console.log("✅ Nowy punkt zapisany"))
-  .catch(console.error);
-
+  const newRef = push(ref(db, 'punkty'));
+  set(newRef, featureCollection)
+    .then(() => console.log("✅ GeoJSON zapisany"))
+    .catch(console.error);
 }
+
 
 // 🔁 Ładowanie GeoJSON z Firebase przy starcie
 function loadGeoJSONFromFirebase() {

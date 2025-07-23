@@ -436,6 +436,14 @@
     <button id="tab2023" onclick="filterMap('2023')">2023</button>
     <button id="tab2024" onclick="filterMap('2024')">2024</button>
     <button id="tab2025" onclick="filterMap('2025')">2025</button>
+
+    <div id="handlowcyDropdownWrapper" style="position: relative;">
+  <button onclick="toggleHandlowcyDropdown()">Handlowcy <span id="handlowcyIcon">⯆</span></button>
+  <div id="handlowcyDropdown" style="display:none; position:absolute; top:100%; left:0; background:#1f2937; padding:0.5rem; border-radius:6px; z-index:10003; width:230px; box-shadow:0 2px 6px rgba(0,0,0,0.4);">
+    <!-- Wypełniany dynamicznie -->
+  </div>
+</div>
+    
     <button onclick="showProjektanci()">Projektanci</button>
     <button onclick="startAddPointMode()">➕ Dodaj punkt</button>
     
@@ -445,12 +453,6 @@
     <!-- Wypełniany dynamicznie -->
   </div>
 
-<div id="handlowcyDropdownWrapper" style="position: relative;">
-  <button onclick="toggleHandlowcyDropdown()">Handlowcy <span id="handlowcyIcon">⯆</span></button>
-  <div id="handlowcyDropdown" style="display:none; position:absolute; top:100%; left:0; background:#1f2937; padding:0.5rem; border-radius:6px; z-index:10003; width:230px; box-shadow:0 2px 6px rgba(0,0,0,0.4);">
-    <!-- Wypełniany dynamicznie -->
-  </div>
-</div>
 
 </div>
 

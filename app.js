@@ -46,10 +46,10 @@ const set = window.firebaseSet;
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski", "Tomasz Fierek", "Piotr Murawski", "Weronika Stępień"];
 
 document.addEventListener("DOMContentLoaded", () => {
-  const db = window.firebaseDB;
+ /* const db = window.firebaseDB;
   const ref = window.firebaseRef;
   const onValue = window.firebaseOnValue;
-  const set = window.firebaseSet;
+  const set = window.firebaseSet;*/
 
   let activeRectangle = null;
   let originalLatLng = null;
@@ -486,83 +486,6 @@ const popup = `
 
 // =========== Sidebar & Profil HANDLOWCY ===========
 
-  window.showHandlowcy = function () {
-  const panel = document.getElementById("handlowcyPanel");
-  if (panel.classList.contains("show")) {
-    panel.classList.remove("show");
-  } else {
-    renderHandlowcyList(handlowcy);
-    panel.classList.add("show");
-  }
-};
-
-
-  window.hideHandlowcy = function () {
-    document.getElementById("handlowcyPanel").classList.remove("show");
-  };
-
-  window.renderHandlowcyList = function (list) {
-  const container = document.getElementById("handlowcyContent");
-  const search = document.getElementById("handlowcySearchInput").value.toLowerCase();
-  container.innerHTML = "";
-
-  list
-    .filter(h => h.toLowerCase().includes(search))
-    .forEach(h => {
-      const count = Object.values(projektanciAssigned).filter(x => x === h).length;
-      const div = document.createElement("div");
-      div.className = "handlowiec-entry";
-      div.innerHTML = `
-        <input type="checkbox" value="${h}" />
-        <span class="name">${h}</span>
-        <span style="color:#9ca3af;">${count} przypisań</span>
-      `;
-      ;
-    });
-};
-
-
-  window.applyHandlowcySort = function () {
-    const value = document.getElementById("handlowcySortSelect").value;
-    let list = [...handlowcy];
-
-    if (value === "az") list.sort();
-    else if (value === "za") list.sort().reverse();
-    else if (value === "most") list.sort((a, b) =>
-      Object.values(projektanciAssigned).filter(x => x === b).length -
-      Object.values(projektanciAssigned).filter(x => x === a).length
-    );
-    else if (value === "least") list.sort((a, b) =>
-      Object.values(projektanciAssigned).filter(x => x === a).length -
-      Object.values(projektanciAssigned).filter(x => x === b).length
-    );
-
-    renderHandlowcyList(list);
-  };
-
-  window.filterHandlowcyList = function () {
-    renderHandlowcyList(handlowcy);
-  };
-
- window.applyHandlowcyFilter = function () {
-  const checkboxes = document.querySelectorAll('#handlowcyContent input[type="checkbox"]:checked');
-  const selectedHandlowcy = Array.from(checkboxes).map(cb => cb.value.trim());
-
-  if (markerCluster) map.removeLayer(markerCluster);
-  markerCluster = createClusterGroup();
-
-  const filtered = geojsonFeatures.filter(f => selectedHandlowcy.includes(projektanciAssigned[f.properties?.projektant]));
-
-  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-    pointToLayer: (feature, latlng) => L.marker(latlng),
-    onEachFeature: bindPopupToLayer
-  });
-
-  markerCluster.addLayer(layer);
-  map.addLayer(markerCluster);
-  hideHandlowcy();
-};
-
 
   window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");
   window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
@@ -667,6 +590,139 @@ document.addEventListener("click", function (e) {
   }
 });
 
+// Handlowcy
+window.toggleHandlowcyDropdown = function () {
+  const dropdown = document.getElementById("handlowcyDropdown");
+  const icon = document.getElementById("handlowcyIcon");
+  if (!dropdown || !icon) return;
+
+  if (dropdown.style.display === "none" || dropdown.style.display === "") {
+    renderHandlowcyDropdown();
+    dropdown.style.display = "block";
+    icon.textContent = "⯅";
+  } else {
+    dropdown.style.display = "none";
+    icon.textContent = "⯆";
+  }
+};
+
+function renderHandlowcyDropdown() {
+  const container = document.getElementById("handlowcyDropdown");
+  container.innerHTML = "";
+
+  // Grupowanie projektów i projektantów
+  const assignedProjects = {};
+  const assignedProjektanci = {};
+
+  geojsonFeatures.forEach(f => {
+    const proj = f.properties?.projektant?.trim();
+    const hand = projektanciAssigned[proj];
+    if (!hand) return;
+
+    // Licz projekty
+    if (!assignedProjects[hand]) assignedProjects[hand] = 0;
+    assignedProjects[hand]++;
+
+    // Zlicz unikalnych projektantów
+    assignedProjektanci[hand] = assignedProjektanci[hand] || new Set();
+    assignedProjektanci[hand].add(proj);
+  });
+
+  handlowcy.forEach(h => {
+    const projCount = assignedProjects[h] || 0;
+    const designerCount = (assignedProjektanci[h]?.size) || 0;
+
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.justifyContent = "space-between";
+    div.style.alignItems = "center";
+    div.style.marginBottom = "0.3rem";
+    div.style.color = "white";
+
+    const label = document.createElement("label");
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.gap = "0.5rem";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = h;
+    checkbox.onchange = applyHandlowcyDropdownFilter;
+
+    const span = document.createElement("span");
+    span.textContent = h;
+    span.className = "handlowiec-name";
+    span.style.cursor = "pointer";
+    span.onclick = () => showHandlowiecProfile(h);
+
+    label.appendChild(checkbox);
+    label.appendChild(span);
+
+    const count = document.createElement("span");
+    count.style.color = "#9ca3af";
+    count.style.fontSize = "13px";
+    count.innerHTML = `${designerCount} proj. / ${projCount} pkt`;
+
+    div.appendChild(label);
+    div.appendChild(count);
+    container.appendChild(div);
+  });
+}
+
+function applyHandlowcyDropdownFilter() {
+  const checkboxes = document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]:checked');
+  const selected = Array.from(checkboxes).map(cb => cb.value);
+
+  if (markerCluster) map.removeLayer(markerCluster);
+  markerCluster = createClusterGroup();
+
+  const filtered = geojsonFeatures.filter(f => {
+    const proj = f.properties?.projektant;
+    const hand = projektanciAssigned[proj];
+    return selected.includes(hand);
+  });
+
+  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+    pointToLayer: (feature, latlng) => L.marker(latlng),
+    onEachFeature: bindPopupToLayer
+  });
+
+  markerCluster.addLayer(layer);
+  map.addLayer(markerCluster);
+}
+
+window.showHandlowiecProfile = function (name) {
+  const profile = document.getElementById("profilePanel");
+  const content = document.getElementById("profileContent");
+
+  // Znajdź projektantów przypisanych do tego handlowca
+  const projektanci = Object.keys(projektanciAssigned).filter(proj => projektanciAssigned[proj] === name);
+  const projekty = geojsonFeatures.filter(f => projektanci.includes(f.properties?.projektant));
+  const liczbaProjektow = projekty.length;
+
+  content.innerHTML = `
+    <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
+    <h3>${name}</h3>
+    <p><b>Liczba projektantów:</b> ${projektanci.length}</p>
+    <p><b>Liczba projektów:</b> ${liczbaProjektow}</p>
+    <ul style="margin-top:1rem;padding-left:1rem;">
+      ${projektanci.map(p => `<li style="color:white;">${p}</li>`).join("")}
+    </ul>
+  `;
+  profile.classList.add("show");
+};
+
+
+document.addEventListener("click", function (e) {
+  const dropdown = document.getElementById("handlowcyDropdown");
+  const wrapper = document.getElementById("handlowcyDropdownWrapper");
+  const icon = document.getElementById("handlowcyIcon");
+
+  if (dropdown && wrapper && !wrapper.contains(e.target)) {
+    dropdown.style.display = "none";
+    if (icon) icon.textContent = "⯆";
+  }
+});
 
 
 

@@ -88,12 +88,6 @@ window.saveStatus = function (projektant, status) {
   }
 }
 
-// 🔁 Uruchom po załadowaniu strony
-document.addEventListener("DOMContentLoaded", () => {
-  waitForStatusTabButton();
-});
-
-
 
 
   // 🔁 Tryb dodawania punktu
@@ -349,6 +343,7 @@ function renderVisibleDzialki() {
 
   map.addLayer(markerCluster);
 }
+document.getElementById("statusTabButton").addEventListener("click", showStatusPanel);
 
 
 
@@ -759,18 +754,7 @@ window.hideStatusPanel = function () {
   }
 };
 
-// 📌 Czekamy na załadowanie DOM i podpinamy klik
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("statusTabButton");
-  if (btn) {
-    btn.addEventListener("click", () => {
-      console.log("🟦 Kliknięto Akcje / Statusy");
-      showStatusPanel();
-    });
-  } else {
-    console.warn("❌ Brak przycisku #statusTabButton");
-  }
-});
+
 
 
   // Start

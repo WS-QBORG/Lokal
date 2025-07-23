@@ -449,6 +449,8 @@ const popup = `
       <textarea onchange="projektanciNotes['${name}'] = this.value; saveNote('${name}', this.value)">${notes}</textarea>
 
     `;
+
+    document.body.classList.add("panel-open");
     profile.classList.add("show");
   };
 
@@ -487,7 +489,11 @@ const popup = `
 // =========== Sidebar & Profil HANDLOWCY ===========
 
 
-  window.hideProfile = () => document.getElementById("profilePanel").classList.remove("show");
+  window.hideProfile = () => {
+  document.getElementById("profilePanel").classList.remove("show");
+  document.body.classList.remove("panel-open");
+};
+
   window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
 
 window.toggleStatusDropdown = function () {
@@ -709,6 +715,8 @@ window.showHandlowiecProfile = function (name) {
       ${projektanci.map(p => `<li style="color:white;">${p}</li>`).join("")}
     </ul>
   `;
+
+  document.body.classList.add("panel-open");
   profile.classList.add("show");
 };
 

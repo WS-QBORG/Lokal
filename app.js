@@ -406,7 +406,9 @@ const popup = `
   </select>
 `;
 
-  window.showStatusPanel = function () {
+    };
+
+    window.showStatusPanel = function () {
   document.getElementById("statusPanel").style.display = "block";
   renderStatusList();
 };

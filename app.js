@@ -347,14 +347,14 @@ function renderVisibleDzialki() {
   const coordCount = {};
   visible.forEach(f => {
     const [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    const key = `${lat.toFixed(4)},${lng.toFixed(4)}`;
     coordCount[key] = (coordCount[key] || 0) + 1;
   });
 
   // 👉 renderujemy z jitterem tylko jeśli punktów o tych samych współrzędnych jest więcej niż 1
   visible.forEach(f => {
     let [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    const key = `${lat.toFixed(4)},${lng.toFixed(4)}`;
     const duplicate = coordCount[key] > 1;
 
     if (duplicate) {

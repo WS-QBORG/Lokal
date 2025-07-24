@@ -61,6 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
 const statusy = ["Neutralny", "W kontakcie", "Wizyta zaplanowana", "Wizyta odbyta", "Stracony"];
 const statusAssigned = {};
 
+// Ikonki statusów
+const statusIcons = {
+  "Stracony": "icons/stracony.svg",
+  "Wizyta odbyta": "icons/mysli.svg",
+  "Wizyta zaplanowana": "icons/umowiony.svg",
+  "W kontakcie": "icons/rozmawia.svg",
+  "Neutralny": null  // standardowa pinezka
+};
+
+
+
 // Odczytywanie statusów / akcji
 const statusRef = firebaseRef(firebaseDB, 'statusy');
 onValue(statusRef, snapshot => {
@@ -317,13 +328,20 @@ function renderVisibleDzialki() {
     const [lng, lat] = f.geometry.coordinates;
     const latlng = L.latLng(lat, lng);
 
-    const marker = L.marker(latlng);
-    marker.on("click", () => {
-      drawnItems.clearLayers(); // usuwamy poprzedni obrys
+   const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
+const iconUrl = statusIcons[status];
 
-      const rect = createDefaultRectangle(latlng);
-      drawnItems.addLayer(rect);
-    });
+const marker = iconUrl
+  ? L.marker(latlng, {
+      icon: L.icon({
+        iconUrl,
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+      })
+    })
+  : L.marker(latlng); // domyślna pinezka
+
 
     bindPopupToLayer(f, marker);
     markerCluster.addLayer(marker);

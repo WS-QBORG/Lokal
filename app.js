@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(console.error);
   }
 
-  // 🔧 NAPRAWKA: Nowa funkcja ładująca dane GeoJSON z Firebase przy starcie
+  // 🔁 Funkcja ładująca dane GeoJSON z Firebase przy starcie
   function loadGeoJSONFromFirebase() {
     // Nasłuchuj zmian pod ścieżką 'punkty' w Firebase
     onValue(ref(db, 'punkty'), (snapshot) => {
@@ -172,8 +172,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Zamień dane z Firebase na tablicę punktów
       geojsonFeatures = Object.values(data);
       
-      // 🔧 NAPRAWKA: Stwórz wszystkie markery na nowo po załadowaniu danych
-      createAllMarkers();
+      // Renderuj tylko widoczne działki na mapie (wydajność!)
+      renderVisibleDzialki();
     });
   }
 
@@ -307,9 +307,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // 🔧 NAPRAWKA: Nowa funkcja do tworzenia wszystkich markerów
-  function createAllMarkers() {
-    console.log("🔄 Tworzenie wszystkich markerów, liczba punktów:", geojsonFeatures.length);
+  // 🔁 Funkcja renderująca tylko widoczne działki (WYDAJNOŚĆ!)
+  function renderVisibleDzialki() {
+    const bounds = map.getBounds();
     
     // Usuń poprzedni klaster
     if (markerCluster) {
@@ -318,25 +318,30 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Stwórz nowy klaster
     markerCluster = createClusterGroup();
-    allMarkers = []; // Wyczyść tablicę markerów
     
-    // Zlicz ile punktów ma takie same współrzędne (dla całego zbioru danych)
-    const coordCount = {};
-    geojsonFeatures.forEach(f => {
-      if (f.geometry && f.geometry.type === "Point" && Array.isArray(f.geometry.coordinates)) {
-        const [lng, lat] = f.geometry.coordinates;
-        const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
-        coordCount[key] = (coordCount[key] || 0) + 1;
-      }
+    // Filtruj tylko widoczne punkty w obecnym widoku mapy
+    const visible = geojsonFeatures.filter(f => {
+      return (
+        f.geometry &&
+        f.geometry.type === "Point" &&
+        Array.isArray(f.geometry.coordinates) &&
+        bounds.contains([f.geometry.coordinates[1], f.geometry.coordinates[0]])
+      );
     });
     
-    // Stwórz markery dla wszystkich punktów (nie tylko widocznych)
-    geojsonFeatures.forEach(f => {
-      // Sprawdź czy punkt ma prawidłową geometrię
-      if (!f.geometry || f.geometry.type !== "Point" || !Array.isArray(f.geometry.coordinates)) {
-        return;
-      }
-      
+    console.log(`🔍 Widoczne punkty: ${visible.length} z ${geojsonFeatures.length} całkowitych`);
+    
+    // Zlicz ile punktów ma takie same współrzędne (tylko dla widocznych)
+    const coordCount = {};
+    visible.forEach(f => {
+      const [lng, lat] = f.geometry.coordinates;
+      const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
+      coordCount[key] = (coordCount[key] || 0) + 1;
+    });
+    
+    // Stwórz markery tylko dla widocznych punktów
+    const markers = [];
+    visible.forEach(f => {
       let [lng, lat] = f.geometry.coordinates;
       const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
       const isDuplicate = coordCount[key] > 1;
@@ -344,7 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Zastosuj jitter dla duplikatów
       if (isDuplicate) {
         const input = `${f.properties?.projektant}_${f.properties?.adres}`;
-        const jitter = deterministicJitter(input, 0.0002); // Zmniejszone przesunięcie
+        const jitter = deterministicJitter(input, 0.0003); // 30m przesunięcie
         lat += jitter.lat;
         lng += jitter.lng;
       }
@@ -369,15 +374,12 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Dodaj popup
       bindPopupToLayer(f, marker);
-      
-      // Dodaj marker do klastra
-      markerCluster.addLayer(marker);
-      allMarkers.push(marker);
+      markers.push(marker);
     });
     
-    // Dodaj klaster do mapy
+    // Dodaj wszystkie markery do klastra na raz (wydajność)
+    markers.forEach(m => markerCluster.addLayer(m));
     map.addLayer(markerCluster);
-    console.log("✅ Stworzono", allMarkers.length, "markerów w klastrze");
   }
 
   // 🔧 NAPRAWKA: Nowa funkcja do odświeżania markerów (tylko aktualizuje ikony, nie przebudowuje)
@@ -902,6 +904,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   loadShapesFromFirebase();
+
+  // 🔄 Nasłuchuj ruch mapy i aktualizuj widoczne punkty
+  map.on('moveend', () => {
+    renderVisibleDzialki();
+  });
 
   // Start
   loadGeoJSON();

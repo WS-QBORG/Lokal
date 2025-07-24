@@ -334,8 +334,8 @@ function renderVisibleDzialki() {
 
     // 🔁 Jeśli już był taki punkt – rozsuń
     while (usedCoords.has(key)) {
-      lat += (Math.random() - 0.5) * 0.0001;
-      lng += (Math.random() - 0.5) * 0.0001;
+      lat += (Math.random() - 0.5) * 0.0004;
+      lng += (Math.random() - 0.5) * 0.0004;
       key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
     }
     usedCoords.add(key);

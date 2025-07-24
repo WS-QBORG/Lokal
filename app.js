@@ -313,6 +313,23 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
       hideLoading();
     });
 }
+
+function deterministicJitter(text, maxDelta = 0.0003) {
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    hash = (hash << 5) - hash + text.charCodeAt(i);
+    hash |= 0;
+  }
+
+  const sin = Math.sin(hash);
+  const cos = Math.cos(hash);
+
+  return {
+    lat: (sin * maxDelta) % maxDelta,
+    lng: (cos * maxDelta) % maxDelta
+  };
+}
+
   
 function renderVisibleDzialki() {
   const bounds = map.getBounds();
@@ -332,12 +349,15 @@ function renderVisibleDzialki() {
     let [lng, lat] = f.geometry.coordinates;
     let key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
 
-    // 🔁 Jeśli już był taki punkt – rozsuń
-    while (usedCoords.has(key)) {
-      lat += (Math.random() - 0.5) * 0.0004;
-      lng += (Math.random() - 0.5) * 0.0004;
+    // Jeśli już taki punkt był — rozsuń deterministycznie
+    if (usedCoords.has(key)) {
+      const input = `${f.properties?.projektant}_${f.properties?.adres}`;
+      const jitter = deterministicJitter(input, 0.0003); // ±0.0003
+      lat += jitter.lat;
+      lng += jitter.lng;
       key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
     }
+
     usedCoords.add(key);
 
     const latlng = L.latLng(lat, lng);
@@ -361,6 +381,7 @@ function renderVisibleDzialki() {
 
   map.addLayer(markerCluster);
 }
+
 
 
 

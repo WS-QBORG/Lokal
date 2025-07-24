@@ -336,7 +336,6 @@ function deterministicJitter(text, maxDelta = 0.0003) {
   if (markerCluster) map.removeLayer(markerCluster);
   markerCluster = createClusterGroup();
 
-  // 🔍 tylko punkty z poprawną geometrią
   const visible = geojsonFeatures.filter(f => {
     return (
       f.geometry &&
@@ -346,7 +345,7 @@ function deterministicJitter(text, maxDelta = 0.0003) {
     );
   });
 
-  // 🔢 zlicz współrzędne z dokładnością do 5 miejsc
+  // 🔢 zlicz dokładnie współrzędne – do 5 miejsc po przecinku
   const coordCount = {};
   visible.forEach(f => {
     const [lng, lat] = f.geometry.coordinates;
@@ -354,12 +353,12 @@ function deterministicJitter(text, maxDelta = 0.0003) {
     coordCount[key] = (coordCount[key] || 0) + 1;
   });
 
+  // 🔁 tworzymy markery dopiero po przeliczeniu jittera
   visible.forEach(f => {
     let [lng, lat] = f.geometry.coordinates;
     const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
     const isDuplicate = coordCount[key] > 1;
 
-    // 💡 rozsuń tylko duplikaty – deterministycznie
     if (isDuplicate) {
       const input = `${f.properties?.projektant}_${f.properties?.adres}`;
       const jitter = deterministicJitter(input, 0.0003); // ~30m
@@ -367,7 +366,9 @@ function deterministicJitter(text, maxDelta = 0.0003) {
       lng += jitter.lng;
     }
 
+    // 🧭 Upewniamy się, że to L.LatLng
     const latlng = L.latLng(lat, lng);
+
     const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
     const iconUrl = statusIcons[status];
 
@@ -388,9 +389,6 @@ function deterministicJitter(text, maxDelta = 0.0003) {
 
   map.addLayer(markerCluster);
 }
-
-
-
 
 
 

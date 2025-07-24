@@ -203,96 +203,96 @@ function debounce(func, wait) {
   });
 
   function loadGeoJSON() {
-    showLoading();
-    fetch('dzialki.geojson')
-      .then(res => res.json())
-      .then(data => {
-        geojsonFeatures = data.features;
-        renderVisibleDzialki(); // pierwszy raz
-        hideLoading();
-      })
-      .catch(err => {
-        console.error("❌ Błąd ładowania GeoJSON:", err);
-        hideLoading();
-      });
+  showLoading();
+  fetch('dzialki.geojson')
+    .then(res => res.json())
+    .then(data => {
+      geojsonFeatures = data.features;
+      renderVisibleDzialki(); // pierwszy raz
+      hideLoading();
+    })
+    .catch(err => {
+      console.error("❌ Błąd ładowania GeoJSON:", err);
+      hideLoading();
+    });
+}
+function deterministicJitter(text, maxDelta = 0.0003) {
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    hash = (hash << 5) - hash + text.charCodeAt(i);
+    hash |= 0;
   }
-  function deterministicJitter(text, maxDelta = 0.0003) {
-    let hash = 0;
-    for (let i = 0; i < text.length; i++) {
-      hash = (hash << 5) - hash + text.charCodeAt(i);
-      hash |= 0;
-    }
-    const sin = Math.sin(hash);
-    const cos = Math.cos(hash);
-    return {
-      lat: (sin * maxDelta) % maxDelta,
-      lng: (cos * maxDelta) % maxDelta
-    };
-  }
+  const sin = Math.sin(hash);
+  const cos = Math.cos(hash);
+  return {
+    lat: (sin * maxDelta) % maxDelta,
+    lng: (cos * maxDelta) % maxDelta
+  };
+}
 
-  function renderVisibleDzialki() {
-    const bounds = map.getBounds();
-    if (markerCluster) {
-      map.removeLayer(markerCluster);
-      markerCluster = null;
-    }
-    markerCluster = createClusterGroup();
-    
-    const visible = geojsonFeatures.filter(f => {
-      return (
-        f.geometry &&
-        f.geometry.type === "Point" &&
-        Array.isArray(f.geometry.coordinates) &&
-        bounds.contains([f.geometry.coordinates[1], f.geometry.coordinates[0]])
-      );
-    });
-    // Dodaj tylko unikalne punkty do markerCluster
-    const addedCoords = new Set();
-    
-    visible.forEach(f => {
-      let [lng, lat] = f.geometry.coordinates;
-      const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
-      
-      // Sprawdź czy punkt już istnieje
-      if (addedCoords.has(key)) return;
-      addedCoords.add(key);
-      
-      // Zastosuj jitter tylko dla duplikatów
-      const coordCount = {};
-      visible.forEach(v => {
-        const vKey = `${v.geometry.coordinates[1].toFixed(6)},${v.geometry.coordinates[0].toFixed(6)}`;
-        coordCount[vKey] = (coordCount[vKey] || 0) + 1;
-      });
-      
-      const isDuplicate = coordCount[key] > 1;
-      if (isDuplicate) {
-        const input = `${f.properties?.projektant}_${f.properties?.adres}`;
-        const jitter = deterministicJitter(input, 0.0003);
-        lat += jitter.lat;
-        lng += jitter.lng;
-      }
-      
-      const latlng = L.latLng(lat, lng);
-      const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
-      const iconUrl = statusIcons[status];
-      
-      const marker = iconUrl
-        ? L.marker(latlng, {
-            icon: L.icon({
-              iconUrl,
-              iconSize: [32, 32],
-              iconAnchor: [16, 32],
-              popupAnchor: [0, -32]
-            })
-          })
-        : L.marker(latlng);
-      
-      bindPopupToLayer(f, marker);
-      markerCluster.addLayer(marker);
-    });
-    
-    map.addLayer(markerCluster);
+function renderVisibleDzialki() {
+  const bounds = map.getBounds();
+  if (markerCluster) {
+    map.removeLayer(markerCluster);
+    markerCluster = null;
   }
+  markerCluster = createClusterGroup();
+  
+  const visible = geojsonFeatures.filter(f => {
+    return (
+      f.geometry &&
+      f.geometry.type === "Point" &&
+      Array.isArray(f.geometry.coordinates) &&
+      bounds.contains([f.geometry.coordinates[1], f.geometry.coordinates[0]])
+    );
+  });
+  // Dodaj tylko unikalne punkty do markerCluster
+  const addedCoords = new Set();
+  
+  visible.forEach(f => {
+    let [lng, lat] = f.geometry.coordinates;
+    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    
+    // Sprawdź czy punkt już istnieje
+    if (addedCoords.has(key)) return;
+    addedCoords.add(key);
+    
+    // Zastosuj jitter tylko dla duplikatów
+    const coordCount = {};
+    visible.forEach(v => {
+      const vKey = `${v.geometry.coordinates[1].toFixed(6)},${v.geometry.coordinates[0].toFixed(6)}`;
+      coordCount[vKey] = (coordCount[vKey] || 0) + 1;
+    });
+    
+    const isDuplicate = coordCount[key] > 1;
+    if (isDuplicate) {
+      const input = `${f.properties?.projektant}_${f.properties?.adres}`;
+      const jitter = deterministicJitter(input, 0.0003);
+      lat += jitter.lat;
+      lng += jitter.lng;
+    }
+    
+    const latlng = L.latLng(lat, lng);
+    const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
+    const iconUrl = statusIcons[status];
+    
+    const marker = iconUrl
+      ? L.marker(latlng, {
+          icon: L.icon({
+            iconUrl,
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+          })
+        })
+      : L.marker(latlng);
+    
+    bindPopupToLayer(f, marker);
+    markerCluster.addLayer(marker);
+  });
+  
+  map.addLayer(markerCluster);
+}
 
   window.filterMap = function (rok) {
     loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
@@ -771,12 +771,12 @@ function loadShapesFromFirebase() {
 loadShapesFromFirebase();
 
 /* 🔥 Jednorazowe usunięcie geojson
-function deleteGeojsonFromFirebase() {
+function deleteGeoJSONFromFirebase() {
   window.firebaseRemove(ref(db, 'geojson'))
     .then(() => console.log("🗑️ geojson usunięty z Firebase"))
     .catch(console.error);
 }
-deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
+deleteGeoJSONFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
 // =========== STATUS PANEL FIX ===========
 
   // Start

@@ -314,7 +314,7 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
     });
 }
 
-function deterministicJitter(text, maxDelta = 0.0003) {
+/*function deterministicJitter(text, maxDelta = 0.0003) {
   let hash = 0;
   for (let i = 0; i < text.length; i++) {
     hash = (hash << 5) - hash + text.charCodeAt(i);
@@ -328,7 +328,7 @@ function deterministicJitter(text, maxDelta = 0.0003) {
     lat: (sin * maxDelta) % maxDelta,
     lng: (cos * maxDelta) % maxDelta
   };
-}
+}*/
 
   
 function renderVisibleDzialki() {

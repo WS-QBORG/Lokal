@@ -314,7 +314,7 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
     });
 }
 
-/*function deterministicJitter(text, maxDelta = 0.0003) {
+function deterministicJitter(text, maxDelta = 0.0003) {
   let hash = 0;
   for (let i = 0; i < text.length; i++) {
     hash = (hash << 5) - hash + text.charCodeAt(i);
@@ -328,7 +328,7 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
     lat: (sin * maxDelta) % maxDelta,
     lng: (cos * maxDelta) % maxDelta
   };
-}*/
+}
 
   
 function renderVisibleDzialki() {
@@ -359,7 +359,7 @@ function renderVisibleDzialki() {
 
     if (duplicate) {
       const input = `${f.properties?.projektant}_${f.properties?.adres}`;
-      const jitter = deterministicJitter(input, 0.0003); // ±30m
+      const jitter = deterministicJitter(input, 0.0001); // ±30m
       lat += jitter.lat;
       lng += jitter.lng;
     }

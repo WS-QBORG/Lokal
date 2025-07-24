@@ -153,7 +153,14 @@ function loadGeoJSONFromFirebase() {
   });
 }   // <- ✅ zamknięcie funkcji
 
-// Dodaj na górze pliku
+// ===== FUNKCJE POMOCNICZE =====
+// Dodaj na górze pliku, przed użyciem w loadGeoJSON()
+function showLoading() {
+  document.getElementById("loadingOverlay").style.display = "flex";
+}
+function hideLoading() {
+  document.getElementById("loadingOverlay").style.display = "none";
+}
 function debounce(func, wait) {
   let timeout;
   return function() {
@@ -164,43 +171,43 @@ function debounce(func, wait) {
     }, wait);
   };
 }
+// ===== KONIEC FUNKCJI POMOCNICZYCH =====
 
-  // ===== MAPA I INICJALIZACJA =====
-  // Zdefiniuj mapę tutaj, przed użyciem jej w innych funkcjach
-  const map = L.map('map').setView([53.4285, 14.5528], 8);
-  window.map = map;
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
-  
-  // Teraz możesz używać mapy w funkcji debounce
-  map.on('moveend', debounce(renderVisibleDzialki, 300));
+// Dodaj na górze pliku, przed użyciem w loadGeoJSON()
+const map = L.map('map').setView([53.4285, 14.5528], 8);
+window.map = map;
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
-  function createClusterGroup() {
-    return L.markerClusterGroup({
-      spiderfyOnMaxZoom: false,
-      showCoverageOnHover: false,
-      zoomToBoundsOnClick: true,
-      disableClusteringAtZoom: 16, // Niższy zoom dla lepszej grupowania
-      maxClusterRadius: 80, // Większy promień grupowania
-      iconCreateFunction: function(cluster) {
-        const count = cluster.getChildCount();
-        let color = '#3b82f6';
-        if (count >= 100) color = '#000000';
-        else if (count >= 10) color = '#9ca3af';
-        
-        return new L.DivIcon({
-          html: `<div style="background:${color};color:white;width:40px;height:40px;
-                   border-radius:50%;border:2px solid white;text-align:center;
-                   line-height:38px;font-size:14px;font-weight:bold;">${count}</div>`,
-          className: 'custom-cluster',
-          iconSize: [40, 40]
-        });
-      }
-    });
-  }
+// Teraz możesz używać mapy w funkcji debounce
+map.on('moveend', debounce(renderVisibleDzialki, 300));
+
+function createClusterGroup() {
+  return L.markerClusterGroup({
+    spiderfyOnMaxZoom: false,
+    showCoverageOnHover: false,
+    zoomToBoundsOnClick: true,
+    disableClusteringAtZoom: 16, // Niższy zoom dla lepszej grupowania
+    maxClusterRadius: 80, // Większy promień grupowania
+    iconCreateFunction: function(cluster) {
+      const count = cluster.getChildCount();
+      let color = '#3b82f6';
+      if (count >= 100) color = '#000000';
+      else if (count >= 10) color = '#9ca3af';
+      
+      return new L.DivIcon({
+        html: `<div style="background:${color};color:white;width:40px;height:40px;
+                 border-radius:50%;border:2px solid white;text-align:center;
+                 line-height:38px;font-size:14px;font-weight:bold;">${count}</div>`,
+        className: 'custom-cluster',
+        iconSize: [40, 40]
+      });
+    }
+  });
+}
 
   map.on('moveend', () => {
-    renderVisibleDzialki();
-  });
+  renderVisibleDzialki();
+});
 
   function loadGeoJSON() {
   showLoading();
@@ -246,6 +253,7 @@ function renderVisibleDzialki() {
       bounds.contains([f.geometry.coordinates[1], f.geometry.coordinates[0]])
     );
   });
+  
   // Dodaj tylko unikalne punkty do markerCluster
   const addedCoords = new Set();
   
@@ -771,12 +779,12 @@ function loadShapesFromFirebase() {
 loadShapesFromFirebase();
 
 /* 🔥 Jednorazowe usunięcie geojson
-function deleteGeoJSONFromFirebase() {
+function deleteGeojsonFromFirebase() {
   window.firebaseRemove(ref(db, 'geojson'))
     .then(() => console.log("🗑️ geojson usunięty z Firebase"))
     .catch(console.error);
 }
-deleteGeoJSONFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
+deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
 // =========== STATUS PANEL FIX ===========
 
   // Start

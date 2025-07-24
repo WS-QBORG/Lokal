@@ -343,22 +343,26 @@ function renderVisibleDzialki() {
     return bounds.contains([lat, lng]);
   });
 
-  const usedCoords = new Set();
+  // 👉 grupujemy punkty po dokładnych współrzędnych
+  const coordCount = {};
+  visible.forEach(f => {
+    const [lng, lat] = f.geometry.coordinates;
+    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    coordCount[key] = (coordCount[key] || 0) + 1;
+  });
 
+  // 👉 renderujemy z jitterem tylko jeśli punktów o tych samych współrzędnych jest więcej niż 1
   visible.forEach(f => {
     let [lng, lat] = f.geometry.coordinates;
-    let key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    const duplicate = coordCount[key] > 1;
 
-    // Jeśli już taki punkt był — rozsuń deterministycznie
-    if (usedCoords.has(key)) {
+    if (duplicate) {
       const input = `${f.properties?.projektant}_${f.properties?.adres}`;
-      const jitter = deterministicJitter(input, 0.0003); // ±0.0003
+      const jitter = deterministicJitter(input, 0.0003); // ±30m
       lat += jitter.lat;
       lng += jitter.lng;
-      key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
     }
-
-    usedCoords.add(key);
 
     const latlng = L.latLng(lat, lng);
     const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
@@ -381,6 +385,7 @@ function renderVisibleDzialki() {
 
   map.addLayer(markerCluster);
 }
+
 
 
 

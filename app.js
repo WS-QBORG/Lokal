@@ -330,7 +330,8 @@ function deterministicJitter(text, maxDelta = 0.0003) {
   };
 }
 
- function renderVisibleDzialki() {
+
+function renderVisibleDzialki() {
   const bounds = map.getBounds();
 
   if (markerCluster) map.removeLayer(markerCluster);
@@ -345,7 +346,7 @@ function deterministicJitter(text, maxDelta = 0.0003) {
     );
   });
 
-  // 🔢 zlicz dokładnie współrzędne – do 5 miejsc po przecinku
+  // Zlicz ile punktów ma takie same współrzędne
   const coordCount = {};
   visible.forEach(f => {
     const [lng, lat] = f.geometry.coordinates;
@@ -353,7 +354,8 @@ function deterministicJitter(text, maxDelta = 0.0003) {
     coordCount[key] = (coordCount[key] || 0) + 1;
   });
 
-  // 🔁 tworzymy markery dopiero po przeliczeniu jittera
+  const markers = [];
+
   visible.forEach(f => {
     let [lng, lat] = f.geometry.coordinates;
     const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
@@ -366,9 +368,7 @@ function deterministicJitter(text, maxDelta = 0.0003) {
       lng += jitter.lng;
     }
 
-    // 🧭 Upewniamy się, że to L.LatLng
     const latlng = L.latLng(lat, lng);
-
     const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
     const iconUrl = statusIcons[status];
 
@@ -384,9 +384,11 @@ function deterministicJitter(text, maxDelta = 0.0003) {
       : L.marker(latlng);
 
     bindPopupToLayer(f, marker);
-    markerCluster.addLayer(marker);
+    markers.push(marker);
   });
 
+  // 🧠 Dodaj wszystkie na raz – po jitterze
+  markers.forEach(m => markerCluster.addLayer(m));
   map.addLayer(markerCluster);
 }
 

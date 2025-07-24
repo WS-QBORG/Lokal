@@ -330,36 +330,39 @@ function deterministicJitter(text, maxDelta = 0.0003) {
   };
 }
 
-  
-function renderVisibleDzialki() {
+ function renderVisibleDzialki() {
   const bounds = map.getBounds();
 
   if (markerCluster) map.removeLayer(markerCluster);
   markerCluster = createClusterGroup();
 
+  // 🔍 tylko punkty z poprawną geometrią
   const visible = geojsonFeatures.filter(f => {
-    if (!f.geometry || f.geometry.type !== "Point") return false;
-    const [lng, lat] = f.geometry.coordinates;
-    return bounds.contains([lat, lng]);
+    return (
+      f.geometry &&
+      f.geometry.type === "Point" &&
+      Array.isArray(f.geometry.coordinates) &&
+      bounds.contains([f.geometry.coordinates[1], f.geometry.coordinates[0]])
+    );
   });
 
-  // 👉 grupujemy punkty po dokładnych współrzędnych
+  // 🔢 zlicz współrzędne z dokładnością do 5 miejsc
   const coordCount = {};
   visible.forEach(f => {
     const [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(4)},${lng.toFixed(4)}`;
+    const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
     coordCount[key] = (coordCount[key] || 0) + 1;
   });
 
-  // 👉 renderujemy z jitterem tylko jeśli punktów o tych samych współrzędnych jest więcej niż 1
   visible.forEach(f => {
     let [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(4)},${lng.toFixed(4)}`;
-    const duplicate = coordCount[key] > 1;
+    const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
+    const isDuplicate = coordCount[key] > 1;
 
-    if (duplicate) {
+    // 💡 rozsuń tylko duplikaty – deterministycznie
+    if (isDuplicate) {
       const input = `${f.properties?.projektant}_${f.properties?.adres}`;
-      const jitter = deterministicJitter(input, 0.0001); // ±30m
+      const jitter = deterministicJitter(input, 0.0003); // ~30m
       lat += jitter.lat;
       lng += jitter.lng;
     }

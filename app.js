@@ -175,7 +175,6 @@ function loadGeoJSON() {
 
 // ===== POZOSTAŁE FUNKCJE (bez zmian) =====
 // ... (tutaj wklej resztę swojego oryginalnego kodu, np. funkcje bindPopupToLayer, showProjektanci, applyProjektantFilter itd. bez zmian)
-
 window.filterMap = function (rok) {
   loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
 };
@@ -587,7 +586,6 @@ function deleteGeoJSONFromFirebase() {
 }
 deleteGeoJSONFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
 // =========== STATUS PANEL FIX ===========
-
   // Start
   loadGeoJSON();
   loadGeoJSONFromFirebase(); // zamiast local file

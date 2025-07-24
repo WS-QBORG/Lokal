@@ -313,6 +313,7 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
       hideLoading();
     });
 }
+  
 function renderVisibleDzialki() {
   const bounds = map.getBounds();
 
@@ -325,24 +326,34 @@ function renderVisibleDzialki() {
     return bounds.contains([lat, lng]);
   });
 
+  const usedCoords = new Set();
+
   visible.forEach(f => {
-    const [lng, lat] = f.geometry.coordinates;
+    let [lng, lat] = f.geometry.coordinates;
+    let key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+
+    // 🔁 Jeśli już był taki punkt – rozsuń
+    while (usedCoords.has(key)) {
+      lat += (Math.random() - 0.5) * 0.0001;
+      lng += (Math.random() - 0.5) * 0.0001;
+      key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    }
+    usedCoords.add(key);
+
     const latlng = L.latLng(lat, lng);
+    const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
+    const iconUrl = statusIcons[status];
 
-   const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
-const iconUrl = statusIcons[status];
-
-const marker = iconUrl
-  ? L.marker(latlng, {
-      icon: L.icon({
-        iconUrl,
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
-        popupAnchor: [0, -32]
-      })
-    })
-  : L.marker(latlng); // domyślna pinezka
-
+    const marker = iconUrl
+      ? L.marker(latlng, {
+          icon: L.icon({
+            iconUrl,
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+          })
+        })
+      : L.marker(latlng);
 
     bindPopupToLayer(f, marker);
     markerCluster.addLayer(marker);

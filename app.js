@@ -175,20 +175,34 @@ function saveGeoJSONToFirebase() {
 
 // 🔁 Funkcja ładująca dane GeoJSON z Firebase przy starcie
 function loadGeoJSONFromFirebase() {
-  // Nasłuchuj zmian pod ścieżką 'punkty' w Firebase
   onValue(ref(db, 'punkty'), (snapshot) => {
     const data = snapshot.val();
     if (!data) return;
-
-    // Zamień dane z Firebase na tablicę punktów
     geojsonFeatures = Object.values(data);
+    // Dodaj opóźnienie dla płynniejszego renderowania
+    setTimeout(renderVisibleDzialki, 100);
+  });
+}   // <- ✅ zamknięcie funkcji
 
-    // Renderuj tylko widoczne działki na mapie
-    renderVisibleDzialki();
-  }); // <- ✅ zamknięcie onValue
-}     // <- ✅ zamknięcie funkcji
 
 
+// Dodaj na górze pliku
+function debounce(func, wait) {
+  let timeout;
+  return function() {
+    const context = this, args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(context, args);
+    }, wait);
+  };
+}
+
+// Zmień w event listenerze
+map.on('moveend', debounce(renderVisibleDzialki, 300));
+  
+
+  
 
 document.getElementById("rotateSlider").addEventListener("input", function () {
   if (!activeRectangle || !baseCorners || !baseLatLng) {
@@ -271,27 +285,29 @@ document.getElementById("rotateSlider").addEventListener("input", function () {
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
-  function createClusterGroup() {
-    return L.markerClusterGroup({
-      spiderfyOnMaxZoom: false,   // nie rozrzucaj punktów
-      showCoverageOnHover: false, // nie pokazuj zasięgu klastra
-      zoomToBoundsOnClick: true,  // nadal pozwól kliknąć
-      disableClusteringAtZoom: 18, // Naprawa nachodzących cyfr na punkty
-      iconCreateFunction: function (cluster) {
-        const count = cluster.getChildCount();
-        let color = '#3b82f6';
-        if (count >= 100) color = '#000000';
-        else if (count >= 10) color = '#9ca3af';
-        return new L.DivIcon({
-          html: `<div style="background:${color};color:white;width:40px;height:40px;
-                     border-radius:50%;border:2px solid white;text-align:center;
-                     line-height:38px;font-size:14px;font-weight:bold;">${count}</div>`,
-          className: 'custom-cluster',
-          iconSize: [40, 40]
-        });
-      }
-    });
-  }
+ function createClusterGroup() {
+  return L.markerClusterGroup({
+    spiderfyOnMaxZoom: false,
+    showCoverageOnHover: false,
+    zoomToBoundsOnClick: true,
+    disableClusteringAtZoom: 16, // Niższy zoom dla lepszej grupowania
+    maxClusterRadius: 80, // Większy promień grupowania
+    iconCreateFunction: function(cluster) {
+      const count = cluster.getChildCount();
+      let color = '#3b82f6';
+      if (count >= 100) color = '#000000';
+      else if (count >= 10) color = '#9ca3af';
+      
+      return new L.DivIcon({
+        html: `<div style="background:${color};color:white;width:40px;height:40px;
+                 border-radius:50%;border:2px solid white;text-align:center;
+                 line-height:38px;font-size:14px;font-weight:bold;">${count}</div>`,
+        className: 'custom-cluster',
+        iconSize: [40, 40]
+      });
+    }
+  });
+}
 
   map.on('moveend', () => {
   renderVisibleDzialki();
@@ -333,10 +349,12 @@ function deterministicJitter(text, maxDelta = 0.0003) {
 
 function renderVisibleDzialki() {
   const bounds = map.getBounds();
-
-  if (markerCluster) map.removeLayer(markerCluster);
+  if (markerCluster) {
+    map.removeLayer(markerCluster);
+    markerCluster = null;
+  }
   markerCluster = createClusterGroup();
-
+  
   const visible = geojsonFeatures.filter(f => {
     return (
       f.geometry &&
@@ -346,32 +364,36 @@ function renderVisibleDzialki() {
     );
   });
 
-  // Zlicz ile punktów ma takie same współrzędne
-  const coordCount = {};
-  visible.forEach(f => {
-    const [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
-    coordCount[key] = (coordCount[key] || 0) + 1;
-  });
-
-  const markers = [];
-
+  // Dodaj tylko unikalne punkty do markerCluster
+  const addedCoords = new Set();
+  
   visible.forEach(f => {
     let [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
+    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    
+    // Sprawdź czy punkt już istnieje
+    if (addedCoords.has(key)) return;
+    addedCoords.add(key);
+    
+    // Zastosuj jitter tylko dla duplikatów
+    const coordCount = {};
+    visible.forEach(v => {
+      const vKey = `${v.geometry.coordinates[1].toFixed(6)},${v.geometry.coordinates[0].toFixed(6)}`;
+      coordCount[vKey] = (coordCount[vKey] || 0) + 1;
+    });
+    
     const isDuplicate = coordCount[key] > 1;
-
     if (isDuplicate) {
       const input = `${f.properties?.projektant}_${f.properties?.adres}`;
-      const jitter = deterministicJitter(input, 0.0003); // ~30m
+      const jitter = deterministicJitter(input, 0.0003);
       lat += jitter.lat;
       lng += jitter.lng;
     }
-
+    
     const latlng = L.latLng(lat, lng);
     const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
     const iconUrl = statusIcons[status];
-
+    
     const marker = iconUrl
       ? L.marker(latlng, {
           icon: L.icon({
@@ -382,13 +404,11 @@ function renderVisibleDzialki() {
           })
         })
       : L.marker(latlng);
-
+    
     bindPopupToLayer(f, marker);
-    markers.push(marker);
+    markerCluster.addLayer(marker);
   });
-
-  // 🧠 Dodaj wszystkie na raz – po jitterze
-  markers.forEach(m => markerCluster.addLayer(m));
+  
   map.addLayer(markerCluster);
 }
 
@@ -625,24 +645,52 @@ function renderStatusDropdown() {
 function applyStatusFilter() {
   const checkboxes = document.querySelectorAll('#statusDropdown input[type="checkbox"]:checked');
   const selectedStatusy = Array.from(checkboxes).map(cb => cb.value);
-
-  if (markerCluster) map.removeLayer(markerCluster);
+  
+  if (markerCluster) {
+    map.removeLayer(markerCluster);
+    markerCluster = null;
+  }
+  
   markerCluster = createClusterGroup();
-
   const filtered = geojsonFeatures.filter(f => {
     const name = f.properties?.projektant?.trim();
     const status = statusAssigned[name] || "Neutralny";
     return selectedStatusy.includes(status);
   });
-
-  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-    pointToLayer: (feature, latlng) => L.marker(latlng),
-    onEachFeature: bindPopupToLayer
+  
+  // Dodaj unikalne punkty
+  const addedCoords = new Set();
+  
+  filtered.forEach(f => {
+    let [lng, lat] = f.geometry.coordinates;
+    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    
+    if (addedCoords.has(key)) return;
+    addedCoords.add(key);
+    
+    const latlng = L.latLng(lat, lng);
+    const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
+    const iconUrl = statusIcons[status];
+    
+    const marker = iconUrl
+      ? L.marker(latlng, {
+          icon: L.icon({
+            iconUrl,
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+          })
+        })
+      : L.marker(latlng);
+    
+    bindPopupToLayer(f, marker);
+    markerCluster.addLayer(marker);
   });
-
-  markerCluster.addLayer(layer);
+  
   map.addLayer(markerCluster);
 }
+
+  
 
 document.addEventListener("click", function (e) {
   const dropdown = document.getElementById("statusDropdown");
@@ -737,24 +785,53 @@ function renderHandlowcyDropdown() {
 function applyHandlowcyDropdownFilter() {
   const checkboxes = document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]:checked');
   const selected = Array.from(checkboxes).map(cb => cb.value);
-
-  if (markerCluster) map.removeLayer(markerCluster);
+  
+  if (markerCluster) {
+    map.removeLayer(markerCluster);
+    markerCluster = null;
+  }
+  
   markerCluster = createClusterGroup();
-
   const filtered = geojsonFeatures.filter(f => {
     const proj = f.properties?.projektant;
     const hand = projektanciAssigned[proj];
     return selected.includes(hand);
   });
-
-  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-    pointToLayer: (feature, latlng) => L.marker(latlng),
-    onEachFeature: bindPopupToLayer
+  
+  // Dodaj unikalne punkty
+  const addedCoords = new Set();
+  
+  filtered.forEach(f => {
+    let [lng, lat] = f.geometry.coordinates;
+    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
+    
+    if (addedCoords.has(key)) return;
+    addedCoords.add(key);
+    
+    const latlng = L.latLng(lat, lng);
+    const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
+    const iconUrl = statusIcons[status];
+    
+    const marker = iconUrl
+      ? L.marker(latlng, {
+          icon: L.icon({
+            iconUrl,
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+          })
+        })
+      : L.marker(latlng);
+    
+    bindPopupToLayer(f, marker);
+    markerCluster.addLayer(marker);
   });
-
-  markerCluster.addLayer(layer);
+  
   map.addLayer(markerCluster);
 }
+
+
+  
 
 window.showHandlowiecProfile = function (name) {
   const profile = document.getElementById("profilePanel");
@@ -889,10 +966,14 @@ function loadShapesFromFirebase() {
     const data = snapshot.val();
     if (!data) return;
     drawnItems.clearLayers();
-    const geojsonLayer = L.geoJSON(data);
+    // Konwertuj obiekt na tablicę
+    const features = Object.values(data);
+    const geojsonLayer = L.geoJSON({ type: "FeatureCollection", features: features });
     geojsonLayer.eachLayer(layer => drawnItems.addLayer(layer));
   });
 }
+
+  
 loadShapesFromFirebase();
 
 

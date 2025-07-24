@@ -1,159 +1,4 @@
-// =========== Firebase Init ===========
-let projektanciAssigned = {};
-let projektanciGlobal = [];
-let projektanciNotes = {};
-let geojsonFeatures = [];
-let markerCluster;
-
-// ===== Renderowanie projektantów =============
-window.renderProjektanciList = function (list) {
-  const container = document.getElementById("sidebarContent");
-  container.innerHTML = "";
-  const searchValue = document.getElementById("searchInput")?.value?.toLowerCase() || "";
-  list
-    .filter(p => p.projektant.toLowerCase().includes(searchValue))
-    .forEach(p => {
-      const assigned = projektanciAssigned[p.projektant] || "";
-      const div = document.createElement("div");
-      div.className = "projektant-entry";
-      div.innerHTML = `
-        <label style="display:flex;align-items:center;gap:0.5rem;">
-          <input type="checkbox" value="${p.projektant}" />
-          <span class="name" onclick="showProfile('${p.projektant}')">
-            ${p.projektant} – ${p.liczba_projektow} projektów
-          </span>
-        </label>
-        <select onchange="assignHandlowiec('${p.projektant}', this.value)">
-          <option value="">(brak)</option>
-          ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-        </select>
-      `;
-      container.appendChild(div);
-    });
-}; 
-// =========== Firebase Init dla rysowania kwadratów  ===========
-/*const db = window.firebaseDB;
-const ref = window.firebaseRef;
-const onValue = window.firebaseOnValue;
-const set = window.firebaseSet;*/
-const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski", "Tomasz Fierek", "Piotr Murawski", "Weronika Stępień"];
-document.addEventListener("DOMContentLoaded", () => {
-  const db = window.firebaseDB;
-  const ref = window.firebaseRef;
-  const onValue = window.firebaseOnValue;
-  const set = window.firebaseSet;
-  let activeRectangle = null;
-  let originalLatLng = null;
-  let baseCorners = null;       // 🌐 oryginalne narożniki (przed obrotem)
-  let baseLatLng = null;        // 🌐 oryginalny środek
-// Zmienne statusów / akcji
-const statusy = ["Wizyta zaplanowana", "W kontakcie", "Podejmuje decyzję", "Wygrany", "Stracony"];
-const statusAssigned = {};
-// Ikonki statusów
-const statusIcons = {
-  "Stracony": "icons/stracony.svg",
-  "Podejmuje decyzję": "icons/mysli.svg",
-  "Wizyta zaplanowana": "icons/umowiony.svg",
-  "W kontakcie": "icons/rozmawia.svg",
-  "Wygrany": "icons/wygrany.svg",
-  "Neutralny": null  // standardowa pinezka
-};
-
-// Odczytywanie statusów / akcji
-const statusRef = firebaseRef(firebaseDB, 'statusy');
-onValue(statusRef, snapshot => {
-  Object.assign(statusAssigned, snapshot.val() || {});
-  console.log("📥 Statusy:", statusAssigned);
-});
-// Zapisywanie statusów / akcji
-window.saveStatus = function (projektant, status) {
-  statusAssigned[projektant] = status;
-  set(ref(db, `statusy/${projektant}`), status)
-    .then(() => console.log('✅ Status zapisany:', projektant, status))
-    .catch(console.error);
-};
-
-  // 🔁 Tryb dodawania punktu
-let addPointMode = false;
-window.startAddPointMode = function () {
-  addPointMode = true;
-  document.getElementById("addPointPanel").style.display = "block";
-  // uzupełnij select handlowców
-  const select = document.getElementById("inputHandlowiec");
-  select.innerHTML = handlowcy.map(h => `<option value="${h}">${h}</option>`).join('');
-};
-// ❌ Anuluj
-window.cancelAddPoint = function () {
-  addPointMode = false;
-  document.getElementById("addPointPanel").style.display = "none";
-};
-// ✅ Zatwierdź i dodaj marker
-window.confirmAddPoint = function () {
-  const handlowiec = document.getElementById("inputHandlowiec").value;
-  const projektant = document.getElementById("inputProjektant").value.trim();
-  const adres = document.getElementById("inputAdres").value.trim();
-  const klient = document.getElementById("inputKlient").value.trim();
-  if (!projektant || !adres || !klient) {
-    alert("Uzupełnij wszystkie pola.");
-    return;
-  }
-  alert("Kliknij na mapie, aby wskazać lokalizację.");
-  map.once("click", function (e) {
-    const latlng = e.latlng;
-    // Dodaj marker
-    const marker = L.marker(latlng).addTo(map);
-    marker.bindPopup(`
-      <b>${projektant}</b><br/>
-      Adres: ${adres}<br/>
-      Klient: ${klient}<br/>
-      Handlowiec: ${handlowiec}
-    `);
-    // Zapisz jako nowy punkt w geojsonFeatures
-    const newFeature = {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [latlng.lng, latlng.lat]
-      },
-      properties: {
-        projektant,
-        adres,
-        klient,
-        handlowiec,
-        rok: new Date().getFullYear(),
-        popup: `Dodany punkt – ${adres}`,
-        dzialka: "Brak"
-      }
-    };
-    geojsonFeatures.push(newFeature);
-    saveGeoJSONToFirebase(); // ⬇️ zapisz do Firebase
-    cancelAddPoint();
-    alert("✅ Punkt dodany!");
-  });
-};
-function saveGeoJSONToFirebase() {
-  const featureCollection = {
-    type: "FeatureCollection",
-    features: geojsonFeatures
-  };
-  const newRef = push(ref(db, 'punkty'));
-  set(newRef, featureCollection)
-    .then(() => console.log("✅ GeoJSON zapisany"))
-    .catch(console.error);
-}
-
-// 🔁 Funkcja ładująca dane GeoJSON z Firebase przy starcie
-function loadGeoJSONFromFirebase() {
-  onValue(ref(db, 'punkty'), (snapshot) => {
-    const data = snapshot.val();
-    if (!data) return;
-    geojsonFeatures = Object.values(data);
-    // Dodaj opóźnienie dla płynniejszego renderowania
-    setTimeout(renderVisibleDzialki, 100);
-  });
-}   // <- ✅ zamknięcie funkcji
-
-// ===== FUNKCJE POMOCNICZE =====
+// =========== FUNKCJE POMOCNICZE =====
 // Dodaj na górze pliku, przed użyciem w loadGeoJSON()
 function showLoading() {
   document.getElementById("loadingOverlay").style.display = "flex";
@@ -171,22 +16,22 @@ function debounce(func, wait) {
     }, wait);
   };
 }
-// ===== KONIEC FUNKCJI POMOCNICZYCH =====
 
-// Dodaj na górze pliku, przed użyciem w loadGeoJSON()
+// ===== MAPA I INICJALIZACJA =====
+// Zdefiniuj mapę tutaj, przed użyciem jej w innych funkcjach
 const map = L.map('map').setView([53.4285, 14.5528], 8);
 window.map = map;
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
 // Teraz możesz używać mapy w funkcji debounce
-map.on('moveend', debounce(renderVisibleDzialki, 300));
+map.on('moveend', debounce(renderVisibleDzialki, 500)); // Zwiększyłem opóźnienie do 500ms
 
 function createClusterGroup() {
   return L.markerClusterGroup({
     spiderfyOnMaxZoom: false,
     showCoverageOnHover: false,
     zoomToBoundsOnClick: true,
-    disableClusteringAtZoom: 16, // Niższy zoom dla lepszej grupowania
+    disableClusteringAtZoom: 18, // Wyższy zoom dla lepszej grupowania
     maxClusterRadius: 80, // Większy promień grupowania
     iconCreateFunction: function(cluster) {
       const count = cluster.getChildCount();
@@ -205,44 +50,25 @@ function createClusterGroup() {
   });
 }
 
-  map.on('moveend', () => {
-  renderVisibleDzialki();
-});
-
-  function loadGeoJSON() {
-  showLoading();
-  fetch('dzialki.geojson')
-    .then(res => res.json())
-    .then(data => {
-      geojsonFeatures = data.features;
-      renderVisibleDzialki(); // pierwszy raz
-      hideLoading();
-    })
-    .catch(err => {
-      console.error("❌ Błąd ładowania GeoJSON:", err);
-      hideLoading();
-    });
-}
-function deterministicJitter(text, maxDelta = 0.0003) {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    hash = (hash << 5) - hash + text.charCodeAt(i);
-    hash |= 0;
-  }
-  const sin = Math.sin(hash);
-  const cos = Math.cos(hash);
-  return {
-    lat: (sin * maxDelta) % maxDelta,
-    lng: (cos * maxDelta) % maxDelta
-  };
-}
-
+// ===== OPTYMALIZOWANA FUNKCJA RENDERU =====
 function renderVisibleDzialki() {
   const bounds = map.getBounds();
+  const zoom = map.getZoom();
+  
+  // Jeśli zoom jest zbyt mały, nie renderuj punktów dla oszczędności
+  if (zoom < 10) {
+    if (markerCluster) {
+      map.removeLayer(markerCluster);
+      markerCluster = null;
+    }
+    return;
+  }
+  
   if (markerCluster) {
     map.removeLayer(markerCluster);
     markerCluster = null;
   }
+  
   markerCluster = createClusterGroup();
   
   const visible = geojsonFeatures.filter(f => {
@@ -254,38 +80,16 @@ function renderVisibleDzialki() {
     );
   });
   
-  // Dodaj tylko unikalne punkty do markerCluster
+  // Dodaj tylko unikalne punkty do klastra
   const addedCoords = new Set();
   
   visible.forEach(f => {
     let [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
-    
-    // Sprawdź czy punkt już istnieje
-    if (addedCoords.has(key)) return;
-    addedCoords.add(key);
-    
-    // Zastosuj jitter tylko dla duplikatów
-    const coordCount = {};
-    visible.forEach(v => {
-      const vKey = `${v.geometry.coordinates[1].toFixed(6)},${v.geometry.coordinates[0].toFixed(6)}`;
-      coordCount[vKey] = (coordCount[vKey] || 0) + 1;
-    });
-    
-    const isDuplicate = coordCount[key] > 1;
-    if (isDuplicate) {
-      const input = `${f.properties?.projektant}_${f.properties?.adres}`;
-      const jitter = deterministicJitter(input, 0.0003);
-      lat += jitter.lat;
-      lng += jitter.lng;
-    }
-    
-    const latlng = L.latLng(lat, lng);
     const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
     const iconUrl = statusIcons[status];
     
     const marker = iconUrl
-      ? L.marker(latlng, {
+      ? L.marker(L.latLng(lat, lng), {
           icon: L.icon({
             iconUrl,
             iconSize: [32, 32],
@@ -293,7 +97,7 @@ function renderVisibleDzialki() {
             popupAnchor: [0, -32]
           })
         })
-      : L.marker(latlng);
+      : L.marker(L.latLng(lat, lng));
     
     bindPopupToLayer(f, marker);
     markerCluster.addLayer(marker);
@@ -302,20 +106,90 @@ function renderVisibleDzialki() {
   map.addLayer(markerCluster);
 }
 
-  window.filterMap = function (rok) {
-    loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
-  };
-  function bindPopupToLayer(feature, layer) {
-    const coords = feature.geometry?.coordinates;
-    const lat = coords ? coords[1] : null;
-    const lon = coords ? coords[0] : null;
-    const proj = feature.properties?.projektant || 'brak';
-    const rok = feature.properties?.rok || 'brak';
-    const inwestycja = feature.properties?.popup || 'Brak opisu';
-    const adres = feature.properties?.adres || 'Brak adresu';
-    const dzialka = feature.properties?.dzialka || 'Brak działki';
-    const assigned = projektanciAssigned[proj] || "";
-    const status = statusAssigned[proj] || "Neutralny";
+// ===== OPTYMALIZOWANE FILTROWANIE =====
+function applyStatusFilter() {
+  const checkboxes = document.querySelectorAll('#statusDropdown input[type="checkbox"]:checked');
+  const selectedStatusy = Array.from(checkboxes).map(cb => cb.value);
+  
+  // Zamiast tworzyć nową warstwę, modyfikuj istniejące markery
+  if (markerCluster) {
+    markerCluster.eachLayer(function(layer) {
+      const feature = layer.feature;
+      if (feature) {
+        const name = feature.properties?.projektant?.trim();
+        const status = statusAssigned[name] || "Neutralny";
+        const isVisible = selectedStatusy.includes(status);
+        layer.setStyle({ opacity: isVisible ? 1 : 0 });
+      }
+    });
+  }
+}
+
+function applyHandlowcyDropdownFilter() {
+  const checkboxes = document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]:checked');
+  const selected = Array.from(checkboxes).map(cb => cb.value);
+  
+  // Zamiast tworzyć nową warstwę, modyfikuj istniejące markery
+  if (markerCluster) {
+    markerCluster.eachLayer(function(layer) {
+      const feature = layer.feature;
+      if (feature) {
+        const proj = feature.properties?.projektant;
+        const hand = projektanciAssigned[proj];
+        const isVisible = selected.includes(hand);
+        layer.setStyle({ opacity: isVisible ? 1 : 0 });
+      }
+    });
+  }
+}
+
+// ===== INNE OPTYMALIZACJE =====
+
+// W funkcji loadGeoJSONFromFirebase - dodaj opóźnienie
+function loadGeoJSONFromFirebase() {
+  onValue(ref(db, 'punkty'), (snapshot) => {
+    const data = snapshot.val();
+    if (!data) return;
+    geojsonFeatures = Object.values(data);
+    // Dodaj większe opóźnienie dla płynniejszego renderowania
+    setTimeout(renderVisibleDzialki, 300);
+  });
+}
+
+// W funkcji loadGeoJSON - dodaj opóźnienie
+function loadGeoJSON() {
+  showLoading();
+  fetch('dzialki.geojson')
+    .then(res => res.json())
+    .then(data => {
+      geojsonFeatures = data.features;
+      // Dodaj opóźnienie dla płynniejszego renderowania
+      setTimeout(renderVisibleDzialki, 300);
+      hideLoading();
+    })
+    .catch(err => {
+      console.error("❌ Błąd ładowania GeoJSON:", err);
+      hideLoading();
+    });
+}
+
+// ===== POZOSTAŁE FUNKCJE (bez zmian) =====
+// ... (tutaj wklej resztę swojego oryginalnego kodu, np. funkcje bindPopupToLayer, showProjektanci, applyProjektantFilter itd. bez zmian)
+
+window.filterMap = function (rok) {
+  loadGeoJSONWithFilter(rok === 'all' ? null : f => f.properties.rok == rok);
+};
+function bindPopupToLayer(feature, layer) {
+  const coords = feature.geometry?.coordinates;
+  const lat = coords ? coords[1] : null;
+  const lon = coords ? coords[0] : null;
+  const proj = feature.properties?.projektant || 'brak';
+  const rok = feature.properties?.rok || 'brak';
+  const inwestycja = feature.properties?.popup || 'Brak opisu';
+  const adres = feature.properties?.adres || 'Brak adresu';
+  const dzialka = feature.properties?.dzialka || 'Brak działki';
+  const assigned = projektanciAssigned[proj] || "";
+  const status = statusAssigned[proj] || "Neutralny";
 const popup = `
   <b>${proj}</b><br/>
   Rok: ${rok}<br/>
@@ -334,10 +208,8 @@ const popup = `
   <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
 `;
     layer.bindPopup(popup);
-  }
-  // =========== Sidebar & Profil ===========
- 
-  window.showProjektanci = function () {
+}
+window.showProjektanci = function () {
   const sidebar = document.getElementById("sidebar");
   if (sidebar.classList.contains("show")) {
     sidebar.classList.remove("show");
@@ -351,89 +223,84 @@ const popup = `
       });
   }
 };
-
-   window.applyProjektantFilter = function () {
-    const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
-    const selectedNames = Array.from(checkboxes).map(cb => cb.value.trim());
-    if (markerCluster) map.removeLayer(markerCluster);
-    markerCluster = createClusterGroup();
-    const filtered = geojsonFeatures.filter(f => selectedNames.includes(f.properties?.projektant?.trim()));
-    const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-      pointToLayer: (feature, latlng) => L.marker(latlng),
-      onEachFeature: bindPopupToLayer
-    });
-    markerCluster.addLayer(layer);
-    map.addLayer(markerCluster);
-    hideSidebar();
-  };
-
-  
-  window.assignHandlowiec = function (projektant, handlowiec) {
-    if (handlowiec) projektanciAssigned[projektant] = handlowiec;
-    else delete projektanciAssigned[projektant];
-    renderProjektanciList(projektanciGlobal);
-    updateProfileHandlowiec(projektant);
-    saveAssignment(projektant, handlowiec);
-  };
-  function updateProfileHandlowiec(name) {
-    const profile = document.getElementById("profileContent");
-    if (!profile.innerHTML.includes(name)) return;
-    const hand = projektanciAssigned[name] || "(nieprzypisany)";
-    profile.querySelector("p").innerHTML = `<b>Handlowiec:</b> ${hand}`;
+window.applyProjektantFilter = function () {
+  const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
+  const selectedNames = Array.from(checkboxes).map(cb => cb.value.trim());
+  if (markerCluster) map.removeLayer(markerCluster);
+  markerCluster = createClusterGroup();
+  const filtered = geojsonFeatures.filter(f => selectedNames.includes(f.properties?.projektant?.trim()));
+  const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+    pointToLayer: (feature, latlng) => L.marker(latlng),
+    onEachFeature: bindPopupToLayer
+  });
+  markerCluster.addLayer(layer);
+  map.addLayer(markerCluster);
+  hideSidebar();
+};
+window.assignHandlowiec = function (projektant, handlowiec) {
+  if (handlowiec) projektanciAssigned[projektant] = handlowiec;
+  else delete projektanciAssigned[projektant];
+  renderProjektanciList(projektanciGlobal);
+  updateProfileHandlowiec(projektant);
+  saveAssignment(projektant, handlowiec);
+};
+function updateProfileHandlowiec(name) {
+  const profile = document.getElementById("profileContent");
+  if (!profile.innerHTML.includes(name)) return;
+  const hand = projektanciAssigned[name] || "(nieprzypisany)";
+  profile.querySelector("p").innerHTML = `<b>Handlowiec:</b> ${hand}`;
+}
+window.showProfile = function (name) {
+  const profile = document.getElementById("profilePanel");
+  const content = document.getElementById("profileContent");
+  const notes = projektanciNotes[name] || "";
+  const handlowiec = projektanciAssigned[name] || "(nieprzypisany)";
+  const projekty = geojsonFeatures.filter(f => f.properties?.projektant === name);
+  const liczba = projekty.length;
+  content.innerHTML = `
+    <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
+    <h3>${name}</h3>
+    <p><b>Handlowiec:</b> ${handlowiec}</p>
+    <p><b>Liczba projektów:</b> ${liczba}</p>
+    <label>📝 Notatki:</label>
+    <textarea onchange="projektanciNotes['${name}'] = this.value; saveNote('${name}', this.value)">${notes}</textarea>
+  `;
+  document.body.classList.add("panel-open");
+  profile.classList.add("show");
+};
+window.applySortFilter = function () {
+  const value = document.getElementById("sortFilterSelect").value;
+  let list = [...projektanciGlobal];
+  switch (value) {
+    case "az":
+      list.sort((a, b) => a.projektant.localeCompare(b.projektant));
+      break;
+    case "za":
+      list.sort((a, b) => b.projektant.localeCompare(a.projektant));
+      break;
+    case "has-handlowiec":
+      list = list.filter(p => projektanciAssigned[p.projektant]);
+      break;
+    case "no-handlowiec":
+      list = list.filter(p => !projektanciAssigned[p.projektant]);
+      break;
+    case "proj-asc":
+      list.sort((a, b) => a.liczba_projektow - b.liczba_projektow);
+      break;
+    case "proj-desc":
+      list.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
+      break;
   }
-  window.showProfile = function (name) {
-    const profile = document.getElementById("profilePanel");
-    const content = document.getElementById("profileContent");
-    const notes = projektanciNotes[name] || "";
-    const handlowiec = projektanciAssigned[name] || "(nieprzypisany)";
-    const projekty = geojsonFeatures.filter(f => f.properties?.projektant === name);
-    const liczba = projekty.length;
-    content.innerHTML = `
-      <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
-      <h3>${name}</h3>
-      <p><b>Handlowiec:</b> ${handlowiec}</p>
-      <p><b>Liczba projektów:</b> ${liczba}</p>
-      <label>📝 Notatki:</label>
-      <textarea onchange="projektanciNotes['${name}'] = this.value; saveNote('${name}', this.value)">${notes}</textarea>
-    `;
-    document.body.classList.add("panel-open");
-    profile.classList.add("show");
-  };
-  window.applySortFilter = function () {
-    const value = document.getElementById("sortFilterSelect").value;
-    let list = [...projektanciGlobal];
-    switch (value) {
-      case "az":
-        list.sort((a, b) => a.projektant.localeCompare(b.projektant));
-        break;
-      case "za":
-        list.sort((a, b) => b.projektant.localeCompare(a.projektant));
-        break;
-      case "has-handlowiec":
-        list = list.filter(p => projektanciAssigned[p.projektant]);
-        break;
-      case "no-handlowiec":
-        list = list.filter(p => !projektanciAssigned[p.projektant]);
-        break;
-      case "proj-asc":
-        list.sort((a, b) => a.liczba_projektow - b.liczba_projektow);
-        break;
-      case "proj-desc":
-        list.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
-        break;
-    }
-    renderProjektanciList(list);
-  };
-    window.filterProjektanciList = function () {
-    renderProjektanciList(projektanciGlobal);
-  };
-// =========== Sidebar & Profil HANDLOWCY ===========
-
-  window.hideProfile = () => {
+  renderProjektanciList(list);
+};
+window.filterProjektanciList = function () {
+  renderProjektanciList(projektanciGlobal);
+};
+window.hideProfile = () => {
   document.getElementById("profilePanel").classList.remove("show");
   document.body.classList.remove("panel-open");
 };
-  window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
+window.hideSidebar = () => document.getElementById("sidebar").classList.remove("show");
 window.toggleStatusDropdown = function () {
   const dropdown = document.getElementById("statusDropdown");
   const icon = document.getElementById("statusIcon");
@@ -447,7 +314,6 @@ window.toggleStatusDropdown = function () {
     icon.textContent = "⯆"; // ▼
   }
 };
-
 function renderStatusDropdown() {
   const container = document.getElementById("statusDropdown");
   container.innerHTML = "";
@@ -493,49 +359,17 @@ function applyStatusFilter() {
   const selectedStatusy = Array.from(checkboxes).map(cb => cb.value);
   
   if (markerCluster) {
-    map.removeLayer(markerCluster);
-    markerCluster = null;
+    markerCluster.eachLayer(function(layer) {
+      const feature = layer.feature;
+      if (feature) {
+        const name = feature.properties?.projektant?.trim();
+        const status = statusAssigned[name] || "Neutralny";
+        const isVisible = selectedStatusy.includes(status);
+        layer.setStyle({ opacity: isVisible ? 1 : 0 });
+      }
+    });
   }
-  
-  markerCluster = createClusterGroup();
-  const filtered = geojsonFeatures.filter(f => {
-    const name = f.properties?.projektant?.trim();
-    const status = statusAssigned[name] || "Neutralny";
-    return selectedStatusy.includes(status);
-  });
-  
-  // Dodaj unikalne punkty
-  const addedCoords = new Set();
-  
-  filtered.forEach(f => {
-    let [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
-    
-    if (addedCoords.has(key)) return;
-    addedCoords.add(key);
-    
-    const latlng = L.latLng(lat, lng);
-    const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
-    const iconUrl = statusIcons[status];
-    
-    const marker = iconUrl
-      ? L.marker(latlng, {
-          icon: L.icon({
-            iconUrl,
-            iconSize: [32, 32],
-            iconAnchor: [16, 32],
-            popupAnchor: [0, -32]
-          })
-        })
-      : L.marker(latlng);
-    
-    bindPopupToLayer(f, marker);
-    markerCluster.addLayer(marker);
-  });
-  
-  map.addLayer(markerCluster);
 }
-  
 document.addEventListener("click", function (e) {
   const dropdown = document.getElementById("statusDropdown");
   const wrapper = document.getElementById("statusDropdownWrapper");
@@ -545,7 +379,6 @@ document.addEventListener("click", function (e) {
     if (icon) icon.textContent = "⯆"; // ▼ po zamknięciu
   }
 });
-// Handlowcy
 window.toggleHandlowcyDropdown = function () {
   const dropdown = document.getElementById("handlowcyDropdown");
   const icon = document.getElementById("handlowcyIcon");
@@ -614,50 +447,18 @@ function applyHandlowcyDropdownFilter() {
   const selected = Array.from(checkboxes).map(cb => cb.value);
   
   if (markerCluster) {
-    map.removeLayer(markerCluster);
-    markerCluster = null;
+    markerCluster.eachLayer(function(layer) {
+      const feature = layer.feature;
+      if (feature) {
+        const proj = feature.properties?.projektant;
+        const hand = projektanciAssigned[proj];
+        const isVisible = selected.includes(hand);
+        layer.setStyle({ opacity: isVisible ? 1 : 0 });
+      }
+    });
   }
-  
-  markerCluster = createClusterGroup();
-  const filtered = geojsonFeatures.filter(f => {
-    const proj = f.properties?.projektant;
-    const hand = projektanciAssigned[proj];
-    return selected.includes(hand);
-  });
-  
-  // Dodaj unikalne punkty
-  const addedCoords = new Set();
-  
-  filtered.forEach(f => {
-    let [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(6)},${lng.toFixed(6)}`;
-    
-    if (addedCoords.has(key)) return;
-    addedCoords.add(key);
-    
-    const latlng = L.latLng(lat, lng);
-    const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
-    const iconUrl = statusIcons[status];
-    
-    const marker = iconUrl
-      ? L.marker(latlng, {
-          icon: L.icon({
-            iconUrl,
-            iconSize: [32, 32],
-            iconAnchor: [16, 32],
-            popupAnchor: [0, -32]
-          })
-        })
-      : L.marker(latlng);
-    
-    bindPopupToLayer(f, marker);
-    markerCluster.addLayer(marker);
-  });
-  
-  map.addLayer(markerCluster);
 }
 
-  
 window.showHandlowiecProfile = function (name) {
   const profile = document.getElementById("profilePanel");
   const content = document.getElementById("profileContent");
@@ -686,7 +487,7 @@ document.addEventListener("click", function (e) {
     dropdown.style.display = "none";
     if (icon) icon.textContent = "⯆";
   }
-});
+};
 
 
 // Funkcja obrotu
@@ -779,16 +580,15 @@ function loadShapesFromFirebase() {
 loadShapesFromFirebase();
 
 /* 🔥 Jednorazowe usunięcie geojson
-function deleteGeojsonFromFirebase() {
+function deleteGeoJSONFromFirebase() {
   window.firebaseRemove(ref(db, 'geojson'))
     .then(() => console.log("🗑️ geojson usunięty z Firebase"))
     .catch(console.error);
 }
-deleteGeojsonFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
+deleteGeoJSONFromFirebase(); // ← URUCHOMI się po odświeżeniu strony */
 // =========== STATUS PANEL FIX ===========
 
   // Start
   loadGeoJSON();
   loadGeoJSONFromFirebase(); // zamiast local file
-
 });

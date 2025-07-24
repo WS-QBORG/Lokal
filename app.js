@@ -58,15 +58,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let baseLatLng = null;        // 🌐 oryginalny środek
 
 // Zmienne statusów / akcji
-const statusy = ["Neutralny", "W kontakcie", "Wizyta zaplanowana", "Wizyta odbyta", "Stracony"];
+const statusy = ["Wizyta zaplanowana", "W kontakcie", "Podejmuje decyzję", "Wygrany", "Stracony"];
 const statusAssigned = {};
 
 // Ikonki statusów
 const statusIcons = {
   "Stracony": "icons/stracony.svg",
-  "Wizyta odbyta": "icons/mysli.svg",
+  "Podejmuje decyzję": "icons/mysli.svg",
   "Wizyta zaplanowana": "icons/umowiony.svg",
   "W kontakcie": "icons/rozmawia.svg",
+  "Wygrany": "icons/wygrany.svg",
   "Neutralny": null  // standardowa pinezka
 };
 

@@ -65,10 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ikonki statusów
   const statusIcons = {
-    "Stracony": "icons/stracony.svg",
-    "Podejmuje decyzję": "icons/mysli.svg",
-    "Wizyta zaplanowana": "icons/umowiony.svg",
-    "W kontakcie": "icons/rozmawia.svg",
+    "Stracony": "icons/przegrany.svg",
+    "Podejmuje decyzję": "icons/decyzja.svg",
+    "Wizyta zaplanowana": "icons/zaplanowana.svg",
+    "W kontakcie": "icons/kontakt.svg",
     "Wygrany": "icons/wygrany.svg",
     "Neutralny": null
   };

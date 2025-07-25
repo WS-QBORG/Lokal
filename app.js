@@ -750,36 +750,96 @@ document.addEventListener("DOMContentLoaded", () => {
   function extractInvestmentType(popup) {
     if (!popup || typeof popup !== 'string') {
       console.warn('Brak lub nieprawidłowy popup:', popup);
-      return null;
-    }
-    
-    // Wzorzec do wyszukiwania zawartości po "Inwestycja:"
-    const match = popup.match(/<b>Inwestycja:<\/b>\s*([^<]+)/i);
-    if (!match) {
-      console.warn('Nie znaleziono wzorca "Inwestycja:" w popup:', popup);
       return 'Inne';
     }
     
-    const fullText = match[1].trim().toLowerCase();
-    console.log('Wykryty tekst inwestycji:', fullText);
+    // Normalizuj tekst do analizy
+    const normalizedText = popup.toLowerCase();
+    console.log('🔍 Analizuję popup dla typu inwestycji:', popup.substring(0, 100) + '...');
     
-    // Sprawdź typ inwestycji
-    if (fullText.includes('jednorodzinny') || fullText.includes('dom jednorodzinny')) {
+    // Sprawdź różne wzorce dla typu inwestycji
+    let investmentText = '';
+    
+    // Wzorzec 1: HTML <b>Inwestycja:</b>
+    let match = popup.match(/<b>Inwestycja:<\/b>\s*([^<]+)/i);
+    if (match) {
+      investmentText = match[1].trim();
+    } 
+    // Wzorzec 2: Bez HTML tagów "Inwestycja:"
+    else {
+      match = popup.match(/Inwestycja:\s*([^\n\r<]+)/i);
+      if (match) {
+        investmentText = match[1].trim();
+      }
+    }
+    
+    // Jeśli nie znaleziono wzorca "Inwestycja:", szukaj słów kluczowych w całym tekście
+    if (!investmentText) {
+      investmentText = normalizedText;
+      console.log('⚠️ Nie znaleziono wzorca "Inwestycja:", używam całego tekstu');
+    }
+    
+    const analysisText = investmentText.toLowerCase();
+    console.log('📝 Tekst do analizy:', analysisText);
+    
+    // Klasyfikacja z lepszymi wzorcami
+    if (analysisText.includes('jednorodzinny') || 
+        analysisText.includes('dom jednorodzinny') ||
+        analysisText.includes('budynek jednorodzinny') ||
+        analysisText.includes('mieszkalny jednorodzinny')) {
+      console.log('✅ Klasyfikowano jako: Dom jednorodzinny');
       return 'Dom jednorodzinny';
     }
-    else if (fullText.includes('wielorodzinny') || fullText.includes('dom wielorodzinny')) {
+    else if (analysisText.includes('wielorodzinny') || 
+             analysisText.includes('dom wielorodzinny') ||
+             analysisText.includes('budynek wielorodzinny') ||
+             analysisText.includes('mieszkalny wielorodzinny') ||
+             analysisText.includes('blok') ||
+             analysisText.includes('apartament')) {
+      console.log('✅ Klasyfikowano jako: Dom wielorodzinny');
       return 'Dom wielorodzinny';
     }
-    else if (fullText.includes('usługowy') || fullText.includes('budynek usługowy')) {
+    else if (analysisText.includes('usługowy') || 
+             analysisText.includes('budynek usługowy') ||
+             analysisText.includes('obiekt usługowy') ||
+             analysisText.includes('handel') ||
+             analysisText.includes('biuro') ||
+             analysisText.includes('sklep') ||
+             analysisText.includes('restauracja') ||
+             analysisText.includes('hotel')) {
+      console.log('✅ Klasyfikowano jako: Budynek usługowy');
       return 'Budynek usługowy';
     }
-    else if (fullText.includes('kanalizacja') || fullText.includes('infrastruktura')) {
+    else if (analysisText.includes('kanalizacja') || 
+             analysisText.includes('infrastruktura') ||
+             analysisText.includes('droga') ||
+             analysisText.includes('most') ||
+             analysisText.includes('wodociąg') ||
+             analysisText.includes('ściekowa') ||
+             analysisText.includes('deszczowa')) {
+      console.log('✅ Klasyfikowano jako: Infrastruktura');
       return 'Infrastruktura';
     }
-    else if (fullText.includes('instalacja') || fullText.includes('instalacje')) {
+    else if (analysisText.includes('instalacja') || 
+             analysisText.includes('instalacje') ||
+             analysisText.includes('elektryczna') ||
+             analysisText.includes('grzewcza') ||
+             analysisText.includes('wentylacja') ||
+             analysisText.includes('klimatyzacja')) {
+      console.log('✅ Klasyfikowano jako: Instalacje');
       return 'Instalacje';
     }
+    else if (analysisText.includes('przemysłowy') ||
+             analysisText.includes('przemysł') ||
+             analysisText.includes('fabryka') ||
+             analysisText.includes('zakład') ||
+             analysisText.includes('hala') ||
+             analysisText.includes('magazyn')) {
+      console.log('✅ Klasyfikowano jako: Przemysł');
+      return 'Przemysł';
+    }
     else {
+      console.log('⚠️ Klasyfikowano jako: Inne');
       return 'Inne';
     }
   }

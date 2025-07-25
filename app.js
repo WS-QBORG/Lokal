@@ -1668,7 +1668,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <p><b>📅 Data dodania:</b> ${dataUtworzenia}</p>
       <label>📝 Notatki:</label>
       <textarea onchange="klienciNotes['${imie}_${telefon}'] = this.value; saveClientNote('${imie}', '${telefon}', this.value)" style="width:100%;height:100px;margin-top:0.5rem;padding:0.5rem;background:#374151;border:1px solid #4b5563;border-radius:0.375rem;color:white;resize:vertical;">${notes}</textarea>
-      <button class="btn btn-primary" onclick="zoomToClient('${name}')">📍 Pokaż na pinezkę</button>
+      <button class="btn btn-primary" onclick="zoomToClient('${client.imie}', '${client.projektant}', '${client.projekt.match(/<b>Adres:<\/b>\s*(.*?)<br>/)?.[1] || ''}', '${client.projekt.match(/<b>Działka:<\/b>\s*(.*?)<br>/)?.[1] || ''}')">
+  📍 Pokaż na pinezkę
+</button>
+
     `;
     
     document.body.classList.add("panel-open");
@@ -1737,7 +1740,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // 📍 Znajdź pinezkę na podstawie projektanta, adresu i działki
-window.zoomToClient = function(name, projektant, adres, dzialka) {
+window.zoomToClient = function(name, projektant, adres = '', dzialka = '') {
+  // Szukaj tylko jeśli wszystko dostępne
+  if (!projektant || !adres || !dzialka) {
+    alert("Brakuje danych do znalezienia lokalizacji.");
+    return;
+  }
+
   const match = geojsonFeatures.find(f => {
     const popup = f.properties?.popup || "";
     return popup.includes(projektant) && popup.includes(adres) && popup.includes(dzialka);
@@ -1753,6 +1762,7 @@ window.zoomToClient = function(name, projektant, adres, dzialka) {
   marker.bindPopup(`<b>${name}</b><br>${adres}<br>${dzialka}`).openPopup();
   map.setView([lat, lng], 16);
 };
+
 
 
 

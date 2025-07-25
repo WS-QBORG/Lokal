@@ -1087,7 +1087,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <select onchange="saveStatus('${proj}', this.value)">
         ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
       </select><br/>
-      <button type="button" onclick="event.stopPropagation(); startAddClientMode('${inwestycja}')" style="background:#10b981;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;margin:4px 0;">👥 Dodaj klienta</button><br/>
+      <button type="button" onclick="event.stopPropagation(); startAddClientMode('${inwestycja.replace(/'/g, "\\'")}'" style="background:#10b981;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;margin:4px 0;">👥 Dodaj klienta</button><br/>
       <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
     `;
     

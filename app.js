@@ -96,6 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🔄 Funkcja rysująca obrys dla danego projektanta i działki
 function drawPolygonForFeature(feature) {
+
+console.log("📐 Wywołano drawPolygonForFeature dla:", feature);
+
+
   const projektant = feature.properties?.projektant;
   const dzialkaId = feature.properties?.id || feature.properties?.dzialkaId;
 
@@ -105,6 +109,9 @@ function drawPolygonForFeature(feature) {
   const db = window.firebaseDB;
   const ref = window.firebaseRef;
   const onValue = window.firebaseOnValue;
+
+console.log("📥 Dane z Firebase:", data);
+
 
   // 🧽 Czyść poprzedni obrys
   polygonLayerGroup.clearLayers();

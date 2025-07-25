@@ -608,25 +608,25 @@ if (activeFilters.inwestycje.length > 0) {
     }
   }
 
-  activeFilters = {
-  projektanci: [],
-  handlowcy: [],
-  statusy: [],
-  lata: [],
-  inwestycje: []
-};
-
+  function clearAllFilters() {
+    activeFilters = {
+      projektanci: [],
+      handlowcy: [],
+      statusy: [],
+      lata: [],
+      inwestycje: []
+    };
     
     document.querySelectorAll('#sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
     document.querySelectorAll('#statusDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
     document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
     document.querySelectorAll('#rokDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
     document.querySelectorAll('#inwestycjeDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
-
     
     renderVisibleDzialki();
     updateClearFiltersButton();
   }
+
 
   // ========== ROK DROPDOWN SYSTEM ==========
   

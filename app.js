@@ -1736,28 +1736,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-// 🔍 Pokazuje pinezkę klienta na mapie
-window.zoomToClient = function(name) {
-
-
-console.log("🧠 Szukam klienta:", name);
-console.log("🧩 Lista geojsonFeatures:", geojsonFeatures.slice(0, 5));
-
-
-  // Przykładowe dane, które możesz przekazać z profilu klienta
-  const projektant = "Mikołaj Krajewski";
-  const adres = "Będzino";
-  const dzialka = "obręb 15.0, nr 71/3";
-
-  // Dopasuj po projektancie i adresie działki
-  const match = geojsonFeatures.find(f =>
-    f.properties?.projektant?.trim() === projektant &&
-    f.properties?.adres?.trim() === adres &&
-    f.properties?.dzialka?.trim() === dzialka
-  );
+// 📍 Znajdź pinezkę na podstawie projektanta, adresu i działki
+window.zoomToClient = function(name, projektant, adres, dzialka) {
+  const match = geojsonFeatures.find(f => {
+    const popup = f.properties?.popup || "";
+    return popup.includes(projektant) && popup.includes(adres) && popup.includes(dzialka);
+  });
 
   if (!match) {
-    alert("Nie znaleziono działki klienta.");
+    alert("Nie znaleziono lokalizacji klienta.");
     return;
   }
 
@@ -1766,6 +1753,7 @@ console.log("🧩 Lista geojsonFeatures:", geojsonFeatures.slice(0, 5));
   marker.bindPopup(`<b>${name}</b><br>${adres}<br>${dzialka}`).openPopup();
   map.setView([lat, lng], 16);
 };
+
 
 
 

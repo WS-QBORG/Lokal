@@ -96,32 +96,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🔄 Funkcja rysująca obrys dla danego projektanta i działki
 function drawPolygonForFeature(feature) {
+  console.log("📐 Wywołano drawPolygonForFeature dla:", feature);
 
-console.log("📐 Wywołano drawPolygonForFeature dla:", feature);
-
-
+  // 🧩 Pobierz dane identyfikujące działkę
   const projektant = feature.properties?.projektant;
   const dzialkaId = feature.properties?.id || feature.properties?.dzialkaId;
 
-  if (!projektant || !dzialkaId) return;
+  // 🚫 Jeśli brakuje danych – przerwij
+  if (!projektant || !dzialkaId) {
+    console.warn("⛔ Brak projektanta lub ID działki:", feature);
+    return;
+  }
 
+  // 🔗 Ścieżka do obrysu w Firebase
   const path = `obrysy/${projektant}/${dzialkaId}`;
   const db = window.firebaseDB;
   const ref = window.firebaseRef;
   const onValue = window.firebaseOnValue;
 
-console.log("📥 Dane z Firebase:", data);
+  // 🧼 Wyczyść poprzednie obrysy, jeśli warstwa istnieje
+  if (polygonLayerGroup) polygonLayerGroup.clearLayers();
 
-
-  // 🧽 Czyść poprzedni obrys
-  polygonLayerGroup.clearLayers();
-
+  // 📥 Pobierz dane obrysu z Firebase
   onValue(ref(db, path), (snapshot) => {
     const data = snapshot.val();
-    if (!data || !Array.isArray(data)) return;
+    console.log("📥 Dane z Firebase dla obrysu:", data);
 
-    // 🔷 Zamień na format Leafletowy i narysuj
+    // ❗ Jeśli brak danych lub niepoprawny format – przerwij
+    if (!data || !Array.isArray(data)) {
+      console.warn("⚠️ Brak danych lub zły format obrysu:", path);
+      return;
+    }
+
+    // 🧭 Zamień dane na format Leaflet i narysuj
     const latlngs = data.map(pt => [pt.lat, pt.lng]);
+
     const polygon = L.polygon(latlngs, {
       color: '#3b82f6',
       fillColor: '#93c5fd',
@@ -129,9 +138,11 @@ console.log("📥 Dane z Firebase:", data);
       weight: 2
     });
 
+    // ➕ Dodaj obrys do warstwy
     polygon.addTo(polygonLayerGroup);
   });
 }
+
 
 
   // 🔁 Tryb dodawania punktu

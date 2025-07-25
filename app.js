@@ -994,6 +994,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.value = rok;
+      checkbox.checked = activeFilters.lata.includes(String(rok));
       checkbox.onchange = applyRokFilter;
       
       const span = document.createElement("span");
@@ -1089,6 +1090,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.value = type;
+      checkbox.checked = activeFilters.inwestycje.includes(type);
       checkbox.onchange = applyInwestycjeFilter;
       
       const span = document.createElement("span");
@@ -1440,6 +1442,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.value = h;
+      checkbox.checked = activeFilters.handlowcy.includes(h);
       checkbox.onchange = applyHandlowcyDropdownFilter;
       
       const span = document.createElement("span");

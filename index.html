@@ -8,12 +8,9 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
-  
   
   <style>
     body {
@@ -185,289 +182,261 @@
       margin-top: 0.5rem;
       resize: vertical;
     }
-
     .projekt-link {
-    color: white !important;
-    text-decoration: none !important;
-    font-weight: normal !important;
-  }
+      color: white !important;
+      text-decoration: none !important;
+      font-weight: normal !important;
+    }
+    .projekt-link:hover {
+      color: #3b82f6 !important;
+    }
+    .projekt-rok {
+      color: #9ca3af !important;
+    }
 
-  .projekt-link:hover {
-    color: #3b82f6 !important;
-  }
+    /* 🌍 Nowy styl Earth Loader */
+    #loadingOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(15, 15, 17, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .earth p {
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 0.25em;
+      font-size: 1.25em;
+      font-family: "Segoe UI", sans-serif;
+    }
+    /* From Uiverse.io by Novaxlo */ 
+    .earth-loader {
+      --watercolor: #3344c1;
+      --landcolor: #7cc133;
+      width: 7.5em;
+      height: 7.5em;
+      background-color: var(--watercolor);
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow:
+        inset 0em 0.5em rgb(255, 255, 255, 0.25),
+        inset 0em -0.5em rgb(0, 0, 0, 0.25);
+      border: solid 0.15em white;
+      animation: startround 1s;
+      animation-iteration-count: 1;
+    }
 
-  .projekt-rok {
-    color: #9ca3af !important;
-  }
+    .earth-loader svg:nth-child(1) {
+      position: absolute;
+      bottom: -2em;
+      width: 7em;
+      height: auto;
+      animation: round1 5s infinite linear 0.75s;
+    }
+    .earth-loader svg:nth-child(2) {
+      position: absolute;
+      top: -3em;
+      width: 7em;
+      height: auto;
+      animation: round1 5s infinite linear;
+    }
+    .earth-loader svg:nth-child(3) {
+      position: absolute;
+      top: -2.5em;
+      width: 7em;
+      height: auto;
+      animation: round2 5s infinite linear;
+    }
+    .earth-loader svg:nth-child(4) {
+      position: absolute;
+      bottom: -2.2em;
+      width: 7em;
+      height: auto;
+      animation: round2 5s infinite linear 0.75s;
+    }
+    @keyframes startround {
+      0% {
+        filter: brightness(500%);
+        box-shadow: none;
+      }
+      75% {
+        filter: brightness(500%);
+        box-shadow: none;
+      }
+      100% {
+        filter: brightness(100%);
+        box-shadow:
+          inset 0em 0.5em rgb(255, 255, 255, 0.25),
+          inset 0em -0.5em rgb(0, 0, 0, 0.25);
+      }
+    }
+    @keyframes round1 {
+      0% {
+        left: -2em;
+        opacity: 100%;
+        transform: skewX(0deg) rotate(0deg);
+      }
+      30% {
+        left: -6em;
+        opacity: 100%;
+        transform: skewX(-25deg) rotate(25deg);
+      }
+      31% {
+        left: -6em;
+        opacity: 0%;
+        transform: skewX(-25deg) rotate(25deg);
+      }
+      35% {
+        left: 7em;
+        opacity: 0%;
+        transform: skewX(25deg) rotate(-25deg);
+      }
+      45% {
+        left: 7em;
+        opacity: 100%;
+        transform: skewX(25deg) rotate(-25deg);
+      }
+      100% {
+        left: -2em;
+        opacity: 100%;
+        transform: skewX(0deg) rotate(0deg);
+      }
+    }
+    @keyframes round2 {
+      0% {
+        left: 5em;
+        opacity: 100%;
+        transform: skewX(0deg) rotate(0deg);
+      }
+      75% {
+        left: -7em;
+        opacity: 100%;
+        transform: skewX(-25deg) rotate(25deg);
+      }
+      76% {
+        left: -7em;
+        opacity: 0%;
+        transform: skewX(-25deg) rotate(25deg);
+      }
+      77% {
+        left: 8em;
+        opacity: 0%;
+        transform: skewX(25deg) rotate(-25deg);
+      }
+      80% {
+        left: 8em;
+        opacity: 100%;
+        transform: skewX(25deg) rotate(-25deg);
+      }
+      100% {
+        left: 5em;
+        opacity: 100%;
+        transform: skewX(0deg) rotate(0deg);
+      }
+    }
+    /* Przesuwanie profilu handlowców - żeby ikonki od obrysów nie przeszkadzały */
+    body.panel-open #map {
+      margin-left: 350px; /* szerokość #profilePanel */
+      margin-top: 80px;       /* odsunięcie w dół, np. wysokość nagłówka */
+      transition: margin 0.3s ease;
+    }
 
-
-/* 🌍 Nowy styl Earth Loader */
-#loadingOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(15, 15, 17, 0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.earth p {
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 0.25em;
-  font-size: 1.25em;
-  font-family: "Segoe UI", sans-serif;
-}
-
-/* From Uiverse.io by Novaxlo */ 
-.earth-loader {
-  --watercolor: #3344c1;
-  --landcolor: #7cc133;
-  width: 7.5em;
-  height: 7.5em;
-  background-color: var(--watercolor);
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-  box-shadow:
-    inset 0em 0.5em rgb(255, 255, 255, 0.25),
-    inset 0em -0.5em rgb(0, 0, 0, 0.25);
-  border: solid 0.15em white;
-  animation: startround 1s;
-  animation-iteration-count: 1;
-}
-
-
-.earth-loader svg:nth-child(1) {
-  position: absolute;
-  bottom: -2em;
-  width: 7em;
-  height: auto;
-  animation: round1 5s infinite linear 0.75s;
-}
-
-.earth-loader svg:nth-child(2) {
-  position: absolute;
-  top: -3em;
-  width: 7em;
-  height: auto;
-  animation: round1 5s infinite linear;
-}
-.earth-loader svg:nth-child(3) {
-  position: absolute;
-  top: -2.5em;
-  width: 7em;
-  height: auto;
-  animation: round2 5s infinite linear;
-}
-.earth-loader svg:nth-child(4) {
-  position: absolute;
-  bottom: -2.2em;
-  width: 7em;
-  height: auto;
-  animation: round2 5s infinite linear 0.75s;
-}
-
-@keyframes startround {
-  0% {
-    filter: brightness(500%);
-    box-shadow: none;
-  }
-  75% {
-    filter: brightness(500%);
-    box-shadow: none;
-  }
-  100% {
-    filter: brightness(100%);
-    box-shadow:
-      inset 0em 0.5em rgb(255, 255, 255, 0.25),
-      inset 0em -0.5em rgb(0, 0, 0, 0.25);
-  }
-}
-
-@keyframes round1 {
-  0% {
-    left: -2em;
-    opacity: 100%;
-    transform: skewX(0deg) rotate(0deg);
-  }
-  30% {
-    left: -6em;
-    opacity: 100%;
-    transform: skewX(-25deg) rotate(25deg);
-  }
-  31% {
-    left: -6em;
-    opacity: 0%;
-    transform: skewX(-25deg) rotate(25deg);
-  }
-  35% {
-    left: 7em;
-    opacity: 0%;
-    transform: skewX(25deg) rotate(-25deg);
-  }
-  45% {
-    left: 7em;
-    opacity: 100%;
-    transform: skewX(25deg) rotate(-25deg);
-  }
-  100% {
-    left: -2em;
-    opacity: 100%;
-    transform: skewX(0deg) rotate(0deg);
-  }
-}
-
-@keyframes round2 {
-  0% {
-    left: 5em;
-    opacity: 100%;
-    transform: skewX(0deg) rotate(0deg);
-  }
-  75% {
-    left: -7em;
-    opacity: 100%;
-    transform: skewX(-25deg) rotate(25deg);
-  }
-  76% {
-    left: -7em;
-    opacity: 0%;
-    transform: skewX(-25deg) rotate(25deg);
-  }
-  77% {
-    left: 8em;
-    opacity: 0%;
-    transform: skewX(25deg) rotate(-25deg);
-  }
-  80% {
-    left: 8em;
-    opacity: 100%;
-    transform: skewX(25deg) rotate(-25deg);
-  }
-  100% {
-    left: 5em;
-    opacity: 100%;
-    transform: skewX(0deg) rotate(0deg);
-  }
-}
-
-/* Przesuwanie profilu handlowców - żeby ikonki od obrysów nie przeszkadzały */
-body.panel-open #map {
-margin-left: 350px; /* szerokość #profilePanel */
-margin-top: 80px;       /* odsunięcie w dół, np. wysokość nagłówka */
-transition: margin 0.3s ease;
-}
-
-
-
-/* Pieprzone kwadraciki od obrysów */
-.leaflet-div-icon.leaflet-editing-icon {
-  background-color: #3b82f6 !important; /* granatowy */
-  border: 0.5px solid white !important;
-  width: 7px !important;
-  height: 7px !important;
-  box-shadow: 0 0 2px rgba(0,0,0,0.5);
-}
-
-
+    /* Pieprzone kwadraciki od obrysów */
+    .leaflet-div-icon.leaflet-editing-icon {
+      background-color: #3b82f6 !important; /* granatowy */
+      border: 0.5px solid white !important;
+      width: 7px !important;
+      height: 7px !important;
+      box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    }
   </style>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import { getDatabase, ref, onValue, set, remove, push } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
 
-  const firebaseConfig = {
-    apiKey: "...",
-    authDomain: "...",
-    databaseURL: "https://projektanci-4f7e8-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "projektanci-4f7e8",
-    // itd.
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  window.firebaseDB = db;
-  window.firebaseRef = (...args) => ref(...args);  // 🔧 Owijasz ref w funkcję
-  window.firebaseOnValue = onValue;
-  window.firebaseSet = set;
-  window.firebaseRemove = remove;
-  window.firebasePush = push;
-
-</script>
-
-
-
-
-
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getDatabase, ref, onValue, set, remove, push } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+    const firebaseConfig = {
+      apiKey: "...",
+      authDomain: "...",
+      databaseURL: "https://projektanci-4f7e8-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "projektanci-4f7e8",
+      // itd.
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    window.firebaseDB = db;
+    window.firebaseRef = (...args) => ref(...args);  // 🔧 Owijasz ref w funkcję
+    window.firebaseOnValue = onValue;
+    window.firebaseSet = set;
+    window.firebaseRemove = remove;
+    window.firebasePush = push;
+  </script>
 </head>
+
 <body>
-
-<!-- 🌍 Nowy Earth Loader -->
-<div id="loadingOverlay">
-  <div class="earth">
-    <div class="earth-loader">
-      <!-- 4 warstwy SVG animowane -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-        <path transform="translate(100 100)" d="M29.4,-17.4C33.1,1.8,27.6,16.1,11.5,31.6C-4.7,47,-31.5,63.6,-43,56C-54.5,48.4,-50.7,16.6,-41,-10.9C-31.3,-38.4,-15.6,-61.5,-1.4,-61C12.8,-60.5,25.7,-36.5,29.4,-17.4Z" fill="#7CC133"></path>
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-        <path transform="translate(100 100)" d="M31.7,-55.8C40.3,-50,45.9,-39.9,49.7,-29.8C53.5,-19.8,55.5,-9.9,53.1,-1.4C50.6,7.1,43.6,14.1,41.8,27.6C40.1,41.1,43.4,61.1,37.3,67C31.2,72.9,15.6,64.8,1.5,62.2C-12.5,59.5,-25,62.3,-31.8,56.7C-38.5,51.1,-39.4,37.2,-49.3,26.3C-59.1,15.5,-78,7.7,-77.6,0.2C-77.2,-7.2,-57.4,-14.5,-49.3,-28.4C-41.2,-42.4,-44.7,-63,-38.5,-70.1C-32.2,-77.2,-16.1,-70.8,-2.3,-66.9C11.6,-63,23.1,-61.5,31.7,-55.8Z" fill="#7CC133"></path>
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-        <path transform="translate(100 100)" d="M30.6,-49.2C42.5,-46.1,57.1,-43.7,67.6,-35.7C78.1,-27.6,84.6,-13.8,80.3,-2.4C76.1,8.9,61.2,17.8,52.5,29.1C43.8,40.3,41.4,53.9,33.7,64C26,74.1,13,80.6,2.2,76.9C-8.6,73.1,-17.3,59,-30.6,52.1C-43.9,45.3,-61.9,45.7,-74.1,38.2C-86.4,30.7,-92.9,15.4,-88.6,2.5C-84.4,-10.5,-69.4,-20.9,-60.7,-34.6C-52.1,-48.3,-49.8,-65.3,-40.7,-70C-31.6,-74.8,-15.8,-67.4,-3.2,-61.8C9.3,-56.1,18.6,-52.3,30.6,-49.2Z" fill="#7CC133"></path>
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-        <path transform="translate(100 100)" d="M39.4,-66C48.6,-62.9,51.9,-47.4,52.9,-34.3C53.8,-21.3,52.4,-10.6,54.4,1.1C56.3,12.9,61.7,25.8,57.5,33.2C53.2,40.5,39.3,42.3,28.2,46C17,49.6,8.5,55.1,1.3,52.8C-5.9,50.5,-11.7,40.5,-23.6,37.2C-35.4,34,-53.3,37.5,-62,32.4C-70.7,27.4,-70.4,13.7,-72.4,-1.1C-74.3,-15.9,-78.6,-31.9,-73.3,-43C-68.1,-54.2,-53.3,-60.5,-39.5,-60.9C-25.7,-61.4,-12.9,-56,1.1,-58C15.1,-59.9,30.2,-69.2,39.4,-66Z" fill="#7CC133"></path>
-      </svg>
+  <!-- 🌍 Nowy Earth Loader -->
+  <div id="loadingOverlay">
+    <div class="earth">
+      <div class="earth-loader">
+        <!-- 4 warstwy SVG animowane -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <path transform="translate(100 100)" d="M29.4,-17.4C33.1,1.8,27.6,16.1,11.5,31.6C-4.7,47,-31.5,63.6,-43,56C-54.5,48.4,-50.7,16.6,-41,-10.9C-31.3,-38.4,-15.6,-61.5,-1.4,-61C12.8,-60.5,25.7,-36.5,29.4,-17.4Z" fill="#7CC133"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <path transform="translate(100 100)" d="M31.7,-55.8C40.3,-50,45.9,-39.9,49.7,-29.8C53.5,-19.8,55.5,-9.9,53.1,-1.4C50.6,7.1,43.6,14.1,41.8,27.6C40.1,41.1,43.4,61.1,37.3,67C31.2,72.9,15.6,64.8,1.5,62.2C-12.5,59.5,-25,62.3,-31.8,56.7C-38.5,51.1,-39.4,37.2,-49.3,26.3C-59.1,15.5,-78,7.7,-77.6,0.2C-77.2,-7.2,-57.4,-14.5,-49.3,-28.4C-41.2,-42.4,-44.7,-63,-38.5,-70.1C-32.2,-77.2,-16.1,-70.8,-2.3,-66.9C11.6,-63,23.1,-61.5,31.7,-55.8Z" fill="#7CC133"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <path transform="translate(100 100)" d="M30.6,-49.2C42.5,-46.1,57.1,-43.7,67.6,-35.7C78.1,-27.6,84.6,-13.8,80.3,-2.4C76.1,8.9,61.2,17.8,52.5,29.1C43.8,40.3,41.4,53.9,33.7,64C26,74.1,13,80.6,2.2,76.9C-8.6,73.1,-17.3,59,-30.6,52.1C-43.9,45.3,-61.9,45.7,-74.1,38.2C-86.4,30.7,-92.9,15.4,-88.6,2.5C-84.4,-10.5,-69.4,-20.9,-60.7,-34.6C-52.1,-48.3,-49.8,-65.3,-40.7,-70C-31.6,-74.8,-15.8,-67.4,-3.2,-61.8C9.3,-56.1,18.6,-52.3,30.6,-49.2Z" fill="#7CC133"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <path transform="translate(100 100)" d="M39.4,-66C48.6,-62.9,51.9,-47.4,52.9,-34.3C53.8,-21.3,52.4,-10.6,54.4,1.1C56.3,12.9,61.7,25.8,57.5,33.2C53.2,40.5,39.3,42.3,28.2,46C17,49.6,8.5,55.1,1.3,52.8C-5.9,50.5,-11.7,40.5,-23.6,37.2C-35.4,34,-53.3,37.5,-62,32.4C-70.7,27.4,-70.4,13.7,-72.4,-1.1C-74.3,-15.9,-78.6,-31.9,-73.3,-43C-68.1,-54.2,-53.3,-60.5,-39.5,-60.9C-25.7,-61.4,-12.9,-56,1.1,-58C15.1,-59.9,30.2,-69.2,39.4,-66Z" fill="#7CC133"></path>
+        </svg>
+      </div>
+      <p>Ładowanie mapy...</p>
     </div>
-    <p>Ładowanie mapy...</p>
   </div>
-</div>
 
-
-<!--  Dodanie możliwości obracania działki     -->
-
-<div id="rotateControl" style="display:none; position:absolute; bottom:10px; left:10px; z-index:1000; background:white; padding:6px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.3); font-size:14px;">
-  🔄 Obróć: <input type="range" id="rotateSlider" min="0" max="360" value="0">
-</div>
-
-
+  <!--  Dodanie możliwości obracania działki     -->
+  <div id="rotateControl" style="display:none; position:absolute; bottom:10px; left:10px; z-index:1000; background:white; padding:6px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.3); font-size:14px;">
+    🔄 Obróć: <input type="range" id="rotateSlider" min="0" max="360" value="0">
+  </div>
 
   <header>
-    <button onclick="filterMap('all')">Wszystko</button>
-    <button id="tab2023" onclick="filterMap('2023')">2023</button>
-    <button id="tab2024" onclick="filterMap('2024')">2024</button>
-    <button id="tab2025" onclick="filterMap('2025')">2025</button>
-
+    <!-- 🔧 NOWY DROPDOWN SYSTEM LAT (zamiast prostych przycisków) -->
+    <div id="rokDropdownWrapper" style="position: relative;">
+      <button onclick="toggleRokDropdown()">Lata <span id="rokIcon">⯆</span></button>
+      <div id="rokDropdown" style="display:none; position:absolute; top:100%; left:0; background:#1f2937; padding:0.5rem; border-radius:6px; z-index:10003; width:230px; box-shadow:0 2px 6px rgba(0,0,0,0.4);">
+        <!-- Wypełniany dynamicznie przez renderRokDropdown() -->
+      </div>
+    </div>
+    
     <div id="handlowcyDropdownWrapper" style="position: relative;">
-  <button onclick="toggleHandlowcyDropdown()">Handlowcy <span id="handlowcyIcon">⯆</span></button>
-  <div id="handlowcyDropdown" style="display:none; position:absolute; top:100%; left:0; background:#1f2937; padding:0.5rem; border-radius:6px; z-index:10003; width:230px; box-shadow:0 2px 6px rgba(0,0,0,0.4);">
-    <!-- Wypełniany dynamicznie -->
-  </div>
-</div>
+      <button onclick="toggleHandlowcyDropdown()">Handlowcy <span id="handlowcyIcon">⯆</span></button>
+      <div id="handlowcyDropdown" style="display:none; position:absolute; top:100%; left:0; background:#1f2937; padding:0.5rem; border-radius:6px; z-index:10003; width:230px; box-shadow:0 2px 6px rgba(0,0,0,0.4);">
+        <!-- Wypełniany dynamicznie -->
+      </div>
+    </div>
     
     <button onclick="showProjektanci()">Projektanci</button>
     <button onclick="startAddPointMode()">➕ Dodaj punkt</button>
     
     <div id="statusDropdownWrapper" style="position: relative;">
-  <button onclick="toggleStatusDropdown()">Statusy <span id="statusIcon">⯆</span></button>
-  <div id="statusDropdown" style="display:none; position:absolute; top:100%; left:0; background:#1f2937; padding:0.5rem; border-radius:6px; z-index:10003; width:200px; box-shadow:0 2px 6px rgba(0,0,0,0.4);"> </div>
-    <!-- Wypełniany dynamicznie -->
-  </div>
-
-
-</div>
-
+      <button onclick="toggleStatusDropdown()">Statusy <span id="statusIcon">⯆</span></button>
+      <div id="statusDropdown" style="display:none; position:absolute; top:100%; left:0; background:#1f2937; padding:0.5rem; border-radius:6px; z-index:10003; width:200px; box-shadow:0 2px 6px rgba(0,0,0,0.4);">
+        <!-- Wypełniany dynamicznie -->
+      </div>
+    </div>
   </header>
 
-
   <div id="map"></div>
+  
   <div id="sidebar">
     <span id="sidebarClose" onclick="hideSidebar()">✖</span>
     <input type="text" id="searchInput" placeholder="Szukaj projektanta..." oninput="filterProjektanciList()" />
@@ -483,32 +452,25 @@ transition: margin 0.3s ease;
     <button id="applyFilterBtn" onclick="applyProjektantFilter()">Pokaż wybranych</button>
     <div id="sidebarContent"></div>
   </div>
+  
   <div id="profilePanel">
-  <!--  <span id="profileClose" onclick="hideProfile()">✖</span> -->
     <div id="profileContent"></div>
   </div>
 
-
   <!-- Panel dodawania punktu -->
-<div id="addPointPanel" style="display:none; position:fixed; bottom:20px; left:20px; background:#1f2937; padding:1rem; border-radius:10px; z-index:1001; box-shadow:0 0 10px rgba(0,0,0,0.5); width:300px;">
-  <h3 style="color:white;margin-top:0;">➕ Dodaj punkt</h3>
-  <label style="color:white;">Kto dodaje:</label>
-  <select id="inputHandlowiec" style="width:100%;margin-bottom:0.5rem;"></select>
-
-  <label style="color:white;">Projektant:</label>
-  <input id="inputProjektant" type="text" style="width:100%;margin-bottom:0.5rem;" />
-
-  <label style="color:white;">Adres:</label>
-  <input id="inputAdres" type="text" style="width:100%;margin-bottom:0.5rem;" />
-
-  <label style="color:white;">Klient:</label>
-  <input id="inputKlient" type="text" style="width:100%;margin-bottom:0.5rem;" />
-
-  <button onclick="confirmAddPoint()" style="width:100%;background:#3b82f6;color:white;padding:0.5rem;border:none;border-radius:6px;cursor:pointer;margin-top:0.5rem;">✅ Dodaj na mapę</button>
-  <button onclick="cancelAddPoint()" style="width:100%;background:#ef4444;color:white;padding:0.5rem;border:none;border-radius:6px;cursor:pointer;margin-top:0.5rem;">✖ Anuluj</button>
-</div>
-
-
+  <div id="addPointPanel" style="display:none; position:fixed; bottom:20px; left:20px; background:#1f2937; padding:1rem; border-radius:10px; z-index:1001; box-shadow:0 0 10px rgba(0,0,0,0.5); width:300px;">
+    <h3 style="color:white;margin-top:0;">➕ Dodaj punkt</h3>
+    <label style="color:white;">Kto dodaje:</label>
+    <select id="inputHandlowiec" style="width:100%;margin-bottom:0.5rem;"></select>
+    <label style="color:white;">Projektant:</label>
+    <input id="inputProjektant" type="text" style="width:100%;margin-bottom:0.5rem;" />
+    <label style="color:white;">Adres:</label>
+    <input id="inputAdres" type="text" style="width:100%;margin-bottom:0.5rem;" />
+    <label style="color:white;">Klient:</label>
+    <input id="inputKlient" type="text" style="width:100%;margin-bottom:0.5rem;" />
+    <button onclick="confirmAddPoint()" style="width:100%;background:#3b82f6;color:white;padding:0.5rem;border:none;border-radius:6px;cursor:pointer;margin-top:0.5rem;">✅ Dodaj na mapę</button>
+    <button onclick="cancelAddPoint()" style="width:100%;background:#ef4444;color:white;padding:0.5rem;border:none;border-radius:6px;cursor:pointer;margin-top:0.5rem;">✖ Anuluj</button>
+  </div>
 
   <script src="app.js"></script>
 </body>

@@ -239,7 +239,7 @@
             100% { transform: rotate(360deg); }
         }
         
-        #addPointPanel {
+        #addPointPanel, #addClientPanel {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -253,7 +253,8 @@
             min-width: 300px;
         }
         
-        #addPointPanel input, #addPointPanel select {
+        #addPointPanel input, #addPointPanel select,
+        #addClientPanel input, #addClientPanel select {
             width: 100%;
             padding: 0.5rem;
             margin: 0.5rem 0;
@@ -261,6 +262,66 @@
             border: 1px solid #4b5563;
             border-radius: 0.375rem;
             color: white;
+        }
+
+        #clientSidebar {
+            position: fixed;
+            left: -450px;
+            top: 0;
+            width: 450px;
+            height: 100vh;
+            background: rgba(17, 24, 39, 0.98);
+            transition: left 0.3s ease;
+            z-index: 1100;
+            padding: 1rem;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+        
+        #clientSidebar.show {
+            left: 0;
+        }
+
+        .client-entry {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #1f2937;
+            border-radius: 0.375rem;
+            border-left: 3px solid #10b981;
+        }
+
+        .client-name {
+            cursor: pointer;
+            color: #10b981;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .client-name:hover {
+            text-decoration: underline;
+        }
+
+        .client-details {
+            font-size: 0.9rem;
+            color: #d1d5db;
+        }
+
+        #clientProfilePanel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: rgba(17, 24, 39, 0.98);
+            transition: right 0.3s ease;
+            z-index: 1100;
+            padding: 2rem;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+        
+        #clientProfilePanel.show {
+            right: 0;
         }
         
         #profilePanel {
@@ -399,7 +460,9 @@
         
         <div class="action-buttons">
             <button class="btn btn-primary" onclick="showProjektanci()">👥 Projektanci</button>
+            <button class="btn btn-primary" onclick="showKlienci()" style="background: #10b981;">👥 Klienci</button>
             <button class="btn btn-secondary" onclick="startAddPointMode()">➕ Dodaj punkt</button>
+            <button class="btn btn-secondary" onclick="startAddClientMode()" style="background: #10b981;">👤 Dodaj klienta</button>
         </div>
     </div>
     
@@ -440,10 +503,44 @@
         </div>
     </div>
     
+    <!-- Sidebar klienci -->
+    <div id="clientSidebar">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3>👥 Klienci</h3>
+            <span onclick="hideClientSidebar()" style="cursor: pointer; color: #ef4444; font-size: 20px; font-weight: bold;">✖</span>
+        </div>
+        
+        <input type="text" id="clientSearchInput" placeholder="🔍 Szukaj klienta..." 
+               onkeyup="filterKlienciList()" 
+               style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #374151; border: 1px solid #4b5563; border-radius: 0.375rem; color: white;">
+        
+        <select id="clientSortFilterSelect" onchange="applyClientSortFilter()" 
+                style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #374151; border: 1px solid #4b5563; border-radius: 0.375rem; color: white;">
+            <option value="">Sortuj/Filtruj</option>
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+            <option value="newest">Najnowsi</option>
+            <option value="oldest">Najstarsi</option>
+            <option value="by-handlowiec">Według handlowca</option>
+            <option value="by-projektant">Według projektanta</option>
+        </select>
+        
+        <div id="clientSidebarContent">
+            <!-- Lista klientów -->
+        </div>
+    </div>
+
     <!-- Panel profilu -->
     <div id="profilePanel">
         <div id="profileContent">
             <!-- Zawartość profilu -->
+        </div>
+    </div>
+
+    <!-- Panel profilu klienta -->
+    <div id="clientProfilePanel">
+        <div id="clientProfileContent">
+            <!-- Zawartość profilu klienta -->
         </div>
     </div>
     
@@ -459,6 +556,28 @@
         <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
             <button class="btn btn-primary" onclick="confirmAddPoint()">Potwierdź</button>
             <button class="btn btn-secondary" onclick="cancelAddPoint()">Anuluj</button>
+        </div>
+    </div>
+
+    <!-- Panel dodawania klienta -->
+    <div id="addClientPanel">
+        <h3>👤 Dodaj nowego klienta</h3>
+        <form id="addClientForm">
+            <input type="text" id="inputClientImie" placeholder="Imię i nazwisko" required>
+            <input type="tel" id="inputClientTelefon" placeholder="Numer telefonu" required>
+            <select id="inputClientHandlowiec" required>
+                <option value="">Wybierz handlowca</option>
+            </select>
+            <select id="inputClientProjektant" required>
+                <option value="">Wybierz projektanta</option>
+            </select>
+            <select id="inputClientProjekt" required>
+                <option value="">Wybierz projekt</option>
+            </select>
+        </form>
+        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button class="btn btn-primary" onclick="confirmAddClient()">Dodaj klienta</button>
+            <button class="btn btn-secondary" onclick="cancelAddClient()">Anuluj</button>
         </div>
     </div>
     

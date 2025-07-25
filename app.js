@@ -5,6 +5,9 @@ let projektanciNotes = {};
 let geojsonFeatures = [];
 let markerCluster;
 
+let polygonLayerGroup = L.layerGroup().addTo(map); // Grupa do rysowania obrysów
+
+
 // Klienci
 let klienciGlobal = [];
 let klienciNotes = {};
@@ -91,6 +94,40 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(console.error);
     }
   };
+
+
+  // 🔄 Funkcja rysująca obrys dla danego projektanta i działki
+function drawPolygonForFeature(feature) {
+  const projektant = feature.properties?.projektant;
+  const dzialkaId = feature.properties?.id || feature.properties?.dzialkaId;
+
+  if (!projektant || !dzialkaId) return;
+
+  const path = `obrysy/${projektant}/${dzialkaId}`;
+  const db = window.firebaseDB;
+  const ref = window.firebaseRef;
+  const onValue = window.firebaseOnValue;
+
+  // 🧽 Czyść poprzedni obrys
+  polygonLayerGroup.clearLayers();
+
+  onValue(ref(db, path), (snapshot) => {
+    const data = snapshot.val();
+    if (!data || !Array.isArray(data)) return;
+
+    // 🔷 Zamień na format Leafletowy i narysuj
+    const latlngs = data.map(pt => [pt.lat, pt.lng]);
+    const polygon = L.polygon(latlngs, {
+      color: '#3b82f6',
+      fillColor: '#93c5fd',
+      fillOpacity: 0.4,
+      weight: 2
+    });
+
+    polygon.addTo(polygonLayerGroup);
+  });
+}
+
 
   // 🔁 Tryb dodawania punktu
   let addPointMode = false;
@@ -1172,6 +1209,14 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     
     layer.bindPopup(popup);
+
+    // 🔄 Dodaj rysowanie obrysu działki przy kliknięciu w marker
+    layer.on("click", () => {
+    drawPolygonForFeature(feature);
+  });
+
+
+    
   }
 
   // =========== Sidebar & Profil ===========

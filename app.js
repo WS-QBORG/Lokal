@@ -5,8 +5,6 @@ let projektanciNotes = {};
 let geojsonFeatures = [];
 let markerCluster;
 
-let polygonLayerGroup = L.layerGroup().addTo(map); // Grupa do rysowania obrysów
-
 
 // Klienci
 let klienciGlobal = [];
@@ -431,6 +429,9 @@ function drawPolygonForFeature(feature) {
   // =========== Mapa ===========
   const map = L.map('map').setView([53.4285, 14.5528], 8);
   window.map = map;
+
+  let polygonLayerGroup = L.layerGroup().addTo(map);
+  
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
   function createClusterGroup() {

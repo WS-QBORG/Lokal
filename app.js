@@ -1668,6 +1668,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <p><b>📅 Data dodania:</b> ${dataUtworzenia}</p>
       <label>📝 Notatki:</label>
       <textarea onchange="klienciNotes['${imie}_${telefon}'] = this.value; saveClientNote('${imie}', '${telefon}', this.value)" style="width:100%;height:100px;margin-top:0.5rem;padding:0.5rem;background:#374151;border:1px solid #4b5563;border-radius:0.375rem;color:white;resize:vertical;">${notes}</textarea>
+      <button class="btn btn-primary" onclick="zoomToClient('${name}')">📍 Pokaż na pinezkę</button>
     `;
     
     document.body.classList.add("panel-open");
@@ -1733,4 +1734,27 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("📥 Notatki klientów:", klienciNotes);
     });
   }
+
+
+// 🔍 Pokazuje pinezkę klienta na mapie
+window.zoomToClient = function(name) {
+  const point = geojsonFeatures.find(f => f.properties?.klient === name);
+
+  if (!point) {
+    alert("Brak lokalizacji przypisanej do tego klienta.");
+    return;
+  }
+
+  const lat = point.geometry?.coordinates[1];
+  const lng = point.geometry?.coordinates[0];
+
+  if (lat && lng) {
+    const marker = L.marker([lat, lng]).addTo(map);
+    marker.bindPopup(`<b>${name}</b>`).openPopup();
+    map.setView([lat, lng], 16);
+  } else {
+    alert("Brak współrzędnych dla klienta.");
+  }
+};
+
 });

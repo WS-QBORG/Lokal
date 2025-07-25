@@ -10,7 +10,8 @@ let activeFilters = {
   projektanci: [],
   handlowcy: [],
   statusy: [],
-  lata: []
+  lata: [],
+  inwestycje: []
 };
 
 // ===== Renderowanie projektantów =============
@@ -467,6 +468,45 @@ document.addEventListener("DOMContentLoaded", () => {
         return activeFilters.lata.includes(String(rok));
       });
     }
+
+// Filtr typów inwestycji
+if (activeFilters.inwestycje.length > 0) {
+  filtered = filtered.filter(f => {
+    const popup = f.properties?.popup;
+    if (!popup) return false;
+    
+    // Funkcja do wyciągania typu inwestycji (powtórz tutaj)
+    function extractInvestmentType(popup) {
+      const match = popup.match(/<b>Inwestycja:<\/b>\s*([^<]+)/);
+      if (!match) return null;
+      
+      const fullText = match[1].trim();
+      
+      if (fullText.toLowerCase().includes('jednorodzinny')) {
+        return 'Dom jednorodzinny';
+      }
+      else if (fullText.toLowerCase().includes('wielorodzinny')) {
+        return 'Dom wielorodzinny';
+      }
+      else if (fullText.toLowerCase().includes('usługowy')) {
+        return 'Budynek usługowy';
+      }
+      else if (fullText.toLowerCase().includes('kanalizacja')) {
+        return 'Infrastruktura';
+      }
+      else if (fullText.toLowerCase().includes('instalacja')) {
+        return 'Instalacje';
+      }
+      else {
+        return 'Inne';
+      }
+    }
+    
+    const type = extractInvestmentType(popup);
+    return activeFilters.inwestycje.includes(type);
+  });
+}
+
     
     // Renderuj przefiltrowane dane
     const bounds = map.getBounds();
@@ -535,10 +575,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateClearFiltersButton() {
     const hasActiveFilters = 
-      activeFilters.projektanci.length > 0 ||
-      activeFilters.handlowcy.length > 0 ||
-      activeFilters.statusy.length > 0 ||
-      activeFilters.lata.length > 0;
+  activeFilters.projektanci.length > 0 ||
+  activeFilters.handlowcy.length > 0 ||
+  activeFilters.statusy.length > 0 ||
+  activeFilters.lata.length > 0 ||
+  activeFilters.inwestycje.length > 0;
+
     
     let clearButton = document.getElementById("clearFiltersButton");
     
@@ -566,18 +608,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function clearAllFilters() {
-    activeFilters = {
-      projektanci: [],
-      handlowcy: [],
-      statusy: [],
-      lata: []
-    };
+  activeFilters = {
+  projektanci: [],
+  handlowcy: [],
+  statusy: [],
+  lata: [],
+  inwestycje: []
+};
+
     
     document.querySelectorAll('#sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
     document.querySelectorAll('#statusDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
     document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
     document.querySelectorAll('#rokDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('#inwestycjeDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
+
     
     renderVisibleDzialki();
     updateClearFiltersButton();
@@ -712,6 +757,131 @@ document.addEventListener("DOMContentLoaded", () => {
     updateClearFiltersButton();
     applyAllFilters();
   }
+
+// ========== INWESTYCJE DROPDOWN SYSTEM ==========
+
+window.toggleInwestycjeDropdown = function () {
+  const dropdown = document.getElementById("inwestycjeDropdown");
+  const icon = document.getElementById("inwestycjeIcon");
+  if (!dropdown || !icon) return;
+  
+  if (dropdown.style.display === "none" || dropdown.style.display === "") {
+    renderInwestycjeDropdown();
+    dropdown.style.display = "block";
+    icon.textContent = "⯅";
+  } else {
+    dropdown.style.display = "none";
+    icon.textContent = "⯆";
+  }
+};
+
+function renderInwestycjeDropdown() {
+  const container = document.getElementById("inwestycjeDropdown");
+  container.innerHTML = "";
+  
+  // Funkcja do wyciągania typu inwestycji z popup
+  function extractInvestmentType(popup) {
+    const match = popup.match(/<b>Inwestycja:<\/b>\s*([^<]+)/);
+    if (!match) return null;
+    
+    const fullText = match[1].trim();
+    
+    // Sprawdź czy zawiera "jednorodzinny"
+    if (fullText.toLowerCase().includes('jednorodzinny')) {
+      return 'Dom jednorodzinny';
+    }
+    // Sprawdź czy zawiera "wielorodzinny"
+    else if (fullText.toLowerCase().includes('wielorodzinny')) {
+      return 'Dom wielorodzinny';
+    }
+    // Sprawdź czy zawiera "usługowy"
+    else if (fullText.toLowerCase().includes('usługowy')) {
+      return 'Budynek usługowy';
+    }
+    // Sprawdź czy zawiera "kanalizacja"
+    else if (fullText.toLowerCase().includes('kanalizacja')) {
+      return 'Infrastruktura';
+    }
+    // Sprawdź czy zawiera "instalacja"
+    else if (fullText.toLowerCase().includes('instalacja')) {
+      return 'Instalacje';
+    }
+    else {
+      return 'Inne';
+    }
+  }
+  
+  // Grupuj inwestycje według typu
+  const investmentGroups = {};
+  geojsonFeatures.forEach(f => {
+    const popup = f.properties?.popup;
+    if (!popup) return;
+    
+    const type = extractInvestmentType(popup);
+    if (!type) return;
+    
+    if (!investmentGroups[type]) investmentGroups[type] = 0;
+    investmentGroups[type]++;
+  });
+  
+  // Sortuj typy alfabetycznie
+  const sortedTypes = Object.keys(investmentGroups).sort();
+  
+  sortedTypes.forEach(type => {
+    const count = investmentGroups[type];
+    
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.justifyContent = "space-between";
+    div.style.alignItems = "center";
+    div.style.marginBottom = "0.3rem";
+    div.style.color = "white";
+    
+    const label = document.createElement("label");
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.gap = "0.5rem";
+    
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = type;
+    checkbox.onchange = applyInwestycjeFilter;
+    
+    const span = document.createElement("span");
+    span.textContent = type;
+    
+    label.appendChild(checkbox);
+    label.appendChild(span);
+    
+    const countSpan = document.createElement("span");
+    countSpan.style.color = "#9ca3af";
+    countSpan.style.fontSize = "13px";
+    countSpan.textContent = count;
+    
+    div.appendChild(label);
+    div.appendChild(countSpan);
+    container.appendChild(div);
+  });
+}
+
+function applyInwestycjeFilter() {
+  const checkboxes = document.querySelectorAll('#inwestycjeDropdown input[type="checkbox"]:checked');
+  activeFilters.inwestycje = Array.from(checkboxes).map(cb => cb.value);
+  updateClearFiltersButton();
+  applyAllFilters();
+}
+
+// Event listener do zamykania dropdown
+document.addEventListener("click", function (e) {
+  const dropdown = document.getElementById("inwestycjeDropdown");
+  const wrapper = document.getElementById("inwestycjeDropdownWrapper");
+  const icon = document.getElementById("inwestycjeIcon");
+  if (dropdown && wrapper && !wrapper.contains(e.target)) {
+    dropdown.style.display = "none";
+    if (icon) icon.textContent = "⯆";
+  }
+});
+
 
   document.addEventListener("click", function (e) {
     const dropdown = document.getElementById("rokDropdown");

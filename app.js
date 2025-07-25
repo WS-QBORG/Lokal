@@ -1738,28 +1738,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // 🔍 Pokazuje pinezkę klienta na mapie
 window.zoomToClient = function(name) {
-  // Szukamy działki, której klient to podana osoba
-  const feature = geojsonFeatures.find(f => f.properties?.klient?.trim() === name);
 
-  if (!feature) {
-    alert("Brak lokalizacji przypisanej do tego klienta.");
+
+console.log("🧠 Szukam klienta:", name);
+console.log("🧩 Lista geojsonFeatures:", geojsonFeatures.slice(0, 5));
+
+
+  // Przykładowe dane, które możesz przekazać z profilu klienta
+  const projektant = "Mikołaj Krajewski";
+  const adres = "Będzino";
+  const dzialka = "obręb 15.0, nr 71/3";
+
+  // Dopasuj po projektancie i adresie działki
+  const match = geojsonFeatures.find(f =>
+    f.properties?.projektant?.trim() === projektant &&
+    f.properties?.adres?.trim() === adres &&
+    f.properties?.dzialka?.trim() === dzialka
+  );
+
+  if (!match) {
+    alert("Nie znaleziono działki klienta.");
     return;
   }
 
-  const coords = feature.geometry?.coordinates;
-  const lat = coords?.[1];
-  const lng = coords?.[0];
-
-  if (lat && lng) {
-    const marker = L.marker([lat, lng]).addTo(map);
-    const adres = feature.properties?.adres || "brak adresu";
-    const dzialka = feature.properties?.dzialka || "brak działki";
-    marker.bindPopup(`<b>${name}</b><br>${adres}<br>${dzialka}`).openPopup();
-    map.setView([lat, lng], 16);
-  } else {
-    alert("Brak współrzędnych dla klienta.");
-  }
+  const [lng, lat] = match.geometry.coordinates;
+  const marker = L.marker([lat, lng]).addTo(map);
+  marker.bindPopup(`<b>${name}</b><br>${adres}<br>${dzialka}`).openPopup();
+  map.setView([lat, lng], 16);
 };
+
 
 
 });

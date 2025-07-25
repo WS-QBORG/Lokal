@@ -4,7 +4,6 @@ let projektanciGlobal = [];
 let projektanciNotes = {};
 let geojsonFeatures = [];
 let markerCluster;
-let allMarkers = []; // 🔧 NOWA ZMIENNA: przechowuje wszystkie markery
 
 // ===== Renderowanie projektantów =============
 window.renderProjektanciList = function (list) {
@@ -49,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Zmienne statusów / akcji
   const statusy = ["Wizyta zaplanowana", "W kontakcie", "Podejmuje decyzję", "Wygrany", "Stracony"];
   const statusAssigned = {};
-  
+
   // Ikonki statusów
   const statusIcons = {
     "Stracony": "icons/stracony.svg",
@@ -65,19 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
   onValue(statusRef, snapshot => {
     Object.assign(statusAssigned, snapshot.val() || {});
     console.log("📥 Statusy:", statusAssigned);
-    // 🔧 NAPRAWKA: Odśwież markery po zmianie statusów
-    refreshAllMarkers();
   });
 
   // Zapisywanie statusów / akcji
   window.saveStatus = function (projektant, status) {
     statusAssigned[projektant] = status;
     set(ref(db, `statusy/${projektant}`), status)
-      .then(() => {
-        console.log('✅ Status zapisany:', projektant, status);
-        // 🔧 NAPRAWKA: Odśwież markery po zapisaniu statusu
-        refreshAllMarkers();
-      })
+      .then(() => console.log('✅ Status zapisany:', projektant, status))
       .catch(console.error);
   };
 
@@ -143,10 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
       geojsonFeatures.push(newFeature);
       saveGeoJSONToFirebase(); // ⬇️ zapisz do Firebase
       cancelAddPoint();
-      
-      // 🔧 NAPRAWKA: Odśwież wszystkie markery po dodaniu nowego
-      createAllMarkers();
-      
       alert("✅ Punkt dodany!");
     });
   };
@@ -234,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log('📥 Firebase notatki:', projektanciNotes);
     renderProjektanciList(projektanciGlobal); // odśwież listę z notatkami
   });
-  
+
   window.saveNote = function (projektant, note) {
     set(ref(db, `notes/${projektant}`), note)
       .then(() => console.log('✅ Notatka zapisana:', projektant, note))
@@ -246,15 +235,13 @@ document.addEventListener("DOMContentLoaded", () => {
   window.map = map;
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
-  // 🔧 NAPRAWKA: Ulepszenie konfiguracji klastra
+  // 🔧 Funkcja tworząca klaster z lepszą konfiguracją
   function createClusterGroup() {
     return L.markerClusterGroup({
       spiderfyOnMaxZoom: false,   // nie rozrzucaj punktów
       showCoverageOnHover: false, // nie pokazuj zasięgu klastra
       zoomToBoundsOnClick: true,  // nadal pozwól kliknąć
       disableClusteringAtZoom: 18, // Naprawa nachodzących cyfr na punkty
-      maxClusterRadius: 80,       // 🔧 NOWE: maksymalny promień klastra
-      removeOutsideVisibleBounds: false, // 🔧 NOWE: nie usuwaj markerów poza widokiem
       iconCreateFunction: function (cluster) {
         const count = cluster.getChildCount();
         let color = '#3b82f6';
@@ -271,19 +258,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🔧 NAPRAWKA: Usunięcie niepotrzebnego nasłuchiwania moveend
-  // map.on('moveend', () => {
-  //   renderVisibleDzialki(); // <- USUNIĘTE, bo powoduje problemy z klasterowaniem
-  // });
-
+  // 🔧 NAPRAWIONY: Funkcja ładująca lokalny plik GeoJSON
   function loadGeoJSON() {
     showLoading();
     fetch('dzialki.geojson')
       .then(res => res.json())
       .then(data => {
         geojsonFeatures = data.features;
-        // 🔧 NAPRAWKA: Używaj nowej funkcji do tworzenia markerów
-        createAllMarkers();
+        // Renderuj widoczne działki po załadowaniu
+        renderVisibleDzialki();
         hideLoading();
       })
       .catch(err => {
@@ -293,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 🔧 NAPRAWKA: Ulepszona funkcja jitter z lepszą logiką
-  function deterministicJitter(text, maxDelta = 0.0002) { // Zmniejszone z 0.0003 na 0.0002
+  function deterministicJitter(text, maxDelta = 0.0003) {
     let hash = 0;
     for (let i = 0; i < text.length; i++) {
       hash = (hash << 5) - hash + text.charCodeAt(i);
@@ -331,50 +314,63 @@ document.addEventListener("DOMContentLoaded", () => {
     
     console.log(`🔍 Widoczne punkty: ${visible.length} z ${geojsonFeatures.length} całkowitych`);
     
-    // Zlicz ile punktów ma takie same współrzędne (tylko dla widocznych)
-    const coordCount = {};
+    // 🔧 GRUPOWANIE DUPLIKATÓW: Zamiast jitter, grupuj duplikaty
+    const groupedPoints = {};
     visible.forEach(f => {
       const [lng, lat] = f.geometry.coordinates;
       const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
-      coordCount[key] = (coordCount[key] || 0) + 1;
+      
+      if (!groupedPoints[key]) {
+        groupedPoints[key] = {
+          lat,
+          lng,
+          features: []
+        };
+      }
+      groupedPoints[key].features.push(f);
     });
     
-    // Stwórz markery tylko dla widocznych punktów
+    // Stwórz markery dla zgrupowanych punktów
     const markers = [];
-    visible.forEach(f => {
-      let [lng, lat] = f.geometry.coordinates;
-      const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
-      const isDuplicate = coordCount[key] > 1;
-      
-      // Zastosuj jitter dla duplikatów
-      if (isDuplicate) {
-        const input = `${f.properties?.projektant}_${f.properties?.adres}`;
-        const jitter = deterministicJitter(input, 0.0003); // 30m przesunięcie
-        lat += jitter.lat;
-        lng += jitter.lng;
-      }
-      
+    Object.values(groupedPoints).forEach(group => {
+      const { lat, lng, features } = group;
       const latlng = L.latLng(lat, lng);
       
-      // Pobierz status i ikonę
-      const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
-      const iconUrl = statusIcons[status];
-      
-      // Stwórz marker z odpowiednią ikoną
-      const marker = iconUrl
-        ? L.marker(latlng, {
-            icon: L.icon({
-              iconUrl,
-              iconSize: [32, 32],
-              iconAnchor: [16, 32],
-              popupAnchor: [0, -32]
+      if (features.length === 1) {
+        // Pojedynczy punkt - standardowy marker
+        const f = features[0];
+        const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
+        const iconUrl = statusIcons[status];
+        
+        const marker = iconUrl
+          ? L.marker(latlng, {
+              icon: L.icon({
+                iconUrl,
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+              })
             })
+          : L.marker(latlng);
+        
+        bindPopupToLayer(f, marker);
+        markers.push(marker);
+      } else {
+        // Duplikaty - marker z numerem
+        const marker = L.marker(latlng, {
+          icon: L.divIcon({
+            html: `<div style="background:#ef4444;color:white;width:28px;height:28px;border-radius:50%;border:2px solid white;text-align:center;line-height:24px;font-size:12px;font-weight:bold;">${features.length}</div>`,
+            className: 'grouped-marker',
+            iconSize: [28, 28],
+            iconAnchor: [14, 28],
+            popupAnchor: [0, -28]
           })
-        : L.marker(latlng);
-      
-      // Dodaj popup
-      bindPopupToLayer(f, marker);
-      markers.push(marker);
+        });
+        
+        // Popup dla zgrupowanych punktów
+        bindGroupPopupToLayer(features, marker);
+        markers.push(marker);
+      }
     });
     
     // Dodaj wszystkie markery do klastra na raz (wydajność)
@@ -382,33 +378,56 @@ document.addEventListener("DOMContentLoaded", () => {
     map.addLayer(markerCluster);
   }
 
+  // 🔧 Nowa funkcja do popupów dla zgrupowanych punktów
+  function bindGroupPopupToLayer(features, layer) {
+    const firstFeature = features[0];
+    const coords = firstFeature.geometry?.coordinates;
+    const lat = coords ? coords[1] : null;
+    const lon = coords ? coords[0] : null;
+    
+    let popup = `<div style="max-height:200px;overflow-y:auto;">`;
+    popup += `<b>🏠 ${features.length} punktów w tej lokalizacji:</b><br/><br/>`;
+    
+    features.forEach((f, index) => {
+      const proj = f.properties?.projektant || 'brak';
+      const rok = f.properties?.rok || 'brak';
+      const inwestycja = f.properties?.popup || 'Brak opisu';
+      const adres = f.properties?.adres || 'Brak adresu';
+      const assigned = projektanciAssigned[proj] || "";
+      const status = statusAssigned[proj] || "Neutralny";
+      
+      popup += `
+        <div style="border-bottom:1px solid #eee;padding:0.5rem 0;${index === features.length - 1 ? 'border-bottom:none;' : ''}">
+          <b>${proj}</b> (${rok})<br/>
+          <small>${inwestycja}</small><br/>
+          <small><b>Adres:</b> ${adres}</small><br/>
+          <label>Handlowiec:</label>
+          <select onchange="assignHandlowiec('${proj}', this.value)" style="width:100%;margin:2px 0;">
+            <option value="">(brak)</option>
+            ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+          </select>
+          <label>Status:</label>
+          <select onchange="saveStatus('${proj}', this.value)" style="width:100%;margin:2px 0;">
+            ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
+          </select>
+        </div>
+      `;
+    });
+    
+    popup += `</div>`;
+    popup += `<br/><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>`;
+    
+    layer.bindPopup(popup);
+  }
+
   // 🔧 NAPRAWKA: Nowa funkcja do odświeżania markerów (tylko aktualizuje ikony, nie przebudowuje)
   function refreshAllMarkers() {
     if (!markerCluster) return;
     
-    console.log("🔄 Odświeżanie ikon markerów...");
-    
-    // Przejdź przez wszystkie markery i zaktualizuj ikony
     markerCluster.eachLayer(marker => {
-      // Znajdź odpowiadający punkt GeoJSON
-      const markerLatLng = marker.getLatLng();
-      const correspondingFeature = geojsonFeatures.find(f => {
-        if (!f.geometry || f.geometry.type !== "Point") return false;
-        
-        let [lng, lat] = f.geometry.coordinates;
-        
-        // Sprawdź czy to może być punkt z jitter
-        const input = `${f.properties?.projektant}_${f.properties?.adres}`;
-        const jitter = deterministicJitter(input, 0.0002);
-        lat += jitter.lat;
-        lng += jitter.lng;
-        
-        const distance = Math.abs(markerLatLng.lat - lat) + Math.abs(markerLatLng.lng - lng);
-        return distance < 0.001; // Tolerancja dla jitter
-      });
-      
-      if (correspondingFeature) {
-        const status = statusAssigned[correspondingFeature.properties?.projektant?.trim()] || "Neutralny";
+      if (marker.feature && marker.feature.properties) {
+        const proj = marker.feature.properties.projektant?.trim();
+        const status = statusAssigned[proj] || "Neutralny";
         const iconUrl = statusIcons[status];
         
         if (iconUrl) {
@@ -419,26 +438,182 @@ document.addEventListener("DOMContentLoaded", () => {
             popupAnchor: [0, -32]
           }));
         } else {
-          // Przywróć domyślną ikonę
           marker.setIcon(new L.Icon.Default());
         }
       }
     });
   }
 
-  window.filterMap = function (rok) {
-    if (rok === 'all') {
-      // Pokaż wszystkie punkty
-      createAllMarkers();
+  // 🔧 Funkcja do tworzenia wszystkich markerów (dla filtorów)
+  function createAllMarkers() {
+    renderVisibleDzialki();
+  }
+
+  // ========== ROK DROPDOWN SYSTEM (podobny do handlowców/statusów) ==========
+  
+  window.toggleRokDropdown = function () {
+    const dropdown = document.getElementById("rokDropdown");
+    const icon = document.getElementById("rokIcon");
+    if (!dropdown || !icon) return;
+    
+    if (dropdown.style.display === "none" || dropdown.style.display === "") {
+      renderRokDropdown();
+      dropdown.style.display = "block";
+      icon.textContent = "⯅";
     } else {
-      // Filtruj według roku
-      const filtered = geojsonFeatures.filter(f => f.properties.rok == rok);
-      const originalFeatures = geojsonFeatures;
-      geojsonFeatures = filtered;
-      createAllMarkers();
-      geojsonFeatures = originalFeatures; // Przywróć oryginalne dane
+      dropdown.style.display = "none";
+      icon.textContent = "⯆";
     }
   };
+
+  function renderRokDropdown() {
+    const container = document.getElementById("rokDropdown");
+    container.innerHTML = "";
+    
+    // Zbierz wszystkie dostępne lata z danych
+    const availableYears = [...new Set(
+      geojsonFeatures
+        .map(f => f.properties?.rok)
+        .filter(rok => rok != null)
+    )].sort((a, b) => b - a); // sortuj od najnowszych
+    
+    // Grupowanie projektów według lat
+    const yearGroups = {};
+    geojsonFeatures.forEach(f => {
+      const rok = f.properties?.rok;
+      if (!rok) return;
+      
+      if (!yearGroups[rok]) yearGroups[rok] = 0;
+      yearGroups[rok]++;
+    });
+    
+    // Dodaj opcję "Wszystkie"
+    const allDiv = document.createElement("div");
+    allDiv.style.display = "flex";
+    allDiv.style.justifyContent = "space-between";
+    allDiv.style.alignItems = "center";
+    allDiv.style.marginBottom = "0.3rem";
+    allDiv.style.color = "white";
+    
+    const allLabel = document.createElement("label");
+    allLabel.style.display = "flex";
+    allLabel.style.alignItems = "center";
+    allLabel.style.gap = "0.5rem";
+    
+    const allCheckbox = document.createElement("input");
+    allCheckbox.type = "checkbox";
+    allCheckbox.value = "all";
+    allCheckbox.onchange = applyRokFilter;
+    
+    const allSpan = document.createElement("span");
+    allSpan.textContent = "Wszystkie lata";
+    allSpan.style.fontWeight = "bold";
+    
+    allLabel.appendChild(allCheckbox);
+    allLabel.appendChild(allSpan);
+    
+    const allCount = document.createElement("span");
+    allCount.style.color = "#9ca3af";
+    allCount.style.fontSize = "13px";
+    allCount.textContent = geojsonFeatures.length;
+    
+    allDiv.appendChild(allLabel);
+    allDiv.appendChild(allCount);
+    container.appendChild(allDiv);
+    
+    // Dodaj separator
+    const separator = document.createElement("div");
+    separator.style.height = "1px";
+    separator.style.backgroundColor = "#374151";
+    separator.style.margin = "0.5rem 0";
+    container.appendChild(separator);
+    
+    // Dodaj poszczególne lata
+    availableYears.forEach(rok => {
+      const count = yearGroups[rok] || 0;
+      
+      const div = document.createElement("div");
+      div.style.display = "flex";
+      div.style.justifyContent = "space-between";
+      div.style.alignItems = "center";
+      div.style.marginBottom = "0.3rem";
+      div.style.color = "white";
+      
+      const label = document.createElement("label");
+      label.style.display = "flex";
+      label.style.alignItems = "center";
+      label.style.gap = "0.5rem";
+      
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.value = rok;
+      checkbox.onchange = applyRokFilter;
+      
+      const span = document.createElement("span");
+      span.textContent = rok;
+      
+      label.appendChild(checkbox);
+      label.appendChild(span);
+      
+      const countSpan = document.createElement("span");
+      countSpan.style.color = "#9ca3af";
+      countSpan.style.fontSize = "13px";
+      countSpan.textContent = count;
+      
+      div.appendChild(label);
+      div.appendChild(countSpan);
+      container.appendChild(div);
+    });
+  }
+
+  function applyRokFilter() {
+    const checkboxes = document.querySelectorAll('#rokDropdown input[type="checkbox"]:checked');
+    const selectedRoki = Array.from(checkboxes).map(cb => cb.value);
+    
+    // Jeśli zaznaczono "Wszystkie", pokaż wszystko
+    if (selectedRoki.includes("all")) {
+      // Odznacz inne checkboxy jeśli zaznaczono "Wszystkie"
+      document.querySelectorAll('#rokDropdown input[type="checkbox"]:not([value="all"])').forEach(cb => {
+        cb.checked = false;
+      });
+      // Tymczasowo zachowaj oryginalne dane
+      const originalFeatures = [...geojsonFeatures];
+      renderVisibleDzialki();
+      return;
+    }
+    
+    // Jeśli nic nie zaznaczono, pokaż wszystko
+    if (selectedRoki.length === 0) {
+      renderVisibleDzialki();
+      return;
+    }
+    
+    // Filtruj według wybranych lat
+    if (markerCluster) map.removeLayer(markerCluster);
+    markerCluster = createClusterGroup();
+    
+    const filtered = geojsonFeatures.filter(f => {
+      const rok = f.properties?.rok;
+      return selectedRoki.includes(String(rok));
+    });
+    
+    // Tymczasowo zastąp dane do renderowania
+    const originalFeatures = [...geojsonFeatures];
+    geojsonFeatures = filtered;
+    renderVisibleDzialki();
+    geojsonFeatures = originalFeatures; // przywróć oryginalne dane
+  }
+
+  // Event listener do zamykania dropdown lat po kliknięciu poza nim
+  document.addEventListener("click", function (e) {
+    const dropdown = document.getElementById("rokDropdown");
+    const wrapper = document.getElementById("rokDropdownWrapper");
+    const icon = document.getElementById("rokIcon");
+    if (dropdown && wrapper && !wrapper.contains(e.target)) {
+      dropdown.style.display = "none";
+      if (icon) icon.textContent = "⯆";
+    }
+  });
 
   function bindPopupToLayer(feature, layer) {
     const coords = feature.geometry?.coordinates;
@@ -469,6 +644,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </select><br/>
       <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
     `;
+    
     layer.bindPopup(popup);
   }
 
@@ -488,23 +664,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // 🔧 NAPRAWKA: Ulepszenie filtrowania projektantów
   window.applyProjektantFilter = function () {
     const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
     const selectedNames = Array.from(checkboxes).map(cb => cb.value.trim());
     
-    if (selectedNames.length === 0) {
-      alert("Wybierz przynajmniej jednego projektanta.");
-      return;
-    }
+    if (markerCluster) map.removeLayer(markerCluster);
+    markerCluster = createClusterGroup();
     
-    // Filtruj dane i stwórz markery
     const filtered = geojsonFeatures.filter(f => selectedNames.includes(f.properties?.projektant?.trim()));
-    const originalFeatures = geojsonFeatures;
-    geojsonFeatures = filtered;
-    createAllMarkers();
-    geojsonFeatures = originalFeatures; // Przywróć oryginalne dane
+    const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+      pointToLayer: (feature, latlng) => L.marker(latlng),
+      onEachFeature: bindPopupToLayer
+    });
     
+    markerCluster.addLayer(layer);
+    map.addLayer(markerCluster);
     hideSidebar();
   };
 
@@ -539,6 +713,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <label>📝 Notatki:</label>
       <textarea onchange="projektanciNotes['${name}'] = this.value; saveNote('${name}', this.value)">${notes}</textarea>
     `;
+    
     document.body.classList.add("panel-open");
     profile.classList.add("show");
   };
@@ -567,6 +742,7 @@ document.addEventListener("DOMContentLoaded", () => {
         list.sort((a, b) => b.liczba_projektow - a.liczba_projektow);
         break;
     }
+    
     renderProjektanciList(list);
   };
 
@@ -600,8 +776,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderStatusDropdown() {
     const container = document.getElementById("statusDropdown");
     container.innerHTML = "";
-    const grouped = {};
     
+    const grouped = {};
     geojsonFeatures.forEach(f => {
       const name = f.properties?.projektant?.trim();
       if (!name) return;
@@ -646,28 +822,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🔧 NAPRAWKA: Ulepszenie filtrowania statusów
   function applyStatusFilter() {
     const checkboxes = document.querySelectorAll('#statusDropdown input[type="checkbox"]:checked');
     const selectedStatusy = Array.from(checkboxes).map(cb => cb.value);
     
-    if (selectedStatusy.length === 0) {
-      // Jeśli nic nie zaznaczono, pokaż wszystko
-      createAllMarkers();
-      return;
-    }
+    if (markerCluster) map.removeLayer(markerCluster);
+    markerCluster = createClusterGroup();
     
-    // Filtruj dane według statusów
     const filtered = geojsonFeatures.filter(f => {
       const name = f.properties?.projektant?.trim();
       const status = statusAssigned[name] || "Neutralny";
       return selectedStatusy.includes(status);
     });
     
-    const originalFeatures = geojsonFeatures;
-    geojsonFeatures = filtered;
-    createAllMarkers();
-    geojsonFeatures = originalFeatures; // Przywróć oryginalne dane
+    const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+      pointToLayer: (feature, latlng) => L.marker(latlng),
+      onEachFeature: bindPopupToLayer
+    });
+    
+    markerCluster.addLayer(layer);
+    map.addLayer(markerCluster);
   }
 
   document.addEventListener("click", function (e) {
@@ -759,28 +933,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🔧 NAPRAWKA: Ulepszenie filtrowania handlowców
   function applyHandlowcyDropdownFilter() {
     const checkboxes = document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]:checked');
     const selected = Array.from(checkboxes).map(cb => cb.value);
     
-    if (selected.length === 0) {
-      // Jeśli nic nie zaznaczono, pokaż wszystko
-      createAllMarkers();
-      return;
-    }
+    if (markerCluster) map.removeLayer(markerCluster);
+    markerCluster = createClusterGroup();
     
-    // Filtruj dane według handlowców
     const filtered = geojsonFeatures.filter(f => {
       const proj = f.properties?.projektant;
       const hand = projektanciAssigned[proj];
       return selected.includes(hand);
     });
     
-    const originalFeatures = geojsonFeatures;
-    geojsonFeatures = filtered;
-    createAllMarkers();
-    geojsonFeatures = originalFeatures; // Przywróć oryginalne dane
+    const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+      pointToLayer: (feature, latlng) => L.marker(latlng),
+      onEachFeature: bindPopupToLayer
+    });
+    
+    markerCluster.addLayer(layer);
+    map.addLayer(markerCluster);
   }
 
   window.showHandlowiecProfile = function (name) {
@@ -801,6 +973,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ${projektanci.map(p => `<li style="color:white;">${p}</li>`).join("")}
       </ul>
     `;
+    
     document.body.classList.add("panel-open");
     profile.classList.add("show");
   };
@@ -839,13 +1012,16 @@ document.addEventListener("DOMContentLoaded", () => {
     baseLatLng = latlng;
     document.getElementById("rotateSlider").value = 0;
     document.getElementById("rotateControl").style.display = "block";
+    
     const corners = rotateBounds(latlng, size, 0); // 🔄 startowy obrys (bez obrotu)
     baseCorners = corners; // 💾 zapamiętaj punkty bazowe
+    
     const polygon = L.polygon([corners], {
       color: "#3b82f6",
       weight: 1.2,
       fillOpacity: 0.1
     });
+    
     activeRectangle = polygon;
     return polygon;
   }
@@ -853,6 +1029,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // === Dodaj rysowanie/edycję obrysów ===
   const drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
+  
   const drawControl = new L.Control.Draw({
     draw: {
       polygon: true,

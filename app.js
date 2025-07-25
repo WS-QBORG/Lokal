@@ -5,7 +5,6 @@ let projektanciNotes = {};
 let geojsonFeatures = [];
 let markerCluster;
 
-
 // Dodaj po istniejących zmiennych globalnych
 let activeFilters = {
   projektanci: [],
@@ -13,7 +12,6 @@ let activeFilters = {
   statusy: [],
   lata: []
 };
-
 
 // ===== Renderowanie projektantów =============
 window.renderProjektanciList = function (list) {
@@ -52,8 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const set = window.firebaseSet;
   let activeRectangle = null;
   let originalLatLng = null;
-  let baseCorners = null;       // 🌐 oryginalne narożniki (przed obrotem)
-  let baseLatLng = null;        // 🌐 oryginalny środek
+  let baseCorners = null;
+  let baseLatLng = null;
 
   // Zmienne statusów / akcji
   const statusy = ["Wizyta zaplanowana", "W kontakcie", "Podejmuje decyzję", "Wygrany", "Stracony"];
@@ -66,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Wizyta zaplanowana": "icons/umowiony.svg",
     "W kontakcie": "icons/rozmawia.svg",
     "Wygrany": "icons/wygrany.svg",
-    "Neutralny": null  // standardowa pinezka
+    "Neutralny": null
   };
 
   // Odczytywanie statusów / akcji
@@ -89,18 +87,15 @@ document.addEventListener("DOMContentLoaded", () => {
   window.startAddPointMode = function () {
     addPointMode = true;
     document.getElementById("addPointPanel").style.display = "block";
-    // uzupełnij select handlowców
     const select = document.getElementById("inputHandlowiec");
     select.innerHTML = handlowcy.map(h => `<option value="${h}">${h}</option>`).join('');
   };
 
-  // ❌ Anuluj
   window.cancelAddPoint = function () {
     addPointMode = false;
     document.getElementById("addPointPanel").style.display = "none";
   };
 
-  // ✅ Zatwierdź i dodaj marker
   window.confirmAddPoint = function () {
     const handlowiec = document.getElementById("inputHandlowiec").value;
     const projektant = document.getElementById("inputProjektant").value.trim();
@@ -116,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
     map.once("click", function (e) {
       const latlng = e.latlng;
       
-      // Dodaj marker
       const marker = L.marker(latlng).addTo(map);
       marker.bindPopup(`
         <b>${projektant}</b><br/>
@@ -125,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
         Handlowiec: ${handlowiec}
       `);
       
-      // Zapisz jako nowy punkt w geojsonFeatures
       const newFeature = {
         type: "Feature",
         geometry: {
@@ -144,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       
       geojsonFeatures.push(newFeature);
-      saveGeoJSONToFirebase(); // ⬇️ zapisz do Firebase
+      saveGeoJSONToFirebase();
       cancelAddPoint();
       alert("✅ Punkt dodany!");
     });
@@ -161,17 +154,12 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(console.error);
   }
 
-  // 🔁 Funkcja ładująca dane GeoJSON z Firebase przy starcie
   function loadGeoJSONFromFirebase() {
-    // Nasłuchuj zmian pod ścieżką 'punkty' w Firebase
     onValue(ref(db, 'punkty'), (snapshot) => {
       const data = snapshot.val();
       if (!data) return;
       
-      // Zamień dane z Firebase na tablicę punktów
       geojsonFeatures = Object.values(data);
-      
-      // Renderuj tylko widoczne działki na mapie (wydajność!)
       renderVisibleDzialki();
     });
   }
@@ -193,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     console.log("🔁 Nowe punkty po obrocie:", rotated);
     
-    // 🔄 PRZEORYSUJ NA MAPIE
     drawnItems.clearLayers();
     activeRectangle = L.polygon([rotated], {
       color: "#3b82f6",
@@ -201,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fillOpacity: 0.1
     });
     drawnItems.addLayer(activeRectangle);
-    saveShapesToFirebase(); // 💾 Zapis do Firebase
+    saveShapesToFirebase();
   });
 
   const assignmentsRef = ref(db, 'assignments');
@@ -211,7 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProjektanciList(projektanciGlobal);
   });
 
-  // Dodanie ładowania
   function showLoading() {
     document.getElementById("loadingOverlay").style.display = "flex";
   }
@@ -226,12 +212,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(console.error);
   };
 
-  // === Notatki Firebase ===
   const notesRef = ref(db, 'notes');
   onValue(notesRef, snapshot => {
     projektanciNotes = snapshot.val() || {};
     console.log('📥 Firebase notatki:', projektanciNotes);
-    renderProjektanciList(projektanciGlobal); // odśwież listę z notatkami
+    renderProjektanciList(projektanciGlobal);
   });
 
   window.saveNote = function (projektant, note) {
@@ -245,13 +230,12 @@ document.addEventListener("DOMContentLoaded", () => {
   window.map = map;
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
-  // 🔧 Funkcja tworząca klaster z lepszą konfiguracją
   function createClusterGroup() {
     return L.markerClusterGroup({
-      spiderfyOnMaxZoom: false,   // nie rozrzucaj punktów
-      showCoverageOnHover: false, // nie pokazuj zasięgu klastra
-      zoomToBoundsOnClick: true,  // nadal pozwól kliknąć
-      disableClusteringAtZoom: 18, // Naprawa nachodzących cyfr na punkty
+      spiderfyOnMaxZoom: false,
+      showCoverageOnHover: false,
+      zoomToBoundsOnClick: true,
+      disableClusteringAtZoom: 18,
       iconCreateFunction: function (cluster) {
         const count = cluster.getChildCount();
         let color = '#3b82f6';
@@ -268,14 +252,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🔧 NAPRAWIONY: Funkcja ładująca lokalny plik GeoJSON
   function loadGeoJSON() {
     showLoading();
     fetch('dzialki.geojson')
       .then(res => res.json())
       .then(data => {
         geojsonFeatures = data.features;
-        // Renderuj widoczne działki po załadowaniu
         renderVisibleDzialki();
         hideLoading();
       })
@@ -285,7 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // 🔧 NAPRAWKA: Ulepszona funkcja jitter z lepszą logiką
   function deterministicJitter(text, maxDelta = 0.0003) {
     let hash = 0;
     for (let i = 0; i < text.length; i++) {
@@ -300,19 +281,15 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // 🔁 Funkcja renderująca tylko widoczne działki (WYDAJNOŚĆ!)
   function renderVisibleDzialki() {
     const bounds = map.getBounds();
     
-    // Usuń poprzedni klaster
     if (markerCluster) {
       map.removeLayer(markerCluster);
     }
     
-    // Stwórz nowy klaster
     markerCluster = createClusterGroup();
     
-    // Filtruj tylko widoczne punkty w obecnym widoku mapy
     const visible = geojsonFeatures.filter(f => {
       return (
         f.geometry &&
@@ -324,7 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     console.log(`🔍 Widoczne punkty: ${visible.length} z ${geojsonFeatures.length} całkowitych`);
     
-    // 🔧 GRUPOWANIE DUPLIKATÓW: Zamiast jitter, grupuj duplikaty
     const groupedPoints = {};
     visible.forEach(f => {
       const [lng, lat] = f.geometry.coordinates;
@@ -340,14 +316,12 @@ document.addEventListener("DOMContentLoaded", () => {
       groupedPoints[key].features.push(f);
     });
     
-    // Stwórz markery dla zgrupowanych punktów
     const markers = [];
     Object.values(groupedPoints).forEach(group => {
       const { lat, lng, features } = group;
       const latlng = L.latLng(lat, lng);
       
       if (features.length === 1) {
-        // Pojedynczy punkt - standardowy marker
         const f = features[0];
         const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
         const iconUrl = statusIcons[status];
@@ -366,7 +340,6 @@ document.addEventListener("DOMContentLoaded", () => {
         bindPopupToLayer(f, marker);
         markers.push(marker);
       } else {
-        // Duplikaty - marker z numerem
         const marker = L.marker(latlng, {
           icon: L.divIcon({
             html: `<div style="background:#ef4444;color:white;width:28px;height:28px;border-radius:50%;border:2px solid white;text-align:center;line-height:24px;font-size:12px;font-weight:bold;">${features.length}</div>`,
@@ -377,18 +350,15 @@ document.addEventListener("DOMContentLoaded", () => {
           })
         });
         
-        // Popup dla zgrupowanych punktów
         bindGroupPopupToLayer(features, marker);
         markers.push(marker);
       }
     });
     
-    // Dodaj wszystkie markery do klastra na raz (wydajność)
     markers.forEach(m => markerCluster.addLayer(m));
     map.addLayer(markerCluster);
   }
 
-  // 🔧 Nowa funkcja do popupów dla zgrupowanych punktów
   function bindGroupPopupToLayer(features, layer) {
     const firstFeature = features[0];
     const coords = firstFeature.geometry?.coordinates;
@@ -430,7 +400,6 @@ document.addEventListener("DOMContentLoaded", () => {
     layer.bindPopup(popup);
   }
 
-  // 🔧 NAPRAWKA: Nowa funkcja do odświeżania markerów (tylko aktualizuje ikony, nie przebudowuje)
   function refreshAllMarkers() {
     if (!markerCluster) return;
     
@@ -454,12 +423,167 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🔧 Funkcja do tworzenia wszystkich markerów (dla filtorów)
   function createAllMarkers() {
     renderVisibleDzialki();
   }
 
-  // ========== ROK DROPDOWN SYSTEM (podobny do handlowców/statusów) ==========
+  // ========== FUNKCJE FILTROWANIA ==========
+  
+  function applyAllFilters() {
+    if (markerCluster) map.removeLayer(markerCluster);
+    markerCluster = createClusterGroup();
+    
+    let filtered = [...geojsonFeatures];
+    
+    // Filtr projektantów
+    if (activeFilters.projektanci.length > 0) {
+      filtered = filtered.filter(f => 
+        activeFilters.projektanci.includes(f.properties?.projektant?.trim())
+      );
+    }
+    
+    // Filtr handlowców
+    if (activeFilters.handlowcy.length > 0) {
+      filtered = filtered.filter(f => {
+        const proj = f.properties?.projektant?.trim();
+        const hand = projektanciAssigned[proj];
+        return activeFilters.handlowcy.includes(hand);
+      });
+    }
+    
+    // Filtr statusów
+    if (activeFilters.statusy.length > 0) {
+      filtered = filtered.filter(f => {
+        const name = f.properties?.projektant?.trim();
+        const status = statusAssigned[name] || "Neutralny";
+        return activeFilters.statusy.includes(status);
+      });
+    }
+    
+    // Filtr lat
+    if (activeFilters.lata.length > 0) {
+      filtered = filtered.filter(f => {
+        const rok = f.properties?.rok;
+        return activeFilters.lata.includes(String(rok));
+      });
+    }
+    
+    // Renderuj przefiltrowane dane
+    const bounds = map.getBounds();
+    const visible = filtered.filter(f => {
+      return (
+        f.geometry &&
+        f.geometry.type === "Point" &&
+        Array.isArray(f.geometry.coordinates) &&
+        bounds.contains([f.geometry.coordinates[1], f.geometry.coordinates[0]])
+      );
+    });
+    
+    const groupedPoints = {};
+    visible.forEach(f => {
+      const [lng, lat] = f.geometry.coordinates;
+      const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
+      
+      if (!groupedPoints[key]) {
+        groupedPoints[key] = { lat, lng, features: [] };
+      }
+      groupedPoints[key].features.push(f);
+    });
+    
+    const markers = [];
+    Object.values(groupedPoints).forEach(group => {
+      const { lat, lng, features } = group;
+      const latlng = L.latLng(lat, lng);
+      
+      if (features.length === 1) {
+        const f = features[0];
+        const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
+        const iconUrl = statusIcons[status];
+        
+        const marker = iconUrl
+          ? L.marker(latlng, {
+              icon: L.icon({
+                iconUrl,
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+              })
+            })
+          : L.marker(latlng);
+        
+        bindPopupToLayer(f, marker);
+        markers.push(marker);
+      } else {
+        const marker = L.marker(latlng, {
+          icon: L.divIcon({
+            html: `<div style="background:#ef4444;color:white;width:28px;height:28px;border-radius:50%;border:2px solid white;text-align:center;line-height:24px;font-size:12px;font-weight:bold;">${features.length}</div>`,
+            className: 'grouped-marker',
+            iconSize: [28, 28],
+            iconAnchor: [14, 28],
+            popupAnchor: [0, -28]
+          })
+        });
+        
+        bindGroupPopupToLayer(features, marker);
+        markers.push(marker);
+      }
+    });
+    
+    markers.forEach(m => markerCluster.addLayer(m));
+    map.addLayer(markerCluster);
+  }
+
+  function updateClearFiltersButton() {
+    const hasActiveFilters = 
+      activeFilters.projektanci.length > 0 ||
+      activeFilters.handlowcy.length > 0 ||
+      activeFilters.statusy.length > 0 ||
+      activeFilters.lata.length > 0;
+    
+    let clearButton = document.getElementById("clearFiltersButton");
+    
+    if (hasActiveFilters && !clearButton) {
+      clearButton = document.createElement("button");
+      clearButton.id = "clearFiltersButton";
+      clearButton.innerHTML = "🗑️ Wyczyść filtry";
+      clearButton.style.cssText = `
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        background: #ef4444;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-weight: bold;
+      `;
+      clearButton.onclick = clearAllFilters;
+      document.body.appendChild(clearButton);
+    } else if (!hasActiveFilters && clearButton) {
+      clearButton.remove();
+    }
+  }
+
+  function clearAllFilters() {
+    activeFilters = {
+      projektanci: [],
+      handlowcy: [],
+      statusy: [],
+      lata: []
+    };
+    
+    document.querySelectorAll('#sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('#statusDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('#rokDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
+    
+    renderVisibleDzialki();
+    updateClearFiltersButton();
+  }
+
+  // ========== ROK DROPDOWN SYSTEM ==========
   
   window.toggleRokDropdown = function () {
     const dropdown = document.getElementById("rokDropdown");
@@ -480,14 +604,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("rokDropdown");
     container.innerHTML = "";
     
-    // Zbierz wszystkie dostępne lata z danych
     const availableYears = [...new Set(
       geojsonFeatures
         .map(f => f.properties?.rok)
         .filter(rok => rok != null)
-    )].sort((a, b) => b - a); // sortuj od najnowszych
+    )].sort((a, b) => b - a);
     
-    // Grupowanie projektów według lat
     const yearGroups = {};
     geojsonFeatures.forEach(f => {
       const rok = f.properties?.rok;
@@ -531,14 +653,12 @@ document.addEventListener("DOMContentLoaded", () => {
     allDiv.appendChild(allCount);
     container.appendChild(allDiv);
     
-    // Dodaj separator
     const separator = document.createElement("div");
     separator.style.height = "1px";
     separator.style.backgroundColor = "#374151";
     separator.style.margin = "0.5rem 0";
     container.appendChild(separator);
     
-    // Dodaj poszczególne lata
     availableYears.forEach(rok => {
       const count = yearGroups[rok] || 0;
       
@@ -577,53 +697,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applyRokFilter() {
-  const checkboxes = document.querySelectorAll('#rokDropdown input[type="checkbox"]:checked');
-  const selectedRoki = Array.from(checkboxes).map(cb => cb.value);
-  
-  // Jeśli zaznaczono "Wszystkie", wyczyść filtry lat
-  if (selectedRoki.includes("all")) {
-    document.querySelectorAll('#rokDropdown input[type="checkbox"]:not([value="all"])').forEach(cb => {
-      cb.checked = false;
-    });
-    activeFilters.lata = [];
-  } else {
-    activeFilters.lata = selectedRoki.filter(rok => rok !== "all");
-  }
-  
-  updateClearFiltersButton();
-  applyAllFilters();
-}
-
+    const checkboxes = document.querySelectorAll('#rokDropdown input[type="checkbox"]:checked');
+    const selectedRoki = Array.from(checkboxes).map(cb => cb.value);
     
-    // Jeśli nic nie zaznaczono, pokaż wszystko
-    if (selectedRoki.length === 0) {
-      renderVisibleDzialki();
-      return;
+    if (selectedRoki.includes("all")) {
+      document.querySelectorAll('#rokDropdown input[type="checkbox"]:not([value="all"])').forEach(cb => {
+        cb.checked = false;
+      });
+      activeFilters.lata = [];
+    } else {
+      activeFilters.lata = selectedRoki.filter(rok => rok !== "all");
     }
     
-    // Filtruj według wybranych lat
-    if (markerCluster) map.removeLayer(markerCluster);
-    markerCluster = createClusterGroup();
-    
-    const filtered = geojsonFeatures.filter(f => {
-      const rok = f.properties?.rok;
-      return selectedRoki.includes(String(rok));
-    });
-    
-    // Tymczasowo zastąp dane do renderowania
-    const originalFeatures = [...geojsonFeatures];
-    geojsonFeatures = filtered;
-    renderVisibleDzialki();
-    geojsonFeatures = originalFeatures; // przywróć oryginalne dane
-
-
-  // Na końcu event listenera DOMContentLoaded
-updateClearFiltersButton();
-
-  
+    updateClearFiltersButton();
+    applyAllFilters();
   }
 
-  // Event listener do zamykania dropdown lat po kliknięciu poza nim
   document.addEventListener("click", function (e) {
     const dropdown = document.getElementById("rokDropdown");
     const wrapper = document.getElementById("rokDropdownWrapper");
@@ -683,179 +772,13 @@ updateClearFiltersButton();
     }
   };
 
- window.applyProjektantFilter = function () {
-  const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
-  activeFilters.projektanci = Array.from(checkboxes).map(cb => cb.value.trim());
-  updateClearFiltersButton();
-  applyAllFilters();
-  hideSidebar();
-};
-
-
-function applyAllFilters() {
-  if (markerCluster) map.removeLayer(markerCluster);
-  markerCluster = createClusterGroup();
-  
-  let filtered = [...geojsonFeatures];
-  
-  // Filtr projektantów
-  if (activeFilters.projektanci.length > 0) {
-    filtered = filtered.filter(f => 
-      activeFilters.projektanci.includes(f.properties?.projektant?.trim())
-    );
-  }
-  
-  // Filtr handlowców
-  if (activeFilters.handlowcy.length > 0) {
-    filtered = filtered.filter(f => {
-      const proj = f.properties?.projektant?.trim();
-      const hand = projektanciAssigned[proj];
-      return activeFilters.handlowcy.includes(hand);
-    });
-  }
-  
-  // Filtr statusów
-  if (activeFilters.statusy.length > 0) {
-    filtered = filtered.filter(f => {
-      const name = f.properties?.projektant?.trim();
-      const status = statusAssigned[name] || "Neutralny";
-      return activeFilters.statusy.includes(status);
-    });
-  }
-  
-  // Filtr lat
-  if (activeFilters.lata.length > 0) {
-    filtered = filtered.filter(f => {
-      const rok = f.properties?.rok;
-      return activeFilters.lata.includes(String(rok));
-    });
-  }
-  
-  // Renderuj przefiltrowane dane
-  const bounds = map.getBounds();
-  const visible = filtered.filter(f => {
-    return (
-      f.geometry &&
-      f.geometry.type === "Point" &&
-      Array.isArray(f.geometry.coordinates) &&
-      bounds.contains([f.geometry.coordinates[1], f.geometry.coordinates[0]])
-    );
-  });
-  
-  // Użyj istniejącej logiki grupowania z renderVisibleDzialki
-  const groupedPoints = {};
-  visible.forEach(f => {
-    const [lng, lat] = f.geometry.coordinates;
-    const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
-    
-    if (!groupedPoints[key]) {
-      groupedPoints[key] = { lat, lng, features: [] };
-    }
-    groupedPoints[key].features.push(f);
-  });
-  
-  const markers = [];
-  Object.values(groupedPoints).forEach(group => {
-    const { lat, lng, features } = group;
-    const latlng = L.latLng(lat, lng);
-    
-    if (features.length === 1) {
-      const f = features[0];
-      const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
-      const iconUrl = statusIcons[status];
-      
-      const marker = iconUrl
-        ? L.marker(latlng, {
-            icon: L.icon({
-              iconUrl,
-              iconSize: [32, 32],
-              iconAnchor: [16, 32],
-              popupAnchor: [0, -32]
-            })
-          })
-        : L.marker(latlng);
-      
-      bindPopupToLayer(f, marker);
-      markers.push(marker);
-    } else {
-      const marker = L.marker(latlng, {
-        icon: L.divIcon({
-          html: `<div style="background:#ef4444;color:white;width:28px;height:28px;border-radius:50%;border:2px solid white;text-align:center;line-height:24px;font-size:12px;font-weight:bold;">${features.length}</div>`,
-          className: 'grouped-marker',
-          iconSize: [28, 28],
-          iconAnchor: [14, 28],
-          popupAnchor: [0, -28]
-        })
-      });
-      
-      bindGroupPopupToLayer(features, marker);
-      markers.push(marker);
-    }
-  });
-  
-  markers.forEach(m => markerCluster.addLayer(m));
-  map.addLayer(markerCluster);
-}
-
-
-function updateClearFiltersButton() {
-  const hasActiveFilters = 
-    activeFilters.projektanci.length > 0 ||
-    activeFilters.handlowcy.length > 0 ||
-    activeFilters.statusy.length > 0 ||
-    activeFilters.lata.length > 0;
-  
-  let clearButton = document.getElementById("clearFiltersButton");
-  
-  if (hasActiveFilters && !clearButton) {
-    // Stwórz przycisk jeśli nie istnieje
-    clearButton = document.createElement("button");
-    clearButton.id = "clearFiltersButton";
-    clearButton.innerHTML = "🗑️ Wyczyść filtry";
-    clearButton.style.cssText = `
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-      background: #ef4444;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      font-weight: bold;
-    `;
-    clearButton.onclick = clearAllFilters;
-    document.body.appendChild(clearButton);
-  } else if (!hasActiveFilters && clearButton) {
-    // Usuń przycisk jeśli nie ma aktywnych filtrów
-    clearButton.remove();
-  }
-}
-
-function clearAllFilters() {
-  // Wyczyść wszystkie filtry
-  activeFilters = {
-    projektanci: [],
-    handlowcy: [],
-    statusy: [],
-    lata: []
+  window.applyProjektantFilter = function () {
+    const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
+    activeFilters.projektanci = Array.from(checkboxes).map(cb => cb.value.trim());
+    updateClearFiltersButton();
+    applyAllFilters();
+    hideSidebar();
   };
-  
-  // Odznacz wszystkie checkboxy
-  document.querySelectorAll('#sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
-  document.querySelectorAll('#statusDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
-  document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
-  document.querySelectorAll('#rokDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
-  
-  // Pokaż wszystkie punkty
-  renderVisibleDzialki();
-  
-  // Usuń przycisk
-  updateClearFiltersButton();
-}
-
-
 
   window.assignHandlowiec = function (projektant, handlowiec) {
     if (handlowiec) projektanciAssigned[projektant] = handlowiec;
@@ -925,7 +848,6 @@ function clearAllFilters() {
     renderProjektanciList(projektanciGlobal);
   };
 
-  // =========== Sidebar & Profil HANDLOWCY ===========
   window.hideProfile = () => {
     document.getElementById("profilePanel").classList.remove("show");
     document.body.classList.remove("panel-open");
@@ -941,10 +863,10 @@ function clearAllFilters() {
     if (dropdown.style.display === "none" || dropdown.style.display === "") {
       renderStatusDropdown();
       dropdown.style.display = "block";
-      icon.textContent = "⯅"; // ▲
+      icon.textContent = "⯅";
     } else {
       dropdown.style.display = "none";
-      icon.textContent = "⯆"; // ▼
+      icon.textContent = "⯆";
     }
   };
 
@@ -997,7 +919,12 @@ function clearAllFilters() {
     });
   }
 
-applyStatusFilter
+  function applyStatusFilter() {
+    const checkboxes = document.querySelectorAll('#statusDropdown input[type="checkbox"]:checked');
+    activeFilters.statusy = Array.from(checkboxes).map(cb => cb.value);
+    updateClearFiltersButton();
+    applyAllFilters();
+  }
 
   document.addEventListener("click", function (e) {
     const dropdown = document.getElementById("statusDropdown");
@@ -1005,7 +932,7 @@ applyStatusFilter
     const icon = document.getElementById("statusIcon");
     if (dropdown && wrapper && !wrapper.contains(e.target)) {
       dropdown.style.display = "none";
-      if (icon) icon.textContent = "⯆"; // ▼ po zamknięciu
+      if (icon) icon.textContent = "⯆";
     }
   });
 
@@ -1029,7 +956,6 @@ applyStatusFilter
     const container = document.getElementById("handlowcyDropdown");
     container.innerHTML = "";
     
-    // Grupowanie projektów i projektantów
     const assignedProjects = {};
     const assignedProjektanci = {};
     
@@ -1038,11 +964,9 @@ applyStatusFilter
       const hand = projektanciAssigned[proj];
       if (!hand) return;
       
-      // Licz projekty
       if (!assignedProjects[hand]) assignedProjects[hand] = 0;
       assignedProjects[hand]++;
       
-      // Zlicz unikalnych projektantów
       assignedProjektanci[hand] = assignedProjektanci[hand] || new Set();
       assignedProjektanci[hand].add(proj);
     });
@@ -1088,19 +1012,17 @@ applyStatusFilter
     });
   }
 
-function applyHandlowcyDropdownFilter() {
-  const checkboxes = document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]:checked');
-  activeFilters.handlowcy = Array.from(checkboxes).map(cb => cb.value);
-  updateClearFiltersButton();
-  applyAllFilters();
-}
-
+  function applyHandlowcyDropdownFilter() {
+    const checkboxes = document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]:checked');
+    activeFilters.handlowcy = Array.from(checkboxes).map(cb => cb.value);
+    updateClearFiltersButton();
+    applyAllFilters();
+  }
 
   window.showHandlowiecProfile = function (name) {
     const profile = document.getElementById("profilePanel");
     const content = document.getElementById("profileContent");
     
-    // Znajdź projektantów przypisanych do tego handlowca
     const projektanci = Object.keys(projektanciAssigned).filter(proj => projektanciAssigned[proj] === name);
     const projekty = geojsonFeatures.filter(f => projektanci.includes(f.properties?.projektant));
     const liczbaProjektow = projekty.length;
@@ -1129,7 +1051,6 @@ function applyHandlowcyDropdownFilter() {
     }
   });
 
-  // Funkcja obrotu
   function rotateBounds(center, size, angle) {
     const lat = center.lat;
     const lng = center.lng;
@@ -1147,15 +1068,14 @@ function applyHandlowcyDropdownFilter() {
     });
   }
 
-  // === Funkcja pomocnicza: tworzenie poly wokół punktu ===
   function createDefaultRectangle(latlng, size = 0.0003) {
     originalLatLng = latlng;
     baseLatLng = latlng;
     document.getElementById("rotateSlider").value = 0;
     document.getElementById("rotateControl").style.display = "block";
     
-    const corners = rotateBounds(latlng, size, 0); // 🔄 startowy obrys (bez obrotu)
-    baseCorners = corners; // 💾 zapamiętaj punkty bazowe
+    const corners = rotateBounds(latlng, size, 0);
+    baseCorners = corners;
     
     const polygon = L.polygon([corners], {
       color: "#3b82f6",
@@ -1167,7 +1087,6 @@ function applyHandlowcyDropdownFilter() {
     return polygon;
   }
 
-  // === Dodaj rysowanie/edycję obrysów ===
   const drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
   
@@ -1186,7 +1105,6 @@ function applyHandlowcyDropdownFilter() {
   });
   map.addControl(drawControl);
 
-  // === Po edycji lub dodaniu: zapisuj do Firebase ===
   map.on(L.Draw.Event.CREATED, function (e) {
     const layer = e.layer;
     drawnItems.addLayer(layer);
@@ -1201,17 +1119,13 @@ function applyHandlowcyDropdownFilter() {
     saveShapesToFirebase();
   });
 
-  // === Zapisz wszystkie kształty z drawnItems do Firebase ===
   function saveShapesToFirebase() {
-    // Konwertujemy grupę warstw (poligony, prostokąty itd.) na format GeoJSON
     const geojson = drawnItems.toGeoJSON();
-    // Zapisujemy dane do Firebase pod ścieżką 'obrysy'
     set(ref(db, 'obrysy'), geojson)
       .then(() => console.log('✅ Obrysy zapisane do Firebase'))
       .catch(console.error);
   }
 
-  // === Wczytaj kształty z Firebase przy starcie ===
   function loadShapesFromFirebase() {
     onValue(ref(db, 'obrysy'), (snapshot) => {
       const data = snapshot.val();
@@ -1223,12 +1137,14 @@ function applyHandlowcyDropdownFilter() {
   }
   loadShapesFromFirebase();
 
-  // 🔄 Nasłuchuj ruch mapy i aktualizuj widoczne punkty
   map.on('moveend', () => {
     renderVisibleDzialki();
   });
 
+  // Na końcu event listenera DOMContentLoaded
+  updateClearFiltersButton();
+
   // Start
   loadGeoJSON();
-  loadGeoJSONFromFirebase(); // zamiast local file
+  loadGeoJSONFromFirebase();
 });

@@ -104,6 +104,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // 👥 Tryb dodawania klienta
   let addClientMode = false;
   window.startAddClientMode = function (prefilledProject = '') {
+    console.log("🔍 Otwieranie panelu dodawania klienta z projektem:", prefilledProject);
+    
+    // Najpierw załaduj projektantów jeśli nie ma
+    if (projektanciGlobal.length === 0) {
+      console.log("⚠️ Ładowanie projektantów przed otwarciem panelu klienta");
+      fetch('projektanci.json')
+        .then(res => res.json())
+        .then(data => {
+          projektanciGlobal = data;
+          openClientPanel(prefilledProject);
+        })
+        .catch(err => {
+          console.warn("⚠️ Nie można załadować projektanci.json:", err);
+          // Używamy przykładowych danych
+          projektanciGlobal = [
+            { projektant: "Jan Kowalski", liczba_projektow: 5 },
+            { projektant: "Anna Nowak", liczba_projektow: 3 },
+            { projektant: "Piotr Wiśniewski", liczba_projektow: 7 }
+          ];
+          openClientPanel(prefilledProject);
+        });
+    } else {
+      openClientPanel(prefilledProject);
+    }
+  };
+
+  function openClientPanel(prefilledProject) {
     addClientMode = true;
     document.getElementById("addClientPanel").style.display = "block";
     
@@ -122,7 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const uniqueProjects = [...new Set(geojsonFeatures.map(f => f.properties?.popup).filter(Boolean))];
     projektSelect.innerHTML = '<option value="">(wybierz projekt)</option>' + 
       uniqueProjects.map(p => `<option value="${p}" ${p === prefilledProject ? 'selected' : ''}>${p}</option>`).join('');
-  };
+    
+    console.log("✅ Panel klienta otwarty z", projektanciGlobal.length, "projektantami");
+  }
 
   window.cancelAddClient = function () {
     addClientMode = false;
@@ -131,13 +160,18 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   window.confirmAddClient = function () {
+    console.log("🔍 Próba dodania klienta...");
+    
     const imie = document.getElementById("inputClientImie").value.trim();
     const telefon = document.getElementById("inputClientTelefon").value.trim();
     const handlowiec = document.getElementById("inputClientHandlowiec").value;
     const projektant = document.getElementById("inputClientProjektant").value;
     const projekt = document.getElementById("inputClientProjekt").value;
     
+    console.log("📝 Dane klienta:", { imie, telefon, handlowiec, projektant, projekt });
+    
     if (!imie || !telefon || !handlowiec || !projektant || !projekt) {
+      console.warn("⚠️ Niekompletne dane klienta");
       alert("Uzupełnij wszystkie pola.");
       return;
     }
@@ -151,6 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
       projekt: projekt,
       dataUtworzenia: new Date().toISOString()
     };
+    
+    console.log("➕ Dodawanie klienta:", newClient);
     
     klienciGlobal.push(newClient);
     saveClientToFirebase(newClient);
@@ -1051,7 +1087,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <select onchange="saveStatus('${proj}', this.value)">
         ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
       </select><br/>
-      <button onclick="startAddClientMode('${inwestycja}')" style="background:#10b981;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;margin:4px 0;">👥 Dodaj klienta</button><br/>
+      <button type="button" onclick="event.stopPropagation(); startAddClientMode('${inwestycja}')" style="background:#10b981;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;margin:4px 0;">👥 Dodaj klienta</button><br/>
       <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
     `;
     

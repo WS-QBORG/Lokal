@@ -5,6 +5,16 @@ let projektanciNotes = {};
 let geojsonFeatures = [];
 let markerCluster;
 
+
+// Dodaj po istniejących zmiennych globalnych
+let activeFilters = {
+  projektanci: [],
+  handlowcy: [],
+  statusy: [],
+  lata: []
+};
+
+
 // ===== Renderowanie projektantów =============
 window.renderProjektanciList = function (list) {
   const container = document.getElementById("sidebarContent");
@@ -567,20 +577,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applyRokFilter() {
-    const checkboxes = document.querySelectorAll('#rokDropdown input[type="checkbox"]:checked');
-    const selectedRoki = Array.from(checkboxes).map(cb => cb.value);
-    
-    // Jeśli zaznaczono "Wszystkie", pokaż wszystko
-    if (selectedRoki.includes("all")) {
-      // Odznacz inne checkboxy jeśli zaznaczono "Wszystkie"
-      document.querySelectorAll('#rokDropdown input[type="checkbox"]:not([value="all"])').forEach(cb => {
-        cb.checked = false;
-      });
-      // Tymczasowo zachowaj oryginalne dane
-      const originalFeatures = [...geojsonFeatures];
-      renderVisibleDzialki();
-      return;
-    }
+  const checkboxes = document.querySelectorAll('#rokDropdown input[type="checkbox"]:checked');
+  const selectedRoki = Array.from(checkboxes).map(cb => cb.value);
+  
+  // Jeśli zaznaczono "Wszystkie", wyczyść filtry lat
+  if (selectedRoki.includes("all")) {
+    document.querySelectorAll('#rokDropdown input[type="checkbox"]:not([value="all"])').forEach(cb => {
+      cb.checked = false;
+    });
+    activeFilters.lata = [];
+  } else {
+    activeFilters.lata = selectedRoki.filter(rok => rok !== "all");
+  }
+  
+  updateClearFiltersButton();
+  applyAllFilters();
+}
+
     
     // Jeśli nic nie zaznaczono, pokaż wszystko
     if (selectedRoki.length === 0) {
@@ -602,6 +615,12 @@ document.addEventListener("DOMContentLoaded", () => {
     geojsonFeatures = filtered;
     renderVisibleDzialki();
     geojsonFeatures = originalFeatures; // przywróć oryginalne dane
+
+
+  // Na końcu event listenera DOMContentLoaded
+updateClearFiltersButton();
+
+  
   }
 
   // Event listener do zamykania dropdown lat po kliknięciu poza nim
@@ -664,23 +683,179 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  window.applyProjektantFilter = function () {
-    const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
-    const selectedNames = Array.from(checkboxes).map(cb => cb.value.trim());
-    
-    if (markerCluster) map.removeLayer(markerCluster);
-    markerCluster = createClusterGroup();
-    
-    const filtered = geojsonFeatures.filter(f => selectedNames.includes(f.properties?.projektant?.trim()));
-    const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-      pointToLayer: (feature, latlng) => L.marker(latlng),
-      onEachFeature: bindPopupToLayer
+ window.applyProjektantFilter = function () {
+  const checkboxes = document.querySelectorAll('#sidebar input[type="checkbox"]:checked');
+  activeFilters.projektanci = Array.from(checkboxes).map(cb => cb.value.trim());
+  updateClearFiltersButton();
+  applyAllFilters();
+  hideSidebar();
+};
+
+
+function applyAllFilters() {
+  if (markerCluster) map.removeLayer(markerCluster);
+  markerCluster = createClusterGroup();
+  
+  let filtered = [...geojsonFeatures];
+  
+  // Filtr projektantów
+  if (activeFilters.projektanci.length > 0) {
+    filtered = filtered.filter(f => 
+      activeFilters.projektanci.includes(f.properties?.projektant?.trim())
+    );
+  }
+  
+  // Filtr handlowców
+  if (activeFilters.handlowcy.length > 0) {
+    filtered = filtered.filter(f => {
+      const proj = f.properties?.projektant?.trim();
+      const hand = projektanciAssigned[proj];
+      return activeFilters.handlowcy.includes(hand);
     });
+  }
+  
+  // Filtr statusów
+  if (activeFilters.statusy.length > 0) {
+    filtered = filtered.filter(f => {
+      const name = f.properties?.projektant?.trim();
+      const status = statusAssigned[name] || "Neutralny";
+      return activeFilters.statusy.includes(status);
+    });
+  }
+  
+  // Filtr lat
+  if (activeFilters.lata.length > 0) {
+    filtered = filtered.filter(f => {
+      const rok = f.properties?.rok;
+      return activeFilters.lata.includes(String(rok));
+    });
+  }
+  
+  // Renderuj przefiltrowane dane
+  const bounds = map.getBounds();
+  const visible = filtered.filter(f => {
+    return (
+      f.geometry &&
+      f.geometry.type === "Point" &&
+      Array.isArray(f.geometry.coordinates) &&
+      bounds.contains([f.geometry.coordinates[1], f.geometry.coordinates[0]])
+    );
+  });
+  
+  // Użyj istniejącej logiki grupowania z renderVisibleDzialki
+  const groupedPoints = {};
+  visible.forEach(f => {
+    const [lng, lat] = f.geometry.coordinates;
+    const key = `${lat.toFixed(5)},${lng.toFixed(5)}`;
     
-    markerCluster.addLayer(layer);
-    map.addLayer(markerCluster);
-    hideSidebar();
+    if (!groupedPoints[key]) {
+      groupedPoints[key] = { lat, lng, features: [] };
+    }
+    groupedPoints[key].features.push(f);
+  });
+  
+  const markers = [];
+  Object.values(groupedPoints).forEach(group => {
+    const { lat, lng, features } = group;
+    const latlng = L.latLng(lat, lng);
+    
+    if (features.length === 1) {
+      const f = features[0];
+      const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
+      const iconUrl = statusIcons[status];
+      
+      const marker = iconUrl
+        ? L.marker(latlng, {
+            icon: L.icon({
+              iconUrl,
+              iconSize: [32, 32],
+              iconAnchor: [16, 32],
+              popupAnchor: [0, -32]
+            })
+          })
+        : L.marker(latlng);
+      
+      bindPopupToLayer(f, marker);
+      markers.push(marker);
+    } else {
+      const marker = L.marker(latlng, {
+        icon: L.divIcon({
+          html: `<div style="background:#ef4444;color:white;width:28px;height:28px;border-radius:50%;border:2px solid white;text-align:center;line-height:24px;font-size:12px;font-weight:bold;">${features.length}</div>`,
+          className: 'grouped-marker',
+          iconSize: [28, 28],
+          iconAnchor: [14, 28],
+          popupAnchor: [0, -28]
+        })
+      });
+      
+      bindGroupPopupToLayer(features, marker);
+      markers.push(marker);
+    }
+  });
+  
+  markers.forEach(m => markerCluster.addLayer(m));
+  map.addLayer(markerCluster);
+}
+
+
+function updateClearFiltersButton() {
+  const hasActiveFilters = 
+    activeFilters.projektanci.length > 0 ||
+    activeFilters.handlowcy.length > 0 ||
+    activeFilters.statusy.length > 0 ||
+    activeFilters.lata.length > 0;
+  
+  let clearButton = document.getElementById("clearFiltersButton");
+  
+  if (hasActiveFilters && !clearButton) {
+    // Stwórz przycisk jeśli nie istnieje
+    clearButton = document.createElement("button");
+    clearButton.id = "clearFiltersButton";
+    clearButton.innerHTML = "🗑️ Wyczyść filtry";
+    clearButton.style.cssText = `
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+    `;
+    clearButton.onclick = clearAllFilters;
+    document.body.appendChild(clearButton);
+  } else if (!hasActiveFilters && clearButton) {
+    // Usuń przycisk jeśli nie ma aktywnych filtrów
+    clearButton.remove();
+  }
+}
+
+function clearAllFilters() {
+  // Wyczyść wszystkie filtry
+  activeFilters = {
+    projektanci: [],
+    handlowcy: [],
+    statusy: [],
+    lata: []
   };
+  
+  // Odznacz wszystkie checkboxy
+  document.querySelectorAll('#sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('#statusDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('#rokDropdown input[type="checkbox"]').forEach(cb => cb.checked = false);
+  
+  // Pokaż wszystkie punkty
+  renderVisibleDzialki();
+  
+  // Usuń przycisk
+  updateClearFiltersButton();
+}
+
+
 
   window.assignHandlowiec = function (projektant, handlowiec) {
     if (handlowiec) projektanciAssigned[projektant] = handlowiec;
@@ -822,27 +997,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function applyStatusFilter() {
-    const checkboxes = document.querySelectorAll('#statusDropdown input[type="checkbox"]:checked');
-    const selectedStatusy = Array.from(checkboxes).map(cb => cb.value);
-    
-    if (markerCluster) map.removeLayer(markerCluster);
-    markerCluster = createClusterGroup();
-    
-    const filtered = geojsonFeatures.filter(f => {
-      const name = f.properties?.projektant?.trim();
-      const status = statusAssigned[name] || "Neutralny";
-      return selectedStatusy.includes(status);
-    });
-    
-    const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-      pointToLayer: (feature, latlng) => L.marker(latlng),
-      onEachFeature: bindPopupToLayer
-    });
-    
-    markerCluster.addLayer(layer);
-    map.addLayer(markerCluster);
-  }
+applyStatusFilter
 
   document.addEventListener("click", function (e) {
     const dropdown = document.getElementById("statusDropdown");
@@ -933,27 +1088,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function applyHandlowcyDropdownFilter() {
-    const checkboxes = document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]:checked');
-    const selected = Array.from(checkboxes).map(cb => cb.value);
-    
-    if (markerCluster) map.removeLayer(markerCluster);
-    markerCluster = createClusterGroup();
-    
-    const filtered = geojsonFeatures.filter(f => {
-      const proj = f.properties?.projektant;
-      const hand = projektanciAssigned[proj];
-      return selected.includes(hand);
-    });
-    
-    const layer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-      pointToLayer: (feature, latlng) => L.marker(latlng),
-      onEachFeature: bindPopupToLayer
-    });
-    
-    markerCluster.addLayer(layer);
-    map.addLayer(markerCluster);
-  }
+function applyHandlowcyDropdownFilter() {
+  const checkboxes = document.querySelectorAll('#handlowcyDropdown input[type="checkbox"]:checked');
+  activeFilters.handlowcy = Array.from(checkboxes).map(cb => cb.value);
+  updateClearFiltersButton();
+  applyAllFilters();
+}
+
 
   window.showHandlowiecProfile = function (name) {
     const profile = document.getElementById("profilePanel");

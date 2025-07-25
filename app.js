@@ -1029,6 +1029,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const projekty = geojsonFeatures.filter(f => f.properties?.projektant === name);
     const liczba = projekty.length;
     
+    // Generuj listę projektów
+    let projektyHtml = '';
+    if (projekty.length > 0) {
+      projektyHtml = `
+        <div style="margin-top:1rem;">
+          <h4 style="color:white;margin-bottom:0.5rem;">📋 Projekty (${liczba}):</h4>
+          <div style="max-height:200px;overflow-y:auto;background:#374151;border:1px solid #4b5563;border-radius:0.375rem;padding:0.5rem;">
+      `;
+      
+      projekty.forEach((projekt, index) => {
+        const rok = projekt.properties?.rok || 'brak';
+        const adres = projekt.properties?.adres || 'Brak adresu';
+        const dzialka = projekt.properties?.dzialka || 'Brak działki';
+        const inwestycja = projekt.properties?.popup || 'Brak opisu';
+        const coords = projekt.geometry?.coordinates;
+        const lat = coords ? coords[1] : null;
+        const lon = coords ? coords[0] : null;
+        
+        projektyHtml += `
+          <div style="border-bottom:1px solid #4b5563;padding:0.5rem 0;${index === projekty.length - 1 ? 'border-bottom:none;' : ''}">
+            <div style="font-weight:bold;color:#60a5fa;">${rok} - ${adres}</div>
+            <div style="font-size:0.85em;color:#d1d5db;margin-top:0.25rem;">${inwestycja}</div>
+            <div style="font-size:0.8em;color:#9ca3af;margin-top:0.25rem;">Działka: ${dzialka}</div>
+            ${lat && lon ? `<a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;font-size:0.8em;">📍 Pokaż na mapie</a>` : ''}
+          </div>
+        `;
+      });
+      
+      projektyHtml += `
+          </div>
+        </div>
+      `;
+    }
+    
     content.innerHTML = `
       <span id="profileClose" onclick="hideProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
       <h3>${name}</h3>
@@ -1036,6 +1070,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <p><b>Liczba projektów:</b> ${liczba}</p>
       <label>📝 Notatki:</label>
       <textarea onchange="projektanciNotes['${name}'] = this.value; saveNote('${name}', this.value)" style="width:100%;height:100px;margin-top:0.5rem;padding:0.5rem;background:#374151;border:1px solid #4b5563;border-radius:0.375rem;color:white;resize:vertical;">${notes}</textarea>
+      ${projektyHtml}
     `;
     
     document.body.classList.add("panel-open");

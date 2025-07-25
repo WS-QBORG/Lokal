@@ -242,12 +242,30 @@ document.addEventListener("DOMContentLoaded", () => {
       const latlng = e.latlng;
       
       const marker = L.marker(latlng).addTo(map);
-      marker.bindPopup(`
-        <b>${projektant}</b><br/>
-        Adres: ${adres}<br/>
-        Klient: ${klient}<br/>
-        Handlowiec: ${handlowiec}
-      `);
+ marker.bindPopup(`
+  <div class="popup-wrapper">
+    <h4 class="popup-title">${projektant}</h4>
+    <p><b>Rok:</b> ${rok}</p>
+    <p><b>Inwestycja:</b><br>${inwestycja}</p>
+    <p><b>Adres:</b> ${adres || "Brak adresu"}</p>
+    <p><b>Działka:</b> ${dzialka || "Brak działki"}</p>
+
+    <div class="popup-select">
+      <label for="statusSelect">Status:</label>
+      <select onchange="updateStatus('${projektant}', this.value)">
+        ${generateStatusOptions(projektant)}
+      </select>
+    </div>
+
+    <div class="popup-actions">
+      <button class="btn btn-success" onclick="assignHandlowiec('${projektant}')">+ Przypisz handlowca</button>
+      <button class="btn btn-add-client" onclick="openAddClient('${projektant}')">➕ Dodaj klienta</button>
+    </div>
+
+    <a href="https://maps.google.com/?q=${adres}" target="_blank" class="popup-link">📍 Pokaż w Google Maps</a>
+  </div>
+`);
+
       
       const newFeature = {
         type: "Feature",

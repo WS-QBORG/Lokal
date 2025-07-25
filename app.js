@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ref = window.firebaseRef;
   const onValue = window.firebaseOnValue;
   const set = window.firebaseSet;
+  const push = window.firebasePush;
   let activeRectangle = null;
   let originalLatLng = null;
   let baseCorners = null;
@@ -69,18 +70,22 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Odczytywanie statusów / akcji
-  const statusRef = firebaseRef(firebaseDB, 'statusy');
-  onValue(statusRef, snapshot => {
-    Object.assign(statusAssigned, snapshot.val() || {});
-    console.log("📥 Statusy:", statusAssigned);
-  });
+  if (db && ref && onValue) {
+    const statusRef = ref(db, 'statusy');
+    onValue(statusRef, snapshot => {
+      Object.assign(statusAssigned, snapshot.val() || {});
+      console.log("📥 Statusy:", statusAssigned);
+    });
+  }
 
   // Zapisywanie statusów / akcji
   window.saveStatus = function (projektant, status) {
     statusAssigned[projektant] = status;
-    set(ref(db, `statusy/${projektant}`), status)
-      .then(() => console.log('✅ Status zapisany:', projektant, status))
-      .catch(console.error);
+    if (db && ref && set) {
+      set(ref(db, `statusy/${projektant}`), status)
+        .then(() => console.log('✅ Status zapisany:', projektant, status))
+        .catch(console.error);
+    }
   };
 
   // 🔁 Tryb dodawania punktu
@@ -132,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
           klient,
           handlowiec,
           rok: new Date().getFullYear(),
-          popup: `Dodany punkt – ${adres}`,
+          popup: `<b>Inwestycja:</b> Dom jednorodzinny - ${adres}`,
           dzialka: "Brak"
         }
       };
@@ -145,6 +150,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function saveGeoJSONToFirebase() {
+    if (!db || !ref || !set || !push) {
+      console.warn("Firebase nie jest dostępne");
+      return;
+    }
+    
     const featureCollection = {
       type: "FeatureCollection",
       features: geojsonFeatures
@@ -156,6 +166,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function loadGeoJSONFromFirebase() {
+    if (!db || !ref || !onValue) {
+      console.warn("Firebase nie jest dostępne");
+      return;
+    }
+    
     onValue(ref(db, 'punkty'), (snapshot) => {
       const data = snapshot.val();
       if (!data) return;
@@ -192,12 +207,14 @@ document.addEventListener("DOMContentLoaded", () => {
     saveShapesToFirebase();
   });
 
-  const assignmentsRef = ref(db, 'assignments');
-  onValue(assignmentsRef, snapshot => {
-    projektanciAssigned = snapshot.val() || {};
-    console.log('📥 Firebase assignments:', projektanciAssigned);
-    renderProjektanciList(projektanciGlobal);
-  });
+  if (db && ref && onValue) {
+    const assignmentsRef = ref(db, 'assignments');
+    onValue(assignmentsRef, snapshot => {
+      projektanciAssigned = snapshot.val() || {};
+      console.log('📥 Firebase assignments:', projektanciAssigned);
+      renderProjektanciList(projektanciGlobal);
+    });
+  }
 
   function showLoading() {
     document.getElementById("loadingOverlay").style.display = "flex";
@@ -208,22 +225,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.saveAssignment = function (projektant, handlowiec) {
-    set(ref(db, `assignments/${projektant}`), handlowiec)
-      .then(() => console.log('✅ Zapisano:', projektant, handlowiec))
-      .catch(console.error);
+    if (db && ref && set) {
+      set(ref(db, `assignments/${projektant}`), handlowiec)
+        .then(() => console.log('✅ Zapisano:', projektant, handlowiec))
+        .catch(console.error);
+    }
   };
 
-  const notesRef = ref(db, 'notes');
-  onValue(notesRef, snapshot => {
-    projektanciNotes = snapshot.val() || {};
-    console.log('📥 Firebase notatki:', projektanciNotes);
-    renderProjektanciList(projektanciGlobal);
-  });
+  if (db && ref && onValue) {
+    const notesRef = ref(db, 'notes');
+    onValue(notesRef, snapshot => {
+      projektanciNotes = snapshot.val() || {};
+      console.log('📥 Firebase notatki:', projektanciNotes);
+      renderProjektanciList(projektanciGlobal);
+    });
+  }
 
   window.saveNote = function (projektant, note) {
-    set(ref(db, `notes/${projektant}`), note)
-      .then(() => console.log('✅ Notatka zapisana:', projektant, note))
-      .catch(console.error);
+    if (db && ref && set) {
+      set(ref(db, `notes/${projektant}`), note)
+        .then(() => console.log('✅ Notatka zapisana:', projektant, note))
+        .catch(console.error);
+    }
   };
 
   // =========== Mapa ===========
@@ -255,6 +278,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadGeoJSON() {
     showLoading();
+    
+    // Przykładowe dane jeśli brak pliku dzialki.geojson
+    const sampleData = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [14.5528, 53.4285]
+          },
+          "properties": {
+            "projektant": "Jan Kowalski",
+            "rok": 2024,
+            "popup": "<b>Inwestycja:</b> Dom jednorodzinny - ul. Przykładowa 1",
+            "adres": "ul. Przykładowa 1, Szczecin",
+            "dzialka": "123/45"
+          }
+        },
+        {
+          "type": "Feature", 
+          "geometry": {
+            "type": "Point",
+            "coordinates": [14.5828, 53.4385]
+          },
+          "properties": {
+            "projektant": "Anna Nowak",
+            "rok": 2023,
+            "popup": "<b>Inwestycja:</b> Dom wielorodzinny - ul. Testowa 2",
+            "adres": "ul. Testowa 2, Szczecin",
+            "dzialka": "456/78"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point", 
+            "coordinates": [14.5428, 53.4185]
+          },
+          "properties": {
+            "projektant": "Piotr Wiśniewski",
+            "rok": 2024,
+            "popup": "<b>Inwestycja:</b> Budynek usługowy - ul. Biznesowa 3",
+            "adres": "ul. Biznesowa 3, Szczecin", 
+            "dzialka": "789/12"
+          }
+        }
+      ]
+    };
+    
     fetch('dzialki.geojson')
       .then(res => res.json())
       .then(data => {
@@ -263,7 +336,9 @@ document.addEventListener("DOMContentLoaded", () => {
         hideLoading();
       })
       .catch(err => {
-        console.error("❌ Błąd ładowania GeoJSON:", err);
+        console.warn("⚠️ Nie można załadować dzialki.geojson, używam przykładowych danych:", err);
+        geojsonFeatures = sampleData.features;
+        renderVisibleDzialki();
         hideLoading();
       });
   }
@@ -469,44 +544,16 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-// Filtr typów inwestycji
-if (activeFilters.inwestycje.length > 0) {
-  filtered = filtered.filter(f => {
-    const popup = f.properties?.popup;
-    if (!popup) return false;
-    
-    // Funkcja do wyciągania typu inwestycji (powtórz tutaj)
-    function extractInvestmentType(popup) {
-      const match = popup.match(/<b>Inwestycja:<\/b>\s*([^<]+)/);
-      if (!match) return null;
-      
-      const fullText = match[1].trim();
-      
-      if (fullText.toLowerCase().includes('jednorodzinny')) {
-        return 'Dom jednorodzinny';
-      }
-      else if (fullText.toLowerCase().includes('wielorodzinny')) {
-        return 'Dom wielorodzinny';
-      }
-      else if (fullText.toLowerCase().includes('usługowy')) {
-        return 'Budynek usługowy';
-      }
-      else if (fullText.toLowerCase().includes('kanalizacja')) {
-        return 'Infrastruktura';
-      }
-      else if (fullText.toLowerCase().includes('instalacja')) {
-        return 'Instalacje';
-      }
-      else {
-        return 'Inne';
-      }
+    // Filtr typów inwestycji - NAPRAWIONY
+    if (activeFilters.inwestycje.length > 0) {
+      filtered = filtered.filter(f => {
+        const popup = f.properties?.popup;
+        if (!popup) return false;
+        
+        const type = extractInvestmentType(popup);
+        return type && activeFilters.inwestycje.includes(type);
+      });
     }
-    
-    const type = extractInvestmentType(popup);
-    return activeFilters.inwestycje.includes(type);
-  });
-}
-
     
     // Renderuj przefiltrowane dane
     const bounds = map.getBounds();
@@ -571,17 +618,56 @@ if (activeFilters.inwestycje.length > 0) {
     
     markers.forEach(m => markerCluster.addLayer(m));
     map.addLayer(markerCluster);
+    
+    console.log(`🎯 Zastosowano filtry: ${filtered.length} z ${geojsonFeatures.length} punktów`);
+  }
+
+  // ========== FUNKCJA WYCIĄGANIA TYPU INWESTYCJI - POPRAWIONA ==========
+  function extractInvestmentType(popup) {
+    if (!popup || typeof popup !== 'string') {
+      console.warn('Brak lub nieprawidłowy popup:', popup);
+      return null;
+    }
+    
+    // Wzorzec do wyszukiwania zawartości po "Inwestycja:"
+    const match = popup.match(/<b>Inwestycja:<\/b>\s*([^<]+)/i);
+    if (!match) {
+      console.warn('Nie znaleziono wzorca "Inwestycja:" w popup:', popup);
+      return 'Inne';
+    }
+    
+    const fullText = match[1].trim().toLowerCase();
+    console.log('Wykryty tekst inwestycji:', fullText);
+    
+    // Sprawdź typ inwestycji
+    if (fullText.includes('jednorodzinny') || fullText.includes('dom jednorodzinny')) {
+      return 'Dom jednorodzinny';
+    }
+    else if (fullText.includes('wielorodzinny') || fullText.includes('dom wielorodzinny')) {
+      return 'Dom wielorodzinny';
+    }
+    else if (fullText.includes('usługowy') || fullText.includes('budynek usługowy')) {
+      return 'Budynek usługowy';
+    }
+    else if (fullText.includes('kanalizacja') || fullText.includes('infrastruktura')) {
+      return 'Infrastruktura';
+    }
+    else if (fullText.includes('instalacja') || fullText.includes('instalacje')) {
+      return 'Instalacje';
+    }
+    else {
+      return 'Inne';
+    }
   }
 
   function updateClearFiltersButton() {
     const hasActiveFilters = 
-  activeFilters.projektanci.length > 0 ||
-  activeFilters.handlowcy.length > 0 ||
-  activeFilters.statusy.length > 0 ||
-  activeFilters.lata.length > 0 ||
-  activeFilters.inwestycje.length > 0;
+      activeFilters.projektanci.length > 0 ||
+      activeFilters.handlowcy.length > 0 ||
+      activeFilters.statusy.length > 0 ||
+      activeFilters.lata.length > 0 ||
+      activeFilters.inwestycje.length > 0;
 
-    
     let clearButton = document.getElementById("clearFiltersButton");
     
     if (hasActiveFilters && !clearButton) {
@@ -627,7 +713,6 @@ if (activeFilters.inwestycje.length > 0) {
     updateClearFiltersButton();
   }
 
-
   // ========== ROK DROPDOWN SYSTEM ==========
   
   window.toggleRokDropdown = function () {
@@ -666,16 +751,9 @@ if (activeFilters.inwestycje.length > 0) {
     
     // Dodaj opcję "Wszystkie"
     const allDiv = document.createElement("div");
-    allDiv.style.display = "flex";
-    allDiv.style.justifyContent = "space-between";
-    allDiv.style.alignItems = "center";
-    allDiv.style.marginBottom = "0.3rem";
-    allDiv.style.color = "white";
+    allDiv.className = "filter-option";
     
     const allLabel = document.createElement("label");
-    allLabel.style.display = "flex";
-    allLabel.style.alignItems = "center";
-    allLabel.style.gap = "0.5rem";
     
     const allCheckbox = document.createElement("input");
     allCheckbox.type = "checkbox";
@@ -690,8 +768,7 @@ if (activeFilters.inwestycje.length > 0) {
     allLabel.appendChild(allSpan);
     
     const allCount = document.createElement("span");
-    allCount.style.color = "#9ca3af";
-    allCount.style.fontSize = "13px";
+    allCount.className = "filter-count";
     allCount.textContent = geojsonFeatures.length;
     
     allDiv.appendChild(allLabel);
@@ -708,16 +785,9 @@ if (activeFilters.inwestycje.length > 0) {
       const count = yearGroups[rok] || 0;
       
       const div = document.createElement("div");
-      div.style.display = "flex";
-      div.style.justifyContent = "space-between";
-      div.style.alignItems = "center";
-      div.style.marginBottom = "0.3rem";
-      div.style.color = "white";
+      div.className = "filter-option";
       
       const label = document.createElement("label");
-      label.style.display = "flex";
-      label.style.alignItems = "center";
-      label.style.gap = "0.5rem";
       
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
@@ -731,8 +801,7 @@ if (activeFilters.inwestycje.length > 0) {
       label.appendChild(span);
       
       const countSpan = document.createElement("span");
-      countSpan.style.color = "#9ca3af";
-      countSpan.style.fontSize = "13px";
+      countSpan.className = "filter-count";
       countSpan.textContent = count;
       
       div.appendChild(label);
@@ -758,130 +827,104 @@ if (activeFilters.inwestycje.length > 0) {
     applyAllFilters();
   }
 
-// ========== INWESTYCJE DROPDOWN SYSTEM ==========
+  // ========== INWESTYCJE DROPDOWN SYSTEM - NAPRAWIONY ==========
 
-window.toggleInwestycjeDropdown = function () {
-  const dropdown = document.getElementById("inwestycjeDropdown");
-  const icon = document.getElementById("inwestycjeIcon");
-  if (!dropdown || !icon) return;
-  
-  if (dropdown.style.display === "none" || dropdown.style.display === "") {
-    renderInwestycjeDropdown();
-    dropdown.style.display = "block";
-    icon.textContent = "⯅";
-  } else {
-    dropdown.style.display = "none";
-    icon.textContent = "⯆";
-  }
-};
+  window.toggleInwestycjeDropdown = function () {
+    const dropdown = document.getElementById("inwestycjeDropdown");
+    const icon = document.getElementById("inwestycjeIcon");
+    if (!dropdown || !icon) return;
+    
+    if (dropdown.style.display === "none" || dropdown.style.display === "") {
+      renderInwestycjeDropdown();
+      dropdown.style.display = "block";
+      icon.textContent = "⯅";
+    } else {
+      dropdown.style.display = "none";
+      icon.textContent = "⯆";
+    }
+  };
 
-function renderInwestycjeDropdown() {
-  const container = document.getElementById("inwestycjeDropdown");
-  container.innerHTML = "";
-  
-  // Funkcja do wyciągania typu inwestycji z popup
-  function extractInvestmentType(popup) {
-    const match = popup.match(/<b>Inwestycja:<\/b>\s*([^<]+)/);
-    if (!match) return null;
+  function renderInwestycjeDropdown() {
+    const container = document.getElementById("inwestycjeDropdown");
+    container.innerHTML = "";
     
-    const fullText = match[1].trim();
+    // Grupuj inwestycje według typu
+    const investmentGroups = {};
+    geojsonFeatures.forEach(f => {
+      const popup = f.properties?.popup;
+      if (!popup) return;
+      
+      const type = extractInvestmentType(popup);
+      if (!type) return;
+      
+      if (!investmentGroups[type]) investmentGroups[type] = 0;
+      investmentGroups[type]++;
+    });
     
-    // Sprawdź czy zawiera "jednorodzinny"
-    if (fullText.toLowerCase().includes('jednorodzinny')) {
-      return 'Dom jednorodzinny';
+    console.log('🏠 Zgrupowane inwestycje:', investmentGroups);
+    
+    // Sortuj typy alfabetycznie
+    const sortedTypes = Object.keys(investmentGroups).sort();
+    
+    if (sortedTypes.length === 0) {
+      const noDataDiv = document.createElement("div");
+      noDataDiv.style.color = "#9ca3af";
+      noDataDiv.style.textAlign = "center";
+      noDataDiv.style.padding = "1rem";
+      noDataDiv.textContent = "Brak danych o inwestycjach";
+      container.appendChild(noDataDiv);
+      return;
     }
-    // Sprawdź czy zawiera "wielorodzinny"
-    else if (fullText.toLowerCase().includes('wielorodzinny')) {
-      return 'Dom wielorodzinny';
-    }
-    // Sprawdź czy zawiera "usługowy"
-    else if (fullText.toLowerCase().includes('usługowy')) {
-      return 'Budynek usługowy';
-    }
-    // Sprawdź czy zawiera "kanalizacja"
-    else if (fullText.toLowerCase().includes('kanalizacja')) {
-      return 'Infrastruktura';
-    }
-    // Sprawdź czy zawiera "instalacja"
-    else if (fullText.toLowerCase().includes('instalacja')) {
-      return 'Instalacje';
-    }
-    else {
-      return 'Inne';
-    }
+    
+    sortedTypes.forEach(type => {
+      const count = investmentGroups[type];
+      
+      const div = document.createElement("div");
+      div.className = "filter-option";
+      
+      const label = document.createElement("label");
+      
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.value = type;
+      checkbox.onchange = applyInwestycjeFilter;
+      
+      const span = document.createElement("span");
+      span.textContent = type;
+      
+      label.appendChild(checkbox);
+      label.appendChild(span);
+      
+      const countSpan = document.createElement("span");
+      countSpan.className = "filter-count";
+      countSpan.textContent = count;
+      
+      div.appendChild(label);
+      div.appendChild(countSpan);
+      container.appendChild(div);
+    });
   }
-  
-  // Grupuj inwestycje według typu
-  const investmentGroups = {};
-  geojsonFeatures.forEach(f => {
-    const popup = f.properties?.popup;
-    if (!popup) return;
+
+  function applyInwestycjeFilter() {
+    const checkboxes = document.querySelectorAll('#inwestycjeDropdown input[type="checkbox"]:checked');
+    activeFilters.inwestycje = Array.from(checkboxes).map(cb => cb.value);
     
-    const type = extractInvestmentType(popup);
-    if (!type) return;
+    console.log('🎯 Wybrane filtry inwestycji:', activeFilters.inwestycje);
     
-    if (!investmentGroups[type]) investmentGroups[type] = 0;
-    investmentGroups[type]++;
+    updateClearFiltersButton();
+    applyAllFilters();
+  }
+
+  // Event listener do zamykania dropdown
+  document.addEventListener("click", function (e) {
+    const dropdown = document.getElementById("inwestycjeDropdown");
+    const wrapper = document.getElementById("inwestycjeDropdownWrapper");
+    const icon = document.getElementById("inwestycjeIcon");
+    if (dropdown && wrapper && !wrapper.contains(e.target)) {
+      dropdown.style.display = "none";
+      if (icon) icon.textContent = "⯆";
+    }
   });
-  
-  // Sortuj typy alfabetycznie
-  const sortedTypes = Object.keys(investmentGroups).sort();
-  
-  sortedTypes.forEach(type => {
-    const count = investmentGroups[type];
-    
-    const div = document.createElement("div");
-    div.style.display = "flex";
-    div.style.justifyContent = "space-between";
-    div.style.alignItems = "center";
-    div.style.marginBottom = "0.3rem";
-    div.style.color = "white";
-    
-    const label = document.createElement("label");
-    label.style.display = "flex";
-    label.style.alignItems = "center";
-    label.style.gap = "0.5rem";
-    
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.value = type;
-    checkbox.onchange = applyInwestycjeFilter;
-    
-    const span = document.createElement("span");
-    span.textContent = type;
-    
-    label.appendChild(checkbox);
-    label.appendChild(span);
-    
-    const countSpan = document.createElement("span");
-    countSpan.style.color = "#9ca3af";
-    countSpan.style.fontSize = "13px";
-    countSpan.textContent = count;
-    
-    div.appendChild(label);
-    div.appendChild(countSpan);
-    container.appendChild(div);
-  });
-}
-
-function applyInwestycjeFilter() {
-  const checkboxes = document.querySelectorAll('#inwestycjeDropdown input[type="checkbox"]:checked');
-  activeFilters.inwestycje = Array.from(checkboxes).map(cb => cb.value);
-  updateClearFiltersButton();
-  applyAllFilters();
-}
-
-// Event listener do zamykania dropdown
-document.addEventListener("click", function (e) {
-  const dropdown = document.getElementById("inwestycjeDropdown");
-  const wrapper = document.getElementById("inwestycjeDropdownWrapper");
-  const icon = document.getElementById("inwestycjeIcon");
-  if (dropdown && wrapper && !wrapper.contains(e.target)) {
-    dropdown.style.display = "none";
-    if (icon) icon.textContent = "⯆";
-  }
-});
-
 
   document.addEventListener("click", function (e) {
     const dropdown = document.getElementById("rokDropdown");
@@ -932,10 +975,23 @@ document.addEventListener("click", function (e) {
     if (sidebar.classList.contains("show")) {
       sidebar.classList.remove("show");
     } else {
+      // Załaduj przykładowych projektantów jeśli brak pliku
+      const sampleProjectanci = [
+        { projektant: "Jan Kowalski", liczba_projektow: 5 },
+        { projektant: "Anna Nowak", liczba_projektow: 3 },
+        { projektant: "Piotr Wiśniewski", liczba_projektow: 7 }
+      ];
+      
       fetch('projektanci.json')
         .then(res => res.json())
         .then(data => {
           projektanciGlobal = data;
+          renderProjektanciList(projektanciGlobal);
+          sidebar.classList.add("show");
+        })
+        .catch(err => {
+          console.warn("⚠️ Nie można załadować projektanci.json, używam przykładowych danych:", err);
+          projektanciGlobal = sampleProjectanci;
           renderProjektanciList(projektanciGlobal);
           sidebar.classList.add("show");
         });
@@ -979,7 +1035,7 @@ document.addEventListener("click", function (e) {
       <p><b>Handlowiec:</b> ${handlowiec}</p>
       <p><b>Liczba projektów:</b> ${liczba}</p>
       <label>📝 Notatki:</label>
-      <textarea onchange="projektanciNotes['${name}'] = this.value; saveNote('${name}', this.value)">${notes}</textarea>
+      <textarea onchange="projektanciNotes['${name}'] = this.value; saveNote('${name}', this.value)" style="width:100%;height:100px;margin-top:0.5rem;padding:0.5rem;background:#374151;border:1px solid #4b5563;border-radius:0.375rem;color:white;resize:vertical;">${notes}</textarea>
     `;
     
     document.body.classList.add("panel-open");
@@ -1055,17 +1111,11 @@ document.addEventListener("click", function (e) {
     
     statusy.forEach(status => {
       const count = (grouped[status] || []).length;
+      
       const div = document.createElement("div");
-      div.style.display = "flex";
-      div.style.justifyContent = "space-between";
-      div.style.alignItems = "center";
-      div.style.marginBottom = "0.3rem";
-      div.style.color = "white";
+      div.className = "filter-option";
       
       const label = document.createElement("label");
-      label.style.display = "flex";
-      label.style.alignItems = "center";
-      label.style.gap = "0.5rem";
       
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
@@ -1079,8 +1129,7 @@ document.addEventListener("click", function (e) {
       label.appendChild(text);
       
       const countSpan = document.createElement("span");
-      countSpan.style.color = "#9ca3af";
-      countSpan.style.fontSize = "13px";
+      countSpan.className = "filter-count";
       countSpan.textContent = count;
       
       div.appendChild(label);
@@ -1146,16 +1195,9 @@ document.addEventListener("click", function (e) {
       const designerCount = (assignedProjektanci[h]?.size) || 0;
       
       const div = document.createElement("div");
-      div.style.display = "flex";
-      div.style.justifyContent = "space-between";
-      div.style.alignItems = "center";
-      div.style.marginBottom = "0.3rem";
-      div.style.color = "white";
+      div.className = "filter-option";
       
       const label = document.createElement("label");
-      label.style.display = "flex";
-      label.style.alignItems = "center";
-      label.style.gap = "0.5rem";
       
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
@@ -1172,8 +1214,7 @@ document.addEventListener("click", function (e) {
       label.appendChild(span);
       
       const count = document.createElement("span");
-      count.style.color = "#9ca3af";
-      count.style.fontSize = "13px";
+      count.className = "filter-count";
       count.innerHTML = `${designerCount} proj. / ${projCount} pkt`;
       
       div.appendChild(label);
@@ -1290,6 +1331,11 @@ document.addEventListener("click", function (e) {
   });
 
   function saveShapesToFirebase() {
+    if (!db || !ref || !set) {
+      console.warn("Firebase nie jest dostępne");
+      return;
+    }
+    
     const geojson = drawnItems.toGeoJSON();
     set(ref(db, 'obrysy'), geojson)
       .then(() => console.log('✅ Obrysy zapisane do Firebase'))
@@ -1297,6 +1343,11 @@ document.addEventListener("click", function (e) {
   }
 
   function loadShapesFromFirebase() {
+    if (!db || !ref || !onValue) {
+      console.warn("Firebase nie jest dostępne");
+      return;
+    }
+    
     onValue(ref(db, 'obrysy'), (snapshot) => {
       const data = snapshot.val();
       if (!data) return;
@@ -1305,6 +1356,7 @@ document.addEventListener("click", function (e) {
       geojsonLayer.eachLayer(layer => drawnItems.addLayer(layer));
     });
   }
+  
   loadShapesFromFirebase();
 
   map.on('moveend', () => {

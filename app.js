@@ -5,6 +5,10 @@ let projektanciNotes = {};
 let geojsonFeatures = [];
 let markerCluster;
 
+// Klienci
+let klienciGlobal = [];
+let klienciNotes = {};
+
 // Dodaj po istniejących zmiennych globalnych
 let activeFilters = {
   projektanci: [],
@@ -96,6 +100,90 @@ document.addEventListener("DOMContentLoaded", () => {
     const select = document.getElementById("inputHandlowiec");
     select.innerHTML = handlowcy.map(h => `<option value="${h}">${h}</option>`).join('');
   };
+
+  // 👥 Tryb dodawania klienta
+  let addClientMode = false;
+  window.startAddClientMode = function (prefilledProject = '') {
+    addClientMode = true;
+    document.getElementById("addClientPanel").style.display = "block";
+    
+    // Wypełnij dropdown handlowców
+    const handlowiecSelect = document.getElementById("inputClientHandlowiec");
+    handlowiecSelect.innerHTML = '<option value="">(wybierz handlowca)</option>' + 
+      handlowcy.map(h => `<option value="${h}">${h}</option>`).join('');
+    
+    // Wypełnij dropdown projektantów
+    const projektantSelect = document.getElementById("inputClientProjektant");
+    projektantSelect.innerHTML = '<option value="">(wybierz projektanta)</option>' + 
+      projektanciGlobal.map(p => `<option value="${p.projektant}">${p.projektant}</option>`).join('');
+    
+    // Wypełnij dropdown projektów
+    const projektSelect = document.getElementById("inputClientProjekt");
+    const uniqueProjects = [...new Set(geojsonFeatures.map(f => f.properties?.popup).filter(Boolean))];
+    projektSelect.innerHTML = '<option value="">(wybierz projekt)</option>' + 
+      uniqueProjects.map(p => `<option value="${p}" ${p === prefilledProject ? 'selected' : ''}>${p}</option>`).join('');
+  };
+
+  window.cancelAddClient = function () {
+    addClientMode = false;
+    document.getElementById("addClientPanel").style.display = "none";
+    document.getElementById("addClientForm").reset();
+  };
+
+  window.confirmAddClient = function () {
+    const imie = document.getElementById("inputClientImie").value.trim();
+    const telefon = document.getElementById("inputClientTelefon").value.trim();
+    const handlowiec = document.getElementById("inputClientHandlowiec").value;
+    const projektant = document.getElementById("inputClientProjektant").value;
+    const projekt = document.getElementById("inputClientProjekt").value;
+    
+    if (!imie || !telefon || !handlowiec || !projektant || !projekt) {
+      alert("Uzupełnij wszystkie pola.");
+      return;
+    }
+    
+    // Dodaj klienta do listy
+    const newClient = {
+      imie: imie,
+      telefon: telefon,
+      handlowiec: handlowiec,
+      projektant: projektant,
+      projekt: projekt,
+      dataUtworzenia: new Date().toISOString()
+    };
+    
+    klienciGlobal.push(newClient);
+    saveClientToFirebase(newClient);
+    cancelAddClient();
+    alert(`✅ Klient ${imie} został dodany!`);
+  };
+
+  function saveClientToFirebase(client) {
+    if (!db || !ref || !set || !push) {
+      console.warn("Firebase nie jest dostępne");
+      return;
+    }
+    
+    const newRef = push(ref(db, 'klienci'));
+    set(newRef, client)
+      .then(() => console.log("✅ Klient zapisany do Firebase"))
+      .catch(console.error);
+  }
+
+  function loadClientsFromFirebase() {
+    if (!db || !ref || !onValue) {
+      console.warn("Firebase nie jest dostępne");
+      return;
+    }
+    
+    onValue(ref(db, 'klienci'), (snapshot) => {
+      const data = snapshot.val();
+      if (!data) return;
+      
+      klienciGlobal = Object.values(data);
+      console.log("📥 Klienci załadowani z Firebase:", klienciGlobal);
+    });
+  }
 
   window.cancelAddPoint = function () {
     addPointMode = false;
@@ -963,6 +1051,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <select onchange="saveStatus('${proj}', this.value)">
         ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
       </select><br/>
+      <button onclick="startAddClientMode('${inwestycja}')" style="background:#10b981;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;margin:4px 0;">👥 Dodaj klienta</button><br/>
       <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
     `;
     
@@ -1404,4 +1493,130 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start
   loadGeoJSON();
   loadGeoJSONFromFirebase();
+  loadClientsFromFirebase();
+
+  // ========== KLIENCI PANEL SYSTEM ==========
+
+  window.showKlienci = function () {
+    const sidebar = document.getElementById("clientSidebar");
+    if (sidebar.classList.contains("show")) {
+      sidebar.classList.remove("show");
+    } else {
+      renderKlienciList(klienciGlobal);
+      sidebar.classList.add("show");
+    }
+  };
+
+  window.renderKlienciList = function (list) {
+    const container = document.getElementById("clientSidebarContent");
+    container.innerHTML = "";
+    const searchValue = document.getElementById("clientSearchInput")?.value?.toLowerCase() || "";
+    
+    list
+      .filter(k => k.imie?.toLowerCase().includes(searchValue) || 
+                   k.telefon?.includes(searchValue) ||
+                   k.handlowiec?.toLowerCase().includes(searchValue) ||
+                   k.projektant?.toLowerCase().includes(searchValue))
+      .forEach(k => {
+        const div = document.createElement("div");
+        div.className = "client-entry";
+        div.innerHTML = `
+          <div class="client-name" onclick="showClientProfile('${k.imie}', '${k.telefon}')">
+            ${k.imie}
+          </div>
+          <div class="client-details">
+            📞 ${k.telefon}<br/>
+            👨‍💼 ${k.handlowiec}<br/>
+            👷 ${k.projektant}<br/>
+            🏠 ${k.projekt?.substring(0, 50)}...
+          </div>
+        `;
+        container.appendChild(div);
+      });
+  };
+
+  window.showClientProfile = function (imie, telefon) {
+    const client = klienciGlobal.find(k => k.imie === imie && k.telefon === telefon);
+    if (!client) return;
+
+    const profile = document.getElementById("clientProfilePanel");
+    const content = document.getElementById("clientProfileContent");
+    const notes = klienciNotes[`${imie}_${telefon}`] || "";
+    const dataUtworzenia = client.dataUtworzenia ? new Date(client.dataUtworzenia).toLocaleDateString('pl-PL') : 'Brak danych';
+    
+    content.innerHTML = `
+      <span id="clientProfileClose" onclick="hideClientProfile()" style="cursor:pointer;position:absolute;top:10px;right:10px;color:#ef4444;font-size:22px;font-weight:bold;">✖</span>
+      <h3 style="color:#10b981;">${imie}</h3>
+      <p><b>📞 Telefon:</b> ${telefon}</p>
+      <p><b>👨‍💼 Handlowiec:</b> ${client.handlowiec}</p>
+      <p><b>👷 Projektant:</b> ${client.projektant}</p>
+      <p><b>🏠 Projekt:</b> ${client.projekt}</p>
+      <p><b>📅 Data dodania:</b> ${dataUtworzenia}</p>
+      <label>📝 Notatki:</label>
+      <textarea onchange="klienciNotes['${imie}_${telefon}'] = this.value; saveClientNote('${imie}', '${telefon}', this.value)" style="width:100%;height:100px;margin-top:0.5rem;padding:0.5rem;background:#374151;border:1px solid #4b5563;border-radius:0.375rem;color:white;resize:vertical;">${notes}</textarea>
+    `;
+    
+    document.body.classList.add("panel-open");
+    profile.classList.add("show");
+  };
+
+  window.hideClientProfile = () => {
+    document.getElementById("clientProfilePanel").classList.remove("show");
+    document.body.classList.remove("panel-open");
+  };
+
+  window.hideClientSidebar = () => document.getElementById("clientSidebar").classList.remove("show");
+
+  window.applyClientSortFilter = function () {
+    const value = document.getElementById("clientSortFilterSelect").value;
+    let list = [...klienciGlobal];
+    
+    switch (value) {
+      case "az":
+        list.sort((a, b) => a.imie.localeCompare(b.imie));
+        break;
+      case "za":
+        list.sort((a, b) => b.imie.localeCompare(a.imie));
+        break;
+      case "newest":
+        list.sort((a, b) => new Date(b.dataUtworzenia) - new Date(a.dataUtworzenia));
+        break;
+      case "oldest":
+        list.sort((a, b) => new Date(a.dataUtworzenia) - new Date(b.dataUtworzenia));
+        break;
+      case "by-handlowiec":
+        list.sort((a, b) => a.handlowiec.localeCompare(b.handlowiec));
+        break;
+      case "by-projektant":
+        list.sort((a, b) => a.projektant.localeCompare(b.projektant));
+        break;
+    }
+    
+    renderKlienciList(list);
+  };
+
+  window.filterKlienciList = function () {
+    renderKlienciList(klienciGlobal);
+  };
+
+  function saveClientNote(imie, telefon, note) {
+    if (!db || !ref || !set) {
+      console.warn("Firebase nie jest dostępne");
+      return;
+    }
+    
+    const noteKey = `${imie}_${telefon}`;
+    set(ref(db, `klienci-notatki/${noteKey}`), note)
+      .then(() => console.log('✅ Notatka klienta zapisana'))
+      .catch(console.error);
+  }
+
+  // Ładowanie notatek klientów z Firebase
+  if (db && ref && onValue) {
+    const notesRef = ref(db, 'klienci-notatki');
+    onValue(notesRef, snapshot => {
+      Object.assign(klienciNotes, snapshot.val() || {});
+      console.log("📥 Notatki klientów:", klienciNotes);
+    });
+  }
 });

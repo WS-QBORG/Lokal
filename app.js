@@ -1738,23 +1738,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // 🔍 Pokazuje pinezkę klienta na mapie
 window.zoomToClient = function(name) {
-  const point = geojsonFeatures.find(f => f.properties?.klient === name);
+  // Szukamy działki, której klient to podana osoba
+  const feature = geojsonFeatures.find(f => f.properties?.klient?.trim() === name);
 
-  if (!point) {
+  if (!feature) {
     alert("Brak lokalizacji przypisanej do tego klienta.");
     return;
   }
 
-  const lat = point.geometry?.coordinates[1];
-  const lng = point.geometry?.coordinates[0];
+  const coords = feature.geometry?.coordinates;
+  const lat = coords?.[1];
+  const lng = coords?.[0];
 
   if (lat && lng) {
     const marker = L.marker([lat, lng]).addTo(map);
-    marker.bindPopup(`<b>${name}</b>`).openPopup();
+    const adres = feature.properties?.adres || "brak adresu";
+    const dzialka = feature.properties?.dzialka || "brak działki";
+    marker.bindPopup(`<b>${name}</b><br>${adres}<br>${dzialka}`).openPopup();
     map.setView([lat, lng], 16);
   } else {
     alert("Brak współrzędnych dla klienta.");
   }
 };
+
 
 });

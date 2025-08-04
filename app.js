@@ -199,17 +199,18 @@ window.startPolygonEdit = function(projektant, dzialkaId, lat, lon) {
   controlPanel.id = 'polygonEditPanel';
   controlPanel.style.cssText = `
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 120px;
+    right: 20px;
+    transform: none;
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 2000;
+    z-index: 1500;
     text-align: center;
     border: 2px solid #3b82f6;
     min-width: 300px;
+    max-width: 350px;
   `;
   
   controlPanel.innerHTML = `

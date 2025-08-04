@@ -94,25 +94,36 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
 
-  // 🔄 Funkcja rysująca obrys dla danego projektanta i działki
+// 🔄 Funkcja rysująca obrys dla danego projektanta i działki
 function drawPolygonForFeature(feature) {
   console.log("📐 Wywołano drawPolygonForFeature dla:", feature);
 
   // 🧩 Pobierz dane identyfikujące działkę
   const projektant = feature.properties?.projektant;
-  const dzialkaId = feature.properties?.id || feature.properties?.dzialkaId;
+  const adres = feature.properties?.adres || '';
+  const dzialka = feature.properties?.dzialka || '';
+  // Użyj adresu + działki jako unikalny ID jeśli brak dzialkaId
+  const dzialkaId = feature.properties?.id || feature.properties?.dzialkaId || 
+    `${adres.replace(/[^a-zA-Z0-9]/g, '_')}_${dzialka.replace(/[^a-zA-Z0-9]/g, '_')}`.substring(0, 50);
 
   // 🚫 Jeśli brakuje danych – przerwij
-  if (!projektant || !dzialkaId) {
-    console.warn("⛔ Brak projektanta lub ID działki:", feature);
+  if (!projektant) {
+    console.warn("⛔ Brak projektanta:", feature);
     return;
   }
+
+  console.log("🔍 Szukam obrysu dla:", projektant, dzialkaId);
 
   // 🔗 Ścieżka do obrysu w Firebase
   const path = `obrysy/${projektant}/${dzialkaId}`;
   const db = window.firebaseDB;
   const ref = window.firebaseRef;
   const onValue = window.firebaseOnValue;
+
+  if (!db || !ref || !onValue) {
+    console.warn("⚠️ Firebase nie jest dostępne");
+    return;
+  }
 
   // 🧼 Wyczyść poprzednie obrysy, jeśli warstwa istnieje
   if (polygonLayerGroup) polygonLayerGroup.clearLayers();
@@ -122,9 +133,11 @@ function drawPolygonForFeature(feature) {
     const data = snapshot.val();
     console.log("📥 Dane z Firebase dla obrysu:", data);
 
-    // ❗ Jeśli brak danych lub niepoprawny format – przerwij
+    // ❗ Jeśli brak danych - pokaż informację
     if (!data || !Array.isArray(data)) {
-      console.warn("⚠️ Brak danych lub zły format obrysu:", path);
+      console.log("⚠️ Brak obrysu działki - można dodać nowy");
+      // Dodaj przycisk do rysowania obrysu w popupie
+      showPolygonEditButtons(feature, dzialkaId);
       return;
     }
 
@@ -140,7 +153,140 @@ function drawPolygonForFeature(feature) {
 
     // ➕ Dodaj obrys do warstwy
     polygon.addTo(polygonLayerGroup);
+    
+    // Dodaj opcje edycji obrysu
+    showPolygonEditButtons(feature, dzialkaId, true);
   });
+}
+
+// 🔧 Funkcja pokazująca przyciski edycji obrysu
+function showPolygonEditButtons(feature, dzialkaId, hasPolygon = false) {
+  const projektant = feature.properties?.projektant;
+  const coords = feature.geometry?.coordinates;
+  const lat = coords ? coords[1] : null;
+  const lon = coords ? coords[0] : null;
+  
+  const buttonText = hasPolygon ? "✏️ Edytuj obrys działki" : "➕ Dodaj obrys działki";
+  const buttonColor = hasPolygon ? "#f59e0b" : "#10b981";
+  
+  // Znajdź wszystkie markery dla tego feature i dodaj przycisk
+  if (markerCluster) {
+    markerCluster.eachLayer(marker => {
+      if (marker.getLatLng && marker.getLatLng().lat === lat && marker.getLatLng().lng === lon) {
+        const currentPopup = marker.getPopup();
+        if (currentPopup) {
+          const currentContent = currentPopup.getContent();
+          
+          // Jeśli już nie ma przycisku obrysu, dodaj go
+          if (!currentContent.includes("obrys działki")) {
+            const newContent = currentContent.replace(
+              '</div>',
+              `<button type="button" onclick="event.stopPropagation(); startPolygonEdit('${projektant}', '${dzialkaId}', ${lat}, ${lon})" style="background:${buttonColor};color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">${buttonText}</button><br/></div>`
+            );
+            marker.setPopupContent(newContent);
+          }
+        }
+      }
+    });
+  }
+}
+
+// 🖊️ Funkcja rozpoczynająca edycję obrysu
+window.startPolygonEdit = function(projektant, dzialkaId, lat, lon) {
+  console.log("🖊️ Rozpoczynam edycję obrysu dla:", projektant, dzialkaId);
+  
+  // Wycentruj mapę na punkcie
+  map.setView([lat, lon], 18);
+  
+  // Pokaż panel kontrolny do rysowania
+  const controlPanel = document.createElement('div');
+  controlPanel.id = 'polygonEditPanel';
+  controlPanel.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+  `;
+  
+  controlPanel.innerHTML = `
+    <h3>Edycja obrysu działki</h3>
+    <p><b>Projektant:</b> ${projektant}</p>
+    <p>Użyj narzędzi rysowania poniżej aby narysować obrys działki</p>
+    <button onclick="saveCurrentPolygon('${projektant}', '${dzialkaId}')" style="background:#10b981;color:white;border:none;padding:8px 16px;border-radius:4px;margin:4px;">✅ Zapisz obrys</button>
+    <button onclick="cancelPolygonEdit()" style="background:#ef4444;color:white;border:none;padding:8px 16px;border-radius:4px;margin:4px;">❌ Anuluj</button>
+  `;
+  
+  document.body.appendChild(controlPanel);
+}
+
+// 💾 Zapisz narysowany obrys
+window.saveCurrentPolygon = function(projektant, dzialkaId) {
+  console.log("💾 Zapisuję obrys dla:", projektant, dzialkaId);
+  
+  if (drawnItems.getLayers().length === 0) {
+    alert("Najpierw narysuj obrys używając narzędzi rysowania!");
+    return;
+  }
+  
+  // Pobierz ostatnio narysowany polygon
+  const layers = drawnItems.getLayers();
+  const lastLayer = layers[layers.length - 1];
+  
+  if (!lastLayer || !lastLayer.getLatLngs) {
+    alert("Nie znaleziono narysowanego obrysu!");
+    return;
+  }
+  
+  const latlngs = lastLayer.getLatLngs()[0]; // Pierwszy pierścień polygonu
+  const polygonData = latlngs.map(latlng => ({
+    lat: latlng.lat,
+    lng: latlng.lng
+  }));
+  
+  console.log("📊 Dane obrysu do zapisania:", polygonData);
+  
+  // Zapisz do Firebase
+  const db = window.firebaseDB;
+  const ref = window.firebaseRef;
+  const set = window.firebaseSet;
+  
+  if (db && ref && set) {
+    const path = `obrysy/${projektant}/${dzialkaId}`;
+    set(ref(db, path), polygonData)
+      .then(() => {
+        console.log('✅ Obrys zapisany do Firebase');
+        alert('✅ Obrys działki został zapisany!');
+        cancelPolygonEdit();
+        
+        // Odśwież wyświetlanie obrysu
+        setTimeout(() => {
+          const feature = geojsonFeatures.find(f => 
+            f.properties?.projektant === projektant && 
+            (f.properties?.id || f.properties?.dzialkaId || 
+             `${f.properties?.adres?.replace(/[^a-zA-Z0-9]/g, '_')}_${f.properties?.dzialka?.replace(/[^a-zA-Z0-9]/g, '_')}`.substring(0, 50)) === dzialkaId
+          );
+          if (feature) drawPolygonForFeature(feature);
+        }, 500);
+      })
+      .catch(err => {
+        console.error('❌ Błąd zapisu obrysu:', err);
+        alert('❌ Błąd podczas zapisywania obrysu');
+      });
+  } else {
+    alert('❌ Firebase nie jest dostępne');
+  }
+}
+
+// ❌ Anuluj edycję obrysu
+window.cancelPolygonEdit = function() {
+  const panel = document.getElementById('polygonEditPanel');
+  if (panel) panel.remove();
 }
 
 

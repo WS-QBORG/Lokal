@@ -97,8 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 🔄 Funkcja rysująca obrys dla danego projektanta i działki
 function drawPolygonForFeature(feature) {
   console.log("📐 Wywołano drawPolygonForFeature dla:", feature);
-
-  // 🧩 Pobierz dane identyfikujące działkę
+  console.log("🗺️ Polygon layer group:", polygonLayerGroup);
   const projektant = feature.properties?.projektant;
   const adres = feature.properties?.adres || '';
   const dzialka = feature.properties?.dzialka || '';
@@ -1370,9 +1369,11 @@ window.cancelPolygonEdit = function() {
     layer.bindPopup(popup);
 
     // 🔄 Dodaj rysowanie obrysu działki przy kliknięciu w marker
-    layer.on("click", () => {
-    drawPolygonForFeature(feature);
-  });
+    layer.on("click", (e) => {
+      console.log("🖱️ Kliknięto w marker, wywołuję drawPolygonForFeature");
+      e.originalEvent.stopPropagation();
+      drawPolygonForFeature(feature);
+    });
 
 
     

@@ -168,26 +168,17 @@ function showPolygonEditButtons(feature, dzialkaId, hasPolygon = false) {
   const buttonText = hasPolygon ? "✏️ Edytuj obrys działki" : "➕ Dodaj obrys działki";
   const buttonColor = hasPolygon ? "#f59e0b" : "#10b981";
   
-  // Znajdź wszystkie markery dla tego feature i dodaj przycisk
-  if (markerCluster) {
-    markerCluster.eachLayer(marker => {
-      if (marker.getLatLng && marker.getLatLng().lat === lat && marker.getLatLng().lng === lon) {
-        const currentPopup = marker.getPopup();
-        if (currentPopup) {
-          const currentContent = currentPopup.getContent();
-          
-          // Jeśli już nie ma przycisku obrysu, dodaj go
-          if (!currentContent.includes("obrys działki")) {
-            const newContent = currentContent.replace(
-              '</div>',
-              `<button type="button" onclick="event.stopPropagation(); startPolygonEdit('${projektant}', '${dzialkaId}', ${lat}, ${lon})" style="background:${buttonColor};color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">${buttonText}</button><br/></div>`
-            );
-            marker.setPopupContent(newContent);
-          }
-        }
-      }
-    });
-  }
+  console.log("🔧 Dodaję przycisk obrysu dla:", projektant, "na pozycji:", lat, lon);
+  
+  // Nie szukaj markera - dodaj przycisk bezpośrednio do popupu w bindPopupToLayer
+  window.currentPolygonButton = {
+    text: buttonText,
+    color: buttonColor,
+    projektant: projektant,
+    dzialkaId: dzialkaId,
+    lat: lat,
+    lon: lon
+  };
 }
 
 // 🖊️ Funkcja rozpoczynająca edycję obrysu
@@ -745,6 +736,11 @@ window.cancelPolygonEdit = function() {
           : L.marker(latlng);
         
         bindPopupToLayer(f, marker);
+        
+        // Dodaj domyślny prostokąt dla każdego punktu
+        const rect = createDefaultRectangle(latlng);
+        rect.addTo(drawnItems);
+        
         markers.push(marker);
       } else {
         const marker = L.marker(latlng, {
@@ -1362,6 +1358,7 @@ window.cancelPolygonEdit = function() {
           ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
         </select><br/><br/>
         <button type="button" onclick="event.stopPropagation(); startAddClientMode('${inwestycja.replace(/'/g, '\\\'')}')" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">👥 Dodaj klienta</button><br/>
+        <button type="button" onclick="event.stopPropagation(); startPolygonEdit('${proj}', '${dzialka.replace(/[^a-zA-Z0-9]/g, '_')}', ${lat}, ${lon})" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">📐 Edytuj obrys działki</button><br/>
         <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;text-decoration:none;">📍 Pokaż w Google Maps</a>
       </div>
     `;
@@ -1708,6 +1705,21 @@ window.cancelPolygonEdit = function() {
       if (icon) icon.textContent = "⯆";
     }
   });
+
+  // === Funkcja pomocnicza: tworzenie prostokąta wokół punktu ===
+  function createDefaultRectangle(latlng, size = 0.0003) {
+    const lat = latlng.lat;
+    const lng = latlng.lng;
+    return L.rectangle([
+      [lat - size / 2, lng - size / 2],
+      [lat + size / 2, lng + size / 2]
+    ], {
+      color: "#3b82f6",       // granatowy
+      weight: 1.2,            // cieńszy obrys
+      fillOpacity: 0.1,       // bardziej przezroczysty
+      editable: true
+    });
+  }
 
   function rotateBounds(center, size, angle) {
     const lat = center.lat;

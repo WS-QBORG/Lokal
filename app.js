@@ -185,6 +185,12 @@ function showPolygonEditButtons(feature, dzialkaId, hasPolygon = false) {
 window.startPolygonEdit = function(projektant, dzialkaId, lat, lon) {
   console.log("🖊️ Rozpoczynam edycję obrysu dla:", projektant, dzialkaId);
   
+  // Sprawdź czy panel już istnieje
+  const existingPanel = document.getElementById('polygonEditPanel');
+  if (existingPanel) {
+    existingPanel.remove();
+  }
+  
   // Wycentruj mapę na punkcie
   map.setView([lat, lon], 18);
   
@@ -199,45 +205,73 @@ window.startPolygonEdit = function(projektant, dzialkaId, lat, lon) {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
     text-align: center;
+    border: 2px solid #3b82f6;
+    min-width: 300px;
   `;
   
   controlPanel.innerHTML = `
-    <h3>Edycja obrysu działki</h3>
-    <p><b>Projektant:</b> ${projektant}</p>
-    <p>Użyj narzędzi rysowania poniżej aby narysować obrys działki</p>
-    <button onclick="saveCurrentPolygon('${projektant}', '${dzialkaId}')" style="background:#10b981;color:white;border:none;padding:8px 16px;border-radius:4px;margin:4px;">✅ Zapisz obrys</button>
-    <button onclick="cancelPolygonEdit()" style="background:#ef4444;color:white;border:none;padding:8px 16px;border-radius:4px;margin:4px;">❌ Anuluj</button>
+    <h3 style="margin: 0 0 10px 0; color: #1f2937;">Edycja obrysu działki</h3>
+    <p style="margin: 5px 0;"><b>Projektant:</b> ${projektant}</p>
+    <p style="margin: 10px 0; font-size: 14px; color: #6b7280;">Użyj narzędzi rysowania na mapie aby narysować nowy obrys działki</p>
+    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+      <button onclick="saveCurrentPolygon('${projektant}', '${dzialkaId}')" style="background:#10b981;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:bold;">✅ Zapisz obrys</button>
+      <button onclick="cancelPolygonEdit()" style="background:#ef4444;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:bold;">❌ Anuluj</button>
+    </div>
   `;
   
   document.body.appendChild(controlPanel);
+  console.log("✅ Panel edycji obrysu utworzony");
 }
 
 // 💾 Zapisz narysowany obrys
 window.saveCurrentPolygon = function(projektant, dzialkaId) {
   console.log("💾 Zapisuję obrys dla:", projektant, dzialkaId);
   
-  if (drawnItems.getLayers().length === 0) {
-    alert("Najpierw narysuj obrys używając narzędzi rysowania!");
+  if (!window.drawnItems || drawnItems.getLayers().length === 0) {
+    alert("Najpierw narysuj obrys używając narzędzi rysowania na mapie!");
     return;
   }
   
-  // Pobierz ostatnio narysowany polygon
+  // Pobierz ostatnio narysowany polygon lub prostokąt
   const layers = drawnItems.getLayers();
   const lastLayer = layers[layers.length - 1];
   
-  if (!lastLayer || !lastLayer.getLatLngs) {
+  console.log("🔍 Znaleziona warstwa:", lastLayer);
+  
+  if (!lastLayer) {
     alert("Nie znaleziono narysowanego obrysu!");
     return;
   }
   
-  const latlngs = lastLayer.getLatLngs()[0]; // Pierwszy pierścień polygonu
-  const polygonData = latlngs.map(latlng => ({
-    lat: latlng.lat,
-    lng: latlng.lng
-  }));
+  let polygonData = [];
+  
+  // Obsłuż różne typy warstw
+  if (lastLayer.getLatLngs && typeof lastLayer.getLatLngs === 'function') {
+    const latlngs = lastLayer.getLatLngs();
+    // Sprawdź czy to jest polygon (array of arrays) czy prostokąt (array of latlngs)
+    const coords = Array.isArray(latlngs[0]) ? latlngs[0] : latlngs;
+    polygonData = coords.map(latlng => ({
+      lat: latlng.lat,
+      lng: latlng.lng
+    }));
+  } else if (lastLayer.getBounds && typeof lastLayer.getBounds === 'function') {
+    // Dla prostokątów
+    const bounds = lastLayer.getBounds();
+    polygonData = [
+      { lat: bounds.getNorth(), lng: bounds.getWest() },
+      { lat: bounds.getNorth(), lng: bounds.getEast() },
+      { lat: bounds.getSouth(), lng: bounds.getEast() },
+      { lat: bounds.getSouth(), lng: bounds.getWest() }
+    ];
+  }
+  
+  if (polygonData.length === 0) {
+    alert("Nie można odczytać współrzędnych obrysu!");
+    return;
+  }
   
   console.log("📊 Dane obrysu do zapisania:", polygonData);
   

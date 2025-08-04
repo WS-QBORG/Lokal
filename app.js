@@ -295,29 +295,17 @@ function drawPolygonForFeature(feature) {
       const latlng = e.latlng;
       
       const marker = L.marker(latlng).addTo(map);
- marker.bindPopup(`
-  <div class="popup-wrapper">
-    <h4 class="popup-title">${projektant}</h4>
-    <p><b>Rok:</b> ${rok}</p>
-    <p><b>Inwestycja:</b><br>${inwestycja}</p>
-    <p><b>Adres:</b> ${adres || "Brak adresu"}</p>
-    <p><b>Działka:</b> ${dzialka || "Brak działki"}</p>
-
-    <div class="popup-select">
-      <label for="statusSelect">Status:</label>
-      <select onchange="updateStatus('${projektant}', this.value)">
-        ${generateStatusOptions(projektant)}
-      </select>
-    </div>
-
-    <div class="popup-actions">
-      <button class="btn btn-success" onclick="assignHandlowiec('${projektant}')">+ Przypisz handlowca</button>
-      <button class="btn btn-add-client" onclick="openAddClient('${projektant}')">➕ Dodaj klienta</button>
-    </div>
-
-    <a href="https://maps.google.com/?q=${adres}" target="_blank" class="popup-link">📍 Pokaż w Google Maps</a>
-  </div>
-`);
+      marker.bindPopup(`
+        <div style="font-family: Arial, sans-serif; line-height: 1.4;">
+          <b>${projektant}</b><br/>
+          <b>Rok:</b> ${new Date().getFullYear()}<br/>
+          <b>Inwestycja:</b> Dom jednorodzinny - ${adres}<br/>
+          <b>Adres:</b> ${adres}<br/>
+          <b>Działka:</b> Brak<br/><br/>
+          <button type="button" onclick="event.stopPropagation(); startAddClientMode('Dom jednorodzinny - ${adres}')" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">👥 Dodaj klienta</button><br/>
+          <a href="https://maps.google.com/?q=${adres}" target="_blank" style="color:#3b82f6;text-decoration:none;">📍 Pokaż w Google Maps</a>
+        </div>
+      `);
 
       
       const newFeature = {
@@ -332,7 +320,7 @@ function drawPolygonForFeature(feature) {
           klient,
           handlowiec,
           rok: new Date().getFullYear(),
-          popup: `<b>Inwestycja:</b> Dom jednorodzinny - ${adres}`,
+          popup: `Dom jednorodzinny - ${adres}`,
           dzialka: "Brak"
         }
       };
@@ -490,7 +478,7 @@ function drawPolygonForFeature(feature) {
           "properties": {
             "projektant": "Jan Kowalski",
             "rok": 2024,
-            "popup": "<b>Inwestycja:</b> Dom jednorodzinny - ul. Przykładowa 1",
+            "popup": "Budowa budynku mieszkalnego jednorodzinnego - ul. Przykładowa 1",
             "adres": "ul. Przykładowa 1, Szczecin",
             "dzialka": "123/45"
           }
@@ -504,7 +492,7 @@ function drawPolygonForFeature(feature) {
           "properties": {
             "projektant": "Anna Nowak",
             "rok": 2023,
-            "popup": "<b>Inwestycja:</b> Dom wielorodzinny - ul. Testowa 2",
+            "popup": "Budowa budynku wielorodzinnego - ul. Testowa 2",
             "adres": "ul. Testowa 2, Szczecin",
             "dzialka": "456/78"
           }
@@ -518,7 +506,7 @@ function drawPolygonForFeature(feature) {
           "properties": {
             "projektant": "Piotr Wiśniewski",
             "rok": 2024,
-            "popup": "<b>Inwestycja:</b> Budynek usługowy - ul. Biznesowa 3",
+            "popup": "Budynek usługowy - ul. Biznesowa 3",
             "adres": "ul. Biznesowa 3, Szczecin", 
             "dzialka": "789/12"
           }
@@ -645,7 +633,8 @@ function drawPolygonForFeature(feature) {
     features.forEach((f, index) => {
       const proj = f.properties?.projektant || 'brak';
       const rok = f.properties?.rok || 'brak';
-      const inwestycja = f.properties?.popup || 'Brak opisu';
+      const inwestycjaRaw = f.properties?.popup || 'Brak opisu';
+      const inwestycja = inwestycjaRaw.replace(/<[^>]*>/g, '').replace(/Inwestycja:\s*/, '') || 'Brak opisu';
       const adres = f.properties?.adres || 'Brak adresu';
       const assigned = projektanciAssigned[proj] || "";
       const status = statusAssigned[proj] || "Neutralny";
@@ -1202,29 +1191,34 @@ function drawPolygonForFeature(feature) {
     const lon = coords ? coords[0] : null;
     const proj = feature.properties?.projektant || 'brak';
     const rok = feature.properties?.rok || 'brak';
-    const inwestycja = feature.properties?.popup || 'Brak opisu';
+    const inwestycjaRaw = feature.properties?.popup || 'Brak opisu';
     const adres = feature.properties?.adres || 'Brak adresu';
     const dzialka = feature.properties?.dzialka || 'Brak działki';
     const assigned = projektanciAssigned[proj] || "";
     const status = statusAssigned[proj] || "Neutralny";
+    
+    // Wyciągnij tylko tekst z HTML lub użyj surowego tekstu
+    const inwestycja = inwestycjaRaw.replace(/<[^>]*>/g, '').replace(/Inwestycja:\s*/, '') || 'Brak opisu';
 
     const popup = `
-      <b>${proj}</b><br/>
-      Rok: ${rok}<br/>
-      <b>Inwestycja:</b> ${inwestycja}<br/>
-      <b>Adres:</b> ${adres}<br/>
-      <b>Działka:</b> ${dzialka}<br/>
-      <label>Przypisz handlowca:</label>
-      <select onchange="assignHandlowiec('${proj}', this.value)">
-        <option value="">(brak)</option>
-        ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-      </select><br/>
-      <label>Status:</label>
-      <select onchange="saveStatus('${proj}', this.value)">
-        ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
-      </select><br/>
-      <button type="button" onclick="event.stopPropagation(); startAddClientMode(${JSON.stringify(inwestycja)})" style="background:#10b981;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;margin:4px 0;">👥 Dodaj klienta</button><br/>
-      <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>
+      <div style="font-family: Arial, sans-serif; line-height: 1.4;">
+        <b>${proj}</b><br/>
+        <b>Rok:</b> ${rok}<br/>
+        <b>Inwestycja:</b> ${inwestycja}<br/>
+        <b>Adres:</b> ${adres}<br/>
+        <b>Działka:</b> ${dzialka}<br/><br/>
+        <label><b>Przypisz handlowca:</b></label><br/>
+        <select onchange="assignHandlowiec('${proj}', this.value)" style="width: 100%; margin: 4px 0; padding: 2px;">
+          <option value="">(brak)</option>
+          ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+        </select><br/>
+        <label><b>Status:</b></label><br/>
+        <select onchange="saveStatus('${proj}', this.value)" style="width: 100%; margin: 4px 0; padding: 2px;">
+          ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
+        </select><br/><br/>
+        <button type="button" onclick="event.stopPropagation(); startAddClientMode('${inwestycja.replace(/'/g, '\\\'')}')" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">👥 Dodaj klienta</button><br/>
+        <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;text-decoration:none;">📍 Pokaż w Google Maps</a>
+      </div>
     `;
     
     layer.bindPopup(popup);
@@ -1311,7 +1305,8 @@ function drawPolygonForFeature(feature) {
         const rok = projekt.properties?.rok || 'brak';
         const adres = projekt.properties?.adres || 'Brak adresu';
         const dzialka = projekt.properties?.dzialka || 'Brak działki';
-        const inwestycja = projekt.properties?.popup || 'Brak opisu';
+        const inwestycjaRaw = projekt.properties?.popup || 'Brak opisu';
+        const inwestycja = inwestycjaRaw.replace(/<[^>]*>/g, '').replace(/Inwestycja:\s*/, '') || 'Brak opisu';
         const coords = projekt.geometry?.coordinates;
         const lat = coords ? coords[1] : null;
         const lon = coords ? coords[0] : null;

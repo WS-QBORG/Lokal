@@ -185,6 +185,10 @@ function showPolygonEditButtons(feature, dzialkaId, hasPolygon = false) {
 window.startPolygonEdit = function(projektant, dzialkaId, lat, lon) {
   console.log("🖊️ Rozpoczynam edycję obrysu dla:", projektant, dzialkaId);
   
+  // Wyczyść listę nowo narysowanych warstw przy rozpoczynaniu edycji
+  window.newlyDrawnLayers = [];
+  console.log("🧹 Wyczyszczono listę nowo narysowanych warstw przy rozpoczynaniu edycji");
+  
   // Sprawdź czy panel już istnieje
   const existingPanel = document.getElementById('polygonEditPanel');
   if (existingPanel) {
@@ -227,59 +231,28 @@ window.startPolygonEdit = function(projektant, dzialkaId, lat, lon) {
   console.log("✅ Panel edycji obrysu utworzony");
 }
 
+// Flaga do śledzenia nowo narysowanych elementów
+window.newlyDrawnLayers = [];
+
 // 💾 Zapisz narysowany obrys
 window.saveCurrentPolygon = function(projektant, dzialkaId) {
   console.log("💾 Zapisuję obrys dla:", projektant, dzialkaId);
-  console.log("🔍 drawnItems:", window.drawnItems);
-  console.log("🔍 Liczba warstw:", window.drawnItems ? window.drawnItems.getLayers().length : 'brak drawnItems');
+  console.log("🔍 Nowo narysowane warstwy:", window.newlyDrawnLayers);
   
   if (!window.drawnItems) {
     alert("Błąd: System rysowania nie jest dostępny!");
     return;
   }
   
-  const allLayers = window.drawnItems.getLayers();
-  console.log("🔍 Wszystkie warstwy:", allLayers);
-  
-  if (allLayers.length === 0) {
+  // Sprawdź czy są nowo narysowane warstwy
+  if (!window.newlyDrawnLayers || window.newlyDrawnLayers.length === 0) {
     alert("Najpierw narysuj nowy obrys używając narzędzi rysowania na mapie!\n\nInstrukcja:\n1. Użyj narzędzi po lewej stronie mapy\n2. Narysuj polygon lub prostokąt\n3. Kliknij 'Zapisz obrys'");
     return;
   }
   
-  // Sprawdź czy ostatnia warstwa to nie domyślny prostokąt
-  let targetLayer = null;
-  
-  // Znajdź ostatnio dodaną warstwę (nie domyślny prostokąt)
-  for (let i = allLayers.length - 1; i >= 0; i--) {
-    const layer = allLayers[i];
-    console.log(`🔍 Sprawdzam warstwę ${i}:`, layer);
-    
-    // Sprawdź czy to nie jest domyślny prostokąt (bardzo mały)
-    if (layer.getBounds && typeof layer.getBounds === 'function') {
-      const bounds = layer.getBounds();
-      const latDiff = bounds.getNorth() - bounds.getSouth();
-      const lngDiff = bounds.getEast() - bounds.getWest();
-      
-      // Jeśli prostokąt jest większy niż domyślny (0.0003), to użyj go
-      if (latDiff > 0.0005 || lngDiff > 0.0005) {
-        targetLayer = layer;
-        console.log("✅ Znaleziono odpowiednią warstwę prostokąta");
-        break;
-      }
-    } else if (layer.getLatLngs && typeof layer.getLatLngs === 'function') {
-      // To jest polygon
-      targetLayer = layer;
-      console.log("✅ Znaleziono polygon");
-      break;
-    }
-  }
-  
-  if (!targetLayer) {
-    alert("Nie znaleziono odpowiedniego obrysu!\n\nNarysuj nowy obrys używając narzędzi rysowania, nie edytuj domyślnych prostokątów.");
-    return;
-  }
-  
-  console.log("🎯 Używam warstwy:", targetLayer);
+  // Użyj ostatnio narysowanej warstwy
+  const targetLayer = window.newlyDrawnLayers[window.newlyDrawnLayers.length - 1];
+  console.log("🎯 Używam nowo narysowanej warstwy:", targetLayer);
   
   let polygonData = [];
   
@@ -344,6 +317,10 @@ window.saveCurrentPolygon = function(projektant, dzialkaId) {
 
 // ❌ Anuluj edycję obrysu
 window.cancelPolygonEdit = function() {
+  // Wyczyść listę nowo narysowanych warstw
+  window.newlyDrawnLayers = [];
+  console.log("🧹 Wyczyszczono listę nowo narysowanych warstw przy anulowaniu");
+  
   const panel = document.getElementById('polygonEditPanel');
   if (panel) panel.remove();
 }
@@ -1848,6 +1825,16 @@ window.cancelPolygonEdit = function() {
   map.on(L.Draw.Event.CREATED, function (e) {
     const layer = e.layer;
     drawnItems.addLayer(layer);
+    
+    // Dodaj do listy nowo narysowanych warstw
+    if (!window.newlyDrawnLayers) {
+      window.newlyDrawnLayers = [];
+    }
+    window.newlyDrawnLayers.push(layer);
+    
+    console.log("🎨 Narysowano nowy element:", layer);
+    console.log("📋 Nowo narysowane warstwy:", window.newlyDrawnLayers);
+    
     saveShapesToFirebase();
   });
 

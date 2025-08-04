@@ -3,35 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HVAC Geo Quest - Mapa Projektów</title>
+    <title>HVAC Geo Quest - Mapa Projektantów</title>
     
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    
+    <!-- Leaflet.draw CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
     
-    <!-- Firebase -->
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getDatabase, ref, set, onValue, push } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
-        
-        const firebaseConfig = {
-            apiKey: "example",
-            authDomain: "projektanci-4f7e8.firebaseapp.com",
-            databaseURL: "https://projektanci-4f7e8-default-rtdb.europe-west1.firebasedatabase.app/",
-            projectId: "projektanci-4f7e8"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-        
-        window.firebaseDB = database;
-        window.firebaseRef = ref;
-        window.firebaseSet = set;
-        window.firebaseOnValue = onValue;
-        window.firebasePush = push;
-    </script>
+    <!-- MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     
     <style>
         * {
@@ -39,175 +21,322 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #111827;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #1f2937;
+        }
+
+        #map {
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        /* Panel kontroli */
+        #controlPanel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(31, 41, 55, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            z-index: 1000;
+            min-width: 300px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #controlPanel h2 {
+            margin-bottom: 15px;
+            color: #60a5fa;
+            font-size: 1.2rem;
+        }
+
+        .control-section {
+            margin-bottom: 15px;
+        }
+
+        .control-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #d1d5db;
+            font-size: 0.9rem;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
             color: white;
         }
-        
-        #map {
-            height: 100vh;
-            width: 100%;
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
         }
-        
-        .control-panel {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 1000;
-            background: rgba(17, 24, 39, 0.95);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            min-width: 250px;
-            backdrop-filter: blur(10px);
+
+        .btn-success {
+            background: #10b981;
+            color: white;
         }
-        
-        .control-panel h3 {
-            margin-bottom: 1rem;
-            color: #f9fafb;
-            font-size: 1.1rem;
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-1px);
         }
-        
-        .filter-section {
-            margin-bottom: 1rem;
+
+        .btn-add-client {
+            background: #10b981;
+            color: white;
         }
-        
+
+        .btn-add-client:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
         .dropdown-wrapper {
             position: relative;
-            margin-bottom: 0.5rem;
         }
-        
-        .dropdown-toggle {
-            width: 100%;
-            padding: 0.5rem;
+
+        .dropdown-button {
             background: #374151;
-            border: 1px solid #4b5563;
-            border-radius: 0.375rem;
             color: white;
+            border: 1px solid #4b5563;
+            padding: 10px 15px;
+            border-radius: 6px;
             cursor: pointer;
+            width: 100%;
+            text-align: left;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
-        
-        .dropdown-toggle:hover {
+
+        .dropdown-button:hover {
             background: #4b5563;
+            border-color: #6b7280;
         }
-        
+
         .dropdown-content {
             position: absolute;
             top: 100%;
             left: 0;
             right: 0;
-            background: #1f2937;
+            background: #374151;
             border: 1px solid #4b5563;
-            border-radius: 0.375rem;
-            margin-top: 2px;
-            padding: 0.5rem;
-            display: none;
-            z-index: 1001;
+            border-top: none;
+            border-radius: 0 0 6px 6px;
             max-height: 200px;
             overflow-y: auto;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            display: none;
         }
-        
-        .dropdown-content.show {
-            display: block;
-        }
-        
+
         .filter-option {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.3rem;
-            color: white;
+            padding: 8px 12px;
+            border-bottom: 1px solid #4b5563;
         }
-        
+
         .filter-option:last-child {
-            margin-bottom: 0;
+            border-bottom: none;
         }
-        
+
+        .filter-option:hover {
+            background: #4b5563;
+        }
+
         .filter-option label {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
             cursor: pointer;
+            margin: 0;
+            flex: 1;
         }
-        
+
         .filter-count {
             color: #9ca3af;
             font-size: 0.8rem;
         }
-        
-        .btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        
-        .btn-primary {
-            background: #3b82f6;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #2563eb;
-        }
-        
-        .btn-secondary {
-            background: #6b7280;
-            color: white;
-        }
-        
-        .btn-secondary:hover {
-            background: #4b5563;
-        }
-        
-        .btn-danger {
-            background: #ef4444;
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background: #dc2626;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .action-buttons .btn {
-            flex: 1;
-            min-width: 120px;
-        }
-        
+
+        /* Sidebar */
         #sidebar {
             position: fixed;
-            left: -350px;
             top: 0;
-            width: 350px;
+            right: -400px;
+            width: 400px;
             height: 100vh;
-            background: rgba(17, 24, 39, 0.98);
-            transition: left 0.3s ease;
-            z-index: 1100;
-            padding: 1rem;
+            background: rgba(31, 41, 55, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
             overflow-y: auto;
-            backdrop-filter: blur(10px);
+            color: white;
         }
-        
+
         #sidebar.show {
-            left: 0;
+            right: 0;
         }
-        
+
+        #sidebarHeader {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #sidebarHeader h3 {
+            margin-bottom: 15px;
+            color: #60a5fa;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 10px;
+            background: #374151;
+            border: 1px solid #4b5563;
+            border-radius: 6px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        #sidebarContent {
+            padding: 20px;
+        }
+
+        .projektant-entry {
+            background: rgba(75, 85, 99, 0.5);
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .projektant-entry .name {
+            cursor: pointer;
+            color: #60a5fa;
+            font-weight: 500;
+        }
+
+        .projektant-entry .name:hover {
+            color: #93c5fd;
+        }
+
+        .projektant-entry select {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px;
+            background: #374151;
+            border: 1px solid #4b5563;
+            border-radius: 4px;
+            color: white;
+        }
+
+        /* Client Sidebar */
+        #clientSidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: rgba(31, 41, 55, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+            color: white;
+        }
+
+        #clientSidebar.show {
+            right: 0;
+        }
+
+        .client-entry {
+            background: rgba(16, 185, 129, 0.1);
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .client-name {
+            cursor: pointer;
+            color: #10b981;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .client-name:hover {
+            color: #34d399;
+        }
+
+        .client-details {
+            font-size: 0.85rem;
+            color: #d1d5db;
+            line-height: 1.4;
+        }
+
+        /* Profile Panel */
+        #profilePanel, #clientProfilePanel {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 500px;
+            height: 100vh;
+            background: rgba(31, 41, 55, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            overflow-y: auto;
+            color: white;
+            padding: 30px;
+        }
+
+        #profilePanel.show, #clientProfilePanel.show {
+            right: 0;
+        }
+
+        #profileContent textarea, #clientProfileContent textarea {
+            width: 100%;
+            height: 120px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #374151;
+            border: 1px solid #4b5563;
+            border-radius: 6px;
+            color: white;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        /* Loading Overlay */
         #loadingOverlay {
             position: fixed;
             top: 0;
@@ -219,439 +348,389 @@
             justify-content: center;
             align-items: center;
             z-index: 2000;
-            flex-direction: column;
-            gap: 1rem;
+            color: white;
+            font-size: 1.2rem;
         }
-        
+
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #374151;
+            border: 4px solid rgba(255, 255, 255, 0.3);
             border-top: 4px solid #3b82f6;
             border-radius: 50%;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
+            margin-right: 20px;
         }
-        
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
+
+        /* Add Point Panel */
         #addPointPanel, #addClientPanel {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #1f2937;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            z-index: 1200;
+            background: rgba(31, 41, 55, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            color: white;
+            z-index: 2000;
             display: none;
-            min-width: 300px;
-        }
-        
-        #addPointPanel input, #addPointPanel select,
-        #addClientPanel input, #addClientPanel select {
-            width: 100%;
-            padding: 0.5rem;
-            margin: 0.5rem 0;
-            background: #374151;
-            border: 1px solid #4b5563;
-            border-radius: 0.375rem;
-            color: white;
+            min-width: 400px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
-        #clientSidebar {
-            position: fixed;
-            left: -450px;
-            top: 0;
-            width: 450px;
-            height: 100vh;
-            background: rgba(17, 24, 39, 0.98);
-            transition: left 0.3s ease;
-            z-index: 1100;
-            padding: 1rem;
-            overflow-y: auto;
-            backdrop-filter: blur(10px);
-        }
-        
-        #clientSidebar.show {
-            left: 0;
-        }
-
-        .client-entry {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: #1f2937;
-            border-radius: 0.375rem;
-            border-left: 3px solid #10b981;
-        }
-
-        .client-name {
-            cursor: pointer;
-            color: #10b981;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .client-name:hover {
-            text-decoration: underline;
-        }
-
-        .client-details {
-            font-size: 0.9rem;
-            color: #d1d5db;
-        }
-
-        #clientProfilePanel {
-            position: fixed;
-            right: -400px;
-            top: 0;
-            width: 400px;
-            height: 100vh;
-            background: rgba(17, 24, 39, 0.98);
-            transition: right 0.3s ease;
-            z-index: 1100;
-            padding: 2rem;
-            overflow-y: auto;
-            backdrop-filter: blur(10px);
-        }
-        
-        #clientProfilePanel.show {
-            right: 0;
-        }
-        
-        #profilePanel {
-            position: fixed;
-            right: -400px;
-            top: 0;
-            width: 400px;
-            height: 100vh;
-            background: rgba(17, 24, 39, 0.98);
-            transition: right 0.3s ease;
-            z-index: 1100;
-            padding: 2rem;
-            overflow-y: auto;
-            backdrop-filter: blur(10px);
-        }
-        
-        #profilePanel.show {
-            right: 0;
-        }
-        
-        .projektant-entry {
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-            background: #1f2937;
-            border-radius: 0.375rem;
-        }
-        
-        .projektant-entry select {
-            width: 100%;
-            margin-top: 0.5rem;
-            padding: 0.25rem;
-            background: #374151;
-            border: 1px solid #4b5563;
-            border-radius: 0.25rem;
-            color: white;
-        }
-        
-        .name {
-            cursor: pointer;
+        #addPointPanel h3, #addClientPanel h3 {
+            margin-bottom: 20px;
             color: #60a5fa;
+            text-align: center;
         }
-        
-        .name:hover {
-            text-decoration: underline;
+
+        #addPointPanel label, #addClientPanel label {
+            display: block;
+            margin-bottom: 5px;
+            color: #d1d5db;
+            font-weight: 500;
         }
-        
+
+        #addPointPanel input, #addPointPanel select, #addClientPanel input, #addClientPanel select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: #374151;
+            border: 1px solid #4b5563;
+            border-radius: 6px;
+            color: white;
+        }
+
+        #addPointPanel button, #addClientPanel button {
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        /* Rotate Control */
         #rotateControl {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(17, 24, 39, 0.95);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            display: none;
+            background: rgba(31, 41, 55, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 15px 25px;
+            color: white;
             z-index: 1000;
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         #rotateSlider {
             width: 200px;
-        }
-        
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #374151;
-            border-radius: 3px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #6b7280;
-            border-radius: 3px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9ca3af;
+            margin: 0 10px;
         }
 
+        /* Popup styles */
         .popup-wrapper {
-  font-size: 0.9rem;
-  color: #1f2937;
-  background: white;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  line-height: 1.4;
-  min-width: 250px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            min-width: 250px;
+        }
 
-.popup-title {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
+        .popup-title {
+            color: #1f2937;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
 
-.popup-select {
-  margin: 0.5rem 0;
-}
+        .popup-select {
+            margin: 10px 0;
+        }
 
-.popup-actions {
-  margin-top: 0.5rem;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
+        .popup-select select {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            background: white;
+        }
 
-.btn-success, .btn-add-client {
-  padding: 0.4rem 0.6rem;
-  font-size: 0.85rem;
-  border-radius: 0.375rem;
-  border: none;
-  cursor: pointer;
-}
+        .popup-actions {
+            margin: 15px 0 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-.btn-success {
-  background: #10b981;
-  color: white;
-}
+        .popup-link {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-.btn-add-client {
-  background: #3b82f6;
-  color: white;
-}
+        /* Leaflet Draw Controls - upewnij się że są widoczne */
+        .leaflet-draw {
+            z-index: 1000 !important;
+        }
 
-.popup-link {
-  display: inline-block;
-  margin-top: 0.75rem;
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 500;
-}
+        .leaflet-control-container .leaflet-top.leaflet-left {
+            top: 120px !important;
+        }
 
-.popup-link:hover {
-  text-decoration: underline;
-}
+        /* Panel overlay styles */
+        body.panel-open {
+            overflow: hidden;
+        }
 
-        
+        /* Responsive */
+        @media (max-width: 768px) {
+            #controlPanel {
+                left: 10px;
+                right: 10px;
+                min-width: auto;
+                padding: 15px;
+            }
+
+            #sidebar, #clientSidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            #profilePanel, #clientProfilePanel {
+                width: 100%;
+                right: -100%;
+                padding: 20px;
+            }
+
+            #addPointPanel, #addClientPanel {
+                left: 10px;
+                right: 10px;
+                transform: translateY(-50%);
+                min-width: auto;
+                padding: 20px;
+            }
+
+            #rotateControl {
+                left: 10px;
+                right: 10px;
+                transform: none;
+            }
+
+            #rotateSlider {
+                width: 100%;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Mapa -->
     <div id="map"></div>
-    
-    <!-- Panel kontrolny -->
-    <div class="control-panel">
-        <h3>🗺️ Filtry i Kontrola</h3>
+
+    <!-- Panel kontroli -->
+    <div id="controlPanel">
+        <h2>🎛️ Filtry i Kontrola</h2>
         
-        <div class="filter-section">
-            <!-- Dropdown Status -->
+        <!-- Dropdown Status -->
+        <div class="control-section">
             <div class="dropdown-wrapper" id="statusDropdownWrapper">
-                <div class="dropdown-toggle" onclick="toggleStatusDropdown()">
-                    <span>🎯 Status</span>
+                <div class="dropdown-button" onclick="toggleStatusDropdown()">
+                    <span>🔴 Status</span>
                     <span id="statusIcon">⯆</span>
                 </div>
-                <div class="dropdown-content" id="statusDropdown">
-                    <!-- Zawartość generowana dynamicznie -->
-                </div>
+                <div class="dropdown-content" id="statusDropdown"></div>
             </div>
-            
-            <!-- Dropdown Handlowcy -->
+        </div>
+
+        <!-- Dropdown Handlowcy -->
+        <div class="control-section">
             <div class="dropdown-wrapper" id="handlowcyDropdownWrapper">
-                <div class="dropdown-toggle" onclick="toggleHandlowcyDropdown()">
+                <div class="dropdown-button" onclick="toggleHandlowcyDropdown()">
                     <span>👨‍💼 Handlowcy</span>
                     <span id="handlowcyIcon">⯆</span>
                 </div>
-                <div class="dropdown-content" id="handlowcyDropdown">
-                    <!-- Zawartość generowana dynamicznie -->
-                </div>
+                <div class="dropdown-content" id="handlowcyDropdown"></div>
             </div>
-            
-            <!-- Dropdown Rok -->
+        </div>
+
+        <!-- Dropdown Rok -->
+        <div class="control-section">
             <div class="dropdown-wrapper" id="rokDropdownWrapper">
-                <div class="dropdown-toggle" onclick="toggleRokDropdown()">
+                <div class="dropdown-button" onclick="toggleRokDropdown()">
                     <span>📅 Rok</span>
                     <span id="rokIcon">⯆</span>
                 </div>
-                <div class="dropdown-content" id="rokDropdown">
-                    <!-- Zawartość generowana dynamicznie -->
-                </div>
+                <div class="dropdown-content" id="rokDropdown"></div>
             </div>
-            
-            <!-- Dropdown Typ Inwestycji -->
+        </div>
+
+        <!-- Dropdown Typ inwestycji -->
+        <div class="control-section">
             <div class="dropdown-wrapper" id="inwestycjeDropdownWrapper">
-                <div class="dropdown-toggle" onclick="toggleInwestycjeDropdown()">
+                <div class="dropdown-button" onclick="toggleInwestycjeDropdown()">
                     <span>🏠 Typ inwestycji</span>
                     <span id="inwestycjeIcon">⯆</span>
                 </div>
-                <div class="dropdown-content" id="inwestycjeDropdown">
-                    <!-- Zawartość generowana dynamicznie -->
-                </div>
+                <div class="dropdown-content" id="inwestycjeDropdown"></div>
             </div>
         </div>
-        
-        <div class="action-buttons">
-            <button class="btn btn-primary" onclick="showProjektanci()">🧠 Projektanci</button>
-            <button class="btn btn-primary" onclick="showKlienci()" style="background: #10b981;">👑 Klienci</button>
-            <button class="btn btn-secondary" onclick="startAddPointMode()">✨ Dodaj punkt</button>
-            <button class="btn btn-secondary" onclick="startAddClientMode()" style="background: #10b981;">🧍 Dodaj klienta</button>
+
+        <!-- Przyciski -->
+        <div class="control-buttons">
+            <button class="btn btn-primary" onclick="showProjektanci()">🧑‍💼 Projektanci</button>
+            <button class="btn btn-success" onclick="showKlienci()">👥 Klienci</button>
+            <button class="btn" style="background:#6b7280;color:white;" onclick="startAddPointMode()">✨ Dodaj punkt</button>
         </div>
     </div>
-    
-    <!-- Loading overlay -->
+
+    <!-- Sidebar Projektanci -->
+    <div id="sidebar">
+        <div id="sidebarHeader">
+            <h3>Projektanci</h3>
+            <input type="text" id="searchInput" placeholder="Szukaj projektanta..." onkeyup="filterProjektanciList()">
+            <select id="sortFilterSelect" onchange="applySortFilter()" style="width:100%;padding:8px;background:#374151;border:1px solid #4b5563;border-radius:4px;color:white;margin-bottom:10px;">
+                <option value="">Sortuj</option>
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+                <option value="has-handlowiec">Z handlowcem</option>
+                <option value="no-handlowiec">Bez handlowca</option>
+                <option value="proj-asc">Mało projektów</option>
+                <option value="proj-desc">Dużo projektów</option>
+            </select>
+            <button class="btn btn-primary" onclick="applyProjektantFilter()">Zastosuj filtr</button>
+            <button class="btn" style="background:#6b7280;color:white;" onclick="hideSidebar()">Anuluj</button>
+        </div>
+        <div id="sidebarContent"></div>
+    </div>
+
+    <!-- Client Sidebar -->
+    <div id="clientSidebar">
+        <div id="sidebarHeader">
+            <h3>Klienci</h3>
+            <input type="text" id="clientSearchInput" placeholder="Szukaj klienta..." onkeyup="filterKlienciList()">
+            <select id="clientSortFilterSelect" onchange="applyClientSortFilter()" style="width:100%;padding:8px;background:#374151;border:1px solid #4b5563;border-radius:4px;color:white;margin-bottom:10px;">
+                <option value="">Sortuj</option>
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+                <option value="newest">Najnowsi</option>
+                <option value="oldest">Najstarsi</option>
+                <option value="by-handlowiec">Według handlowca</option>
+                <option value="by-projektant">Według projektanta</option>
+            </select>
+            <button class="btn" style="background:#6b7280;color:white;" onclick="hideClientSidebar()">Zamknij</button>
+        </div>
+        <div id="clientSidebarContent"></div>
+    </div>
+
+    <!-- Profile Panel -->
+    <div id="profilePanel">
+        <div id="profileContent"></div>
+    </div>
+
+    <!-- Client Profile Panel -->
+    <div id="clientProfilePanel">
+        <div id="clientProfileContent"></div>
+    </div>
+
+    <!-- Add Point Panel -->
+    <div id="addPointPanel">
+        <h3>Dodaj nowy punkt</h3>
+        <form id="addPointForm">
+            <label>Handlowiec:</label>
+            <select id="inputHandlowiec" required></select>
+            
+            <label>Projektant:</label>
+            <input type="text" id="inputProjektant" placeholder="Nazwa projektanta" required>
+            
+            <label>Adres:</label>
+            <input type="text" id="inputAdres" placeholder="Adres projektu" required>
+            
+            <label>Klient:</label>
+            <input type="text" id="inputKlient" placeholder="Nazwa klienta" required>
+            
+            <button type="button" class="btn btn-success" onclick="confirmAddPoint()">✅ Potwierdź</button>
+            <button type="button" class="btn" style="background:#6b7280;color:white;" onclick="cancelAddPoint()">❌ Anuluj</button>
+        </form>
+    </div>
+
+    <!-- Add Client Panel -->
+    <div id="addClientPanel">
+        <h3>Dodaj nowego klienta</h3>
+        <form id="addClientForm">
+            <label>Imię i nazwisko:</label>
+            <input type="text" id="inputClientImie" placeholder="Jan Kowalski" required>
+            
+            <label>Telefon:</label>
+            <input type="tel" id="inputClientTelefon" placeholder="+48 123 456 789" required>
+            
+            <label>Handlowiec:</label>
+            <select id="inputClientHandlowiec" required></select>
+            
+            <label>Projektant:</label>
+            <select id="inputClientProjektant" required></select>
+            
+            <label>Projekt:</label>
+            <select id="inputClientProjekt" required></select>
+            
+            <button type="button" class="btn btn-success" onclick="confirmAddClient()">✅ Dodaj klienta</button>
+            <button type="button" class="btn" style="background:#6b7280;color:white;" onclick="cancelAddClient()">❌ Anuluj</button>
+        </form>
+    </div>
+
+    <!-- Rotate Control -->
+    <div id="rotateControl">
+        <label for="rotateSlider">Obrót: <span id="rotateValue">0°</span></label>
+        <input type="range" id="rotateSlider" min="0" max="360" value="0" step="1">
+    </div>
+
+    <!-- Loading Overlay -->
     <div id="loadingOverlay">
         <div class="spinner"></div>
-        <p>Ładowanie danych...</p>
-    </div>
-    
-    <!-- Sidebar projektanci -->
-    <div id="sidebar">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h3>🧠 Projektanci</h3>
-            <span onclick="hideSidebar()" style="cursor: pointer; color: #ef4444; font-size: 20px; font-weight: bold;">✖</span>
-        </div>
-        
-        <input type="text" id="searchInput" placeholder="🔍 Szukaj projektanta..." 
-               onkeyup="filterProjektanciList()" 
-               style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #374151; border: 1px solid #4b5563; border-radius: 0.375rem; color: white;">
-        
-        <select id="sortFilterSelect" onchange="applySortFilter()" 
-                style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #374151; border: 1px solid #4b5563; border-radius: 0.375rem; color: white;">
-            <option value="">Sortuj/Filtruj</option>
-            <option value="az">A-Z</option>
-            <option value="za">Z-A</option>
-            <option value="proj-asc">Najmniej projektów</option>
-            <option value="proj-desc">Najwięcej projektów</option>
-            <option value="has-handlowiec">Z handlowcem</option>
-            <option value="no-handlowiec">Bez handlowca</option>
-        </select>
-        
-        <div style="margin-bottom: 1rem;">
-            <button class="btn btn-primary" onclick="applyProjektantFilter()" style="width: 100%;">Zastosuj filtr</button>
-        </div>
-        
-        <div id="sidebarContent">
-            <!-- Lista projektantów -->
-        </div>
-    </div>
-    
-    <!-- Sidebar klienci -->
-    <div id="clientSidebar">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h3>👑 Klienci</h3>
-            <span onclick="hideClientSidebar()" style="cursor: pointer; color: #ef4444; font-size: 20px; font-weight: bold;">✖</span>
-        </div>
-        
-        <input type="text" id="clientSearchInput" placeholder="🔍 Szukaj klienta..." 
-               onkeyup="filterKlienciList()" 
-               style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #374151; border: 1px solid #4b5563; border-radius: 0.375rem; color: white;">
-        
-        <select id="clientSortFilterSelect" onchange="applyClientSortFilter()" 
-                style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #374151; border: 1px solid #4b5563; border-radius: 0.375rem; color: white;">
-            <option value="">Sortuj/Filtruj</option>
-            <option value="az">A-Z</option>
-            <option value="za">Z-A</option>
-            <option value="newest">Najnowsi</option>
-            <option value="oldest">Najstarsi</option>
-            <option value="by-handlowiec">Według handlowca</option>
-            <option value="by-projektant">Według projektanta</option>
-        </select>
-        
-        <div id="clientSidebarContent">
-            <!-- Lista klientów -->
-        </div>
+        <span>Ładowanie danych...</span>
     </div>
 
-    <!-- Panel profilu -->
-    <div id="profilePanel">
-        <div id="profileContent">
-            <!-- Zawartość profilu -->
-        </div>
-    </div>
+    <!-- Firebase Config -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, onValue, set, push } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 
-    <!-- Panel profilu klienta -->
-    <div id="clientProfilePanel">
-        <div id="clientProfileContent">
-            <!-- Zawartość profilu klienta -->
-        </div>
-    </div>
-    
-    <!-- Panel dodawania punktu -->
-    <div id="addPointPanel">
-        <h3>✨ Dodaj nowy punkt</h3>
-        <input type="text" id="inputProjektant" placeholder="Nazwa projektanta">
-        <input type="text" id="inputAdres" placeholder="Adres">
-        <input type="text" id="inputKlient" placeholder="Nazwa klienta">
-        <select id="inputHandlowiec">
-            <option value="">Wybierz handlowca</option>
-        </select>
-        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <button class="btn btn-primary" onclick="confirmAddPoint()">Potwierdź</button>
-            <button class="btn btn-secondary" onclick="cancelAddPoint()">Anuluj</button>
-        </div>
-    </div>
+        const firebaseConfig = {
+            apiKey: "AIzaSyC5FLUMl4pJ4YJkN9v--V9cZRxI8zE35r8",
+            authDomain: "projektanci-4f7e8.firebaseapp.com",
+            databaseURL: "https://projektanci-4f7e8-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "projektanci-4f7e8",
+            storageBucket: "projektanci-4f7e8.firebasestorage.app",
+            messagingSenderId: "444704600926",
+            appId: "1:444704600926:web:4b33e4c10c3ae8eb069ca2"
+        };
 
-    <!-- Panel dodawania klienta -->
-    <div id="addClientPanel">
-        <h3>🧍 Dodaj nowego klienta</h3>
-        <form id="addClientForm">
-            <input type="text" id="inputClientImie" placeholder="Imię i nazwisko" required>
-            <input type="tel" id="inputClientTelefon" placeholder="Numer telefonu" required>
-            <select id="inputClientHandlowiec" required>
-                <option value="">Wybierz handlowca</option>
-            </select>
-            <select id="inputClientProjektant" required>
-                <option value="">Wybierz projektanta</option>
-            </select>
-            <select id="inputClientProjekt" required>
-                <option value="">Wybierz projekt</option>
-            </select>
-        </form>
-        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <button class="btn btn-primary" onclick="confirmAddClient()">Dodaj klienta</button>
-            <button class="btn btn-secondary" onclick="cancelAddClient()">Anuluj</button>
-        </div>
-    </div>
-    
-    <!-- Kontrola rotacji -->
-    <div id="rotateControl">
-        <label for="rotateSlider" style="color: white; margin-right: 1rem;">Obrót:</label>
-        <input type="range" id="rotateSlider" min="0" max="360" value="0">
-        <span id="rotateValue" style="color: white; margin-left: 1rem;">0°</span>
-    </div>
-    
-    <!-- Leaflet i pozostałe skrypty -->
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Udostępnij Firebase globalnie
+        window.firebaseDB = database;
+        window.firebaseRef = ref;
+        window.firebaseOnValue = onValue;
+        window.firebaseSet = set;
+        window.firebasePush = push;
+    </script>
+
+    <!-- Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    
+    <!-- Leaflet.draw -->
     <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
     
-    <!-- Główny skrypt aplikacji -->
+    <!-- MarkerCluster -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.js"></script>
+
+    <!-- App JS -->
     <script src="app.js"></script>
 </body>
 </html>

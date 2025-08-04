@@ -185,10 +185,6 @@ function showPolygonEditButtons(feature, dzialkaId, hasPolygon = false) {
 window.startPolygonEdit = function(projektant, dzialkaId, lat, lon) {
   console.log("🖊️ Rozpoczynam edycję obrysu dla:", projektant, dzialkaId);
   
-  // Wyczyść listę nowo narysowanych warstw przy rozpoczynaniu edycji
-  window.newlyDrawnLayers = [];
-  console.log("🧹 Wyczyszczono listę nowo narysowanych warstw przy rozpoczynaniu edycji");
-  
   // Sprawdź czy panel już istnieje
   const existingPanel = document.getElementById('polygonEditPanel');
   if (existingPanel) {
@@ -231,28 +227,27 @@ window.startPolygonEdit = function(projektant, dzialkaId, lat, lon) {
   console.log("✅ Panel edycji obrysu utworzony");
 }
 
-// Flaga do śledzenia nowo narysowanych elementów
-window.newlyDrawnLayers = [];
 
 // 💾 Zapisz narysowany obrys
 window.saveCurrentPolygon = function(projektant, dzialkaId) {
   console.log("💾 Zapisuję obrys dla:", projektant, dzialkaId);
-  console.log("🔍 Nowo narysowane warstwy:", window.newlyDrawnLayers);
   
   if (!window.drawnItems) {
     alert("Błąd: System rysowania nie jest dostępny!");
     return;
   }
   
-  // Sprawdź czy są nowo narysowane warstwy
-  if (!window.newlyDrawnLayers || window.newlyDrawnLayers.length === 0) {
+  const allLayers = window.drawnItems.getLayers();
+  console.log("🔍 Wszystkie warstwy:", allLayers.length);
+  
+  if (allLayers.length === 0) {
     alert("Najpierw narysuj nowy obrys używając narzędzi rysowania na mapie!\n\nInstrukcja:\n1. Użyj narzędzi po lewej stronie mapy\n2. Narysuj polygon lub prostokąt\n3. Kliknij 'Zapisz obrys'");
     return;
   }
   
-  // Użyj ostatnio narysowanej warstwy
-  const targetLayer = window.newlyDrawnLayers[window.newlyDrawnLayers.length - 1];
-  console.log("🎯 Używam nowo narysowanej warstwy:", targetLayer);
+  // Użyj ostatnio dodanej warstwy
+  const targetLayer = allLayers[allLayers.length - 1];
+  console.log("🎯 Używam warstwy:", targetLayer);
   
   let polygonData = [];
   
@@ -317,10 +312,6 @@ window.saveCurrentPolygon = function(projektant, dzialkaId) {
 
 // ❌ Anuluj edycję obrysu
 window.cancelPolygonEdit = function() {
-  // Wyczyść listę nowo narysowanych warstw
-  window.newlyDrawnLayers = [];
-  console.log("🧹 Wyczyszczono listę nowo narysowanych warstw przy anulowaniu");
-  
   const panel = document.getElementById('polygonEditPanel');
   if (panel) panel.remove();
 }
@@ -1825,16 +1816,7 @@ window.cancelPolygonEdit = function() {
   map.on(L.Draw.Event.CREATED, function (e) {
     const layer = e.layer;
     drawnItems.addLayer(layer);
-    
-    // Dodaj do listy nowo narysowanych warstw
-    if (!window.newlyDrawnLayers) {
-      window.newlyDrawnLayers = [];
-    }
-    window.newlyDrawnLayers.push(layer);
-    
     console.log("🎨 Narysowano nowy element:", layer);
-    console.log("📋 Nowo narysowane warstwy:", window.newlyDrawnLayers);
-    
     saveShapesToFirebase();
   });
 

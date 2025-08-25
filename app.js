@@ -725,7 +725,33 @@ window.cancelPolygonEdit = function() {
     
     markerCluster = createClusterGroup();
     
-    const visible = geojsonFeatures.filter(f => {
+    // Najpierw zastosuj aktywne filtry, potem ogranicz do widocznego obszaru
+    let filtered = geojsonFeatures;
+    
+    // Zastosuj filtry projektantów jeśli są aktywne
+    if (activeFilters.projektanci && activeFilters.projektanci.length > 0) {
+      filtered = filtered.filter(f => 
+        activeFilters.projektanci.includes(f.properties?.projektant?.trim())
+      );
+    }
+    
+    // Zastosuj filtry handlowców jeśli są aktywne
+    if (activeFilters.handlowcy && activeFilters.handlowcy.length > 0) {
+      filtered = filtered.filter(f => 
+        activeFilters.handlowcy.includes(projektanciAssigned[f.properties?.projektant?.trim()])
+      );
+    }
+    
+    // Zastosuj filtry lat jeśli są aktywne
+    if (activeFilters.lata && activeFilters.lata.length > 0) {
+      filtered = filtered.filter(f => {
+        const rok = f.properties?.rok;
+        return activeFilters.lata.includes(String(rok));
+      });
+    }
+    
+    // Na końcu ogranicz do widocznego obszaru
+    const visible = filtered.filter(f => {
       return (
         f.geometry &&
         f.geometry.type === "Point" &&
@@ -734,7 +760,12 @@ window.cancelPolygonEdit = function() {
       );
     });
     
-    console.log(`🔍 Widoczne punkty: ${visible.length} z ${geojsonFeatures.length} całkowitych`);
+    console.log(`🔍 Widoczne punkty po filtrach: ${visible.length} z ${geojsonFeatures.length} całkowitych`);
+    
+    // Wyczyść istniejące obrysy tylko jeśli mamy nowe punkty do pokazania
+    if (window.drawnItems) {
+      window.drawnItems.clearLayers();
+    }
     
     const groupedPoints = {};
     visible.forEach(f => {

@@ -2123,38 +2123,37 @@ window.cancelPolygonEdit = function() {
     locationInfoPanel.id = 'locationInfoPanel';
     locationInfoPanel.style.cssText = `
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(31, 41, 55, 0.98);
-      backdrop-filter: blur(20px);
+      top: 20px;
+      right: 20px;
+      background: rgba(31, 41, 55, 0.95);
+      backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 25px;
+      border-radius: 8px;
+      padding: 15px;
       color: white;
-      z-index: 2000;
-      min-width: 320px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      text-align: center;
+      z-index: 1500;
+      width: 280px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      text-align: left;
+      font-size: 14px;
     `;
 
     locationInfoPanel.innerHTML = `
-      <h3 style="color: #60a5fa; margin-bottom: 20px;">📍 Twoja lokalizacja</h3>
-      <p style="margin-bottom: 10px; color: #d1d5db;">
-        <strong>Współrzędne:</strong><br>
-        ${lat.toFixed(6)}, ${lng.toFixed(6)}
+      <h4 style="color: #60a5fa; margin: 0 0 12px 0; font-size: 16px;">📍 Twoja lokalizacja</h4>
+      <p style="margin: 0 0 8px 0; color: #d1d5db; font-size: 12px;">
+        <strong>Współrzędne:</strong> ${lat.toFixed(4)}, ${lng.toFixed(4)}
       </p>
-      <p style="margin-bottom: 20px; color: #d1d5db;">
-        <strong>Punktów w promieniu ${radius} km:</strong><br>
-        <span style="color: #10b981; font-size: 1.5em; font-weight: bold;">${pointCount}</span>
+      <p style="margin: 0 0 12px 0; color: #d1d5db;">
+        <strong>Punktów w promieniu ${radius} km:</strong>
+        <span style="color: #10b981; font-weight: bold; margin-left: 5px;">${pointCount}</span>
       </p>
-      <div style="display: flex; gap: 10px; justify-content: center;">
-        <button onclick="changeRadius(0.5)" style="padding: 8px 12px; background: #374151; border: 1px solid #4b5563; border-radius: 6px; color: white; cursor: pointer;">0.5 km</button>
-        <button onclick="changeRadius(1)" style="padding: 8px 12px; background: #3b82f6; border: none; border-radius: 6px; color: white; cursor: pointer;">1 km</button>
-        <button onclick="changeRadius(2)" style="padding: 8px 12px; background: #374151; border: 1px solid #4b5563; border-radius: 6px; color: white; cursor: pointer;">2 km</button>
-        <button onclick="changeRadius(5)" style="padding: 8px 12px; background: #374151; border: 1px solid #4b5563; border-radius: 6px; color: white; cursor: pointer;">5 km</button>
+      <div style="display: flex; gap: 5px; margin-bottom: 10px; flex-wrap: wrap;">
+        <button onclick="changeRadius(0.5)" style="padding: 4px 8px; background: ${radius === 0.5 ? '#3b82f6' : '#374151'}; border: 1px solid #4b5563; border-radius: 4px; color: white; cursor: pointer; font-size: 12px;">0.5km</button>
+        <button onclick="changeRadius(1)" style="padding: 4px 8px; background: ${radius === 1 ? '#3b82f6' : '#374151'}; border: 1px solid #4b5563; border-radius: 4px; color: white; cursor: pointer; font-size: 12px;">1km</button>
+        <button onclick="changeRadius(2)" style="padding: 4px 8px; background: ${radius === 2 ? '#3b82f6' : '#374151'}; border: 1px solid #4b5563; border-radius: 4px; color: white; cursor: pointer; font-size: 12px;">2km</button>
+        <button onclick="changeRadius(5)" style="padding: 4px 8px; background: ${radius === 5 ? '#3b82f6' : '#374151'}; border: 1px solid #4b5563; border-radius: 4px; color: white; cursor: pointer; font-size: 12px;">5km</button>
       </div>
-      <button onclick="closeLocationInfo()" style="margin-top: 15px; padding: 10px 20px; background: #ef4444; border: none; border-radius: 6px; color: white; cursor: pointer;">Zamknij</button>
+      <button onclick="closeLocationInfo()" style="width: 100%; padding: 6px; background: #ef4444; border: none; border-radius: 4px; color: white; cursor: pointer; font-size: 12px;">✕ Zamknij</button>
     `;
 
     document.body.appendChild(locationInfoPanel);

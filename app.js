@@ -46,7 +46,108 @@ window.renderProjektanciList = function (list) {
     });
 }; 
 
-// =========== Firebase Init dla rysowania kwadratów  ===========
+// ========== MOBILE TOUCH EVENTS ==========
+
+// Improved touch handling for mobile devices
+document.addEventListener('DOMContentLoaded', function() {
+  // Add touch event handling for buttons
+  const buttons = document.querySelectorAll('.btn, .dropdown-button, .filter-option');
+  buttons.forEach(button => {
+    button.addEventListener('touchstart', function() {
+      this.style.transform = 'scale(0.95)';
+    });
+    
+    button.addEventListener('touchend', function() {
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+    });
+  });
+
+  // Prevent zoom on double tap for better UX
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', function (event) {
+    const now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  }, false);
+
+  // Improved dropdown handling on mobile
+  if (window.innerWidth <= 768) {
+    const dropdownButtons = document.querySelectorAll('.dropdown-button');
+    dropdownButtons.forEach(button => {
+      button.addEventListener('touchstart', function(e) {
+        e.stopPropagation();
+      });
+    });
+  }
+});
+
+// ========== END MOBILE TOUCH EVENTS ==========
+
+// ========== MOBILE TOGGLE FUNCTIONS ==========
+
+// Toggle mobile panel
+window.toggleMobilePanel = function() {
+  const controlPanel = document.getElementById("controlPanel");
+  const mobileToggle = document.getElementById("mobileToggle");
+  
+  if (controlPanel.classList.contains("mobile-show")) {
+    controlPanel.classList.remove("mobile-show");
+    mobileToggle.classList.remove("active");
+    mobileToggle.innerHTML = "☰";
+  } else {
+    controlPanel.classList.add("mobile-show");
+    mobileToggle.classList.add("active");
+    mobileToggle.innerHTML = "✖";
+  }
+};
+
+// Close mobile panel when clicking outside
+document.addEventListener('click', function(event) {
+  const controlPanel = document.getElementById("controlPanel");
+  const mobileToggle = document.getElementById("mobileToggle");
+  
+  // Only on mobile
+  if (window.innerWidth <= 768) {
+    if (controlPanel.classList.contains("mobile-show") && 
+        !controlPanel.contains(event.target) && 
+        !mobileToggle.contains(event.target)) {
+      controlPanel.classList.remove("mobile-show");
+      mobileToggle.classList.remove("active");
+      mobileToggle.innerHTML = "☰";
+    }
+  }
+});
+
+// Close mobile panel when opening sidebars on mobile
+const originalShowProjektanci = window.showProjektanci;
+window.showProjektanci = function() {
+  if (window.innerWidth <= 768) {
+    const controlPanel = document.getElementById("controlPanel");
+    const mobileToggle = document.getElementById("mobileToggle");
+    controlPanel.classList.remove("mobile-show");
+    mobileToggle.classList.remove("active");
+    mobileToggle.innerHTML = "☰";
+  }
+  originalShowProjektanci();
+};
+
+const originalShowKlienci = window.showKlienci;
+window.showKlienci = function() {
+  if (window.innerWidth <= 768) {
+    const controlPanel = document.getElementById("controlPanel");
+    const mobileToggle = document.getElementById("mobileToggle");
+    controlPanel.classList.remove("mobile-show");
+    mobileToggle.classList.remove("active");
+    mobileToggle.innerHTML = "☰";
+  }
+  originalShowKlienci();
+};
+
+// ========== END MOBILE FUNCTIONS ==========
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski", "Tomasz Fierek", "Piotr Murawski", "Weronika Stępień"];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1138,33 +1239,13 @@ window.cancelPolygonEdit = function() {
       activeFilters.lata.length > 0 ||
       activeFilters.inwestycje.length > 0;
 
-    let clearButton = document.getElementById("clearFiltersButton");
-    
-    if (hasActiveFilters && !clearButton) {
-      clearButton = document.createElement("button");
-      clearButton.id = "clearFiltersButton";
-      clearButton.innerHTML = "🗑️ Wyczyść filtry";
-      clearButton.style.cssText = `
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        z-index: 1000;
-        background: #ef4444;
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        font-weight: bold;
-      `;
-      clearButton.onclick = clearAllFilters;
-      document.body.appendChild(clearButton);
-    } else if (!hasActiveFilters && clearButton) {
-      clearButton.remove();
+    const clearBtn = document.getElementById('clearFiltersBtn');
+    if (clearBtn) {
+      clearBtn.style.display = hasActiveFilters ? 'block' : 'none';
     }
   }
 
-  function clearAllFilters() {
+  window.clearAllFilters = function() {
     activeFilters = {
       projektanci: [],
       handlowcy: [],

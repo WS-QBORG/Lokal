@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>HVAC Geo Quest - Mapa Projektantów</title>
     
     <!-- Leaflet CSS -->
@@ -49,6 +49,11 @@
             min-width: 300px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ukryj mobile text na desktop */
+        .mobile-text, .mobile-title {
+            display: none;
         }
 
         #controlPanel h2 {
@@ -489,60 +494,353 @@
             overflow: hidden;
         }
 
-        /* Responsive */
+        /* Mobile Toggle Button */
+        #mobileToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.9);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1002;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #mobileToggle:hover {
+            transform: scale(1.05);
+            background: rgba(59, 130, 246, 1);
+        }
+
+        #mobileToggle.active {
+            background: rgba(239, 68, 68, 0.9);
+        }
+
+        /* Responsive Styles */
         @media (max-width: 768px) {
-            #controlPanel {
-                left: 10px;
-                right: 10px;
-                min-width: auto;
-                padding: 15px;
+            /* Pokaż mobile toggle */
+            #mobileToggle {
+                display: flex;
             }
 
+            /* Ukryj panel kontroli domyślnie na mobile */
+            #controlPanel {
+                position: fixed !important;
+                left: -100% !important;
+                right: auto;
+                top: 0;
+                width: 90%;
+                max-width: 320px;
+                height: 100vh;
+                max-height: 100vh;
+                border-radius: 0 12px 12px 0;
+                padding: 20px 15px;
+                transition: left 0.3s ease;
+                overflow-y: auto;
+                z-index: 1000;
+                transform: translateX(0);
+            }
+
+            #controlPanel.mobile-show {
+                left: 0 !important;
+                transform: translateX(0);
+            }
+
+            /* Pokaż mobile text, ukryj desktop text na mobile */
+            .desktop-text, .desktop-title {
+                display: none;
+            }
+            
+            .mobile-text, .mobile-title {
+                display: inline;
+            }
+            
+            /* Kompaktowe dropdowny */
+            .dropdown-button {
+                padding: 12px !important;
+                font-size: 0.9rem !important;
+                min-height: auto !important;
+            }
+
+            .control-section {
+                margin-bottom: 10px;
+            }
+
+            /* Kompaktowy nagłówek */
+            #controlPanel h2 {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+
+            /* Kompaktowe przyciski na mobile */
+            .control-buttons {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                margin-top: 15px;
+            }
+
+            .btn {
+                padding: 10px 8px !important;
+                font-size: 0.85rem !important;
+                min-height: 40px !important;
+                border-radius: 6px;
+                text-align: center;
+            }
+
+            #clearFiltersBtn {
+                grid-column: 1 / -1;
+            }
+
+            /* Override dropdown styles for mobile */
+            .dropdown-content {
+                max-height: 200px;
+            }
+
+            .filter-option {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            /* Sidebary na mobile */
             #sidebar, #clientSidebar {
                 width: 100%;
                 right: -100%;
             }
 
+            #sidebarHeader {
+                padding-top: 80px;
+            }
+
+            /* Profile panels na mobile */
             #profilePanel, #clientProfilePanel {
                 width: 100%;
                 right: -100%;
-                padding: 20px;
+                padding: 80px 20px 20px 20px;
             }
 
+            /* Modal panels na mobile */
             #addPointPanel, #addClientPanel {
                 left: 10px;
                 right: 10px;
-                transform: translateY(-50%);
+                top: 20px;
+                transform: none;
                 min-width: auto;
                 padding: 20px;
+                max-height: calc(100vh - 40px);
+                overflow-y: auto;
             }
 
+            #addPointPanel input, #addPointPanel select, 
+            #addClientPanel input, #addClientPanel select {
+                padding: 15px;
+                font-size: 1rem;
+                min-height: 48px;
+            }
+
+            /* Rotate control na mobile */
             #rotateControl {
                 left: 10px;
                 right: 10px;
+                bottom: 80px;
                 transform: none;
+                padding: 20px;
             }
 
             #rotateSlider {
                 width: 100%;
-                margin: 0;
+                margin: 10px 0;
+                height: 40px;
+            }
+
+            /* Leaflet controls na mobile */
+            .leaflet-control-container .leaflet-top.leaflet-left {
+                top: 80px !important;
+                left: 10px !important;
+            }
+
+            .leaflet-control-container .leaflet-top.leaflet-right {
+                top: 80px !important;
+                right: 10px !important;
+            }
+
+            .leaflet-control-zoom {
+                border-radius: 8px !important;
+            }
+
+            .leaflet-control-zoom a {
+                width: 44px !important;
+                height: 44px !important;
+                line-height: 42px !important;
+                font-size: 20px !important;
+            }
+
+            /* Lepsze popupy na mobile */
+            .leaflet-popup-content-wrapper {
+                border-radius: 8px;
+            }
+
+            .popup-wrapper {
+                min-width: 280px;
+                font-size: 1rem;
+            }
+
+            .popup-title {
+                font-size: 1.2rem;
+            }
+
+            .popup-actions {
+                gap: 12px;
+            }
+
+            .popup-actions button {
+                padding: 12px 16px;
+                font-size: 1rem;
+                min-height: 44px;
+                border-radius: 6px;
+            }
+
+            /* Search inputy na mobile */
+            #searchInput, #clientSearchInput {
+                padding: 15px;
+                font-size: 1rem;
+                min-height: 48px;
+            }
+
+            /* Select elementy na mobile */
+            #sortFilterSelect, #clientSortFilterSelect {
+                padding: 15px !important;
+                font-size: 1rem !important;
+                min-height: 48px !important;
+            }
+
+            /* Projektant entries na mobile */
+            .projektant-entry {
+                padding: 20px 15px;
+                margin-bottom: 15px;
+            }
+
+            .projektant-entry .name {
+                font-size: 1.1rem;
+                line-height: 1.4;
+            }
+
+            .projektant-entry select {
+                padding: 15px !important;
+                font-size: 1rem !important;
+                min-height: 48px !important;
+                margin-top: 15px !important;
+            }
+
+            /* Client entries na mobile */
+            .client-entry {
+                padding: 20px 15px;
+                margin-bottom: 15px;
+            }
+
+            .client-name {
+                font-size: 1.1rem;
+                margin-bottom: 12px;
+            }
+
+            .client-details {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            /* Loading overlay na mobile */
+            #loadingOverlay {
+                font-size: 1.1rem;
+            }
+
+            .spinner {
+                width: 60px;
+                height: 60px;
+                margin-right: 15px;
+            }
+        }
+
+        /* Tablet responsive */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            #controlPanel {
+                min-width: 280px;
+                padding: 18px;
+            }
+
+            .control-buttons {
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+            }
+
+            #sidebar, #clientSidebar {
+                width: 350px;
+            }
+
+            #profilePanel, #clientProfilePanel {
+                width: 450px;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            #controlPanel {
+                max-width: 300px;
+                padding: 60px 15px 15px 15px;
+            }
+
+            #sidebarHeader {
+                padding-top: 60px;
+            }
+
+            #profilePanel, #clientProfilePanel {
+                padding: 60px 15px 15px 15px;
+            }
+
+            .leaflet-control-container .leaflet-top.leaflet-left,
+            .leaflet-control-container .leaflet-top.leaflet-right {
+                top: 60px !important;
+            }
+
+            #mobileToggle {
+                top: 10px;
+                right: 10px;
+                width: 45px;
+                height: 45px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Mobile Toggle Button -->
+    <button id="mobileToggle" onclick="toggleMobilePanel()">☰</button>
+
     <!-- Mapa -->
     <div id="map"></div>
 
     <!-- Panel kontroli -->
     <div id="controlPanel">
-        <h2>🎛️ Filtry i Kontrola</h2>
+        <h2 class="desktop-title">🎛️ Filtry i Kontrola</h2>
+        <h2 class="mobile-title">Filtry i Kontrola</h2>
         
         <!-- Dropdown Status -->
         <div class="control-section">
             <div class="dropdown-wrapper" id="statusDropdownWrapper">
                 <div class="dropdown-button" onclick="toggleStatusDropdown()">
-                    <span>🔴 Status</span>
+                    <span class="desktop-text">🔴 Status</span>
+                    <span class="mobile-text">Status</span>
                     <span id="statusIcon">⯆</span>
                 </div>
                 <div class="dropdown-content" id="statusDropdown"></div>
@@ -553,7 +851,8 @@
         <div class="control-section">
             <div class="dropdown-wrapper" id="handlowcyDropdownWrapper">
                 <div class="dropdown-button" onclick="toggleHandlowcyDropdown()">
-                    <span>👨‍💼 Handlowcy</span>
+                    <span class="desktop-text">👨‍💼 Handlowcy</span>
+                    <span class="mobile-text">Handlowcy</span>
                     <span id="handlowcyIcon">⯆</span>
                 </div>
                 <div class="dropdown-content" id="handlowcyDropdown"></div>
@@ -564,7 +863,8 @@
         <div class="control-section">
             <div class="dropdown-wrapper" id="rokDropdownWrapper">
                 <div class="dropdown-button" onclick="toggleRokDropdown()">
-                    <span>📅 Rok</span>
+                    <span class="desktop-text">📅 Rok</span>
+                    <span class="mobile-text">Rok</span>
                     <span id="rokIcon">⯆</span>
                 </div>
                 <div class="dropdown-content" id="rokDropdown"></div>
@@ -575,7 +875,8 @@
         <div class="control-section">
             <div class="dropdown-wrapper" id="inwestycjeDropdownWrapper">
                 <div class="dropdown-button" onclick="toggleInwestycjeDropdown()">
-                    <span>🏠 Typ inwestycji</span>
+                    <span class="desktop-text">🏠 Typ inwestycji</span>
+                    <span class="mobile-text">Typ inwestycji</span>
                     <span id="inwestycjeIcon">⯆</span>
                 </div>
                 <div class="dropdown-content" id="inwestycjeDropdown"></div>
@@ -584,9 +885,22 @@
 
         <!-- Przyciski -->
         <div class="control-buttons">
-            <button class="btn btn-primary" onclick="showProjektanci()">🧑‍💼 Projektanci</button>
-            <button class="btn btn-success" onclick="showKlienci()">👥 Klienci</button>
-            <button class="btn" style="background:#6b7280;color:white;" onclick="startAddPointMode()">✨ Dodaj punkt</button>
+            <button class="btn btn-primary" onclick="showProjektanci()">
+                <span class="desktop-text">🧑‍💼 Projektanci</span>
+                <span class="mobile-text">Projektanci</span>
+            </button>
+            <button class="btn btn-success" onclick="showKlienci()">
+                <span class="desktop-text">👥 Klienci</span>
+                <span class="mobile-text">Klienci</span>
+            </button>
+            <button class="btn" style="background:#6b7280;color:white;" onclick="startAddPointMode()">
+                <span class="desktop-text">✨ Dodaj punkt</span>
+                <span class="mobile-text">Dodaj punkt</span>
+            </button>
+            <button class="btn" id="clearFiltersBtn" onclick="clearAllFilters()" style="background:#ef4444;color:white;display:none;">
+                <span class="desktop-text">🗑️ Wyczyść filtry</span>
+                <span class="mobile-text">Wyczyść filtry</span>
+            </button>
         </div>
     </div>
 

@@ -984,6 +984,20 @@ window.cancelPolygonEdit = function() {
     markers.forEach(m => markerCluster.addLayer(m));
     map.addLayer(markerCluster);
     
+    // Zarządzaj obrysami działek - wyczyść i dodaj tylko dla filtrowanych punktów
+    if (window.drawnItems) {
+      // Wyczyść wszystkie istniejące obrysy
+      window.drawnItems.clearLayers();
+      
+      // Dodaj domyślne prostokąty tylko dla filtrowanych punktów
+      Object.values(groupedPoints).forEach(group => {
+        const { lat, lng } = group;
+        const latlng = L.latLng(lat, lng);
+        const rect = createDefaultRectangle(latlng);
+        rect.addTo(window.drawnItems);
+      });
+    }
+    
     console.log(`🎯 Zastosowano filtry: ${filtered.length} z ${geojsonFeatures.length} punktów`);
   }
 
@@ -1447,7 +1461,7 @@ window.cancelPolygonEdit = function() {
     activeFilters.projektanci = Array.from(checkboxes).map(cb => cb.value.trim());
     updateClearFiltersButton();
     applyAllFilters();
-    hideSidebar();
+    // Nie zamykaj sidebara automatycznie - użytkownik może chcieć modyfikować filtry
   };
 
   window.assignHandlowiec = function (projektant, handlowiec) {

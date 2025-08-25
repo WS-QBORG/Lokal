@@ -1984,6 +1984,224 @@ window.cancelPolygonEdit = function() {
     }
   });
 
+  // ========== GEOLOKALIZACJA ==========
+  
+  let userLocationMarker = null;
+  let userLocationCircle = null;
+  let locationInfoPanel = null;
+
+  window.showMyLocation = function() {
+    if (!navigator.geolocation) {
+      alert('Geolokalizacja nie jest obsługiwana przez twoją przeglądarkę');
+      return;
+    }
+
+    // Pokaż loading
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) {
+      loadingOverlay.style.display = 'flex';
+      loadingOverlay.innerHTML = '<div class="spinner"></div>Pobieranie lokalizacji...';
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const accuracy = position.coords.accuracy;
+
+        // Ukryj loading
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'none';
+        }
+
+        // Usuń poprzednie markery lokalizacji
+        if (userLocationMarker) {
+          map.removeLayer(userLocationMarker);
+        }
+        if (userLocationCircle) {
+          map.removeLayer(userLocationCircle);
+        }
+
+        // Dodaj marker użytkownika
+        userLocationMarker = L.marker([lat, lng], {
+          icon: L.divIcon({
+            className: 'user-location-marker',
+            html: '<div style="background: #3b82f6; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.3);"></div>',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+          })
+        }).addTo(map);
+
+        // Dodaj okrąg pokazujący promień (domyślnie 1km)
+        const radiusKm = 1;
+        userLocationCircle = L.circle([lat, lng], {
+          radius: radiusKm * 1000, // promień w metrach
+          color: '#3b82f6',
+          fillColor: '#93c5fd',
+          fillOpacity: 0.1,
+          weight: 2,
+          dashArray: '5, 5'
+        }).addTo(map);
+
+        // Wycentruj mapę na lokalizacji użytkownika
+        map.setView([lat, lng], 14);
+
+        // Policz punkty w promieniu
+        const pointsInRadius = countPointsInRadius(lat, lng, radiusKm);
+        
+        // Pokaż panel z informacjami
+        showLocationInfo(lat, lng, pointsInRadius, radiusKm);
+
+        console.log('📍 Lokalizacja użytkownika:', lat, lng, 'Dokładność:', accuracy, 'metrów');
+      },
+      function(error) {
+        // Ukryj loading
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'none';
+        }
+
+        let errorMessage = 'Nie udało się pobrać lokalizacji. ';
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            errorMessage += 'Odmówiono dostępu do lokalizacji.';
+            break;
+          case error.POSITION_UNAVAILABLE:
+            errorMessage += 'Lokalizacja niedostępna.';
+            break;
+          case error.TIMEOUT:
+            errorMessage += 'Przekroczono czas oczekiwania.';
+            break;
+          default:
+            errorMessage += 'Nieznany błąd.';
+            break;
+        }
+        alert(errorMessage);
+        console.error('❌ Błąd geolokalizacji:', error);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 60000
+      }
+    );
+  };
+
+  function countPointsInRadius(userLat, userLng, radiusKm) {
+    let count = 0;
+    geojsonFeatures.forEach(feature => {
+      if (feature.geometry && feature.geometry.coordinates) {
+        const pointLat = feature.geometry.coordinates[1];
+        const pointLng = feature.geometry.coordinates[0];
+        const distance = calculateDistance(userLat, userLng, pointLat, pointLng);
+        if (distance <= radiusKm) {
+          count++;
+        }
+      }
+    });
+    return count;
+  }
+
+  function calculateDistance(lat1, lng1, lat2, lng2) {
+    const R = 6371; // promień Ziemi w km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+              Math.sin(dLng/2) * Math.sin(dLng/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    return R * c;
+  }
+
+  function showLocationInfo(lat, lng, pointCount, radius) {
+    // Usuń poprzedni panel jeśli istnieje
+    if (locationInfoPanel) {
+      locationInfoPanel.remove();
+    }
+
+    // Utwórz panel informacyjny
+    locationInfoPanel = document.createElement('div');
+    locationInfoPanel.id = 'locationInfoPanel';
+    locationInfoPanel.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(31, 41, 55, 0.98);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 25px;
+      color: white;
+      z-index: 2000;
+      min-width: 320px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    `;
+
+    locationInfoPanel.innerHTML = `
+      <h3 style="color: #60a5fa; margin-bottom: 20px;">📍 Twoja lokalizacja</h3>
+      <p style="margin-bottom: 10px; color: #d1d5db;">
+        <strong>Współrzędne:</strong><br>
+        ${lat.toFixed(6)}, ${lng.toFixed(6)}
+      </p>
+      <p style="margin-bottom: 20px; color: #d1d5db;">
+        <strong>Punktów w promieniu ${radius} km:</strong><br>
+        <span style="color: #10b981; font-size: 1.5em; font-weight: bold;">${pointCount}</span>
+      </p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button onclick="changeRadius(0.5)" style="padding: 8px 12px; background: #374151; border: 1px solid #4b5563; border-radius: 6px; color: white; cursor: pointer;">0.5 km</button>
+        <button onclick="changeRadius(1)" style="padding: 8px 12px; background: #3b82f6; border: none; border-radius: 6px; color: white; cursor: pointer;">1 km</button>
+        <button onclick="changeRadius(2)" style="padding: 8px 12px; background: #374151; border: 1px solid #4b5563; border-radius: 6px; color: white; cursor: pointer;">2 km</button>
+        <button onclick="changeRadius(5)" style="padding: 8px 12px; background: #374151; border: 1px solid #4b5563; border-radius: 6px; color: white; cursor: pointer;">5 km</button>
+      </div>
+      <button onclick="closeLocationInfo()" style="margin-top: 15px; padding: 10px 20px; background: #ef4444; border: none; border-radius: 6px; color: white; cursor: pointer;">Zamknij</button>
+    `;
+
+    document.body.appendChild(locationInfoPanel);
+  }
+
+  window.changeRadius = function(newRadiusKm) {
+    if (!userLocationMarker || !userLocationCircle) return;
+
+    const userLatLng = userLocationMarker.getLatLng();
+    
+    // Usuń poprzedni okrąg
+    map.removeLayer(userLocationCircle);
+    
+    // Dodaj nowy okrąg
+    userLocationCircle = L.circle(userLatLng, {
+      radius: newRadiusKm * 1000,
+      color: '#3b82f6',
+      fillColor: '#93c5fd',
+      fillOpacity: 0.1,
+      weight: 2,
+      dashArray: '5, 5'
+    }).addTo(map);
+
+    // Przelicz punkty w nowym promieniu
+    const pointsInRadius = countPointsInRadius(userLatLng.lat, userLatLng.lng, newRadiusKm);
+    
+    // Zaktualizuj panel
+    showLocationInfo(userLatLng.lat, userLatLng.lng, pointsInRadius, newRadiusKm);
+  };
+
+  window.closeLocationInfo = function() {
+    if (locationInfoPanel) {
+      locationInfoPanel.remove();
+      locationInfoPanel = null;
+    }
+    
+    // Opcjonalnie usuń markery lokalizacji
+    if (userLocationMarker) {
+      map.removeLayer(userLocationMarker);
+      userLocationMarker = null;
+    }
+    if (userLocationCircle) {
+      map.removeLayer(userLocationCircle);
+      userLocationCircle = null;
+    }
+  };
+
   // ========== KLIENCI PANEL SYSTEM ==========
 
   window.showKlienci = function () {

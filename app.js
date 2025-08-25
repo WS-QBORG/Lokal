@@ -905,11 +905,6 @@ window.cancelPolygonEdit = function() {
           : L.marker(latlng);
         
         bindPopupToLayer(f, marker);
-        
-        // Dodaj domyślny prostokąt dla każdego punktu
-        const rect = createDefaultRectangle(latlng);
-        rect.addTo(drawnItems);
-        
         markers.push(marker);
       } else {
         const marker = L.marker(latlng, {
@@ -1116,18 +1111,10 @@ window.cancelPolygonEdit = function() {
     markers.forEach(m => markerCluster.addLayer(m));
     map.addLayer(markerCluster);
     
-    // Zarządzaj obrysami działek - wyczyść i dodaj tylko dla filtrowanych punktów
+    // Zarządzaj obrysami działek - wyczyść istniejące obrysy
     if (window.drawnItems) {
-      // Wyczyść wszystkie istniejące obrysy
+      // Wyczyść wszystkie istniejące obrysy - prostokąty będą dodawane tylko po kliknięciu w punkt
       window.drawnItems.clearLayers();
-      
-      // Dodaj domyślne prostokąty tylko dla filtrowanych punktów
-      Object.values(groupedPoints).forEach(group => {
-        const { lat, lng } = group;
-        const latlng = L.latLng(lat, lng);
-        const rect = createDefaultRectangle(latlng);
-        rect.addTo(window.drawnItems);
-      });
     }
     
     console.log(`🎯 Zastosowano filtry: ${filtered.length} z ${geojsonFeatures.length} punktów`);
@@ -1533,6 +1520,16 @@ window.cancelPolygonEdit = function() {
       console.log("🖱️ Kliknięto w marker, wywołuję drawPolygonForFeature");
       e.originalEvent.stopPropagation();
       drawPolygonForFeature(feature);
+      
+      // Pokaż suwak obrotu dla tego punktu
+      const latlng = e.latlng;
+      if (latlng) {
+        const rect = createDefaultRectangle(latlng);
+        if (window.drawnItems) {
+          window.drawnItems.clearLayers();
+          rect.addTo(window.drawnItems);
+        }
+      }
     });
 
 
@@ -1869,21 +1866,6 @@ window.cancelPolygonEdit = function() {
     }
   });
 
-  // === Funkcja pomocnicza: tworzenie prostokąta wokół punktu ===
-  function createDefaultRectangle(latlng, size = 0.0003) {
-    const lat = latlng.lat;
-    const lng = latlng.lng;
-    return L.rectangle([
-      [lat - size / 2, lng - size / 2],
-      [lat + size / 2, lng + size / 2]
-    ], {
-      color: "#3b82f6",       // granatowy
-      weight: 1.2,            // cieńszy obrys
-      fillOpacity: 0.1,       // bardziej przezroczysty
-      editable: true
-    });
-  }
-
   function rotateBounds(center, size, angle) {
     const lat = center.lat;
     const lng = center.lng;
@@ -1990,10 +1972,17 @@ window.cancelPolygonEdit = function() {
   // Na końcu event listenera DOMContentLoaded
   updateClearFiltersButton();
 
-  // Start
   loadGeoJSON();
   loadGeoJSONFromFirebase();
   loadClientsFromFirebase();
+
+  // Ukryj suwak obrotu po kliknięciu w mapę (poza markerami)
+  map.on('click', function() {
+    document.getElementById("rotateControl").style.display = "none";
+    if (window.drawnItems) {
+      window.drawnItems.clearLayers();
+    }
+  });
 
   // ========== KLIENCI PANEL SYSTEM ==========
 

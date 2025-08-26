@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Aktywności - Firebase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .activity-section {
+            background: #374151;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        .activity-item {
+            background: #1f2937;
+            border-left: 4px solid #10b981;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .activity-meta {
+            font-size: 0.9em;
+            color: #9ca3af;
+            margin-top: 8px;
+        }
+        .filter-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-controls select, .filter-controls input {
+            padding: 6px 10px;
+            border: 1px solid #4b5563;
+            border-radius: 4px;
+            background: #1f2937;
+            color: white;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: #1f2937;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #10b981;
+        }
+        .session-item {
+            background: #1f2937;
+            border-left: 4px solid #3b82f6;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Historia Aktywności QBorg - Firebase</h1>
+            <p>Szczegółowe śledzenie akcji użytkowników i sesji</p>
+        </div>
+
+        <div class="stats" id="activityStats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalEvents">0</div>
+                <div>Wszystkich zdarzeń</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalSessions">0</div>
+                <div>Sesji</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="averageSession">0</div>
+                <div>Średni czas sesji (min)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="activeToday">0</div>
+                <div>Aktywnych dzisiaj</div>
+            </div>
+        </div>
+
+        <div class="activity-section">
+            <h2>📋 Sesje Użytkowników</h2>
+            
+            <div class="filter-controls">
+                <select id="userFilter" onchange="filterData()">
+                    <option value="">Wszyscy użytkownicy</option>
+                </select>
+                <input type="date" id="dateFromFilter" onchange="filterData()">
+                <input type="date" id="dateToFilter" onchange="filterData()">
+                <button class="btn btn-secondary" onclick="exportToCSV()">📥 Eksport CSV</button>
+                <button class="btn btn-primary" onclick="loadData()">🔄 Odśwież</button>
+            </div>
+
+            <div id="sessionsList">
+                <div class="loading">Ładowanie sesji...</div>
+            </div>
+        </div>
+
+        <div class="activity-section" style="margin-top: 20px;">
+            <h2>📋 Historia Aktywności</h2>
+            
+            <div class="filter-controls">
+                <select id="actionFilter" onchange="filterData()">
+                    <option value="">Wszystkie akcje</option>
+                    <option value="click">Kliknięcia</option>
+                    <option value="open">Otwieranie</option>
+                    <option value="edit">Edycja</option>
+                    <option value="add">Dodawanie</option>
+                    <option value="assign">Przypisywanie</option>
+                </select>
+                <select id="objectFilter" onchange="filterData()">
+                    <option value="">Wszystkie obiekty</option>
+                    <option value="point">Punkty na mapie</option>
+                    <option value="projektant">Projektanci</option>
+                    <option value="client">Klienci</option>
+                </select>
+            </div>
+
+            <div id="activityList">
+                <div class="loading">Ładowanie aktywności...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Config -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC5FLUMl4pJ4YJkN9v--V9cZRxI8zE35r8",
+            authDomain: "projektanci-4f7e8.firebaseapp.com",
+            databaseURL: "https://projektanci-4f7e8-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "projektanci-4f7e8",
+            storageBucket: "projektanci-4f7e8.firebasestorage.app",
+            messagingSenderId: "444704600926",
+            appId: "1:444704600926:web:4b33e4c10c3ae8eb069ca2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth(app);
+
+        window.firebaseDB = database;
+        window.firebaseRef = ref;
+        window.firebaseOnValue = onValue;
+        window.firebaseAuth = auth;
+        window.firebaseAuthState = onAuthStateChanged;
+
+        // Initialize when DOM loaded
+        document.addEventListener('DOMContentLoaded', initializeHistory);
+    </script>
+
+    <script>
+        let allEvents = [];
+        let allSessions = [];
+        let currentUser = null;
+
+        function initializeHistory() {
+            const auth = window.firebaseAuth;
+            const onAuthStateChanged = window.firebaseAuthState;
+            
+            if (auth && onAuthStateChanged) {
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        currentUser = user;
+                        loadData();
+                    } else {
+                        document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h2>Musisz być zalogowany aby zobaczyć historię</h2></div>';
+                    }
+                });
+            }
+        }
+
+        function loadData() {
+            if (!currentUser) return;
+            
+            const db = window.firebaseDB;
+            const ref = window.firebaseRef;
+            const onValue = window.firebaseOnValue;
+            
+            // Load events
+            onValue(ref(db, `events/${currentUser.uid}`), (snapshot) => {
+                const data = snapshot.val();
+                allEvents = data ? Object.entries(data).map(([key, value]) => ({...value, id: key})) : [];
+                updateActivityDisplay();
+                updateStats();
+            });
+            
+            // Load sessions
+            onValue(ref(db, `sessions/${currentUser.uid}`), (snapshot) => {
+                const data = snapshot.val();
+                allSessions = data ? Object.entries(data).map(([key, value]) => ({...value, id: key})) : [];
+                updateSessionsDisplay();
+                updateStats();
+            });
+        }
+
+        function updateStats() {
+            const totalEvents = allEvents.length;
+            const totalSessions = allSessions.length;
+            
+            const completedSessions = allSessions.filter(s => s.duration);
+            const averageSession = completedSessions.length > 0 ? 
+                Math.round(completedSessions.reduce((sum, s) => sum + s.duration, 0) / completedSessions.length / 60) : 0;
+            
+            const today = new Date().toDateString();
+            const activeToday = new Set(allEvents.filter(e => {
+                const eventDate = e.timestamp ? new Date(e.timestamp.seconds ? e.timestamp.seconds * 1000 : e.timestamp) : null;
+                return eventDate && eventDate.toDateString() === today;
+            }).map(e => e.user)).size;
+
+            document.getElementById('totalEvents').textContent = totalEvents;
+            document.getElementById('totalSessions').textContent = totalSessions;
+            document.getElementById('averageSession').textContent = averageSession;
+            document.getElementById('activeToday').textContent = activeToday;
+        }
+
+        function updateSessionsDisplay() {
+            const container = document.getElementById('sessionsList');
+            const sortedSessions = [...allSessions].sort((a, b) => {
+                const aTime = a.startTime ? (a.startTime.seconds ? a.startTime.seconds * 1000 : new Date(a.startTime)) : 0;
+                const bTime = b.startTime ? (b.startTime.seconds ? b.startTime.seconds * 1000 : new Date(b.startTime)) : 0;
+                return bTime - aTime;
+            });
+            
+            container.innerHTML = sortedSessions.map(session => {
+                const startTime = session.startTime ? new Date(session.startTime.seconds ? session.startTime.seconds * 1000 : session.startTime) : null;
+                const endTime = session.endTime ? new Date(session.endTime.seconds ? session.endTime.seconds * 1000 : session.endTime) : null;
+                const duration = session.duration ? `${Math.round(session.duration / 60)} min` : (session.status === 'active' ? 'Aktywna' : 'Nieznany');
+                
+                return `
+                    <div class="session-item">
+                        <div>
+                            <strong>📱 Sesja ${session.sessionId}</strong>
+                            <span style="float: right; color: #10b981;">${session.status === 'active' ? '🟢 Aktywna' : '⭕ Zakończona'}</span>
+                        </div>
+                        <div style="margin-top: 8px;">
+                            👤 ${session.userName} • ⏰ ${duration}
+                        </div>
+                        <div class="activity-meta">
+                            🕐 Start: ${startTime ? startTime.toLocaleString('pl-PL') : 'Nieznany'} 
+                            ${endTime ? `• 🕐 Koniec: ${endTime.toLocaleString('pl-PL')}` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateActivityDisplay() {
+            const container = document.getElementById('activityList');
+            const sortedActivities = [...allEvents].sort((a, b) => {
+                const aTime = a.timestamp ? (a.timestamp.seconds ? a.timestamp.seconds * 1000 : new Date(a.timestamp)) : 0;
+                const bTime = b.timestamp ? (b.timestamp.seconds ? b.timestamp.seconds * 1000 : new Date(b.timestamp)) : 0;
+                return bTime - aTime;
+            });
+            
+            container.innerHTML = sortedActivities.map(event => {
+                const date = event.timestamp ? new Date(event.timestamp.seconds ? event.timestamp.seconds * 1000 : event.timestamp).toLocaleString('pl-PL') : 'Nieznana data';
+                const actionEmoji = getActionEmoji(event.action);
+                const objectEmoji = getObjectEmoji(event.objectType);
+                
+                return `
+                    <div class="activity-item">
+                        <div>
+                            <strong>${actionEmoji} ${event.action ? event.action.toUpperCase() : 'UNKNOWN'}</strong> 
+                            ${objectEmoji} ${event.objectType || 'unknown'}: <em>${event.objectName || event.objectId || 'unnamed'}</em>
+                        </div>
+                        <div style="margin-top: 8px;">
+                            ${formatMetadata(event.metadata)}
+                        </div>
+                        <div class="activity-meta">
+                            👤 ${event.userName || event.user} • 📅 ${date}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function getActionEmoji(action) {
+            const emojiMap = {
+                'click': '🖱️',
+                'open': '📂',
+                'edit': '✏️',
+                'add': '➕',
+                'assign': '👤',
+                'delete': '🗑️',
+                'filter': '🔍',
+                'login': '🔐',
+                'logout': '🔓'
+            };
+            return emojiMap[action] || '📋';
+        }
+
+        function getObjectEmoji(objectType) {
+            const emojiMap = {
+                'point': '📍',
+                'projektant': '👷',
+                'client': '👥',
+                'projekt': '🏠',
+                'filter': '🔍',
+                'sidebar': '📋',
+                'system': '⚙️'
+            };
+            return emojiMap[objectType] || '📄';
+        }
+
+        function formatMetadata(metadata) {
+            if (!metadata) return '';
+            
+            const important = [];
+            if (metadata.projektant) important.push(`👷 ${metadata.projektant}`);
+            if (metadata.handlowiec) important.push(`👨‍💼 ${metadata.handlowiec}`);
+            if (metadata.old_value && metadata.new_value) {
+                important.push(`${metadata.old_value} → ${metadata.new_value}`);
+            }
+            if (metadata.coordinates) {
+                important.push(`📍 ${metadata.coordinates[0].toFixed(4)}, ${metadata.coordinates[1].toFixed(4)}`);
+            }
+            
+            return important.join(' • ');
+        }
+
+        function filterData() {
+            // Implementation for filtering would go here
+            updateActivityDisplay();
+            updateSessionsDisplay();
+        }
+
+        function exportToCSV() {
+            const headers = ['Timestamp', 'User', 'Action', 'Object Type', 'Object Name', 'Session ID'];
+            const rows = allEvents.map(event => [
+                event.timestamp ? new Date(event.timestamp.seconds ? event.timestamp.seconds * 1000 : event.timestamp).toISOString() : '',
+                event.userName || event.user || '',
+                event.action || '',
+                event.objectType || '',
+                event.objectName || event.objectId || '',
+                event.sessionId || ''
+            ]);
+            
+            const csvContent = [headers, ...rows].map(row => 
+                row.map(field => `"${field}"`).join(',')
+            ).join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `qborg-activity-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

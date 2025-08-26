@@ -1684,7 +1684,6 @@ window.cancelPolygonEdit = function() {
     
     // Normalizuj tekst do analizy
     const normalizedText = popup.toLowerCase();
-    console.log('🔍 Analizuję popup dla typu inwestycji:', popup.substring(0, 100) + '...');
     
     // Sprawdź różne wzorce dla typu inwestycji
     let investmentText = '';
@@ -1705,18 +1704,15 @@ window.cancelPolygonEdit = function() {
     // Jeśli nie znaleziono wzorca "Inwestycja:", szukaj słów kluczowych w całym tekście
     if (!investmentText) {
       investmentText = normalizedText;
-      console.log('⚠️ Nie znaleziono wzorca "Inwestycja:", używam całego tekstu');
     }
     
     const analysisText = investmentText.toLowerCase();
-    console.log('📝 Tekst do analizy:', analysisText);
     
     // Klasyfikacja z lepszymi wzorcami
     if (analysisText.includes('jednorodzinny') || 
         analysisText.includes('dom jednorodzinny') ||
         analysisText.includes('budynek jednorodzinny') ||
         analysisText.includes('mieszkalny jednorodzinny')) {
-      console.log('✅ Klasyfikowano jako: Dom jednorodzinny');
       return 'Dom jednorodzinny';
     }
     else if (analysisText.includes('wielorodzinny') || 
@@ -1725,7 +1721,6 @@ window.cancelPolygonEdit = function() {
              analysisText.includes('mieszkalny wielorodzinny') ||
              analysisText.includes('blok') ||
              analysisText.includes('apartament')) {
-      console.log('✅ Klasyfikowano jako: Dom wielorodzinny');
       return 'Dom wielorodzinny';
     }
     else if (analysisText.includes('usługowy') || 
@@ -1736,7 +1731,6 @@ window.cancelPolygonEdit = function() {
              analysisText.includes('sklep') ||
              analysisText.includes('restauracja') ||
              analysisText.includes('hotel')) {
-      console.log('✅ Klasyfikowano jako: Budynek usługowy');
       return 'Budynek usługowy';
     }
     else if (analysisText.includes('kanalizacja') || 
@@ -1746,7 +1740,6 @@ window.cancelPolygonEdit = function() {
              analysisText.includes('wodociąg') ||
              analysisText.includes('ściekowa') ||
              analysisText.includes('deszczowa')) {
-      console.log('✅ Klasyfikowano jako: Infrastruktura');
       return 'Infrastruktura';
     }
     else if (analysisText.includes('instalacja') || 
@@ -1755,7 +1748,6 @@ window.cancelPolygonEdit = function() {
              analysisText.includes('grzewcza') ||
              analysisText.includes('wentylacja') ||
              analysisText.includes('klimatyzacja')) {
-      console.log('✅ Klasyfikowano jako: Instalacje');
       return 'Instalacje';
     }
     else if (analysisText.includes('przemysłowy') ||
@@ -1764,11 +1756,9 @@ window.cancelPolygonEdit = function() {
              analysisText.includes('zakład') ||
              analysisText.includes('hala') ||
              analysisText.includes('magazyn')) {
-      console.log('✅ Klasyfikowano jako: Przemysł');
       return 'Przemysł';
     }
     else {
-      console.log('⚠️ Klasyfikowano jako: Inne');
       return 'Inne';
     }
   }

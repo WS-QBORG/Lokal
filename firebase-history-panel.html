@@ -231,18 +231,14 @@ const firebaseConfig = {
         function loadData(adminMode = false) {
             if (!currentUser) return;
             
-            console.log('Loading data in admin mode:', adminMode, 'for user:', currentUser.email);
-            
             const db = window.firebaseDB;
             const ref = window.firebaseRef;
             const onValue = window.firebaseOnValue;
             
             if (adminMode) {
-                console.log('Loading all events for admin...');
                 // Load all events (all users)
                 onValue(ref(db, `events`), (snapshot) => {
                     const data = snapshot.val() || {};
-                    console.log('Raw events data:', data);
                     const merged = [];
                     Object.entries(data).forEach(([uid, events]) => {
                         if (events) {
@@ -252,7 +248,7 @@ const firebaseConfig = {
                         }
                     });
                     allEvents = merged;
-                    console.log('Merged events:', allEvents.length, 'events found');
+                    refreshUserFilterOptions();
                     updateActivityDisplay();
                     updateStats();
                 });
@@ -269,6 +265,7 @@ const firebaseConfig = {
                         }
                     });
                     allSessions = merged;
+                    refreshUserFilterOptions();
                     updateSessionsDisplay();
                     updateStats();
                 });
@@ -310,6 +307,36 @@ const firebaseConfig = {
             document.getElementById('activeToday').textContent = activeToday;
         }
 
+        function refreshUserFilterOptions() {
+            const select = document.getElementById('userFilter');
+            if (!select) return;
+            const usersMap = new Map();
+            // Collect from sessions
+            allSessions.forEach(s => {
+                if (!s.uid) return;
+                const name = s.userName || s.user || s.uid;
+                usersMap.set(s.uid, name);
+            });
+            // Collect from events (in case some users have events but no sessions loaded)
+            allEvents.forEach(e => {
+                if (!e.uid) return;
+                const name = e.userName || e.user || e.uid;
+                if (!usersMap.has(e.uid)) usersMap.set(e.uid, name);
+            });
+            const currentValue = select.value;
+            const options = [
+                '<option value="">Wszyscy użytkownicy</option>',
+                ...Array.from(usersMap.entries()).sort((a,b)=>a[1].localeCompare(b[1])).map(([uid, name]) =>
+                    `<option value="${uid}">${name}</option>`
+                )
+            ];
+            select.innerHTML = options.join('');
+            // Restore previously selected user if still present
+            if (currentValue && Array.from(usersMap.keys()).includes(currentValue)) {
+                select.value = currentValue;
+            }
+        }
+
         function updateSessionsDisplay() {
             const container = document.getElementById('sessionsList');
             const sortedSessions = [...allSessions].sort((a, b) => {
@@ -317,8 +344,14 @@ const firebaseConfig = {
                 const bTime = b.startTime ? (b.startTime.seconds ? b.startTime.seconds * 1000 : new Date(b.startTime)) : 0;
                 return bTime - aTime;
             });
+            const selectedUid = (document.getElementById('userFilter')?.value) || '';
+            const visible = selectedUid ? sortedSessions.filter(s => s.uid === selectedUid) : sortedSessions;
+            if (visible.length === 0) {
+                container.innerHTML = '<div class="loading">Brak sesji dla wybranego filtra.</div>';
+                return;
+            }
             
-            container.innerHTML = sortedSessions.map(session => {
+            container.innerHTML = visible.map(session => {
                 const startTime = session.startTime ? new Date(session.startTime.seconds ? session.startTime.seconds * 1000 : session.startTime) : null;
                 const endTime = session.endTime ? new Date(session.endTime.seconds ? session.endTime.seconds * 1000 : session.endTime) : null;
                 const duration = session.duration ? `${Math.round(session.duration / 60)} min` : (session.status === 'active' ? 'Aktywna' : 'Nieznany');
@@ -348,8 +381,20 @@ const firebaseConfig = {
                 const bTime = b.timestamp ? (b.timestamp.seconds ? b.timestamp.seconds * 1000 : new Date(b.timestamp)) : 0;
                 return bTime - aTime;
             });
+            const selectedUid = (document.getElementById('userFilter')?.value) || '';
+            const actionVal = (document.getElementById('actionFilter')?.value) || '';
+            const objectVal = (document.getElementById('objectFilter')?.value) || '';
+            const visible = sortedActivities.filter(e =>
+                (!selectedUid || e.uid === selectedUid) &&
+                (!actionVal || e.action === actionVal) &&
+                (!objectVal || e.objectType === objectVal)
+            );
+            if (visible.length === 0) {
+                container.innerHTML = '<div class="loading">Brak aktywności dla wybranego filtra.</div>';
+                return;
+            }
             
-            container.innerHTML = sortedActivities.map(event => {
+            container.innerHTML = visible.map(event => {
                 const date = event.timestamp ? new Date(event.timestamp.seconds ? event.timestamp.seconds * 1000 : event.timestamp).toLocaleString('pl-PL') : 'Nieznana data';
                 const actionEmoji = getActionEmoji(event.action);
                 const objectEmoji = getObjectEmoji(event.objectType);

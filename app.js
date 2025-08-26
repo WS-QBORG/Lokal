@@ -150,6 +150,390 @@ window.showKlienci = function() {
 // ========== END MOBILE FUNCTIONS ==========
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski", "Tomasz Fierek", "Piotr Murawski", "Weronika Stępień"];
 
+// ========== AUTH FUNCTIONS ==========
+window.showLoginForm = function() {
+  const loginHtml = `
+    <div id="loginOverlay" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    ">
+      <div style="
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        width: 400px;
+        max-width: 90%;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      ">
+        <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Logowanie Handlowców</h2>
+        <form id="loginForm">
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; color: #555;">Email:</label>
+            <input type="email" id="loginEmail" required style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+              font-size: 16px;
+            " placeholder="twoj.email@qborg.pl">
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; color: #555;">Hasło:</label>
+            <input type="password" id="loginPassword" required style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+              font-size: 16px;
+            ">
+          </div>
+          <button type="submit" style="
+            width: 100%;
+            padding: 12px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+          ">Zaloguj się</button>
+        </form>
+        <div id="loginError" style="
+          margin-top: 15px;
+          padding: 10px;
+          background: #fee;
+          border: 1px solid #fcc;
+          border-radius: 5px;
+          color: #c33;
+          display: none;
+        "></div>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('beforeend', loginHtml);
+  
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    
+    if (USERS[email] && USERS[email].password === password) {
+      currentUser = { email, name: USERS[email].name };
+      sessionStartTime = new Date();
+      lastActivityTime = new Date();
+      
+      logEvent('login', { email, name: USERS[email].name });
+      
+      document.getElementById('loginOverlay').remove();
+      showUserPanel();
+      startActivityTracking();
+    } else {
+      const errorDiv = document.getElementById('loginError');
+      errorDiv.textContent = 'Nieprawidłowy email lub hasło';
+      errorDiv.style.display = 'block';
+    }
+  });
+};
+
+window.logout = function() {
+  if (currentUser) {
+    logEvent('logout', { 
+      email: currentUser.email,
+      sessionDuration: Math.round((new Date() - sessionStartTime) / 1000)
+    });
+  }
+  
+  currentUser = null;
+  sessionStartTime = null;
+  lastActivityTime = null;
+  
+  document.getElementById('userPanel')?.remove();
+  showLoginForm();
+};
+
+window.showUserPanel = function() {
+  const userPanelHtml = `
+    <div id="userPanel" style="
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(59, 130, 246, 0.95);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      z-index: 1000;
+      font-size: 14px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    ">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span>👤 ${currentUser.name}</span>
+        <button onclick="logout()" style="
+          background: rgba(255,255,255,0.2);
+          border: none;
+          color: white;
+          padding: 4px 8px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 12px;
+        ">Wyloguj</button>
+        <button onclick="showEventHistory()" style="
+          background: rgba(255,255,255,0.2);
+          border: none;
+          color: white;
+          padding: 4px 8px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 12px;
+        ">Historia</button>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('beforeend', userPanelHtml);
+};
+
+// ========== EVENT LOGGING ==========
+window.logEvent = function(eventType, data = {}) {
+  if (!currentUser) return;
+  
+  const event = {
+    id: Date.now() + Math.random(),
+    timestamp: new Date().toISOString(),
+    user: currentUser.email,
+    userName: currentUser.name,
+    eventType,
+    data,
+    url: window.location.href,
+    userAgent: navigator.userAgent
+  };
+  
+  eventHistory.push(event);
+  
+  // Zachowaj ostatnie 1000 zdarzeń
+  if (eventHistory.length > 1000) {
+    eventHistory = eventHistory.slice(-1000);
+  }
+  
+  localStorage.setItem('qborg_event_history', JSON.stringify(eventHistory));
+  console.log('📊 Event logged:', event);
+};
+
+window.startActivityTracking = function() {
+  // Track page visibility
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      logEvent('page_hidden');
+    } else {
+      logEvent('page_visible');
+      lastActivityTime = new Date();
+    }
+  });
+  
+  // Track clicks
+  document.addEventListener('click', function(e) {
+    lastActivityTime = new Date();
+    
+    let target = e.target;
+    let elementInfo = {
+      tagName: target.tagName,
+      className: target.className,
+      id: target.id,
+      text: target.textContent?.substring(0, 100)
+    };
+    
+    // Sprawdź czy to link lub przycisk
+    if (target.tagName === 'A' || target.onclick || target.closest('a')) {
+      const link = target.tagName === 'A' ? target : target.closest('a');
+      elementInfo.href = link?.href;
+      elementInfo.isLink = true;
+    }
+    
+    logEvent('click', elementInfo);
+  });
+  
+  // Track scroll
+  let scrollTimeout;
+  document.addEventListener('scroll', function() {
+    lastActivityTime = new Date();
+    
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      logEvent('scroll', {
+        scrollY: window.scrollY,
+        scrollX: window.scrollX
+      });
+    }, 1000);
+  });
+  
+  // Track keyboard activity
+  document.addEventListener('keydown', function(e) {
+    lastActivityTime = new Date();
+    
+    logEvent('keydown', {
+      key: e.key,
+      code: e.code,
+      ctrlKey: e.ctrlKey,
+      altKey: e.altKey,
+      shiftKey: e.shiftKey
+    });
+  });
+  
+  // Heartbeat every minute if active
+  setInterval(() => {
+    if (currentUser && lastActivityTime && (new Date() - lastActivityTime) < 120000) { // 2 minutes
+      logEvent('heartbeat', {
+        sessionDuration: Math.round((new Date() - sessionStartTime) / 1000)
+      });
+    }
+  }, 60000);
+};
+
+window.showEventHistory = function() {
+  const historyHtml = `
+    <div id="historyOverlay" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    ">
+      <div style="
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90%;
+        height: 80%;
+        max-width: 800px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      ">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h2 style="margin: 0;">Historia zdarzeń</h2>
+          <div>
+            <button onclick="downloadEventHistory()" style="
+              background: #10b981;
+              color: white;
+              border: none;
+              padding: 8px 12px;
+              border-radius: 5px;
+              cursor: pointer;
+              margin-right: 10px;
+            ">Pobierz CSV</button>
+            <button onclick="document.getElementById('historyOverlay').remove()" style="
+              background: #ef4444;
+              color: white;
+              border: none;
+              padding: 8px 12px;
+              border-radius: 5px;
+              cursor: pointer;
+            ">Zamknij</button>
+          </div>
+        </div>
+        <div style="
+          overflow-y: auto;
+          flex: 1;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          padding: 10px;
+        ">
+          ${generateEventHistoryTable()}
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('beforeend', historyHtml);
+};
+
+window.generateEventHistoryTable = function() {
+  const recentEvents = eventHistory.slice(-100).reverse(); // Ostatnie 100 zdarzeń
+  
+  return `
+    <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+      <thead>
+        <tr style="background: #f8f9fa;">
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Czas</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Użytkownik</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Zdarzenie</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Szczegóły</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${recentEvents.map(event => `
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">${new Date(event.timestamp).toLocaleString('pl-PL')}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${event.userName}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${event.eventType}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${JSON.stringify(event.data).substring(0, 100)}...</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+};
+
+window.downloadEventHistory = function() {
+  const csv = [
+    ['Timestamp', 'User', 'Event Type', 'Data', 'URL'].join(','),
+    ...eventHistory.map(event => [
+      event.timestamp,
+      event.userName,
+      event.eventType,
+      JSON.stringify(event.data).replace(/"/g, '""'),
+      event.url
+    ].map(field => `"${field}"`).join(','))
+  ].join('\n');
+  
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `qborg_event_history_${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+  window.URL.revokeObjectURL(url);
+};
+
+// Start login on page load
+document.addEventListener("DOMContentLoaded", () => {
+  // Check if already logged in (simple session)
+  const savedUser = localStorage.getItem('qborg_current_user');
+  if (savedUser) {
+    currentUser = JSON.parse(savedUser);
+    sessionStartTime = new Date();
+    lastActivityTime = new Date();
+    showUserPanel();
+    startActivityTracking();
+    logEvent('auto_login', { email: currentUser.email });
+  } else {
+    showLoginForm();
+  }
+});
+
+// Save user session
+window.addEventListener('beforeunload', function() {
+  if (currentUser) {
+    localStorage.setItem('qborg_current_user', JSON.stringify(currentUser));
+    logEvent('page_unload', {
+      sessionDuration: Math.round((new Date() - sessionStartTime) / 1000)
+    });
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const db = window.firebaseDB;
   const ref = window.firebaseRef;

@@ -201,6 +201,8 @@ const firebaseConfig = {
     </script>
 
     <script>
+        const ADMIN_EMAILS = ['w.stepien@qborg.pl','t.fierek@qborg.pl'];
+        const isAdminEmail = (email) => ADMIN_EMAILS.includes((email || '').toLowerCase());
         let allEvents = [];
         let allSessions = [];
         let currentUser = null;
@@ -213,7 +215,12 @@ const firebaseConfig = {
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         currentUser = user;
-                        loadData();
+                        if (!isAdminEmail(user.email)) {
+                            document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h2>Brak dostępu</h2><p>Ta sekcja jest dostępna tylko dla administratorów.</p></div>';
+                            setTimeout(() => { try { window.close(); } catch(e) {} }, 1500);
+                            return;
+                        }
+                        loadData(true);
                     } else {
                         document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h2>Musisz być zalogowany aby zobaczyć historię</h2></div>';
                     }
@@ -221,28 +228,66 @@ const firebaseConfig = {
             }
         }
 
-        function loadData() {
+        function loadData(adminMode = false) {
             if (!currentUser) return;
+            
+            console.log('Loading data in admin mode:', adminMode, 'for user:', currentUser.email);
             
             const db = window.firebaseDB;
             const ref = window.firebaseRef;
             const onValue = window.firebaseOnValue;
             
-            // Load events
-            onValue(ref(db, `events/${currentUser.uid}`), (snapshot) => {
-                const data = snapshot.val();
-                allEvents = data ? Object.entries(data).map(([key, value]) => ({...value, id: key})) : [];
-                updateActivityDisplay();
-                updateStats();
-            });
-            
-            // Load sessions
-            onValue(ref(db, `sessions/${currentUser.uid}`), (snapshot) => {
-                const data = snapshot.val();
-                allSessions = data ? Object.entries(data).map(([key, value]) => ({...value, id: key})) : [];
-                updateSessionsDisplay();
-                updateStats();
-            });
+            if (adminMode) {
+                console.log('Loading all events for admin...');
+                // Load all events (all users)
+                onValue(ref(db, `events`), (snapshot) => {
+                    const data = snapshot.val() || {};
+                    console.log('Raw events data:', data);
+                    const merged = [];
+                    Object.entries(data).forEach(([uid, events]) => {
+                        if (events) {
+                            Object.entries(events).forEach(([key, value]) => {
+                                merged.push({ ...value, id: key, uid });
+                            });
+                        }
+                    });
+                    allEvents = merged;
+                    console.log('Merged events:', allEvents.length, 'events found');
+                    updateActivityDisplay();
+                    updateStats();
+                });
+                
+                // Load all sessions (all users)
+                onValue(ref(db, `sessions`), (snapshot) => {
+                    const data = snapshot.val() || {};
+                    const merged = [];
+                    Object.entries(data).forEach(([uid, sessions]) => {
+                        if (sessions) {
+                            Object.entries(sessions).forEach(([key, value]) => {
+                                merged.push({ ...value, id: key, uid });
+                            });
+                        }
+                    });
+                    allSessions = merged;
+                    updateSessionsDisplay();
+                    updateStats();
+                });
+            } else {
+                // Fallback: current user only
+                onValue(ref(db, `events/${currentUser.uid}`), (snapshot) => {
+                    const data = snapshot.val();
+                    allEvents = data ? Object.entries(data).map(([key, value]) => ({...value, id: key})) : [];
+                    updateActivityDisplay();
+                    updateStats();
+                });
+                
+                onValue(ref(db, `sessions/${currentUser.uid}`), (snapshot) => {
+                    const data = snapshot.val();
+                    allSessions = data ? Object.entries(data).map(([key, value]) => ({...value, id: key})) : [];
+                    updateSessionsDisplay();
+                    updateStats();
+                });
+            }
         }
 
         function updateStats() {

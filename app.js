@@ -1,3 +1,19 @@
+// ============= Auth System ===========
+const USERS = {
+  'k.joachimiak@qborg.pl': { name: 'Krzysztof Joachimiak', password: 'Qborg2025!@#' },
+  'm.mierzwa@qborg.pl': { name: 'Maciej Mierzwa', password: 'Qborg2025!@#' },
+  'd.grycel@qborg.pl': { name: 'Damian Grycel', password: 'Qborg2025!@#' },
+  'm.suwalski@qborg.pl': { name: 'Marek Suwalski', password: 'Qborg2025!@#' },
+  'p.murawski@qborg.pl': { name: 'Piotr Murawski', password: 'Qborg2025!@#' },
+  't.fierek@qborg.pl': { name: 'Tomasz Fierek', password: 'Qborg2025!@#' },
+  'w.stepien@qborg.pl': { name: 'Weronika Stępień', password: 'Qborg2025!@#' }
+};
+
+let currentUser = null;
+let sessionStartTime = null;
+let lastActivityTime = null;
+let eventHistory = JSON.parse(localStorage.getItem('qborg_event_history')) || [];
+
 // =========== Firebase Init ===========
 let projektanciAssigned = {};
 let projektanciGlobal = [];

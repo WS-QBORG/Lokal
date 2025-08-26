@@ -23,12 +23,15 @@ let activityHeartbeat = null;
 
 // Enhanced activity tracking functions
 function logActivity(action, objectType, objectId, metadata = {}) {
-  if (!currentUser) return;
-  
+  // Ensure we have a real Firebase user (avoid localStorage fallback)
+  const auth = window.firebaseAuth;
+  const uid = (currentUser && currentUser.uid) || (auth && auth.currentUser && auth.currentUser.uid);
+  if (!uid) return;
+
   const event = {
     timestamp: window.firebaseServerTimestamp(),
-    user: currentUser.email,
-    userName: currentUser.displayName || currentUser.email,
+    user: currentUser?.email || auth?.currentUser?.email,
+    userName: (currentUser?.displayName || currentUser?.email) || (auth?.currentUser?.displayName || auth?.currentUser?.email),
     action: action, // 'click', 'open', 'edit', 'add', 'delete', 'assign', 'filter'
     objectType: objectType, // 'point', 'projektant', 'projekt', 'klient', 'filter', 'sidebar'
     objectId: objectId,
@@ -40,14 +43,14 @@ function logActivity(action, objectType, objectId, metadata = {}) {
       userAgent: navigator.userAgent
     }
   };
-  
+
   // Save to Firebase
   const db = window.firebaseDB;
   const ref = window.firebaseRef;
   const push = window.firebasePush;
-  
+
   if (db && ref && push) {
-    push(ref(db, `events/${currentUser.uid}`), event)
+    push(ref(db, `events/${uid}`), event)
       .catch(error => console.error('Error logging activity:', error));
   }
 }
@@ -657,31 +660,33 @@ window.downloadEventHistory = function() {
   window.URL.revokeObjectURL(url);
 };
 
-// Start login on page load
+// Start auth listener on page load (real Firebase session)
 document.addEventListener("DOMContentLoaded", () => {
-  // Check if already logged in (simple session)
-  const savedUser = localStorage.getItem('qborg_current_user');
-  if (savedUser) {
-    currentUser = JSON.parse(savedUser);
-    sessionStartTime = new Date();
-    lastActivityTime = new Date();
-    showUserPanel();
-    startActivityTracking();
-    logEvent('auto_login', { email: currentUser.email });
+  const auth = window.firebaseAuth;
+  const onAuthStateChanged = window.firebaseAuthState;
+
+  if (auth && onAuthStateChanged) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUser = user;
+        sessionStartTime = new Date();
+        lastActivityTime = new Date();
+        showUserPanel();
+        startSession();
+        startActivityTracking();
+        logActivity('login', 'system', 'auth_state_restored');
+      } else {
+        showLoginForm();
+      }
+    });
   } else {
+    // Fallback: show login if Firebase not ready
     showLoginForm();
   }
 });
 
-// Save user session
-window.addEventListener('beforeunload', function() {
-  if (currentUser) {
-    localStorage.setItem('qborg_current_user', JSON.stringify(currentUser));
-    logEvent('page_unload', {
-      sessionDuration: Math.round((new Date() - sessionStartTime) / 1000)
-    });
-  }
-});
+// Remove legacy localStorage session persistence (use Firebase Auth persistence instead)
+// (Intentionally left empty)
 
 document.addEventListener("DOMContentLoaded", () => {
   const db = window.firebaseDB;

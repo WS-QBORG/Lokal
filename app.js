@@ -1,18 +1,140 @@
-// ============= Auth System ===========
-const USERS = {
-  'k.joachimiak@qborg.pl': { name: 'Krzysztof Joachimiak', password: 'Qborg2025!@#' },
-  'm.mierzwa@qborg.pl': { name: 'Maciej Mierzwa', password: 'Qborg2025!@#' },
-  'd.grycel@qborg.pl': { name: 'Damian Grycel', password: 'Qborg2025!@#' },
-  'm.suwalski@qborg.pl': { name: 'Marek Suwalski', password: 'Qborg2025!@#' },
-  'p.murawski@qborg.pl': { name: 'Piotr Murawski', password: 'Qborg2025!@#' },
-  't.fierek@qborg.pl': { name: 'Tomasz Fierek', password: 'Qborg2025!@#' },
-  'w.stepien@qborg.pl': { name: 'Weronika Stępień', password: 'Qborg2025!@#' }
+// ============= Firebase Auth & Activity Tracking System ===========
+
+// Function to open activity history panel
+window.openActivityHistory = function() {
+  // Track opening activity history
+  logActivity('open', 'system', 'activity_history', {
+    action_type: 'open_activity_history_panel'
+  });
+  
+  // Open in new window/tab
+  const activityWindow = window.open('firebase-history-panel.html', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+  
+  if (!activityWindow) {
+    alert('Panel historii został zablokowany przez przeglądarkę. Sprawdź ustawienia popup-ów.');
+  }
 };
 
 let currentUser = null;
 let sessionStartTime = null;
 let lastActivityTime = null;
-let eventHistory = JSON.parse(localStorage.getItem('qborg_event_history')) || [];
+let sessionId = null;
+let activityHeartbeat = null;
+
+// Enhanced activity tracking functions
+function logActivity(action, objectType, objectId, metadata = {}) {
+  if (!currentUser) return;
+  
+  const event = {
+    timestamp: window.firebaseServerTimestamp(),
+    user: currentUser.email,
+    userName: currentUser.displayName || currentUser.email,
+    action: action, // 'click', 'open', 'edit', 'add', 'delete', 'assign', 'filter'
+    objectType: objectType, // 'point', 'projektant', 'projekt', 'klient', 'filter', 'sidebar'
+    objectId: objectId,
+    objectName: metadata.name || objectId,
+    sessionId: sessionId,
+    metadata: {
+      ...metadata,
+      url: window.location.href,
+      userAgent: navigator.userAgent
+    }
+  };
+  
+  // Save to Firebase
+  const db = window.firebaseDB;
+  const ref = window.firebaseRef;
+  const push = window.firebasePush;
+  
+  if (db && ref && push) {
+    push(ref(db, `events/${currentUser.uid}`), event)
+      .catch(error => console.error('Error logging activity:', error));
+  }
+}
+
+// Session tracking functions
+function startSession() {
+  if (!currentUser) return;
+  
+  sessionStartTime = new Date();
+  sessionId = Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  lastActivityTime = new Date();
+  
+  const sessionData = {
+    sessionId: sessionId,
+    startTime: window.firebaseServerTimestamp(),
+    user: currentUser.email,
+    userName: currentUser.displayName || currentUser.email,
+    userAgent: navigator.userAgent,
+    url: window.location.href,
+    status: 'active'
+  };
+  
+  // Save session start to Firebase
+  const db = window.firebaseDB;
+  const ref = window.firebaseRef;
+  const set = window.firebaseSet;
+  
+  if (db && ref && set) {
+    set(ref(db, `sessions/${currentUser.uid}/${sessionId}`), sessionData)
+      .catch(error => console.error('Error starting session:', error));
+  }
+  
+  // Start heartbeat
+  startHeartbeat();
+}
+
+function endSession() {
+  if (!currentUser || !sessionId) return;
+  
+  const sessionDuration = Math.round((new Date() - sessionStartTime) / 1000);
+  
+  const sessionUpdate = {
+    endTime: window.firebaseServerTimestamp(),
+    duration: sessionDuration,
+    status: 'ended'
+  };
+  
+  // Update session in Firebase
+  const db = window.firebaseDB;
+  const ref = window.firebaseRef;
+  const set = window.firebaseSet;
+  
+  if (db && ref && set) {
+    set(ref(db, `sessions/${currentUser.uid}/${sessionId}/endTime`), sessionUpdate.endTime);
+    set(ref(db, `sessions/${currentUser.uid}/${sessionId}/duration`), sessionUpdate.duration);
+    set(ref(db, `sessions/${currentUser.uid}/${sessionId}/status`), sessionUpdate.status);
+  }
+  
+  stopHeartbeat();
+}
+
+function startHeartbeat() {
+  activityHeartbeat = setInterval(() => {
+    if (currentUser && sessionId) {
+      const now = new Date();
+      const timeSinceLastActivity = (now - lastActivityTime) / 1000;
+      
+      // Update last seen if activity within 5 minutes
+      if (timeSinceLastActivity < 300) {
+        const db = window.firebaseDB;
+        const ref = window.firebaseRef;
+        const set = window.firebaseSet;
+        
+        if (db && ref && set) {
+          set(ref(db, `sessions/${currentUser.uid}/${sessionId}/lastSeen`), window.firebaseServerTimestamp());
+        }
+      }
+    }
+  }, 30000); // Every 30 seconds
+}
+
+function stopHeartbeat() {
+  if (activityHeartbeat) {
+    clearInterval(activityHeartbeat);
+    activityHeartbeat = null;
+  }
+}
 
 // =========== Firebase Init ===========
 let projektanciAssigned = {};
@@ -166,7 +288,7 @@ window.showKlienci = function() {
 // ========== END MOBILE FUNCTIONS ==========
 const handlowcy = ["Maciej Mierzwa", "Damian Grycel", "Krzysztof Joachimiak", "Marek Suwalski", "Tomasz Fierek", "Piotr Murawski", "Weronika Stępień"];
 
-// ========== AUTH FUNCTIONS ==========
+// ========== FIREBASE AUTH FUNCTIONS ==========
 window.showLoginForm = function() {
   const loginHtml = `
     <div id="loginOverlay" style="
@@ -189,7 +311,7 @@ window.showLoginForm = function() {
         max-width: 90%;
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       ">
-        <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Logowanie Handlowców</h2>
+        <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Logowanie Handlowców Firebase</h2>
         <form id="loginForm">
           <div style="margin-bottom: 15px;">
             <label style="display: block; margin-bottom: 5px; color: #555;">Email:</label>
@@ -237,46 +359,76 @@ window.showLoginForm = function() {
   
   document.body.insertAdjacentHTML('beforeend', loginHtml);
   
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
+  document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
     
-    if (USERS[email] && USERS[email].password === password) {
-      currentUser = { email, name: USERS[email].name };
-      sessionStartTime = new Date();
-      lastActivityTime = new Date();
+    try {
+      const auth = window.firebaseAuth;
+      const signIn = window.firebaseSignIn;
       
-      logEvent('login', { email, name: USERS[email].name });
+      const userCredential = await signIn(auth, email, password);
+      currentUser = userCredential.user;
       
       document.getElementById('loginOverlay').remove();
       showUserPanel();
+      startSession();
       startActivityTracking();
-    } else {
+      
+    } catch (error) {
+      console.error('Login error:', error);
       const errorDiv = document.getElementById('loginError');
-      errorDiv.textContent = 'Nieprawidłowy email lub hasło';
+      errorDiv.textContent = getFirebaseErrorMessage(error.code);
       errorDiv.style.display = 'block';
     }
   });
 };
 
-window.logout = function() {
+function getFirebaseErrorMessage(errorCode) {
+  switch (errorCode) {
+    case 'auth/user-not-found':
+      return 'Nie znaleziono użytkownika o tym adresie email.';
+    case 'auth/wrong-password':
+      return 'Nieprawidłowe hasło.';
+    case 'auth/invalid-email':
+      return 'Nieprawidłowy format adresu email.';
+    case 'auth/user-disabled':
+      return 'To konto zostało wyłączone.';
+    case 'auth/too-many-requests':
+      return 'Zbyt wiele prób logowania. Spróbuj ponownie później.';
+    default:
+      return 'Błąd logowania: ' + errorCode;
+  }
+}
+
+window.logout = async function() {
   if (currentUser) {
-    logEvent('logout', { 
-      email: currentUser.email,
+    logActivity('logout', 'system', 'logout', { 
       sessionDuration: Math.round((new Date() - sessionStartTime) / 1000)
     });
+    endSession();
   }
   
-  currentUser = null;
-  sessionStartTime = null;
-  lastActivityTime = null;
-  
-  document.getElementById('userPanel')?.remove();
-  showLoginForm();
+  try {
+    const auth = window.firebaseAuth;
+    const signOut = window.firebaseSignOut;
+    await signOut(auth);
+    
+    currentUser = null;
+    sessionStartTime = null;
+    lastActivityTime = null;
+    sessionId = null;
+    
+    document.getElementById('userPanel')?.remove();
+    showLoginForm();
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
 };
 
 window.showUserPanel = function() {
+  const userName = currentUser.displayName || currentUser.email.split('@')[0];
   const userPanelHtml = `
     <div id="userPanel" style="
       position: fixed;
@@ -291,7 +443,7 @@ window.showUserPanel = function() {
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     ">
       <div style="display: flex; align-items: center; gap: 10px;">
-        <span>👤 ${currentUser.name}</span>
+        <span>👤 ${userName}</span>
         <button onclick="logout()" style="
           background: rgba(255,255,255,0.2);
           border: none;
@@ -301,7 +453,7 @@ window.showUserPanel = function() {
           cursor: pointer;
           font-size: 12px;
         ">Wyloguj</button>
-        <button onclick="showEventHistory()" style="
+        <button onclick="openActivityHistory()" style="
           background: rgba(255,255,255,0.2);
           border: none;
           color: white;
@@ -309,7 +461,7 @@ window.showUserPanel = function() {
           border-radius: 4px;
           cursor: pointer;
           font-size: 12px;
-        ">Historia</button>
+        ">📊 Historia</button>
       </div>
     </div>
   `;
@@ -318,29 +470,10 @@ window.showUserPanel = function() {
 };
 
 // ========== EVENT LOGGING ==========
+// Legacy function - use logActivity instead
 window.logEvent = function(eventType, data = {}) {
   if (!currentUser) return;
-  
-  const event = {
-    id: Date.now() + Math.random(),
-    timestamp: new Date().toISOString(),
-    user: currentUser.email,
-    userName: currentUser.name,
-    eventType,
-    data,
-    url: window.location.href,
-    userAgent: navigator.userAgent
-  };
-  
-  eventHistory.push(event);
-  
-  // Zachowaj ostatnie 1000 zdarzeń
-  if (eventHistory.length > 1000) {
-    eventHistory = eventHistory.slice(-1000);
-  }
-  
-  localStorage.setItem('qborg_event_history', JSON.stringify(eventHistory));
-  console.log('📊 Event logged:', event);
+  logActivity('legacy_event', 'system', eventType, data);
 };
 
 window.startActivityTracking = function() {
@@ -586,7 +719,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Zapisywanie statusów / akcji
   window.saveStatus = function (projektant, status) {
+    const oldStatus = statusAssigned[projektant] || "Neutralny";
     statusAssigned[projektant] = status;
+    
+    // Track status change
+    logActivity('edit', 'projektant', projektant, {
+      name: projektant,
+      field: 'status',
+      old_value: oldStatus,
+      new_value: status,
+      action_type: 'change_status'
+    });
+    
     if (db && ref && set) {
       set(ref(db, `statusy/${projektant}`), status)
         .then(() => console.log('✅ Status zapisany:', projektant, status))
@@ -832,6 +976,12 @@ window.cancelPolygonEdit = function() {
   let addClientMode = false;
   window.startAddClientMode = function (prefilledProject = '') {
     console.log("🔍 Otwieranie panelu dodawania klienta z projektem:", prefilledProject);
+    
+    // Track add client action
+    logActivity('open', 'client_panel', 'add_client_form', {
+      prefilled_project: prefilledProject,
+      action_type: 'open_add_client_form'
+    });
     
     // Najpierw załaduj projektantów jeśli nie ma
     if (projektanciGlobal.length === 0) {
@@ -1915,10 +2065,23 @@ window.cancelPolygonEdit = function() {
     
     layer.bindPopup(popup);
 
-    // 🔄 Dodaj rysowanie obrysu działki przy kliknięciu w marker
+    // 🔄 Dodaj tracking i rysowanie obrysu działki przy kliknięciu w marker
     layer.on("click", (e) => {
       console.log("🖱️ Kliknięto w marker, wywołuję drawPolygonForFeature");
       e.originalEvent.stopPropagation();
+      
+      // Track punkt click activity
+      logActivity('click', 'point', `${proj}-${dzialka}`, {
+        name: `${proj} - ${inwestycja}`,
+        projektant: proj,
+        dzialka: dzialka,
+        adres: adres,
+        rok: rok,
+        coordinates: [lat, lon],
+        assigned_handlowiec: assigned,
+        status: status
+      });
+      
       drawPolygonForFeature(feature);
       
       // Pokaż suwak obrotu dla tego punktu
@@ -1974,8 +2137,19 @@ window.cancelPolygonEdit = function() {
   };
 
   window.assignHandlowiec = function (projektant, handlowiec) {
+    const oldHandlowiec = projektanciAssigned[projektant] || null;
+    
     if (handlowiec) projektanciAssigned[projektant] = handlowiec;
     else delete projektanciAssigned[projektant];
+    
+    // Track assignment change
+    logActivity('assign', 'projektant', projektant, {
+      name: projektant,
+      old_handlowiec: oldHandlowiec,
+      new_handlowiec: handlowiec || null,
+      action_type: handlowiec ? 'assign_handlowiec' : 'unassign_handlowiec'
+    });
+    
     renderProjektanciList(projektanciGlobal);
     updateProfileHandlowiec(projektant);
     saveAssignment(projektant, handlowiec);
@@ -1989,6 +2163,14 @@ window.cancelPolygonEdit = function() {
   }
 
   window.showProfile = function (name) {
+    // Track projektant profile view
+    logActivity('open', 'projektant', name, {
+      name: name,
+      action_type: 'view_profile',
+      handlowiec: projektanciAssigned[name] || null,
+      project_count: geojsonFeatures.filter(f => f.properties?.projektant === name).length
+    });
+    
     const profile = document.getElementById("profilePanel");
     const content = document.getElementById("profileContent");
     const notes = projektanciNotes[name] || "";
@@ -2644,6 +2826,15 @@ window.cancelPolygonEdit = function() {
   window.showClientProfile = function (imie, telefon) {
     const client = klienciGlobal.find(k => k.imie === imie && k.telefon === telefon);
     if (!client) return;
+
+    // Track client profile view
+    logActivity('open', 'client', `${imie}_${telefon}`, {
+      name: imie,
+      telefon: telefon,
+      handlowiec: client.handlowiec,
+      projektant: client.projektant,
+      action_type: 'view_client_profile'
+    });
 
     const profile = document.getElementById("clientProfilePanel");
     const content = document.getElementById("clientProfileContent");

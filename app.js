@@ -2,6 +2,13 @@
 
 // Function to open activity history panel
 window.openActivityHistory = function() {
+  const email = (currentUser?.email || window.firebaseAuth?.currentUser?.email || '').toLowerCase();
+  if (!isAdminEmail(email)) {
+    alert('Brak uprawnień: dostęp tylko dla administratorów.');
+    logActivity('open_denied', 'system', 'activity_history', { reason: 'not_admin' });
+    return;
+  }
+
   // Track opening activity history
   logActivity('open', 'system', 'activity_history', {
     action_type: 'open_activity_history_panel'
@@ -20,6 +27,12 @@ let sessionStartTime = null;
 let lastActivityTime = null;
 let sessionId = null;
 let activityHeartbeat = null;
+
+// Admin access control
+const ADMIN_EMAILS = ['w.stepien@qborg.pl', 't.fierek@qborg.pl'];
+function isAdminEmail(email) {
+  return ADMIN_EMAILS.includes((email || '').toLowerCase());
+}
 
 // Enhanced activity tracking functions
 function logActivity(action, objectType, objectId, metadata = {}) {
@@ -456,15 +469,7 @@ window.showUserPanel = function() {
           cursor: pointer;
           font-size: 12px;
         ">Wyloguj</button>
-        <button onclick="openActivityHistory()" style="
-          background: rgba(255,255,255,0.2);
-          border: none;
-          color: white;
-          padding: 4px 8px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 12px;
-        ">📊 Historia</button>
+        ${isAdminEmail(currentUser?.email) ? '<button onclick="openActivityHistory()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 12px;">📊 Historia</button>' : ''}
       </div>
     </div>
   `;
@@ -672,6 +677,17 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStartTime = new Date();
         lastActivityTime = new Date();
         showUserPanel();
+        
+        // Pokaż przycisk historii tylko dla adminów
+        const historyBtn = document.getElementById('historyBtn');
+        if (historyBtn) {
+          if (isAdminEmail(user.email)) {
+            historyBtn.style.display = 'block';
+          } else {
+            historyBtn.style.display = 'none';
+          }
+        }
+        
         startSession();
         startActivityTracking();
         logActivity('login', 'system', 'auth_state_restored');

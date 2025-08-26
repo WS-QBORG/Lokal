@@ -337,21 +337,48 @@ const firebaseConfig = {
             }
         }
 
+        function filterData() {
+            updateSessionsDisplay();
+            updateActivityDisplay();
+        }
+
         function updateSessionsDisplay() {
             const container = document.getElementById('sessionsList');
-            const sortedSessions = [...allSessions].sort((a, b) => {
+            const selectedUid = (document.getElementById('userFilter')?.value) || '';
+            const dateFrom = document.getElementById('dateFromFilter')?.value;
+            const dateTo = document.getElementById('dateToFilter')?.value;
+            
+            let filtered = [...allSessions];
+            
+            // Filter by user
+            if (selectedUid) {
+                filtered = filtered.filter(s => s.uid === selectedUid);
+            }
+            
+            // Filter by date range
+            if (dateFrom || dateTo) {
+                filtered = filtered.filter(s => {
+                    if (!s.startTime) return false;
+                    const sessionDate = s.startTime.seconds ? new Date(s.startTime.seconds * 1000) : new Date(s.startTime);
+                    const sessionDateStr = sessionDate.toISOString().split('T')[0];
+                    if (dateFrom && sessionDateStr < dateFrom) return false;
+                    if (dateTo && sessionDateStr > dateTo) return false;
+                    return true;
+                });
+            }
+            
+            const sortedSessions = filtered.sort((a, b) => {
                 const aTime = a.startTime ? (a.startTime.seconds ? a.startTime.seconds * 1000 : new Date(a.startTime)) : 0;
                 const bTime = b.startTime ? (b.startTime.seconds ? b.startTime.seconds * 1000 : new Date(b.startTime)) : 0;
                 return bTime - aTime;
             });
-            const selectedUid = (document.getElementById('userFilter')?.value) || '';
-            const visible = selectedUid ? sortedSessions.filter(s => s.uid === selectedUid) : sortedSessions;
-            if (visible.length === 0) {
+            
+            if (sortedSessions.length === 0) {
                 container.innerHTML = '<div class="loading">Brak sesji dla wybranego filtra.</div>';
                 return;
             }
             
-            container.innerHTML = visible.map(session => {
+            container.innerHTML = sortedSessions.map(session => {
                 const startTime = session.startTime ? new Date(session.startTime.seconds ? session.startTime.seconds * 1000 : session.startTime) : null;
                 const endTime = session.endTime ? new Date(session.endTime.seconds ? session.endTime.seconds * 1000 : session.endTime) : null;
                 const duration = session.duration ? `${Math.round(session.duration / 60)} min` : (session.status === 'active' ? 'Aktywna' : 'Nieznany');
@@ -460,11 +487,6 @@ const firebaseConfig = {
             return important.join(' • ');
         }
 
-        function filterData() {
-            // Implementation for filtering would go here
-            updateActivityDisplay();
-            updateSessionsDisplay();
-        }
 
         function exportToCSV() {
             const headers = ['Timestamp', 'User', 'Action', 'Object Type', 'Object Name', 'Session ID'];

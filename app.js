@@ -8,7 +8,7 @@ window.openActivityHistory = function() {
   });
   
   // Open in new window/tab
-  const activityWindow = window.open('firebase-history-panel.html', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+  const activityWindow = window.open('firebase-history-panel.html', '_blank', 'noopener,noreferrer,width=1200,height=800,scrollbars=yes,resizable=yes');
   
   if (!activityWindow) {
     alert('Panel historii został zablokowany przez przeglądarkę. Sprawdź ustawienia popup-ów.');

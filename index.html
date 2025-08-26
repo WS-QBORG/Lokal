@@ -901,6 +901,10 @@
                 <span class="desktop-text">✨ Dodaj punkt</span>
                 <span class="mobile-text">Dodaj punkt</span>
             </button>
+            <button class="btn" style="background:#8b5cf6;color:white;" onclick="openActivityHistory()">
+                <span class="desktop-text">📊 Historia</span>
+                <span class="mobile-text">Historia</span>
+            </button>
             <button class="btn" id="clearFiltersBtn" onclick="clearAllFilters()" style="background:#ef4444;color:white;display:none;">
                 <span class="desktop-text">🗑️ Wyczyść filtry</span>
                 <span class="mobile-text">Wyczyść filtry</span>
@@ -1017,7 +1021,8 @@
     <!-- Firebase Config -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getDatabase, ref, onValue, set, push } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+        import { getDatabase, ref, onValue, set, push, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyC5FLUMl4pJ4YJkN9v--V9cZRxI8zE35r8",
@@ -1031,6 +1036,7 @@
 
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
+        const auth = getAuth(app);
 
         // Udostępnij Firebase globalnie
         window.firebaseDB = database;
@@ -1038,6 +1044,11 @@
         window.firebaseOnValue = onValue;
         window.firebaseSet = set;
         window.firebasePush = push;
+        window.firebaseAuth = auth;
+        window.firebaseSignIn = signInWithEmailAndPassword;
+        window.firebaseSignOut = signOut;
+        window.firebaseAuthState = onAuthStateChanged;
+        window.firebaseServerTimestamp = serverTimestamp;
     </script>
 
     <!-- Leaflet -->

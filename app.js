@@ -1278,6 +1278,10 @@ window.cancelPolygonEdit = function() {
       projektanciAssigned = snapshot.val() || {};
       console.log('📥 Firebase assignments:', projektanciAssigned);
       renderProjektanciList(projektanciGlobal);
+      // Odśwież ikony na mapie po załadowaniu przypisań
+      if (window.refreshAllMarkers) {
+        refreshAllMarkers();
+      }
     });
   }
 

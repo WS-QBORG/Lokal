@@ -1294,10 +1294,19 @@ window.cancelPolygonEdit = function() {
   }
 
   window.saveAssignment = function (projektant, handlowiec) {
+    console.log('🔄 Próba zapisania przypisania:', projektant, '->', handlowiec);
+    console.log('🔧 Firebase dostępne:', { db: !!db, ref: !!ref, set: !!set });
+    
     if (db && ref && set) {
       set(ref(db, `assignments/${projektant}`), handlowiec)
-        .then(() => console.log('✅ Zapisano:', projektant, handlowiec))
-        .catch(console.error);
+        .then(() => {
+          console.log('✅ Zapisano:', projektant, handlowiec);
+        })
+        .catch(error => {
+          console.error('❌ Błąd zapisu:', error);
+        });
+    } else {
+      console.error('❌ Firebase niedostępne dla zapisu przypisań');
     }
   };
 
@@ -2194,10 +2203,13 @@ window.cancelPolygonEdit = function() {
   };
 
   window.assignHandlowiec = function (projektant, handlowiec) {
+    console.log('🎯 Przypisywanie handlowca:', projektant, '->', handlowiec);
     const oldHandlowiec = projektanciAssigned[projektant] || null;
     
     if (handlowiec) projektanciAssigned[projektant] = handlowiec;
     else delete projektanciAssigned[projektant];
+    
+    console.log('📝 Aktualne przypisania:', projektanciAssigned);
     
     // Track assignment change
     logActivity('assign', 'projektant', projektant, {
@@ -2209,7 +2221,36 @@ window.cancelPolygonEdit = function() {
     
     renderProjektanciList(projektanciGlobal);
     updateProfileHandlowiec(projektant);
-    saveAssignment(projektant, handlowiec);
+    
+    // Zapisz do Firebase ze sprawdzeniem dostępności
+    const db = window.firebaseDB;
+    const ref = window.firebaseRef;
+    const set = window.firebaseSet;
+    
+    console.log('🔧 Firebase do zapisu:', { db: !!db, ref: !!ref, set: !!set });
+    
+    if (db && ref && set) {
+      if (handlowiec) {
+        set(ref(db, `assignments/${projektant}`), handlowiec)
+          .then(() => {
+            console.log('✅ Zapisano przypisanie:', projektant, '->', handlowiec);
+          })
+          .catch(error => {
+            console.error('❌ Błąd zapisu przypisania:', error);
+          });
+      } else {
+        // Usuń przypisanie
+        set(ref(db, `assignments/${projektant}`), null)
+          .then(() => {
+            console.log('✅ Usunięto przypisanie:', projektant);
+          })
+          .catch(error => {
+            console.error('❌ Błąd usunięcia przypisania:', error);
+          });
+      }
+    } else {
+      console.error('❌ Firebase niedostępne - nie można zapisać przypisania');
+    }
     
     // Odśwież kolory ikon na mapie
     refreshAllMarkers();

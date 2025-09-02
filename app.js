@@ -770,19 +770,31 @@ document.addEventListener("DOMContentLoaded", () => {
   if (db && ref && onValue) {
     const statusRef = ref(db, 'statusy');
     onValue(statusRef, snapshot => {
-      Object.assign(statusAssigned, snapshot.val() || {});
-      console.log("📥 Statusy:", statusAssigned);
+      const fbStatus = snapshot.val() || {};
+      const localStatus = JSON.parse(localStorage.getItem('localStatusy') || '{}');
+      Object.assign(statusAssigned, fbStatus, localStatus);
+      console.log("📥 Statusy (FB):", fbStatus, "🗂️ Lokalnie:", localStatus);
+      if (window.refreshAllMarkers) refreshAllMarkers();
     });
   }
 
   // Zapisywanie statusów / akcji
   window.saveStatus = function (projektant, status) {
-    const oldStatus = statusAssigned[projektant] || "Neutralny";
-    statusAssigned[projektant] = status;
+    const key = String(projektant || '').trim();
+    const oldStatus = statusAssigned[key] || "Neutralny";
+    statusAssigned[key] = status;
+    
+    // Buforuj lokalnie (znormalizowany klucz)
+    try {
+      const localRaw = JSON.parse(localStorage.getItem('localStatusy') || '{}');
+      const local = Object.fromEntries(Object.entries(localRaw).map(([k,v]) => [String(k).trim(), v]));
+      if (status) local[key] = status; else delete local[key];
+      localStorage.setItem('localStatusy', JSON.stringify(local));
+    } catch (e) { console.warn('⚠️ LocalStorage saveStatus error:', e); }
     
     // Track status change
-    logActivity('edit', 'projektant', projektant, {
-      name: projektant,
+    logActivity('edit', 'projektant', key, {
+      name: key,
       field: 'status',
       old_value: oldStatus,
       new_value: status,
@@ -790,10 +802,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     if (db && ref && set) {
-      set(ref(db, `statusy/${projektant}`), status)
-        .then(() => console.log('✅ Status zapisany:', projektant, status))
-        .catch(console.error);
+      set(ref(db, `statusy/${key}`), status)
+        .then(() => console.log('✅ Status zapisany:', key, status))
+        .catch(err => console.error('❌ Błąd zapisu statusu:', err));
+    } else {
+      console.error('❌ Firebase niedostępne dla zapisu statusu');
     }
+    
+    if (window.refreshAllMarkers) refreshAllMarkers();
   };
 
 
@@ -1275,10 +1291,15 @@ window.cancelPolygonEdit = function() {
   if (db && ref && onValue) {
     const assignmentsRef = ref(db, 'assignments');
     onValue(assignmentsRef, snapshot => {
-      projektanciAssigned = snapshot.val() || {};
-      console.log('📥 Firebase assignments:', projektanciAssigned);
+      const fbAssignmentsRaw = snapshot.val() || {};
+      const localAssignmentsRaw = JSON.parse(localStorage.getItem('localAssignments') || '{}');
+      // Znormalizuj klucze (trim)
+      const normalize = (obj) => Object.fromEntries(Object.entries(obj).map(([k, v]) => [String(k).trim(), v]));
+      const fbAssignments = normalize(fbAssignmentsRaw);
+      const localAssignments = normalize(localAssignmentsRaw);
+      projektanciAssigned = { ...fbAssignments, ...localAssignments };
+      console.log('📥 Firebase assignments (norm):', fbAssignments, '🗂️ Local (norm):', localAssignments);
       renderProjektanciList(projektanciGlobal);
-      // Odśwież ikony na mapie po załadowaniu przypisań
       if (window.refreshAllMarkers) {
         refreshAllMarkers();
       }
@@ -1294,13 +1315,22 @@ window.cancelPolygonEdit = function() {
   }
 
   window.saveAssignment = function (projektant, handlowiec) {
-    console.log('🔄 Próba zapisania przypisania:', projektant, '->', handlowiec);
+    const key = String(projektant || '').trim();
+    console.log('🔄 Próba zapisania przypisania:', key, '->', handlowiec);
     console.log('🔧 Firebase dostępne:', { db: !!db, ref: !!ref, set: !!set });
+
+    // Zawsze zapisz lokalnie jako bufor (ze znormalizowanym kluczem)
+    try {
+      const localRaw = JSON.parse(localStorage.getItem('localAssignments') || '{}');
+      const local = Object.fromEntries(Object.entries(localRaw).map(([k,v]) => [String(k).trim(), v]));
+      if (handlowiec) local[key] = handlowiec; else delete local[key];
+      localStorage.setItem('localAssignments', JSON.stringify(local));
+    } catch (e) { console.warn('⚠️ LocalStorage saveAssignment error:', e); }
     
     if (db && ref && set) {
-      set(ref(db, `assignments/${projektant}`), handlowiec)
+      set(ref(db, `assignments/${key}`), handlowiec)
         .then(() => {
-          console.log('✅ Zapisano:', projektant, handlowiec);
+          console.log('✅ Zapisano:', key, handlowiec);
         })
         .catch(error => {
           console.error('❌ Błąd zapisu:', error);
@@ -1308,6 +1338,7 @@ window.cancelPolygonEdit = function() {
     } else {
       console.error('❌ Firebase niedostępne dla zapisu przypisań');
     }
+  };
   };
 
   if (db && ref && onValue) {
@@ -2204,23 +2235,34 @@ window.cancelPolygonEdit = function() {
 
   window.assignHandlowiec = function (projektant, handlowiec) {
     console.log('🎯 Przypisywanie handlowca:', projektant, '->', handlowiec);
-    const oldHandlowiec = projektanciAssigned[projektant] || null;
+    const key = String(projektant || '').trim();
+    const oldHandlowiec = projektanciAssigned[key] || null;
     
-    if (handlowiec) projektanciAssigned[projektant] = handlowiec;
-    else delete projektanciAssigned[projektant];
+    if (handlowiec) projektanciAssigned[key] = handlowiec;
+    else delete projektanciAssigned[key];
+    
+    // Lokalne buforowanie na wypadek braku uprawnień Firebase
+    try {
+      const localRaw = JSON.parse(localStorage.getItem('localAssignments') || '{}');
+      const local = Object.fromEntries(Object.entries(localRaw).map(([k,v]) => [String(k).trim(), v]));
+      if (handlowiec) local[key] = handlowiec; else delete local[key];
+      localStorage.setItem('localAssignments', JSON.stringify(local));
+    } catch (e) {
+      console.warn('⚠️ Nie udało się zapisać lokalnie przypisań:', e);
+    }
     
     console.log('📝 Aktualne przypisania:', projektanciAssigned);
     
     // Track assignment change
-    logActivity('assign', 'projektant', projektant, {
-      name: projektant,
+    logActivity('assign', 'projektant', key, {
+      name: key,
       old_handlowiec: oldHandlowiec,
       new_handlowiec: handlowiec || null,
       action_type: handlowiec ? 'assign_handlowiec' : 'unassign_handlowiec'
     });
     
     renderProjektanciList(projektanciGlobal);
-    updateProfileHandlowiec(projektant);
+    updateProfileHandlowiec(key);
     
     // Zapisz do Firebase ze sprawdzeniem dostępności
     const db = window.firebaseDB;
@@ -2231,18 +2273,18 @@ window.cancelPolygonEdit = function() {
     
     if (db && ref && set) {
       if (handlowiec) {
-        set(ref(db, `assignments/${projektant}`), handlowiec)
+        set(ref(db, `assignments/${key}`), handlowiec)
           .then(() => {
-            console.log('✅ Zapisano przypisanie:', projektant, '->', handlowiec);
+            console.log('✅ Zapisano przypisanie:', key, '->', handlowiec);
           })
           .catch(error => {
             console.error('❌ Błąd zapisu przypisania:', error);
           });
       } else {
         // Usuń przypisanie
-        set(ref(db, `assignments/${projektant}`), null)
+        set(ref(db, `assignments/${key}`), null)
           .then(() => {
-            console.log('✅ Usunięto przypisanie:', projektant);
+            console.log('✅ Usunięto przypisanie:', key);
           })
           .catch(error => {
             console.error('❌ Błąd usunięcia przypisania:', error);

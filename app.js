@@ -719,7 +719,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusy = ["Wizyta zaplanowana", "W kontakcie", "Podejmuje decyzję", "Wygrany", "Stracony"];
   const statusAssigned = {};
 
-  // Ikonki statusów
+  // Ikonki statusów (zachowane dla kompatybilności)
   const statusIcons = {
     "Stracony": "icons/przegrany.svg",
     "Podejmuje decyzję": "icons/decyzja.svg",
@@ -728,6 +728,43 @@ document.addEventListener("DOMContentLoaded", () => {
     "Wygrany": "icons/wygrany.svg",
     "Neutralny": null
   };
+
+  // Mapowanie statusów na nazwy plików
+  const statusFileNames = {
+    "Wizyta zaplanowana": "zaplanowana",
+    "W kontakcie": "kontakt", 
+    "Podejmuje decyzję": "decyzja",
+    "Wygrany": "wygrany",
+    "Stracony": "przegrany"
+  };
+
+  // Mapowanie handlowców na sufiksy plików ikon
+  const handlowiecSuffixes = {
+    "Maciej Mierzwa": "maciek",
+    "Marek Suwalski": "marek", 
+    "Damian Grycel": "damian",
+    "Krzysztof Joachimiak": "krzychu",
+    "Weronika Stępień": "", // domyślne ikony bez sufiksu
+    "Tomasz Fierek": "", // domyślne ikony bez sufiksu
+    "Piotr Murawski": "" // domyślne ikony bez sufiksu
+  };
+
+  // Funkcja zwracająca ścieżkę do ikony na podstawie handlowca i statusu
+  function getIconPath(handlowiec, status) {
+    const statusFileName = statusFileNames[status];
+    if (!statusFileName) return null;
+    
+    const suffix = handlowiecSuffixes[handlowiec];
+    if (suffix === undefined) return null; // nieznany handlowiec
+    
+    if (suffix === "") {
+      // Domyślne ikony dla Weroniki, Tomka i Piotra
+      return `icons/${statusFileName}.svg`;
+    } else {
+      // Personalizowane ikony dla pozostałych
+      return `icons/${statusFileName}-${suffix}.svg`;
+    }
+  }
 
   // Odczytywanie statusów / akcji
   if (db && ref && onValue) {
@@ -1461,8 +1498,10 @@ window.cancelPolygonEdit = function() {
       
       if (features.length === 1) {
         const f = features[0];
-        const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
-        const iconUrl = statusIcons[status];
+        const proj = f.properties?.projektant?.trim();
+        const handlowiec = projektanciAssigned[proj];
+        const status = statusAssigned[proj] || "Neutralny";
+        const iconUrl = getIconPath(handlowiec, status);
         
         const marker = iconUrl
           ? L.marker(latlng, {
@@ -1545,8 +1584,9 @@ window.cancelPolygonEdit = function() {
     markerCluster.eachLayer(marker => {
       if (marker.feature && marker.feature.properties) {
         const proj = marker.feature.properties.projektant?.trim();
+        const handlowiec = projektanciAssigned[proj];
         const status = statusAssigned[proj] || "Neutralny";
-        const iconUrl = statusIcons[status];
+        const iconUrl = getIconPath(handlowiec, status);
         
         if (iconUrl) {
           marker.setIcon(L.icon({
@@ -1647,8 +1687,10 @@ window.cancelPolygonEdit = function() {
       
       if (features.length === 1) {
         const f = features[0];
-        const status = statusAssigned[f.properties?.projektant?.trim()] || "Neutralny";
-        const iconUrl = statusIcons[status];
+        const proj = f.properties?.projektant?.trim();
+        const handlowiec = projektanciAssigned[proj];
+        const status = statusAssigned[proj] || "Neutralny";
+        const iconUrl = getIconPath(handlowiec, status);
         
         const marker = iconUrl
           ? L.marker(latlng, {
@@ -2164,6 +2206,9 @@ window.cancelPolygonEdit = function() {
     renderProjektanciList(projektanciGlobal);
     updateProfileHandlowiec(projektant);
     saveAssignment(projektant, handlowiec);
+    
+    // Odśwież kolory ikon na mapie
+    refreshAllMarkers();
   };
 
   function updateProfileHandlowiec(name) {

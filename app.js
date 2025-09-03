@@ -27,6 +27,21 @@ let sessionStartTime = null;
 let lastActivityTime = null;
 let sessionId = null;
 let activityHeartbeat = null;
+let inactivityTimer = null;
+const INACTIVITY_LIMIT_MS = 5 * 60 * 1000; // 5 minutes
+
+function resetInactivityTimer() {
+  if (!currentUser) return;
+  try { clearTimeout(inactivityTimer); } catch (e) {}
+  inactivityTimer = setTimeout(() => {
+    try {
+      logActivity('auto_logout', 'system', 'inactivity_timeout', { idleMs: INACTIVITY_LIMIT_MS });
+    } catch (e) { /* noop */ }
+    if (typeof window.logout === 'function') {
+      window.logout('timeout');
+    }
+  }, INACTIVITY_LIMIT_MS);
+}
 
 // Admin access control
 const ADMIN_EMAILS = ['w.stepien@qborg.pl', 't.fierek@qborg.pl'];
@@ -100,7 +115,7 @@ function startSession() {
   startHeartbeat();
 }
 
-function endSession() {
+function endSession(status = 'ended') {
   if (!currentUser || !sessionId) return;
   
   const sessionDuration = Math.round((new Date() - sessionStartTime) / 1000);
@@ -108,7 +123,7 @@ function endSession() {
   const sessionUpdate = {
     endTime: window.firebaseServerTimestamp(),
     duration: sessionDuration,
-    status: 'ended'
+    status
   };
   
   // Update session in Firebase
@@ -429,13 +444,22 @@ function getFirebaseErrorMessage(errorCode) {
   }
 }
 
-window.logout = async function() {
+window.logout = async function(reason = 'manual') {
   if (currentUser) {
-    logActivity('logout', 'system', 'logout', { 
-      sessionDuration: Math.round((new Date() - sessionStartTime) / 1000)
-    });
-    endSession();
+    try {
+      logActivity('logout', 'system', 'logout', { 
+        sessionDuration: Math.round((new Date() - sessionStartTime) / 1000),
+        reason
+      });
+    } catch (e) {}
+    try { endSession(reason === 'timeout' ? 'timeout' : 'ended'); } catch (e) {}
   }
+
+  // Clear background timers
+  try {
+    if (activityHeartbeat) { clearInterval(activityHeartbeat); activityHeartbeat = null; }
+    if (inactivityTimer) { clearTimeout(inactivityTimer); inactivityTimer = null; }
+  } catch (e) {}
   
   try {
     const auth = window.firebaseAuth;
@@ -496,6 +520,14 @@ window.logEvent = function(eventType, data = {}) {
 };
 
 window.startActivityTracking = function() {
+  // Start/Reset inactivity timer immediately
+  resetInactivityTimer();
+  // Reset timer on common user activity
+  ['mousemove','touchstart','keydown','click','scroll'].forEach(evt => {
+    document.addEventListener(evt, resetInactivityTimer);
+  });
+  window.addEventListener('focus', resetInactivityTimer);
+
   // Track page visibility
   document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
@@ -503,6 +535,7 @@ window.startActivityTracking = function() {
     } else {
       logEvent('page_visible');
       lastActivityTime = new Date();
+      resetInactivityTimer();
     }
   });
   

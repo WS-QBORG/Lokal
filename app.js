@@ -1339,7 +1339,6 @@ window.cancelPolygonEdit = function() {
       console.error('❌ Firebase niedostępne dla zapisu przypisań');
     }
   };
-  };
 
   if (db && ref && onValue) {
     const notesRef = ref(db, 'notes');

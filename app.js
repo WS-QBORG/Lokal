@@ -178,10 +178,18 @@ window.renderProjektanciList = function (list) {
   const container = document.getElementById("sidebarContent");
   container.innerHTML = "";
   const searchValue = document.getElementById("searchInput")?.value?.toLowerCase() || "";
+  
+  // Sprawdź czy użytkownik może edytować przypisania
+  const userEmail = (currentUser?.email || '').toLowerCase();
+  const isAdmin = isAdminEmail(userEmail);
+  
   list
     .filter(p => p.projektant.toLowerCase().includes(searchValue))
     .forEach(p => {
       const assigned = projektanciAssigned[p.projektant] || "";
+      const isCurrentUserAssigned = assigned && assigned.toLowerCase().includes(userEmail.split('@')[0]);
+      const canEdit = isAdmin || !assigned || isCurrentUserAssigned;
+      
       const div = document.createElement("div");
       div.className = "projektant-entry";
       div.innerHTML = `
@@ -191,14 +199,17 @@ window.renderProjektanciList = function (list) {
             ${p.projektant} – ${p.liczba_projektow} projektów
           </span>
         </label>
-        <select onchange="assignHandlowiec('${p.projektant}', this.value)">
-          <option value="">(brak)</option>
-          ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-        </select>
+        ${canEdit ? 
+          `<select onchange="assignHandlowiec('${p.projektant}', this.value)">
+            <option value="">(brak)</option>
+            ${handlowcy.map(h => `<option ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+          </select>` :
+          `<input type="text" value="${assigned || '(brak)'}" readonly style="background-color: #f5f5f5; color: #666; border: 1px solid #ddd; padding: 4px; width: 100%; font-size: 14px;">`
+        }
       `;
       container.appendChild(div);
     });
-}; 
+};
 
 // ========== MOBILE TOUCH EVENTS ==========
 
@@ -2137,6 +2148,12 @@ window.cancelPolygonEdit = function() {
     // Wyciągnij tylko tekst z HTML lub użyj surowego tekstu
     const inwestycja = inwestycjaRaw.replace(/<[^>]*>/g, '').replace(/Inwestycja:\s*/, '') || 'Brak opisu';
 
+    // Sprawdź czy użytkownik może edytować to przypisanie
+    const userEmail = (currentUser?.email || '').toLowerCase();
+    const isAdmin = isAdminEmail(userEmail);
+    const isCurrentUserAssigned = assigned && assigned.toLowerCase().includes(userEmail.split('@')[0]);
+    const canEdit = isAdmin || !assigned || isCurrentUserAssigned;
+
     const popup = `
       <div style="font-family: Arial, sans-serif; line-height: 1.4;">
         <b>${proj}</b><br/>
@@ -2145,14 +2162,20 @@ window.cancelPolygonEdit = function() {
         <b>Adres:</b> ${adres}<br/>
         <b>Działka:</b> ${dzialka}<br/><br/>
         <label><b>Przypisz handlowca:</b></label><br/>
-        <select onchange="assignHandlowiec('${proj}', this.value)" style="width: 100%; margin: 4px 0; padding: 2px;">
-          <option value="">(brak)</option>
-          ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
-        </select><br/>
+        ${canEdit ? 
+          `<select onchange="assignHandlowiec('${proj}', this.value)" style="width: 100%; margin: 4px 0; padding: 2px;">
+            <option value="">(brak)</option>
+            ${handlowcy.map(h => `<option value="${h}" ${h === assigned ? 'selected' : ''}>${h}</option>`).join('')}
+          </select>` :
+          `<input type="text" value="${assigned || '(brak)'}" readonly style="width: 100%; margin: 4px 0; padding: 2px; background-color: #f5f5f5; color: #666;">`
+        }<br/>
         <label><b>Status:</b></label><br/>
-        <select onchange="saveStatus('${proj}', this.value)" style="width: 100%; margin: 4px 0; padding: 2px;">
-          ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
-        </select><br/><br/>
+        ${canEdit ?
+          `<select onchange="saveStatus('${proj}', this.value)" style="width: 100%; margin: 4px 0; padding: 2px;">
+            ${statusy.map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
+          </select>` :
+          `<input type="text" value="${status}" readonly style="width: 100%; margin: 4px 0; padding: 2px; background-color: #f5f5f5; color: #666;">`
+        }<br/><br/>
         <button type="button" onclick="event.stopPropagation(); startAddClientMode('${inwestycja.replace(/'/g, '\\\'')}')" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">👥 Dodaj klienta</button><br/>
         <button type="button" onclick="event.stopPropagation(); startPolygonEdit('${proj}', '${dzialka.replace(/[^a-zA-Z0-9]/g, '_')}', ${lat}, ${lon})" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">📐 Edytuj obrys działki</button><br/>
         <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;text-decoration:none;">📍 Pokaż w Google Maps</a>

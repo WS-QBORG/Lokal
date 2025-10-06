@@ -1448,7 +1448,7 @@ window.cancelPolygonEdit = function() {
     onValue(pointNotesRef, snapshot => {
       const raw = snapshot.val() || {};
       // Znormalizuj klucze (spacje/znaki specjalne -> _), aby odczyt był spójny
-      const normalized = {} as any;
+      const normalized = {};
       Object.keys(raw).forEach((key) => {
         const nk = key.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 200);
         normalized[nk] = raw[key];

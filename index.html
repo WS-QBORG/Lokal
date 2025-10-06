@@ -497,18 +497,18 @@
         /* Mobile Toggle Button */
         #mobileToggle {
             position: fixed;
-            top: 20px;
+            bottom: 20px;
             right: 20px;
-            width: 50px;
-            height: 50px;
-            background: rgba(59, 130, 246, 0.9);
+            width: 56px;
+            height: 56px;
+            background: rgba(59, 130, 246, 0.95);
             backdrop-filter: blur(10px);
             border: none;
-            border-radius: 12px;
+            border-radius: 50%;
             color: white;
             font-size: 24px;
             cursor: pointer;
-            z-index: 1002;
+            z-index: 1003;
             display: none;
             align-items: center;
             justify-content: center;
@@ -522,37 +522,56 @@
         }
 
         #mobileToggle.active {
-            background: rgba(239, 68, 68, 0.9);
+            background: rgba(239, 68, 68, 0.95);
         }
 
         /* Responsive Styles */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             /* Pokaż mobile toggle */
             #mobileToggle {
                 display: flex;
             }
 
-            /* Ukryj panel kontroli domyślnie na mobile */
+            /* Panel wysuwany z dołu na mobile/tablet */
             #controlPanel {
                 position: fixed !important;
-                left: -100% !important;
-                right: auto;
-                top: 0;
-                width: 90%;
-                max-width: 320px;
-                height: 100vh;
-                max-height: 100vh;
-                border-radius: 0 12px 12px 0;
-                padding: 20px 15px;
-                transition: left 0.3s ease;
+                left: 0 !important;
+                right: 0 !important;
+                top: auto !important;
+                bottom: -100% !important;
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: 30vh;
+                border-radius: 20px 20px 0 0;
+                padding: 20px 20px 30px 20px;
+                transition: bottom 0.3s ease;
                 overflow-y: auto;
-                z-index: 1000;
-                transform: translateX(0);
+                z-index: 1002;
+                transform: none;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
             }
 
             #controlPanel.mobile-show {
-                left: 0 !important;
-                transform: translateX(0);
+                bottom: 0 !important;
+            }
+            
+            /* Dodaj backdrop overlay */
+            body.panel-open::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+                animation: fadeIn 0.3s ease;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
             }
 
             /* Pokaż mobile text, ukryj desktop text na mobile */
@@ -561,40 +580,43 @@
             }
             
             .mobile-text, .mobile-title {
-                display: inline;
+                display: block;
+                text-align: center;
+                margin-bottom: 12px;
             }
             
             /* Kompaktowe dropdowny */
             .dropdown-button {
-                padding: 12px !important;
-                font-size: 0.9rem !important;
+                padding: 10px !important;
+                font-size: 0.85rem !important;
                 min-height: auto !important;
             }
 
             .control-section {
-                margin-bottom: 10px;
+                margin-bottom: 8px;
             }
 
             /* Kompaktowy nagłówek */
             #controlPanel h2 {
-                font-size: 1rem;
-                margin-bottom: 10px;
+                font-size: 0.95rem;
+                margin-bottom: 8px;
             }
 
-            /* Kompaktowe przyciski na mobile */
+            /* Kompaktowe przyciski na mobile - 2 kolumny */
             .control-buttons {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                gap: 8px;
-                margin-top: 15px;
+                gap: 6px;
+                margin-top: 10px;
             }
 
             .btn {
-                padding: 10px 8px !important;
-                font-size: 0.85rem !important;
-                min-height: 40px !important;
+                padding: 8px 6px !important;
+                font-size: 0.75rem !important;
+                min-height: 36px !important;
                 border-radius: 6px;
                 text-align: center;
+                white-space: nowrap;
             }
 
             #clearFiltersBtn {

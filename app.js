@@ -2996,7 +2996,7 @@ window.cancelPolygonEdit = function() {
   
   loadShapesFromFirebase();
 
-  map.on('moveend', () => {
+  map.on('zoomend', () => {
     renderVisibleDzialki();
   });
 

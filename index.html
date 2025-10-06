@@ -421,22 +421,34 @@
         /* Rotate Control */
         #rotateControl {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
             background: rgba(31, 41, 55, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 8px;
-            padding: 15px 25px;
+            padding: 20px 12px;
             color: white;
             z-index: 1000;
             display: none;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+        }
+
+        #rotateControl label {
+            display: block;
+            margin-bottom: 15px;
+            writing-mode: horizontal-tb;
+            transform: rotate(90deg);
+            white-space: nowrap;
         }
 
         #rotateSlider {
             width: 200px;
-            margin: 0 10px;
+            margin: 15px 0;
+            transform: rotate(-90deg);
+            transform-origin: center;
         }
 
         /* Popup styles */
@@ -671,17 +683,23 @@
 
             /* Rotate control na mobile */
             #rotateControl {
-                left: 10px;
-                right: 10px;
-                bottom: 80px;
-                transform: none;
-                padding: 20px;
+                right: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+                padding: 15px 10px;
+                writing-mode: vertical-lr;
+            }
+
+            #rotateControl label {
+                font-size: 12px;
+                margin-bottom: 10px;
             }
 
             #rotateSlider {
-                width: 100%;
+                width: 150px;
                 margin: 10px 0;
-                height: 40px;
+                height: 30px;
+                transform: rotate(-90deg);
             }
 
             /* Leaflet controls na mobile */

@@ -1412,8 +1412,16 @@ window.cancelPolygonEdit = function() {
 
   // Nowa funkcja do zapisywania notatek per punkt
   window.savePointNote = function (pointId, note) {
+    console.log('🔵 savePointNote wywołane:', { pointId, note });
+    const db = window.firebaseDB;
+    const ref = window.firebaseRef;
+    const set = window.firebaseSet;
+    
+    console.log('🔧 Firebase dostępne:', { db: !!db, ref: !!ref, set: !!set });
+    
     if (db && ref && set) {
       const path = `point_notes/${pointId}`;
+      console.log('📝 Zapisuję do Firebase:', path);
       set(ref(db, path), note)
         .then(() => {
           console.log('✅ Notatka punktu zapisana:', pointId, note);
@@ -1421,7 +1429,13 @@ window.cancelPolygonEdit = function() {
           if (!window.pointNotesCache) window.pointNotesCache = {};
           window.pointNotesCache[pointId] = note;
         })
-        .catch(console.error);
+        .catch((error) => {
+          console.error('❌ Błąd zapisu notatki:', error);
+          alert('❌ Błąd zapisu notatki: ' + error.message);
+        });
+    } else {
+      console.error('❌ Firebase niedostępne dla zapisu notatki');
+      alert('❌ Firebase niedostępne. Odśwież stronę i spróbuj ponownie.');
     }
   };
 

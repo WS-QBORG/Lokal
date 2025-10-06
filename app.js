@@ -2441,9 +2441,10 @@ window.cancelPolygonEdit = function() {
     const isCurrentUserAssigned = assigned && assigned.toLowerCase().includes(userEmail.split('@')[0]);
     const canEdit = isAdmin || !assigned || isCurrentUserAssigned;
 
-    // Unikalny ID punktu
-    const pointId = `${proj}_${adres.replace(/[^a-zA-Z0-9]/g, '_')}_${dzialka.replace(/[^a-zA-Z0-9]/g, '_')}`.substring(0, 200);
+    // Unikalny ID punktu - normalizuj wszystkie pola
+    const pointId = `${proj.replace(/[^a-zA-Z0-9]/g, '_')}_${adres.replace(/[^a-zA-Z0-9]/g, '_')}_${dzialka.replace(/[^a-zA-Z0-9]/g, '_')}`.substring(0, 200);
     const existingNote = (window.pointNotesCache && window.pointNotesCache[pointId]) || '';
+    console.log('🔍 Szukam notatki dla ID:', pointId, '→', existingNote ? 'znaleziono' : 'brak');
 
     const popup = `
       <div style="font-family: Arial, sans-serif; line-height: 1.4;">

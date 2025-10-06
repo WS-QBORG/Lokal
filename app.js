@@ -1406,6 +1406,33 @@ window.cancelPolygonEdit = function() {
     }
   };
 
+  // Nowa funkcja do zapisywania notatek per punkt
+  window.savePointNote = function (pointId, note) {
+    if (db && ref && set) {
+      const path = `point_notes/${pointId}`;
+      set(ref(db, path), note)
+        .then(() => {
+          console.log('✅ Notatka punktu zapisana:', pointId, note);
+          // Zaktualizuj w cache
+          if (!window.pointNotesCache) window.pointNotesCache = {};
+          window.pointNotesCache[pointId] = note;
+        })
+        .catch(console.error);
+    }
+  };
+
+  // Cache dla notatek punktów
+  window.pointNotesCache = {};
+  
+  // Nasłuchuj zmian w notatkach punktów
+  if (db && ref && onValue) {
+    const pointNotesRef = ref(db, 'point_notes');
+    onValue(pointNotesRef, snapshot => {
+      window.pointNotesCache = snapshot.val() || {};
+      console.log('📥 Firebase notatki punktów:', window.pointNotesCache);
+    });
+  }
+
   // =========== Mapa ===========
   const map = L.map('map').setView([53.4285, 14.5528], 8);
   window.map = map;
@@ -2392,6 +2419,10 @@ window.cancelPolygonEdit = function() {
     const isCurrentUserAssigned = assigned && assigned.toLowerCase().includes(userEmail.split('@')[0]);
     const canEdit = isAdmin || !assigned || isCurrentUserAssigned;
 
+    // Unikalny ID punktu
+    const pointId = `${proj}_${adres.replace(/[^a-zA-Z0-9]/g, '_')}_${dzialka.replace(/[^a-zA-Z0-9]/g, '_')}`.substring(0, 200);
+    const existingNote = (window.pointNotesCache && window.pointNotesCache[pointId]) || '';
+
     const popup = `
       <div style="font-family: Arial, sans-serif; line-height: 1.4;">
         <b>${proj}</b><br/>
@@ -2414,6 +2445,9 @@ window.cancelPolygonEdit = function() {
           </select>` :
           `<input type="text" value="${status}" readonly style="width: 100%; margin: 4px 0; padding: 2px; background-color: #f5f5f5; color: #666;">`
         }<br/><br/>
+        <label><b>Notatki:</b></label><br/>
+        <textarea id="note_${pointId}" style="width: 100%; min-height: 60px; margin: 4px 0; padding: 4px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; resize: vertical;">${existingNote}</textarea><br/>
+        <button type="button" onclick="event.stopPropagation(); savePointNote('${pointId}', document.getElementById('note_${pointId}').value); alert('✅ Notatka zapisana!');" style="background:#3b82f6;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">💾 Zapisz notatkę</button><br/><br/>
         <button type="button" onclick="event.stopPropagation(); startAddClientMode('${inwestycja.replace(/'/g, '\\\'')}')" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">👥 Dodaj klienta</button><br/>
         <button type="button" onclick="event.stopPropagation(); startPolygonEdit('${proj}', '${dzialka.replace(/[^a-zA-Z0-9]/g, '_')}', ${lat}, ${lon})" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">📐 Edytuj obrys działki</button><br/>
         <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;text-decoration:none;">📍 Pokaż w Google Maps</a>

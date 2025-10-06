@@ -1442,20 +1442,34 @@ window.cancelPolygonEdit = function() {
   // Cache dla notatek punktów
   window.pointNotesCache = {};
   
-  // Nasłuchuj zmian w notatkach punktów
+  // Nasłuchuj zmian w notatkach punktów (po zalogowaniu)
   if (db && ref && onValue) {
-    const pointNotesRef = ref(db, 'point_notes');
-    onValue(pointNotesRef, snapshot => {
-      const raw = snapshot.val() || {};
-      // Znormalizuj klucze (spacje/znaki specjalne -> _), aby odczyt był spójny
-      const normalized = {};
-      Object.keys(raw).forEach((key) => {
-        const nk = key.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 200);
-        normalized[nk] = raw[key];
+    const attachPointNotesListener = () => {
+      const pointNotesRef = ref(db, 'point_notes');
+      onValue(pointNotesRef, snapshot => {
+        const raw = snapshot.val() || {};
+        // Znormalizuj klucze (spacje/znaki specjalne -> _), aby odczyt był spójny
+        const normalized = {};
+        Object.keys(raw).forEach((key) => {
+          const nk = key.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 200);
+          normalized[nk] = raw[key];
+        });
+        window.pointNotesCache = normalized;
+        console.log('📥 Firebase notatki punktów (znormalizowane):', window.pointNotesCache);
       });
-      window.pointNotesCache = normalized;
-      console.log('📥 Firebase notatki punktów (znormalizowane):', window.pointNotesCache);
-    });
+    };
+
+    if (typeof currentUser !== 'undefined' && currentUser) {
+      attachPointNotesListener();
+    } else {
+      const auth = window.firebaseAuth;
+      const onAuthStateChanged = window.firebaseAuthState;
+      if (auth && onAuthStateChanged) {
+        onAuthStateChanged(auth, (user) => {
+          if (user) attachPointNotesListener();
+        });
+      }
+    }
   }
 
   // =========== Mapa ===========

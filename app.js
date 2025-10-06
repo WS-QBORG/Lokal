@@ -278,10 +278,12 @@ window.toggleMobilePanel = function() {
     controlPanel.classList.remove("mobile-show");
     mobileToggle.classList.remove("active");
     mobileToggle.innerHTML = "☰";
+    document.body.classList.remove("panel-open");
   } else {
     controlPanel.classList.add("mobile-show");
     mobileToggle.classList.add("active");
-    mobileToggle.innerHTML = "✖";
+    mobileToggle.innerHTML = "▼";
+    document.body.classList.add("panel-open");
   }
 };
 
@@ -290,14 +292,15 @@ document.addEventListener('click', function(event) {
   const controlPanel = document.getElementById("controlPanel");
   const mobileToggle = document.getElementById("mobileToggle");
   
-  // Only on mobile
-  if (window.innerWidth <= 768) {
+  // Only on mobile/tablet
+  if (window.innerWidth <= 1024) {
     if (controlPanel.classList.contains("mobile-show") && 
         !controlPanel.contains(event.target) && 
         !mobileToggle.contains(event.target)) {
       controlPanel.classList.remove("mobile-show");
       mobileToggle.classList.remove("active");
       mobileToggle.innerHTML = "☰";
+      document.body.classList.remove("panel-open");
     }
   }
 });
@@ -305,24 +308,26 @@ document.addEventListener('click', function(event) {
 // Close mobile panel when opening sidebars on mobile
 const originalShowProjektanci = window.showProjektanci;
 window.showProjektanci = function() {
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 1024) {
     const controlPanel = document.getElementById("controlPanel");
     const mobileToggle = document.getElementById("mobileToggle");
     controlPanel.classList.remove("mobile-show");
     mobileToggle.classList.remove("active");
     mobileToggle.innerHTML = "☰";
+    document.body.classList.remove("panel-open");
   }
   originalShowProjektanci();
 };
 
 const originalShowKlienci = window.showKlienci;
 window.showKlienci = function() {
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 1024) {
     const controlPanel = document.getElementById("controlPanel");
     const mobileToggle = document.getElementById("mobileToggle");
     controlPanel.classList.remove("mobile-show");
     mobileToggle.classList.remove("active");
     mobileToggle.innerHTML = "☰";
+    document.body.classList.remove("panel-open");
   }
   originalShowKlienci();
 };

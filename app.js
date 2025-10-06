@@ -1252,7 +1252,11 @@ window.cancelPolygonEdit = function() {
           <button type="button" onclick="event.stopPropagation(); startAddClientMode('Dom jednorodzinny - ${adres}')" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">👥 Dodaj klienta</button><br/>
           <a href="https://maps.google.com/?q=${adres}" target="_blank" style="color:#3b82f6;text-decoration:none;">📍 Pokaż w Google Maps</a>
         </div>
-      `);
+      `, {
+        closeOnClick: false,
+        autoClose: false,
+        closeButton: true
+      });
 
       
       const newFeature = {
@@ -1894,7 +1898,11 @@ window.cancelPolygonEdit = function() {
     popup += `</div>`;
     popup += `<br/><a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" style="color:#3b82f6;">📍 Pokaż w Google Maps</a>`;
     
-    layer.bindPopup(popup);
+    layer.bindPopup(popup, {
+      closeOnClick: false,
+      autoClose: false,
+      closeButton: true
+    });
   }
 
   function refreshAllMarkers() {
@@ -2454,7 +2462,11 @@ window.cancelPolygonEdit = function() {
       </div>
     `;
     
-    layer.bindPopup(popup);
+    layer.bindPopup(popup, {
+      closeOnClick: false,
+      autoClose: false,
+      closeButton: true
+    });
 
     // 🔄 Dodaj tracking i rysowanie obrysu działki przy kliknięciu w marker
     layer.on("click", (e) => {
@@ -3379,7 +3391,11 @@ window.zoomToClient = function(name, projektant, adres = '', dzialka = '') {
 
   const [lng, lat] = match.geometry.coordinates;
   const marker = L.marker([lat, lng]).addTo(map);
-  marker.bindPopup(`<b>${name}</b><br>${adres}<br>${dzialka}`).openPopup();
+  marker.bindPopup(`<b>${name}</b><br>${adres}<br>${dzialka}`, {
+    closeOnClick: false,
+    autoClose: false,
+    closeButton: true
+  }).openPopup();
   map.setView([lat, lng], 16);
 };
 

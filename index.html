@@ -427,28 +427,30 @@
             background: rgba(31, 41, 55, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 8px;
-            padding: 20px 12px;
+            padding: 15px 12px;
             color: white;
             z-index: 1000;
             display: none;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            writing-mode: vertical-lr;
-            text-orientation: mixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #rotateControl label {
-            display: block;
-            margin-bottom: 15px;
-            writing-mode: horizontal-tb;
-            transform: rotate(90deg);
-            white-space: nowrap;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            margin-bottom: 10px;
+            font-size: 14px;
         }
 
         #rotateSlider {
-            width: 200px;
-            margin: 15px 0;
-            transform: rotate(-90deg);
-            transform-origin: center;
+            -webkit-appearance: slider-vertical;
+            appearance: slider-vertical;
+            width: 8px;
+            height: 200px;
+            margin: 0;
+            writing-mode: bt-lr;
         }
 
         /* Popup styles */
@@ -686,20 +688,17 @@
                 right: 5px;
                 top: 50%;
                 transform: translateY(-50%);
-                padding: 15px 10px;
-                writing-mode: vertical-lr;
+                padding: 12px 8px;
             }
 
             #rotateControl label {
-                font-size: 12px;
-                margin-bottom: 10px;
+                font-size: 11px;
+                margin-bottom: 8px;
             }
 
             #rotateSlider {
-                width: 150px;
-                margin: 10px 0;
-                height: 30px;
-                transform: rotate(-90deg);
+                height: 150px;
+                width: 6px;
             }
 
             /* Leaflet controls na mobile */

@@ -923,6 +923,22 @@
                 <span class="desktop-text">✨ Dodaj punkt</span>
                 <span class="mobile-text">Dodaj punkt</span>
             </button>
+        </div>
+
+        <!-- GPS Tracking Section -->
+        <div class="control-section">
+            <button id="trackingBtn" class="btn btn-success" onclick="toggleTracking()" style="width: 100%;">
+                📍 Start Tracking GPS
+            </button>
+            <div id="trackingInfo" style="display: none; margin-top: 10px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 6px; font-size: 0.85rem; color: #d1d5db;">
+                <div style="margin-bottom: 5px;"><strong>🕒 Czas:</strong> <span id="trackingTime">0:00</span></div>
+                <div style="margin-bottom: 5px;"><strong>📏 Dystans:</strong> <span id="trackingDistance">0 km</span></div>
+                <div><strong>⚡ Prędkość:</strong> <span id="trackingSpeed">0 km/h</span></div>
+            </div>
+        </div>
+
+        <!-- History and Clear Filters Buttons -->
+        <div class="control-buttons">
             <button id="historyBtn" class="btn" style="background:#8b5cf6;color:white;display:none;" onclick="openActivityHistory()">
                 <span class="desktop-text">📊 Historia</span>
                 <span class="mobile-text">Historia</span>

@@ -1411,6 +1411,206 @@ window.cancelPolygonEdit = function() {
   window.map = map;
 
   let polygonLayerGroup = L.layerGroup().addTo(map);
+
+  // =========== GPS Tracking ===========
+  let isTracking = false;
+  let trackingWatchId = null;
+  let trackingPath = [];
+  let trackingPolyline = null;
+  let currentPositionMarker = null;
+  let trackingStartTime = null;
+  let totalDistance = 0;
+  let lastPosition = null;
+
+  window.toggleTracking = function() {
+    if (isTracking) {
+      stopTracking();
+    } else {
+      startTracking();
+    }
+  };
+
+  function startTracking() {
+    if (!navigator.geolocation) {
+      alert('Geolokalizacja nie jest dostępna w Twojej przeglądarce.');
+      return;
+    }
+
+    isTracking = true;
+    trackingPath = [];
+    totalDistance = 0;
+    lastPosition = null;
+    trackingStartTime = Date.now();
+
+    // Zaktualizuj przycisk
+    const btn = document.getElementById('trackingBtn');
+    btn.textContent = '⏹️ Stop Tracking GPS';
+    btn.className = 'btn btn-primary';
+
+    // Pokaż panel info
+    document.getElementById('trackingInfo').style.display = 'block';
+
+    // Rozpocznij śledzenie
+    trackingWatchId = navigator.geolocation.watchPosition(
+      handlePositionUpdate,
+      handlePositionError,
+      {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      }
+    );
+
+    logActivity('start', 'tracking', 'gps_tracking', { action_type: 'start_gps_tracking' });
+  }
+
+  function stopTracking() {
+    if (trackingWatchId !== null) {
+      navigator.geolocation.clearWatch(trackingWatchId);
+      trackingWatchId = null;
+    }
+
+    isTracking = false;
+
+    // Zaktualizuj przycisk
+    const btn = document.getElementById('trackingBtn');
+    btn.textContent = '📍 Start Tracking GPS';
+    btn.className = 'btn btn-success';
+
+    // Ukryj panel info
+    document.getElementById('trackingInfo').style.display = 'none';
+
+    logActivity('stop', 'tracking', 'gps_tracking', { 
+      action_type: 'stop_gps_tracking',
+      total_distance: totalDistance,
+      duration: trackingStartTime ? (Date.now() - trackingStartTime) / 1000 : 0
+    });
+  }
+
+  function handlePositionUpdate(position) {
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+    const accuracy = position.coords.accuracy;
+    const speed = position.coords.speed; // m/s lub null
+
+    console.log('📍 GPS Update:', { lat, lng, accuracy, speed });
+
+    // Aktualizuj marker obecnej pozycji
+    if (currentPositionMarker) {
+      currentPositionMarker.setLatLng([lat, lng]);
+    } else {
+      currentPositionMarker = L.circleMarker([lat, lng], {
+        radius: 8,
+        fillColor: '#10b981',
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.8
+      }).addTo(map);
+
+      // Wycentruj mapę na początkowej pozycji
+      map.setView([lat, lng], 15);
+    }
+
+    // Dodaj punkt do trasy
+    trackingPath.push([lat, lng]);
+
+    // Oblicz dystans jeśli mamy poprzednią pozycję
+    if (lastPosition) {
+      const distance = calculateDistance(
+        lastPosition.lat,
+        lastPosition.lng,
+        lat,
+        lng
+      );
+      totalDistance += distance;
+    }
+
+    lastPosition = { lat, lng };
+
+    // Aktualizuj lub utwórz linię trasy
+    if (trackingPolyline) {
+      trackingPolyline.setLatLngs(trackingPath);
+    } else {
+      trackingPolyline = L.polyline(trackingPath, {
+        color: '#10b981',
+        weight: 4,
+        opacity: 0.7
+      }).addTo(map);
+    }
+
+    // Aktualizuj statystyki
+    updateTrackingStats(speed);
+  }
+
+  function handlePositionError(error) {
+    console.error('GPS Error:', error);
+    let errorMsg = 'Błąd GPS: ';
+    
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        errorMsg += 'Odmowa dostępu do lokalizacji. Sprawdź uprawnienia.';
+        stopTracking();
+        break;
+      case error.POSITION_UNAVAILABLE:
+        errorMsg += 'Lokalizacja niedostępna.';
+        break;
+      case error.TIMEOUT:
+        errorMsg += 'Timeout przy pobieraniu lokalizacji.';
+        break;
+      default:
+        errorMsg += 'Nieznany błąd.';
+    }
+    
+    console.warn(errorMsg);
+  }
+
+  function calculateDistance(lat1, lon1, lat2, lon2) {
+    // Haversine formula
+    const R = 6371; // Promień Ziemi w km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = 
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Dystans w km
+  }
+
+  function updateTrackingStats(speedMps) {
+    // Czas
+    const elapsedSeconds = Math.floor((Date.now() - trackingStartTime) / 1000);
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+    document.getElementById('trackingTime').textContent = 
+      `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+    // Dystans
+    document.getElementById('trackingDistance').textContent = 
+      `${totalDistance.toFixed(2)} km`;
+
+    // Prędkość
+    let speedKmh = 0;
+    if (speedMps !== null && speedMps !== undefined && speedMps >= 0) {
+      speedKmh = speedMps * 3.6; // konwersja m/s na km/h
+    } else if (lastPosition && trackingPath.length > 1) {
+      // Oblicz średnią prędkość z ostatnich punktów
+      const recentPath = trackingPath.slice(-5);
+      if (recentPath.length >= 2) {
+        const recentDistance = calculateDistance(
+          recentPath[0][0], recentPath[0][1],
+          recentPath[recentPath.length - 1][0], recentPath[recentPath.length - 1][1]
+        );
+        const timeSeconds = 5; // Zakładamy ~5 sekund między aktualizacjami
+        speedKmh = (recentDistance / timeSeconds) * 3600;
+      }
+    }
+    document.getElementById('trackingSpeed').textContent = 
+      `${Math.max(0, speedKmh).toFixed(1)} km/h`;
+  }
+
+  // =========== END GPS Tracking ===========
   
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 

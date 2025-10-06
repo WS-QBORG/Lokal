@@ -2446,7 +2446,7 @@ window.cancelPolygonEdit = function() {
           `<input type="text" value="${status}" readonly style="width: 100%; margin: 4px 0; padding: 2px; background-color: #f5f5f5; color: #666;">`
         }<br/><br/>
         <label><b>Notatki:</b></label><br/>
-        <textarea id="note_${pointId}" style="width: 100%; min-height: 60px; margin: 4px 0; padding: 4px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; resize: vertical;">${existingNote}</textarea><br/>
+        <textarea id="note_${pointId}" style="width: 100%; min-height: 40px; max-height: 100px; margin: 4px 0; padding: 4px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px; resize: vertical;">${existingNote}</textarea><br/>
         <button type="button" onclick="event.stopPropagation(); savePointNote('${pointId}', document.getElementById('note_${pointId}').value); alert('✅ Notatka zapisana!');" style="background:#3b82f6;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">💾 Zapisz notatkę</button><br/><br/>
         <button type="button" onclick="event.stopPropagation(); startAddClientMode('${inwestycja.replace(/'/g, '\\\'')}')" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">👥 Dodaj klienta</button><br/>
         <button type="button" onclick="event.stopPropagation(); startPolygonEdit('${proj}', '${dzialka.replace(/[^a-zA-Z0-9]/g, '_')}', ${lat}, ${lon})" style="background:#10b981;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin:4px 0;width:100%;">📐 Edytuj obrys działki</button><br/>

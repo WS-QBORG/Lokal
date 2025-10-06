@@ -1446,8 +1446,15 @@ window.cancelPolygonEdit = function() {
   if (db && ref && onValue) {
     const pointNotesRef = ref(db, 'point_notes');
     onValue(pointNotesRef, snapshot => {
-      window.pointNotesCache = snapshot.val() || {};
-      console.log('📥 Firebase notatki punktów:', window.pointNotesCache);
+      const raw = snapshot.val() || {};
+      // Znormalizuj klucze (spacje/znaki specjalne -> _), aby odczyt był spójny
+      const normalized = {} as any;
+      Object.keys(raw).forEach((key) => {
+        const nk = key.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 200);
+        normalized[nk] = raw[key];
+      });
+      window.pointNotesCache = normalized;
+      console.log('📥 Firebase notatki punktów (znormalizowane):', window.pointNotesCache);
     });
   }
 
@@ -2481,6 +2488,14 @@ window.cancelPolygonEdit = function() {
       closeOnClick: false,
       autoClose: false,
       closeButton: true
+    });
+
+    // 📝 Ustaw aktualną wartość notatki przy każdym otwarciu popupu
+    layer.on('popupopen', () => {
+      const ta = document.getElementById('note_' + pointId);
+      if (ta) {
+        ta.value = (window.pointNotesCache && window.pointNotesCache[pointId]) || '';
+      }
     });
 
     // 🔄 Dodaj tracking i rysowanie obrysu działki przy kliknięciu w marker
